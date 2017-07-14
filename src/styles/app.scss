@@ -1,0 +1,41 @@
+@import 'variables';
+
+:global {
+  body {
+    margin: 0;
+    padding: 0;
+    background: black;
+
+    a {
+      text-decoration: none;
+    }
+
+    *, *:before, *:after {
+      box-sizing: border-box;
+      color: white;
+    }
+  }
+
+}
+
+.layout {
+  height: 100%;
+  width: 100%;
+}
+
+.topLayout {
+  position: relative;
+  height: calc(100% - 5em);
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.main {
+  height: 100%;
+  width: calc(100% - 5em);
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  overflow: scroll;
+}

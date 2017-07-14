@@ -27,7 +27,6 @@ module.exports = {
     loaders
   },
   resolve: {
-    extensions: ['', '.js', '.scss']
-  },
-  postcss: [autoPrefixer({ browsers: ['last 2 versions'] })]
+    extensions: ['.js', '.scss']
+  }
 };

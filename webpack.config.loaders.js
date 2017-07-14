@@ -3,12 +3,17 @@ var path = require('path');
 const loaderConfig = [
   {
     test: /\.js$/,
-    loaders: ['babel'],
+    loaders: ['babel-loader'],
     include: path.join(__dirname, 'src')
   },
   {
     test: /\.scss$/,
-    loaders: ['style', 'css?module&localIdentName=[local]---[hash:base64:5]', 'postcss', 'sass']
+    loaders: [
+      'style-loader',
+      'css-loader?module&localIdentName=[local]---[hash:base64:5]',
+      //'postcss-loader',
+      'sass-loader'
+    ]
   },
   {
     test: /\.(png|jpg)$/,
