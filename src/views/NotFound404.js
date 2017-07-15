@@ -1,6 +1,12 @@
-const NotFound404 = ({ location }) =>
-    <div className="not-found-404">
-        <h1>Cannot find resource at '{location.pathname}'</h1>
-    </div>
+import React, { PropTypes } from 'react';
 
-export default NotFound404
+const NotFound404 = ({ location }) =>
+  (<div className="not-found-404">
+    <h1>Cannot find resource at {location.pathname}</h1>
+  </div>);
+
+export default NotFound404;
+
+NotFound404.propTypes = {
+  location: PropTypes.string.isRequired,
+};

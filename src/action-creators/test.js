@@ -7,7 +7,7 @@ export function testHandler(payload) {
   };
 }
 
-export function testHandler(payload) {
+export function testHandler2(payload) {
   return {
     type: TEST,
     payload,

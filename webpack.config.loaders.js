@@ -11,7 +11,7 @@ const loaderConfig = [
     loaders: [
       'style-loader',
       'css-loader?module&localIdentName=[local]---[hash:base64:5]',
-      //'postcss-loader',
+      'postcss-loader',
       'sass-loader'
     ]
   },

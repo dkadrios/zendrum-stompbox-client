@@ -1,6 +1,7 @@
+import React from 'react';
 import styles from '../styles/app';
 
-function App(props) {
+function App() {
   return (
     <div className={styles.layout}>
       Yo!
