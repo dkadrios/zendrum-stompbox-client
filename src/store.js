@@ -1,37 +1,31 @@
-/* eslint-disable no-console */
-import { createStore, applyMiddleware } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import combinedReducers from './reducers';
+import rootReducer from './reducers';
 
-const clientLogger = store => next => (action) => {
-  if (action.type) {
-    console.groupCollapsed('dispatching', action.type);
-    console.log('prev state', store.getState());
-    console.log('action', action);
-    const result = next(action);
-    console.log('next state', store.getState());
-    console.groupEnd();
-    return result;
+const logger = createLogger();
+
+const middlewares = [thunk];
+
+/* global __DEV__ */
+export default function configureStore(initialState = {}, debug = __DEV__) {
+  const createStoreWithMiddleware = applyMiddleware(...middlewares);
+
+  const store = (debug ?
+    compose(
+      createStoreWithMiddleware,
+      applyMiddleware(logger),
+      window.devToolsExtension ? window.devToolsExtension() : f => f)
+    : createStoreWithMiddleware
+  )(createStore)(rootReducer, initialState);
+
+  if (module.hot) {
+    module.hot.accept('./reducers', () => {
+      // eslint-disable-next-line
+      const nextRootReducer = require('./reducers/index');
+      store.replaceReducer(nextRootReducer);
+    });
   }
-  return next(action);
-};
 
-const serverLogger = store => next => (action) => { // eslint-disable-line
-  console.log('\n  dispatching server action\n');
-  console.log(action);
-  console.log('\n');
-  return next(action);
-};
-
-const middleware = server => [
-  (server) ? serverLogger : clientLogger,
-  thunk,
-];
-
-const storeFactory = (server = false, initialState = {}) =>
-  applyMiddleware(...middleware(server))(createStore)(
-    combinedReducers,
-    initialState,
-  );
-
-export default storeFactory;
+  return store;
+}
