@@ -4,7 +4,8 @@
     "airbnb"
   ],
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "settings": {
     "import/resolver": {
@@ -14,6 +15,7 @@
     }
   },
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/extensions": [0]
   }
 }
