@@ -17,8 +17,9 @@
     "url": "git@github.com:dkadrios/zendrum-stompbox-client.git"
   },
   "devDependencies": {
+    "animate-sass": "0.6.6",
     "autoprefixer": "7.1.2",
-    "babel-cli": "^6.24.1",
+    "babel-cli": "6.24.1",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
     "babel-loader": "7.1.1",
@@ -36,6 +37,7 @@
     "express": "4.15.3",
     "file-loader": "0.11.2",
     "node-sass": "4.5.3",
+    "postcss-loader": "2.0.6",
     "react-transform-catch-errors": "1.0.2",
     "react-transform-hmr": "1.0.4",
     "redbox-react": "1.4.3",

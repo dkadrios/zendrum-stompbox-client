@@ -14,5 +14,5 @@ export const getMidiDevices = () =>
       } else {
         dispatch(addDevices(WebMidi));
       }
-    });
+    }, false); // true for SysEx access
   };

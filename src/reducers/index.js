@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import midiDevices from './midi-devices';
+import midiDevices from './midiDevices';
 
 export default combineReducers({ midiDevices });

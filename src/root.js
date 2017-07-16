@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './views/App';
 import storeFactory from './store';
-import { getMidiDevices } from './action-creators/midi-devices';
+import { getMidiDevices } from './action-creators/midiDevices';
 
 /* eslint-disable no-underscore-dangle */
 const store = storeFactory({});

@@ -12,7 +12,8 @@ const rules = [
     test: /\.scss$/,
     loaders: [
       'style-loader',
-      'css-loader',
+      'css-loader?module&localIdentName=[local]---[hash:base64:5]',
+      'postcss-loader',
       'sass-loader',
     ],
   },
