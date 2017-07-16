@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import RootApp from './views/RootApp';
+import App from './views/App';
 import storeFactory from './store';
+import { getMidiDevices } from './action-creators/midi-devices';
 
 /* eslint-disable no-underscore-dangle */
 const store = storeFactory({});
@@ -10,19 +11,16 @@ const store = storeFactory({});
 
 class Root extends Component {
   componentDidMount() {
-    // TODO: Launch Web MIDI
-    console.log('rendered from here...!'); // eslint-disable-line
+    store.dispatch(getMidiDevices());
   }
 
   render() {
     return (
-      <div>
-        <Provider store={store}>
-          <BrowserRouter>
-            <RootApp />
-          </BrowserRouter>
-        </Provider>
-      </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

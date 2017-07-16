@@ -8,15 +8,18 @@ const logger = createLogger();
 const middlewares = [thunk];
 
 /* global __DEV__ */
-export default function configureStore(initialState = {}, debug = __DEV__) {
+export default function storeFactory(initialState = {}, debug = __DEV__) {
   const createStoreWithMiddleware = applyMiddleware(...middlewares);
 
-  const store = (debug ?
-    compose(
-      createStoreWithMiddleware,
-      applyMiddleware(logger),
-      window.devToolsExtension ? window.devToolsExtension() : f => f)
-    : createStoreWithMiddleware
+  const store = (
+    debug
+      ? compose(
+          createStoreWithMiddleware,
+          applyMiddleware(logger),
+          window.devToolsExtension
+            ? window.devToolsExtension()
+            : f => f)
+      : createStoreWithMiddleware
   )(createStore)(rootReducer, initialState);
 
   if (module.hot) {

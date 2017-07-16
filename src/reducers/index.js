@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-// import { routerReducer as routing } from 'react-router-redux';
-import test from './test';
+import midiDevices from './midi-devices';
 
-export default combineReducers({ test });
+export default combineReducers({ midiDevices });

@@ -1,2 +1,2 @@
 export const TEST = 'TEST';
-export const ANOTHER = 'ANOTHER';
+export const GET_MIDI_DEVICES = 'GET_MIDI_DEVICES';
