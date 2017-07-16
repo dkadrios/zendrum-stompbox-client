@@ -5,7 +5,7 @@ import styles from '../styles/midiSecurity';
 import * as midiDeviceActions from '../action-creators/midiDevices';
 
 const MidiSecurity = (props) => {
-  const { midiInterface = {}, enabled = false } = props.midiDevices;
+  const { /* midiInterface = {}, */ enabled = false } = props.midiDevices;
 
   const style = {
     display: enabled ? 'none' : 'block',
@@ -26,7 +26,7 @@ const MidiSecurity = (props) => {
 };
 
 MidiSecurity.propTypes = {
-  midiDevices: PropTypes.object,
+  midiDevices: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = ({ midiDevices }) => ({ midiDevices });

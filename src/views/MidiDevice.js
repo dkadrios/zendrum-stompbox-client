@@ -15,7 +15,8 @@ const MidiDevice = (props) => {
 };
 
 MidiDevice.propTypes = {
-  midiDevices: PropTypes.object,
+  kind: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ midiDevices }) => ({ midiDevices });

@@ -8,7 +8,7 @@ const getDevices = (state, { payload }) => ({
   // rename reserved word 'interface' to make object destructuring less painful
   midiInterface: payload.interface,
 
-  //enabled: false,
+  // enabled: false,
 });
 
 const handlers = {

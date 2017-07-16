@@ -10,7 +10,8 @@ export const getMidiDevices = () =>
   (dispatch) => {
     WebMidi.enable((err) => {
       if (err) {
-        console.log('WebMidi could not be enabled.', err);
+        throw (err);
+        // console.log('WebMidi could not be enabled.', err);
       } else {
         dispatch(addDevices(WebMidi));
       }

@@ -6,7 +6,7 @@ import * as midiDeviceActions from '../action-creators/midiDevices';
 import styles from '../styles/midiDevices';
 
 const MidiDevices = (props) => {
-  const { midiInterface = {}, inputs = [], outputs = [], enabled } = props.midiDevices;
+  const { /* midiInterface = {}, */ inputs = [], outputs = [], enabled } = props.midiDevices;
 
   const style = {
     display: enabled ? 'block' : 'none',
@@ -40,7 +40,7 @@ const MidiDevices = (props) => {
 };
 
 MidiDevices.propTypes = {
-  midiDevices: PropTypes.object,
+  midiDevices: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = ({ midiDevices }) => ({ midiDevices });
