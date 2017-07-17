@@ -18,6 +18,14 @@
   p {
     text-align: justify;
   }
+}
 
-
+.noStompblockFound {
+  @extend .midiSecurity;
+  h1 {
+    color: #aa0000;
+  }
+  li {
+    padding-bottom: 10px;
+  }
 }

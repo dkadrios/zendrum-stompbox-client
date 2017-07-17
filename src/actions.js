@@ -1,2 +1,5 @@
-export const TEST = 'TEST';
+export const WEB_MIDI_ERRORED = 'WEB_MIDI_ERRORED';
 export const GET_MIDI_DEVICES = 'GET_MIDI_DEVICES';
+export const GET_SYSEX_VERSION = 'GET_SYSEX_VERSION';
+export const RELOAD_SYSEX = 'RELOAD_SYSEX';
+export const RECEIVED_VERSION = 'RECEIVED_VERSION';
