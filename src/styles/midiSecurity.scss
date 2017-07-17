@@ -23,7 +23,7 @@
 .noStompblockFound {
   @extend .midiSecurity;
   h1 {
-    color: #aa0000;
+    color: $color-text-alert;
   }
   li {
     padding-bottom: 10px;

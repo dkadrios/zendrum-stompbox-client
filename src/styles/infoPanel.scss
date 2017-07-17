@@ -1,0 +1,42 @@
+@import "variables";
+
+.infoPanel {
+  border: 1px solid $color-border;
+  background-color: $color-background-light;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 220px;
+  padding: 10px 10px 5px;
+
+  h1 {
+    font-size: 16px;
+    margin: 0 0 5px;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  th {
+    text-align: left;
+    padding: 3px 5px 3px 0;
+    color: $color-text-dark;
+  }
+
+  td {
+    text-align: right;
+    padding: 3px 0 3px 5px;
+    color: $color-text-dimmer;
+  }
+
+  .copyright {
+    padding: 7px 0 0;
+    font-size: 10px;
+    text-align: right;
+  }
+
+  .wrongVersion {
+    background-color: $color-text-alert;
+    color: $color-background-light;
+  }
+}

@@ -2,10 +2,12 @@ import WebMidi from 'webmidi';
 import * as Actions from '../actions';
 import * as Midi from '../midi';
 
-let dispatcher;
+let localDispatch;
+let localInputDevice;
+let localOutputDevice;
 
-const sendSysex = (deviceId, command) => {
-  WebMidi.getOutputById(deviceId).sendSysex(
+const sendSysex = (command) => {
+  WebMidi.getOutputById(localOutputDevice.id).sendSysex(
     Midi.STOMPBOX_DEVICE_ID, [
       Midi.CURRENT_VERSION,
       0, // Dummy byte (high bits for first 7 bytes but we only send one)
@@ -13,17 +15,32 @@ const sendSysex = (deviceId, command) => {
     ]);
 };
 
-const attachInputCallback = (dispatch, inputDevice) => {
-  if (inputDevice.found) {
+const keepLocalReferencesForLater = (dispatch) => {
+  localDispatch = dispatch;
+
+  localInputDevice = WebMidi.inputs.reduce((res, device) =>
+    (device.name === 'Zendrum STOMPBOX' ? { ...device, found: true } : res),
+    { found: false });
+
+  localOutputDevice = WebMidi.outputs.reduce((res, device) =>
+    (device.name === 'Zendrum STOMPBOX' ? { ...device, found: true } : res),
+    { found: false });
+};
+
+const attachInputCallback = () => {
+  if (localInputDevice.found) {
     // Attach primary callback
-    dispatcher = dispatch;
-    WebMidi.getInputById(inputDevice.id).addListener('sysex', Midi.CHANNEL, sysexCallback);
+    WebMidi.getInputById(localInputDevice.id).addListener(
+      'sysex',
+      Midi.CHANNEL,
+      sysexCallback, // eslint-disable-line
+    );
   }
 };
 
-export const addDevices = devices => ({
+export const addDevices = () => ({
   type: Actions.GET_MIDI_DEVICES,
-  payload: devices,
+  payload: WebMidi,
 });
 
 export const webMidiErrored = message => ({
@@ -37,23 +54,20 @@ export const getMidiDevices = () =>
       if (err) {
         dispatch(webMidiErrored(err));
       } else {
-        attachInputCallback(dispatch,
-          WebMidi.inputs.reduce((res, device) =>
-            (device.name === 'Zendrum STOMPBOX' ? { ...device, found: true } : res),
-            { found: false }),
-        );
+        keepLocalReferencesForLater(dispatch);
 
-        dispatch(addDevices(WebMidi));
+        attachInputCallback();
+
+        dispatch(addDevices());
       }
     }, true); // true for SysEx access
   };
 
-export const checkVersion = (inputDevice, outputDevice) => {
-  sendSysex(outputDevice.id, Midi.SYSEX_MSG_GET_VERSION);
+export const checkVersion = () => {
+  sendSysex(Midi.SYSEX_MSG_GET_VERSION);
 
   return {
     type: Actions.GET_SYSEX_VERSION,
-    payload: outputDevice.id,
   };
 };
 
@@ -62,24 +76,42 @@ export const receivedVersion = version => ({
   payload: version,
 });
 
-export const reloadSysEx = (outputDeviceId) => {
-  sendSysex(outputDeviceId, Midi.SYSEX_MSG_GET_ALL);
+export const reloadSysEx = () => {
+  sendSysex(Midi.SYSEX_MSG_GET_ALL);
 
   return {
     type: Actions.RELOAD_SYSEX,
-    payload: outputDeviceId,
   };
 };
 
+export const receivedVelocityTrims = data => ({
+  type: Actions.RECEIVED_ALL_TRIMS,
+  payload: data,
+});
+
 const sysexCallback = ({ data }) => {
+  let trims;
+
   // Check that it's one of our commands
-  if (data.length > 5 && data[1] === Midi.STOMPBOX_DEVICE_ID) {
-    switch (data[2]) {
+  if (data.length > 5 && data[1] === Midi.STOMPBOX_DEVICE_ID && data[2] === Midi.CURRENT_VERSION) {
+    // console.log('Received SysEx', data.length, data[3]);
+
+    switch (data[3]) {
       case Midi.SYSEX_MSG_RECEIVE_VERSION:
-        dispatcher(receivedVersion(data[4]));
+        localDispatch(receivedVersion(data[4]));
+        if (data[4] === Midi.CURRENT_VERSION) {
+          localDispatch(reloadSysEx());
+        }
         break;
+
+      case Midi.SYSEX_MSG_RECEIVE_ALL:
+        // Remove SysEx START and STOP byte, etc...
+        trims = data.filter((item, idx) => idx > 3 && idx < 130);
+        localDispatch(receivedVelocityTrims(trims));
+        break;
+
       default:
-        console.log('Unknown SysEx message received: ', data[2]);
+        console.log('Unknown SysEx message received: ', data[3]); // eslint-disable-line
     }
   }
 };

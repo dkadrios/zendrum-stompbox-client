@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as webMidiActions from '../action-creators/webMidi';
 import NoStompblockFound from './NoStompblockFound';
+import InfoPanel from './InfoPanel';
 // import styles from '../styles/midiDevices';
 
 const MainInterface = (props) => {
@@ -16,11 +17,12 @@ const MainInterface = (props) => {
   };
 
   if (stompblockAvailable) {
-    checkVersion(inputDevice, outputDevice);
+    checkVersion();
     // reloadSysEx(outputDevice.id);
     return (
       <div style={style}>
-        Rock and Roll {inputDevice.found}
+        <InfoPanel />
+
       </div>
     );
 

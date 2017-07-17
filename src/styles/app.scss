@@ -6,16 +6,12 @@
   body {
     margin: 0;
     padding: 0;
-    background: #d5d5d5;
+    background: $color-background;
     font-family: 'Lekton', sans-serif;
 
     a {
+      color: $color-text-dark;
       text-decoration: none;
-    }
-
-    *, *:before, *:after {
-      box-sizing: border-box;
-      color: black;
     }
   }
 

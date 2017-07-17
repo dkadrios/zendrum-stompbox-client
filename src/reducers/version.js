@@ -2,9 +2,9 @@ import { RECEIVED_VERSION } from '../actions';
 import { createReducer } from '../utils';
 import { CURRENT_VERSION } from '../midi';
 
-const receivedVersion = (state, action) => ({
+const receivedVersion = (state, { payload }) => ({
   ...state,
-  anvil: action.payload,
+  anvil: payload,
 });
 
 const handlers = {
