@@ -1,4 +1,4 @@
-import { RECEIVED_ALL_TRIMS } from '../actions';
+import { RECEIVED_ALL_TRIMS, USED_CHANGED_TRIM, USED_CHANGED_TRIM_END } from '../actions';
 import { createReducer } from '../utils';
 import stompblock from '../stompblock';
 
@@ -7,8 +7,19 @@ const receivedAllTrims = (state, { payload }) => ({
   data: state.data.map((item, idx) => ({ ...item, trim: payload[idx] })),
 });
 
+const userChangedTrim = (state, { payload: { noteNum, value } }) => ({
+  ...state,
+  data: state.data.map((item, idx) => (
+    idx === (noteNum - 1)
+      ? { ...item, trim: value }
+      : { ...item }
+  )),
+});
+
 const handlers = {
   [RECEIVED_ALL_TRIMS]: receivedAllTrims,
+  [USED_CHANGED_TRIM]: userChangedTrim,
+  [USED_CHANGED_TRIM_END]: userChangedTrim,
 };
 
 const formattedMap = () => stompblock.map((item) => {

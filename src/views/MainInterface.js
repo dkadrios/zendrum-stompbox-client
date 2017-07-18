@@ -8,12 +8,14 @@ import InfoPanel from './InfoPanel';
 import VelocityTrimList from './VelocityTrimList';
 
 const MainInterface = (props) => {
-  const { webMidi, inputDevice, outputDevice, checkVersion } = props;
+  const { webMidi, inputDevice, outputDevice, checkVersion, version } = props;
 
   const stompblockAvailable = inputDevice.found && outputDevice.found;
 
   const style = {
-    display: webMidi.enabled ? 'block' : 'none',
+    display: webMidi.enabled && version.anvil === version.expectedAnvil
+      ? 'block'
+      : 'none',
   };
 
   if (stompblockAvailable) {
@@ -40,10 +42,11 @@ MainInterface.propTypes = {
   inputDevice: PropTypes.object.isRequired,
   outputDevice: PropTypes.object.isRequired,
   checkVersion: PropTypes.func.isRequired,
+  version: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ webMidi, inputDevice, outputDevice }) =>
-  ({ webMidi, inputDevice, outputDevice });
+const mapStateToProps = ({ webMidi, inputDevice, outputDevice, version }) =>
+  ({ webMidi, inputDevice, outputDevice, version });
 const mapDispatchToProps = dispatch => bindActionCreators(webMidiActions, dispatch);
 
 export default connect(
