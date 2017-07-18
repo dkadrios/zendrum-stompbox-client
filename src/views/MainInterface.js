@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as webMidiActions from '../action-creators/webMidi';
 import NoStompblockFound from './NoStompblockFound';
 import InfoPanel from './InfoPanel';
-// import styles from '../styles/midiDevices';
+import VelocityTrimList from './VelocityTrimList';
 
 const MainInterface = (props) => {
   const { webMidi, inputDevice, outputDevice, checkVersion } = props;
@@ -22,7 +22,7 @@ const MainInterface = (props) => {
     return (
       <div style={style}>
         <InfoPanel />
-
+        <VelocityTrimList />
       </div>
     );
 

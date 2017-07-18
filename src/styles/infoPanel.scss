@@ -1,12 +1,14 @@
 @import "variables";
 
 .infoPanel {
+  float: right;
   border: 1px solid $color-border;
   background-color: $color-background-light;
   border-radius: 5px;
   font-size: 12px;
   width: 220px;
   padding: 10px 10px 5px;
+  margin: 0 60px 20px;
 
   h1 {
     font-size: 16px;
