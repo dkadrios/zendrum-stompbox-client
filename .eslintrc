@@ -10,7 +10,7 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "webpack.config.dev.js"
+        "config": "webpack.dev.config.babel.js"
       }
     }
   },

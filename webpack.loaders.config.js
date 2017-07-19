@@ -16,10 +16,6 @@ export default [
     ],
   },
   {
-    loader: 'url-loader',
-    test: /\.(svg|eot|ttf|woff|woff2)?$/,
-  },
-  {
     test: /\.(png|jpg)$/,
     loader: 'url-loader?limit=8192',
   },

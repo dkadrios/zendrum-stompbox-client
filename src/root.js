@@ -5,9 +5,7 @@ import App from './views/App';
 import storeFactory from './store';
 import { getMidiDevices } from './action-creators/webMidi';
 
-/* eslint-disable no-underscore-dangle */
 const store = storeFactory({});
-/* eslint-enable no-underscore-dangle */
 
 class Root extends Component {
   componentDidMount() {
