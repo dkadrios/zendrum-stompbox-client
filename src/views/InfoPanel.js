@@ -16,12 +16,18 @@ const InfoPanel = (props) => {
 
   return (
     <div className={styles.infoPanel}>
-      <h1>STOMPBLOCK Client Interface</h1>
-      <span className={styles.version}>Version: {formatted(version.client)}</span>
-      <span className={styles.version}><a href="https://zendrumstudio.com/anvil">ANVIL</a>: {foundVersion()}</span>
+      <div className={styles.header}>
+        Stompblock
+      </div>
 
-      <div className={styles.copyright}>
-        &copy; Copyright <a href="https://nebiru.com">Nebiru Software</a>, 2017
+      <div className={styles.info}>
+        <h1>STOMPBLOCK Client Interface</h1>
+        <span className={styles.version}>Version: {formatted(version.client)}</span>
+        <span className={styles.version}><a href="https://zendrumstudio.com/anvil">ANVIL</a>: {foundVersion()}</span>
+
+        <div className={styles.copyright}>
+          &copy; Copyright <a href="https://nebiru.com">Nebiru Software</a>, 2017
+        </div>
       </div>
     </div>
   );

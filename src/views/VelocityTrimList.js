@@ -11,7 +11,7 @@ const VelocityTrimList = (props) => {
 
   return (
     <div className={styles.listContainer}>
-      <h1>Trims</h1>
+      <h1 className={styles.logoText}>Trims</h1>
       <ul className={styles.list}>
         {
           velocityTrim.data.map(item => (

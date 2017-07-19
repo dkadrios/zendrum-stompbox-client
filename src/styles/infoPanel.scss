@@ -1,31 +1,44 @@
 @import "variables";
 
 .infoPanel {
-  float: right;
-  border: 1px solid $color-border;
-  background-color: $color-background-light;
-  border-radius: 5px;
-  font-size: 12px;
-  width: 220px;
-  padding: 10px 10px 5px;
-  margin: 0 40px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: black;
 
-  h1 {
-    font-size: 16px;
-    margin: 0 0 5px;
+  .header {
+    font-family: 'Armalite-Rifle';
+    font-size: 50px;
+    color: white;
+    margin: 10px;
   }
 
-  a {
-    text-decoration: underline;
-  }
+  .info {
+    border: 1px solid $color-border;
+    background-color: $color-background-light;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 220px;
+    padding: 10px 10px 5px;
+    margin: 10px;
 
-  .version {
-    padding-right: 25px;
-  }
+    h1 {
+      font-size: 16px;
+      margin: 0 0 5px;
+    }
 
-  .copyright {
-    padding: 7px 0 0;
-    font-size: 10px;
-    text-align: right;
+    a {
+      text-decoration: underline;
+    }
+
+    .version {
+      padding-right: 25px;
+    }
+
+    .copyright {
+      padding: 7px 0 0;
+      font-size: 10px;
+      text-align: right;
+    }
   }
 }
