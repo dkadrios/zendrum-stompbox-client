@@ -1,13 +1,11 @@
-/* eslint-disable no-var */
+import path from 'path';
+import webpack from 'webpack';
+import loaders from './webpack.loaders.config';
 
-var path = require('path');
-var webpack = require('webpack');
-var rules = require('./webpack.config.rules');
-
-module.exports = {
+export default {
   devtool: 'source-map',
   entry: [
-    'webpack-hot-middleware/client',
+    // 'webpack-hot-middleware/client',
     './src/index',
   ],
   output: {
@@ -17,13 +15,13 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    // new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
     }),
   ],
   module: {
-    rules,
+    loaders: [...loaders],
   },
   resolve: {
     extensions: ['.js', '.scss'],

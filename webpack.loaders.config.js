@@ -1,8 +1,6 @@
-/* eslint-disable no-var */
+import path from 'path';
 
-var path = require('path');
-
-const rules = [
+export default [
   {
     test: /\.js$/,
     loaders: ['babel-loader'],
@@ -18,9 +16,11 @@ const rules = [
     ],
   },
   {
+    loader: 'url-loader',
+    test: /\.(svg|eot|ttf|woff|woff2)?$/,
+  },
+  {
     test: /\.(png|jpg)$/,
     loader: 'url-loader?limit=8192',
   },
 ];
-
-module.exports = rules;
