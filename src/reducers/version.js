@@ -1,6 +1,13 @@
-import { RECEIVED_VERSION } from '../actions';
+import { GET_SYSEX_VERSION, RECEIVED_VERSION } from '../actions';
 import { createReducer } from '../utils';
-import { CURRENT_VERSION } from '../midi';
+import { CURRENT_ANVIL_VERSION } from '../midi';
+
+const CURRENT_CLIENT_VERSION = 10;
+
+const checkingVersion = state => ({
+  ...state,
+  checked: true,
+});
 
 const receivedVersion = (state, { payload }) => ({
   ...state,
@@ -8,11 +15,13 @@ const receivedVersion = (state, { payload }) => ({
 });
 
 const handlers = {
+  [GET_SYSEX_VERSION]: checkingVersion,
   [RECEIVED_VERSION]: receivedVersion,
 };
 
 export default createReducer({
-  client: 1,
-  anvil: undefined,
-  expectedAnvil: CURRENT_VERSION,
+  checked: false,
+  client: CURRENT_CLIENT_VERSION,
+  anvil: NaN,
+  expectedAnvil: CURRENT_ANVIL_VERSION,
 }, handlers);

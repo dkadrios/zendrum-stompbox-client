@@ -7,13 +7,21 @@ let localInputDevice;
 let localOutputDevice;
 
 const sendSysex = (command, ...data) => {
-  WebMidi.getOutputById(localOutputDevice.id).sendSysex(
-    Midi.STOMPBOX_DEVICE_ID, [
-      Midi.CURRENT_VERSION,
-      0, // Dummy byte (high bits for first 7 bytes but we only send one)
-      command,
-      ...data,
-    ]);
+  /* console.log('sending sysex', Midi.STOMPBOX_DEVICE_ID, [
+    Midi.CURRENT_ANVIL_VERSION,
+    0, // Dummy byte (high bits for first 7 bytes but we only send one)
+    command,
+    ...data,
+  ]) */
+  if (localOutputDevice) {
+    WebMidi.getOutputById(localOutputDevice.id).sendSysex(
+      Midi.STOMPBOX_DEVICE_ID, [
+        Midi.CURRENT_ANVIL_VERSION,
+        0, // Dummy byte (high bits for first 7 bytes but we only send one)
+        command,
+        ...data,
+      ]);
+  }
 };
 
 const keepLocalReferencesForLater = (dispatch) => {
@@ -49,6 +57,14 @@ export const webMidiErrored = message => ({
   payload: message,
 });
 
+export const checkVersion = () => {
+  sendSysex(Midi.SYSEX_MSG_GET_VERSION);
+
+  return {
+    type: Actions.GET_SYSEX_VERSION,
+  };
+};
+
 export const getMidiDevices = () =>
   (dispatch) => {
     WebMidi.enable((err) => {
@@ -59,18 +75,14 @@ export const getMidiDevices = () =>
 
         attachInputCallback();
 
+        if (localInputDevice.found && localOutputDevice.found) {
+          dispatch(checkVersion());
+        }
+
         dispatch(addDevices());
       }
     }, true); // true for SysEx access
   };
-
-export const checkVersion = () => {
-  sendSysex(Midi.SYSEX_MSG_GET_VERSION);
-
-  return {
-    type: Actions.GET_SYSEX_VERSION,
-  };
-};
 
 export const receivedVersion = version => ({
   type: Actions.RECEIVED_VERSION,
@@ -109,13 +121,19 @@ const sysexCallback = ({ data }) => {
   let trims;
 
   // Check that it's one of our commands
-  if (data.length > 5 && data[1] === Midi.STOMPBOX_DEVICE_ID && data[2] === Midi.CURRENT_VERSION) {
+  if (data.length > 5
+    && data[1] === Midi.STOMPBOX_DEVICE_ID
+    && (
+      data[2] === Midi.CURRENT_ANVIL_VERSION
+      || data[3] === Midi.SYSEX_MSG_RECEIVE_VERSION
+    )
+  ) {
     // console.log('Received SysEx', data.length, data[3]);
 
     switch (data[3]) {
       case Midi.SYSEX_MSG_RECEIVE_VERSION:
         localDispatch(receivedVersion(data[4]));
-        if (data[4] === Midi.CURRENT_VERSION) {
+        if (data[4] === Midi.CURRENT_ANVIL_VERSION) {
           localDispatch(reloadSysEx());
         }
         break;

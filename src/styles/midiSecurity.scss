@@ -7,8 +7,8 @@
   @extend .slideInDown;
   @extend .zoomInDown;
 
-  font-size: 25px;
-  width: 500px;
+  font-size: 22px;
+  width: 550px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 200px;
@@ -27,5 +27,23 @@
   }
   li {
     padding-bottom: 10px;
+    text-align: justify;
+  }
+}
+
+.versionNotSupported {
+  @extend .midiSecurity;
+  a {
+    color: $color-facebook-blue;
+  }
+  .version {
+    text-align: center;
+    border: 1px solid $color-text-alert;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: lighten($color-text-alert, 80);
+    span {
+      padding-right: 20px;
+    }
   }
 }

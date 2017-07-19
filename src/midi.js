@@ -1,6 +1,6 @@
 export const STOMPBOX_DEVICE_ID = 0x6B;
 
-export const CURRENT_VERSION = 2;
+export const CURRENT_ANVIL_VERSION = 22;
 
 export const CHANNEL = 10;
 
