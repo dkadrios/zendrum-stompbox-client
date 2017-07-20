@@ -86,9 +86,9 @@ export const getMidiDevices = () =>
     }, true); // true for SysEx access
   };
 
-export const receivedVersion = version => ({
+export const receivedVersion = (anvil, serialNumber) => ({
   type: Actions.RECEIVED_VERSION,
-  payload: version,
+  payload: { anvil, serialNumber },
 });
 
 export const reloadSysEx = () => {
@@ -120,34 +120,46 @@ export const userChangedTrimEnd = (noteNum, value) => {
 };
 
 const sysexCallback = ({ data }) => {
+  const [, deviceId, anvilVersion, command, ...packet] = data;
   let trims;
-console.log('REC', data)
+  let serial;
+
   // Check that it's one of our commands
-  if (data.length > 5
-    && data[1] === Midi.STOMPBOX_DEVICE_ID
+  if (
+    data.length > 5
+    && deviceId === Midi.STOMPBOX_DEVICE_ID
     && (
-      data[2] === Midi.CURRENT_ANVIL_VERSION
-      || data[3] === Midi.SYSEX_MSG_RECEIVE_VERSION
+      anvilVersion === Midi.CURRENT_ANVIL_VERSION
+      || command === Midi.SYSEX_MSG_RECEIVE_VERSION
     )
   ) {
-    // console.log('Received SysEx', data.length, data[3]);
-
-    switch (data[3]) {
+    switch (command) {
       case Midi.SYSEX_MSG_RECEIVE_VERSION:
-        localDispatch(receivedVersion(data[4]));
+        // TODO: find more functional way to do this.
+        // Trim SysEx header and footer
+        serial = [...packet].slice(1, packet.length - 2);
+        // Remove any trailing zeros (but none within!)
+        while (serial.length && serial[serial.length - 1] === 0) {
+          serial.pop();
+        }
+
+        localDispatch(receivedVersion(
+          data[4],
+          serial.reduce((val, char) => val + String.fromCharCode(char)), ''),
+        );
         if (data[4] === Midi.CURRENT_ANVIL_VERSION) {
+          // TODO dispatch registration check first, then chain that to reloadSysEx
           localDispatch(reloadSysEx());
         }
         break;
 
       case Midi.SYSEX_MSG_RECEIVE_ALL:
-        // Remove SysEx START and STOP byte, etc...
-        trims = data.filter((item, idx) => idx > 3 && idx < 130);
+        trims = packet.filter((item, idx) => idx < 127);
         localDispatch(receivedVelocityTrims(trims));
         break;
 
       default:
-        console.log('Unknown SysEx message received: ', data[3]); // eslint-disable-line
+        console.log('Unknown SysEx message received: ', command); // eslint-disable-line
     }
   }
 };

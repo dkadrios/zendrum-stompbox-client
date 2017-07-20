@@ -11,7 +11,7 @@ const checkingVersion = state => ({
 
 const receivedVersion = (state, { payload }) => ({
   ...state,
-  anvil: payload,
+  ...payload,
 });
 
 const handlers = {
@@ -24,4 +24,5 @@ export default createReducer({
   client: CURRENT_CLIENT_VERSION,
   anvil: NaN,
   expectedAnvil: CURRENT_ANVIL_VERSION,
+  serialNumber: '',
 }, handlers);
