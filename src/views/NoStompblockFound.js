@@ -11,6 +11,7 @@ const NoStompblockFound = () => (
     <ul>
       <li>Check that your STOMPBLOCK is connected via USB</li>
       <li>Check that no other software is utilizing your STOMPBLOCK</li>
+      <li>Refresh this page</li>
     </ul>
   </div>
 );

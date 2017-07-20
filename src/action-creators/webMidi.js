@@ -1,4 +1,5 @@
 import WebMidi from 'webmidi';
+import shortid from 'shortid';
 import * as Actions from '../actions';
 import * as Midi from '../midi';
 
@@ -7,17 +8,16 @@ let localInputDevice;
 let localOutputDevice;
 
 const sendSysex = (command, ...data) => {
-  /* console.log('sending sysex', Midi.STOMPBOX_DEVICE_ID, [
+  console.log('sending sysex', Midi.STOMPBOX_DEVICE_ID, [
     Midi.CURRENT_ANVIL_VERSION,
-    0, // Dummy byte (high bits for first 7 bytes but we only send one)
     command,
     ...data,
-  ]) */
+  ]);
+
   if (localOutputDevice) {
     WebMidi.getOutputById(localOutputDevice.id).sendSysex(
       Midi.STOMPBOX_DEVICE_ID, [
         Midi.CURRENT_ANVIL_VERSION,
-        0, // Dummy byte (high bits for first 7 bytes but we only send one)
         command,
         ...data,
       ]);
@@ -58,7 +58,9 @@ export const webMidiErrored = message => ({
 });
 
 export const checkVersion = () => {
-  sendSysex(Midi.SYSEX_MSG_GET_VERSION);
+  sendSysex(Midi.SYSEX_MSG_GET_VERSION,
+    // Suggested serial number, if not already registered.
+    ...Array.from(shortid.generate(), char => char.charCodeAt(0)));
 
   return {
     type: Actions.GET_SYSEX_VERSION,
@@ -119,7 +121,7 @@ export const userChangedTrimEnd = (noteNum, value) => {
 
 const sysexCallback = ({ data }) => {
   let trims;
-
+console.log('REC', data)
   // Check that it's one of our commands
   if (data.length > 5
     && data[1] === Midi.STOMPBOX_DEVICE_ID
