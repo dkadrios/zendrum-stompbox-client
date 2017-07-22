@@ -91,9 +91,15 @@ export const receivedVersion = (anvil, serialNumber) => ({
   payload: { anvil, serialNumber },
 });
 
+export const performFactoryReset = () => {
+  sendSysex(Midi.SYSEX_MSG_FACTORY_RESET);
+  return {
+    type: Actions.FACTORY_RESET,
+  };
+};
+
 export const reloadSysEx = () => {
   sendSysex(Midi.SYSEX_MSG_GET_ALL);
-
   return {
     type: Actions.RELOAD_SYSEX,
   };
@@ -112,12 +118,50 @@ export const userChangedTrim = (noteNum, value) => ({
 // This is the only one we send to the firmware
 export const userChangedTrimEnd = (noteNum, value) => {
   sendSysex(Midi.SYSEX_MSG_SET_ITEM, noteNum - 1, value);
-
   return {
     type: Actions.USED_CHANGED_TRIM_END,
     payload: { noteNum, value },
   };
 };
+
+export const setMuteEnabled = (enabled) => {
+  sendSysex(Midi.SYSEX_MSG_SET_MUTE_ENABLED, Number(enabled));
+  return {
+    type: Actions.SET_MUTE_ENABLED,
+    payload: enabled,
+  };
+};
+
+export const setThruEnabled = (enabled) => {
+  sendSysex(Midi.SYSEX_MSG_SET_THRU_ENABLED, Number(enabled));
+  return {
+    type: Actions.SET_THRU_ENABLED,
+    payload: enabled,
+  };
+};
+
+export const setMuteGroupsEnabled = (enabled) => {
+  sendSysex(Midi.SYSEX_MSG_SET_MUTE_GROUPS_ENABLED, Number(enabled));
+  return {
+    type: Actions.SET_MUTE_GROUPS_ENABLED,
+    payload: enabled,
+  };
+};
+
+export const receivedMuteEnabled = enabled => ({
+  type: Actions.RECEIVED_MUTE_ENABLED,
+  payload: enabled,
+});
+
+export const receivedThruEnabled = enabled => ({
+  type: Actions.RECEIVED_THRU_ENABLED,
+  payload: enabled,
+});
+
+export const receivedMuteGroupsEnabled = enabled => ({
+  type: Actions.RECEIVED_MUTE_GROUPS_ENABLED,
+  payload: enabled,
+});
 
 const sysexCallback = ({ data }) => {
   const [, deviceId, anvilVersion, command, ...packet] = data;
@@ -149,6 +193,9 @@ const sysexCallback = ({ data }) => {
         );
         if (data[4] === Midi.CURRENT_ANVIL_VERSION) {
           // TODO dispatch registration check first, then chain that to reloadSysEx
+          sendSysex(Midi.SYSEX_MSG_RECEIVED_MUTE_ENABLED);
+          sendSysex(Midi.SYSEX_MSG_RECEIVED_THRU_ENABLED);
+          sendSysex(Midi.SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED);
           localDispatch(reloadSysEx());
         }
         break;
@@ -156,6 +203,18 @@ const sysexCallback = ({ data }) => {
       case Midi.SYSEX_MSG_RECEIVE_ALL:
         trims = packet.filter((item, idx) => idx < 127);
         localDispatch(receivedVelocityTrims(trims));
+        break;
+
+      case Midi.SYSEX_MSG_RECEIVED_MUTE_ENABLED:
+        localDispatch(receivedMuteEnabled(packet[0]));
+        break;
+
+      case Midi.SYSEX_MSG_RECEIVED_THRU_ENABLED:
+        localDispatch(receivedThruEnabled(packet[0]));
+        break;
+
+      case Midi.SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED:
+        localDispatch(receivedMuteGroupsEnabled(packet[0]));
         break;
 
       default:

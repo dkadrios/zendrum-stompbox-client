@@ -3,11 +3,10 @@ import AppBar from 'react-toolbox/lib/app_bar';
 import Navigation from 'react-toolbox/lib/navigation';
 // import Link from 'react-toolbox/lib/link';
 import { Tab, Tabs } from 'react-toolbox';
-import theme from '../styles/react-toolbox-theme/AppBar.scss';
-
-import ZendrumLogo from '../images/ZendrumLogo.svg';
-
 import VelocityTrimList from './VelocityTrimList';
+import Settings from './Settings';
+import theme from '../styles/react-toolbox-theme/AppBar.scss';
+import ZendrumLogo from '../images/ZendrumLogo.svg';
 
 class PrimaryNav extends React.Component {
   state = {
@@ -33,7 +32,9 @@ class PrimaryNav extends React.Component {
             <Tab label="Trims">
               <VelocityTrimList />
             </Tab>
-            <Tab label="Settings"><small>Secondary content</small></Tab>
+            <Tab label="Settings">
+              <Settings />
+            </Tab>
           </Tabs>
         </section>
       </div>
