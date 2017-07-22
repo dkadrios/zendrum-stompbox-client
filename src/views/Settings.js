@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Switch from 'react-toolbox/lib/switch';
 import Button from 'react-toolbox/lib/button';
 import Dialog from 'react-toolbox/lib/dialog';
+import FontIcon from 'react-toolbox/lib/font_icon';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
+import Switch from 'react-toolbox/lib/switch';
+import styles from '../styles/settings';
 import * as webMidiActions from '../action-creators/webMidi';
 
 const Settings = (props) => {
@@ -70,8 +72,11 @@ const Settings = (props) => {
         onOverlayClick={() => confirmFactoryReset(false)}
         title="Confirm Factory Reset"
       >
-        <p>Sure to perform reset?</p>
-        <p>This will return all trim edits to their factory defaults.</p>
+        <div className={styles.warningHeader}>
+          <FontIcon>warning</FontIcon>
+          <p>Sure to perform reset?</p>
+        </div>
+        <p>This will return all settings and trim values to their factory defaults.</p>
       </Dialog>
 
       <Dialog
