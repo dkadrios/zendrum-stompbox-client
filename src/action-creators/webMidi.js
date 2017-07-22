@@ -99,6 +99,11 @@ export const receivedVersion = (anvil, serialNumber) => ({
   payload: { anvil, serialNumber },
 });
 
+export const confirmFactoryReset = show => ({
+  type: Actions.CONFIRM_FACTORY_RESET,
+  payload: show,
+});
+
 export const performFactoryReset = () => {
   sendSysex(Midi.SYSEX_MSG_FACTORY_RESET);
   return {

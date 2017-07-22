@@ -5,6 +5,9 @@ import {
   SET_MUTE_ENABLED,
   SET_THRU_ENABLED,
   SET_MUTE_GROUPS_ENABLED,
+  CONFIRM_FACTORY_RESET,
+  FACTORY_RESET,
+  RECEIVED_ALL_TRIMS,
 } from '../actions';
 import { createReducer } from '../utils';
 
@@ -48,6 +51,21 @@ const settingSetting = (state, { type, payload }) => {
   return result;
 };
 
+const confirmFactoryReset = (state, { payload }) =>
+  ({ ...state, showResetDialog: payload });
+
+const resetBeingPerformed = state => ({
+  ...state,
+  showResetDialog: false,
+  resetInProcess: true,
+});
+
+const factoryResetPerformed = state => ({
+  ...state,
+  showResetDialog: false,
+  resetInProcess: false,
+});
+
 const handlers = {
   [RECEIVED_MUTE_ENABLED]: receivedSetting,
   [RECEIVED_THRU_ENABLED]: receivedSetting,
@@ -55,10 +73,18 @@ const handlers = {
   [SET_MUTE_ENABLED]: settingSetting,
   [SET_THRU_ENABLED]: settingSetting,
   [SET_MUTE_GROUPS_ENABLED]: settingSetting,
+  [CONFIRM_FACTORY_RESET]: confirmFactoryReset,
+  [FACTORY_RESET]: resetBeingPerformed,
+  /* Instead of catching 'FACTORY_RESET', watch for the actual result
+   * of the reset, which is when all the trims come back in.
+   */
+  [RECEIVED_ALL_TRIMS]: factoryResetPerformed,
 };
 
 export default createReducer({
   muteEnabledAtStart: false,
   thruEnabledAtStart: true,
   muteGroupsEnabled: true,
+  showResetDialog: false,
+  resetInProcess: false,
 }, handlers);
