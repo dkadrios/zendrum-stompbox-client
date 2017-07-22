@@ -15,7 +15,7 @@ const wheelColor = (value) => { // eslint-disable-line
 };
 
 const VelocityTrimList = (props) => {
-  const { velocityTrim, userChangedTrim, userChangedTrimEnd } = props;
+  const { velocityTrim, userChangedTrim, userChangedTrimEnd, playNote } = props;
 
   return (
     <div className={styles.listContainer}>
@@ -23,10 +23,15 @@ const VelocityTrimList = (props) => {
       <ul className={styles.list}>
         {
           velocityTrim.data.map(item => (
-            <li key={item.note} className={styles.listItem}>
-              <div className={styles.header}>
-                <div className={styles.noteNum}>{item.note}</div>
-                <div className={styles.noteGroup}>{item.group}</div>
+            <li key={item.note}>
+              <div
+                className={styles.header}
+                onMouseUp={() => playNote(item.note, 127)}
+                role="button"
+                tabIndex={item.note}
+              >
+                <div>{item.note}</div>
+                <div>{item.group}</div>
               </div>
               <div className={styles.noteName} title={item.name}>{item.name}</div>
               <div className={styles.trimContainer}>
@@ -66,6 +71,7 @@ VelocityTrimList.propTypes = {
   velocityTrim: PropTypes.object.isRequired,
   userChangedTrim: PropTypes.func.isRequired,
   userChangedTrimEnd: PropTypes.func.isRequired,
+  playNote: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim });

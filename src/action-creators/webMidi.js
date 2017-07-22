@@ -47,6 +47,14 @@ const attachInputCallback = () => {
   }
 };
 
+export const playNote = (noteNum, velocity) => {
+  sendSysex(Midi.SYSEX_MSG_PLAY_NOTE, noteNum, velocity);
+  return {
+    type: Actions.PLAY_NOTE,
+    payload: { noteNum, velocity },
+  };
+};
+
 export const addDevices = () => ({
   type: Actions.GET_MIDI_DEVICES,
   payload: WebMidi,
@@ -117,7 +125,7 @@ export const userChangedTrim = (noteNum, value) => ({
 
 // This is the only one we send to the firmware
 export const userChangedTrimEnd = (noteNum, value) => {
-  sendSysex(Midi.SYSEX_MSG_SET_ITEM, noteNum - 1, value);
+  sendSysex(Midi.SYSEX_MSG_SET_ITEM, noteNum, value);
   return {
     type: Actions.USED_CHANGED_TRIM_END,
     payload: { noteNum, value },

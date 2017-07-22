@@ -4,7 +4,7 @@ import stompblock from '../stompblock';
 
 const receivedAllTrims = (state, { payload }) => ({
   ...state,
-  data: state.data.map((item, idx) => ({ ...item, trim: payload[idx] })),
+  data: state.data.map((item, idx) => ({ ...item, trim: payload[idx + 1] })),
 });
 
 const userChangedTrim = (state, { payload: { noteNum, value } }) => ({

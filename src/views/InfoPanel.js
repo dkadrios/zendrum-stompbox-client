@@ -20,8 +20,8 @@ const InfoPanel = (props) => {
         &copy; Copyright <a href="https://nebiru.com">Nebiru Software</a>, 2017
       </div>
       <div className={styles.versions}>
-        <span className={styles.version}>Version: {formatted(version.client)}</span>
-        <span className={styles.version}><a href="https://zendrumstudio.com/anvil">ANVIL</a>: {foundVersion()}</span>
+        <span className={styles.version}>Version : {formatted(version.client)}</span>
+        <span className={styles.version}><a href="https://zendrumstudio.com/anvil">ANVIL</a> : {foundVersion()}</span>
       </div>
     </footer>
   );

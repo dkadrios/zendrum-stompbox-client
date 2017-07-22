@@ -11,12 +11,13 @@
     display: flex;
     flex-wrap: wrap;
 
-    .listItem {
+    li {
       border: 1px solid $color-border;
       width: 175px;
       height: 100px;
       font-size: 16px;
       margin: 0 7px 7px 0;
+      user-select: none;
 
       .header {
         background-color: $color-background-dark;
@@ -25,12 +26,12 @@
         justify-content: space-between;
         padding: 1px 3px;
 
-        .noteNum {
+        div:first-child {
           font-size: 24px;
           color: $color-appbar-text;
         }
 
-        .noteGroup {
+        div:nth-child(2) {
           color: $color-appbar-text;
           padding-top: 4px;
         }
