@@ -4,6 +4,7 @@ import loaders from './webpack.loaders.config';
 
 const PATHS = {
   build: path.join(__dirname, './dist'),
+  modules: path.join(__dirname, 'node_modules'),
 };
 
 export default {
@@ -27,6 +28,6 @@ export default {
     loaders: [...loaders],
   },
   resolve: {
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.scss', '.css'],
   },
 };

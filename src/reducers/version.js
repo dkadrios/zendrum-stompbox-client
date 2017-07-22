@@ -25,4 +25,7 @@ export default createReducer({
   anvil: NaN,
   expectedAnvil: CURRENT_ANVIL_VERSION,
   serialNumber: '',
+  userFirstName: '', // TODO
+  userLastName: '',
+  userEmail: '',
 }, handlers);

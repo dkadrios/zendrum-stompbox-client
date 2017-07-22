@@ -4,41 +4,31 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: black;
+  background-color: $color-appbar-background;
+  color: $color-appbar-text;
+  font-size: 15px;
+  font-weight: 500;
 
-  .header {
-    font-family: 'Armalite-Rifle';
-    font-size: 50px;
-    color: white;
-    margin: 12px 0 0 18px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 40px;
+  width: 100%;
+
+  a {
+    text-decoration: underline;
+    color: $color-appbar-text;
   }
 
-  .info {
-    border: 1px solid $color-border;
-    background-color: $color-background-light;
-    border-radius: 5px;
-    font-size: 12px;
-    width: 220px;
-    padding: 10px 10px 5px;
-    margin: 10px;
+  .versions {
+    padding: 10px;
+  }
 
-    h1 {
-      font-size: 16px;
-      margin: 0 0 5px;
-    }
+  .version {
+    padding-left: 25px;
+  }
 
-    a {
-      text-decoration: underline;
-    }
-
-    .version {
-      padding-right: 25px;
-    }
-
-    .copyright {
-      padding: 7px 0 0;
-      font-size: 10px;
-      text-align: right;
-    }
+  .copyright {
+    @extend .versions;
   }
 }

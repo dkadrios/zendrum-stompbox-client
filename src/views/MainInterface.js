@@ -5,10 +5,10 @@ import { bindActionCreators } from 'redux';
 import * as webMidiActions from '../action-creators/webMidi';
 import NoStompblockFound from './NoStompblockFound';
 import NotResponding from './NotResponding';
-import InfoPanel from './InfoPanel';
 import MidiSecurity from './MidiSecurity';
 import VersionNotSupported from './VersionNotSupported';
-import VelocityTrimList from './VelocityTrimList';
+import PrimaryNav from './PrimaryNav';
+import InfoPanel from './InfoPanel';
 
 const MainInterface = (props) => {
   const { webMidi, inputDevice, outputDevice, version } = props;
@@ -17,30 +17,22 @@ const MainInterface = (props) => {
   const versionMatch = version.anvil === version.expectedAnvil;
   const notResponding = stompblockAvailable && isNaN(version.anvil);
 
-  const InfoPanelRenderer = () => <InfoPanel />;
-  const VelocityTrimListRenderer = () => <VelocityTrimList />;
-  const NoStompblockFoundRenderer = () => <NoStompblockFound />;
-  const NotRespondingRenderer = () => <NotResponding />;
-
   const Renderer = () => {
     let result = <MidiSecurity />;
 
     if (webMidi.enabled) {
       if (stompblockAvailable) {
         if (notResponding) {
-          result = <NotRespondingRenderer />;
+          result = <NotResponding />;
         } else if (webMidi.enabled) {
           if (versionMatch) {
-            result = (<div>
-              <InfoPanelRenderer />
-              <VelocityTrimListRenderer />
-            </div>);
+            result = <div><PrimaryNav /><InfoPanel /></div>;
           } else {
             result = <VersionNotSupported />;
           }
         }
       } else {
-        result = <NoStompblockFoundRenderer />;
+        result = <NoStompblockFound />;
       }
     }
     return result;

@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     background: $color-background;
-    font-family: 'Lekton', sans-serif;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     cursor: default;
 
     a {
@@ -15,6 +15,10 @@
     }
   }
 
+}
+
+main {
+  overflow-y: auto;
 }
 
 .app {
