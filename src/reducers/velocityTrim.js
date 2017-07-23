@@ -4,6 +4,7 @@ import {
   USED_CHANGED_TRIM_END,
   SEARCH_TRIMS,
   CHANGE_GROUP,
+  CHANGE_LIST_VIEW,
 } from '../actions';
 import { createReducer } from '../utils';
 import stompblock from '../stompblock';
@@ -32,6 +33,11 @@ const changeGroup = (state, { payload }) => ({
   group: payload,
 });
 
+const changeListView = (state, { payload }) => ({
+  ...state,
+  listView: payload,
+});
+
 const formattedMap = () => stompblock.map((item) => {
   const props = /(\d+):([\w\s]+)\|([\w\s]+)/.exec(item);
 
@@ -49,6 +55,7 @@ const handlers = {
   [USED_CHANGED_TRIM_END]: userChangedTrim,
   [SEARCH_TRIMS]: searchTrims,
   [CHANGE_GROUP]: changeGroup,
+  [CHANGE_LIST_VIEW]: changeListView,
 };
 
 export default createReducer({
@@ -56,5 +63,6 @@ export default createReducer({
   showNames: true,
   search: '',
   group: 'all',
+  listView: 'medium',
   data: formattedMap(),
 }, handlers);

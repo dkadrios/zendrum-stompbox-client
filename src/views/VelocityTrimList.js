@@ -9,7 +9,7 @@ import styles from '../styles/velocityTrim';
 
 const VelocityTrimList = (props) => {
   const { velocityTrim } = props;
-  const { data, search, group } = velocityTrim;
+  const { data, search, group, listView } = velocityTrim;
 
   const searchRE = RegExp(search, 'i');
 
@@ -21,7 +21,7 @@ const VelocityTrimList = (props) => {
   return (
     <div className={styles.listContainer}>
       <VelocityTrimListFilter />
-      <ul className={styles.list}>
+      <ul className={styles[`${listView}View`]}>
         {
           filteredTrims.map(item => (
             <VelocityTrim

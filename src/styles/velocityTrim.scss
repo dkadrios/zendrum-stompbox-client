@@ -2,7 +2,9 @@
 
 .listContainer {
   padding: 10px;
-  .list{
+  ul.narrowView,
+  ul.mediumView,
+  ul.wideView {
     width: 100%;
     height: 100%;
     list-style: none;
@@ -28,6 +30,7 @@
         flex-wrap: nowrap;
         justify-content: space-between;
         padding: 1px 5px 0 8px;
+        cursor: pointer;
 
         div:first-child {
           font-size: 24px;
@@ -55,6 +58,10 @@
         align-content: center;
         padding: 0 4px;
 
+        canvas {
+          cursor: pointer;
+        }
+
         div {
           height: 50px;
         }
@@ -68,12 +75,21 @@
           display: flex;
           flex-direction: column;
 
-          button:nth-child(2) {
-//            margin-top: 3px;
+          button {
+            cursor: pointer;
           }
-
         }
       }
     }
+  }
+
+  ul.narrowView {
+    width: 375px;
+  }
+  ul.mediumView {
+    width: 700px;
+  }
+  ul.wideView {
+    width: 100%;
   }
 }
