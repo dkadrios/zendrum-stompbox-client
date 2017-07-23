@@ -1,0 +1,11 @@
+@import "../variables";
+
+.field {
+  .on {
+    background-color: lighten($color-background-dark, 50);
+
+    .thumb {
+      background-color: $color-background-dark;
+    }
+  }
+}

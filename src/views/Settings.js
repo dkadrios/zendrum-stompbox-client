@@ -8,6 +8,8 @@ import FontIcon from 'react-toolbox/lib/font_icon';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import Switch from 'react-toolbox/lib/switch';
 import styles from '../styles/settings';
+import switchTheme from '../styles/react-toolbox-theme/Switch.scss';
+import buttonTheme from '../styles/react-toolbox-theme/WarningButton.scss';
 import * as webMidiActions from '../action-creators/webMidi';
 
 const Settings = (props) => {
@@ -40,18 +42,21 @@ const Settings = (props) => {
       </p>
       <section>
         <Switch
+          theme={switchTheme}
           checked={muteEnabledAtStart}
           label="Enable MUTE when turned on"
           onChange={value => setMuteEnabled(value)}
         />
 
         <Switch
+          theme={switchTheme}
           checked={thruEnabledAtStart}
           label="Enable THRU when turned on"
           onChange={value => setThruEnabled(value)}
         />
 
         <Switch
+          theme={switchTheme}
           checked={muteGroupsEnabled}
           label="Enable mute groups (e.g. hi-hats)"
           onChange={value => setMuteGroupsEnabled(value)}
@@ -60,6 +65,7 @@ const Settings = (props) => {
 
       <section>
         <Button
+          theme={buttonTheme}
           icon="warning"
           label="Perform Factory Reset"
           raised

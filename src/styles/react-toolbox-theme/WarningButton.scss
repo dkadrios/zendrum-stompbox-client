@@ -1,0 +1,7 @@
+@import "../variables";
+
+.button,
+.primary,
+.raised {
+  background-color: $color-text-alert !important;
+}

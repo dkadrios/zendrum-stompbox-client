@@ -1,0 +1,11 @@
+@import "../variables";
+
+.tabs {
+  .pointer {
+    background-color: $color-background-dark;
+  }
+
+  .active {
+    outline: none;
+  }
+}
