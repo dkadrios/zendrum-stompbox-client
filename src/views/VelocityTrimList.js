@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VelocityTrim from './VelocityTrim';
+import VelocityTrimListFilter from './VelocityTrimListFilter';
 import * as webMidiActions from '../action-creators/webMidi';
 import styles from '../styles/velocityTrim';
 
 const VelocityTrimList = (props) => {
   const { velocityTrim } = props;
+  const { data, search } = velocityTrim;
+
+  const searchRE = RegExp(search, 'i');
+
+  const filteredTrims = data.filter(item => searchRE.test(item.name));
 
   return (
     <div className={styles.listContainer}>
-      <div>[SORT CONTROLS]</div>
+      <VelocityTrimListFilter />
       <ul className={styles.list}>
         {
-          velocityTrim.data.map(item => (
+          filteredTrims.map(item => (
             <VelocityTrim
               key={item.note}
               item={item}

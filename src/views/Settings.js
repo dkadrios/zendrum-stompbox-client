@@ -34,8 +34,11 @@ const Settings = (props) => {
   ];
 
   return (
-    <div>
-      <section style={{ margin: '20px 0 0 20px' }}>
+    <div className={styles.settings}>
+      <p>
+        These settings directly affect the behavior of your STOMPBLOCK.
+      </p>
+      <section>
         <Switch
           checked={muteEnabledAtStart}
           label="Enable MUTE when turned on"
@@ -55,7 +58,7 @@ const Settings = (props) => {
         />
       </section>
 
-      <section style={{ margin: '100px 0 0 20px' }}>
+      <section>
         <Button
           icon="warning"
           label="Perform Factory Reset"

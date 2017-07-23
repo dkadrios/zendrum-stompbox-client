@@ -1,4 +1,9 @@
-import { RECEIVED_ALL_TRIMS, USED_CHANGED_TRIM, USED_CHANGED_TRIM_END } from '../actions';
+import {
+  RECEIVED_ALL_TRIMS,
+  USED_CHANGED_TRIM,
+  USED_CHANGED_TRIM_END,
+  SEARCH_TRIMS,
+} from '../actions';
 import { createReducer } from '../utils';
 import stompblock from '../stompblock';
 
@@ -16,11 +21,10 @@ const userChangedTrim = (state, { payload: { noteNum, value } }) => ({
   )),
 });
 
-const handlers = {
-  [RECEIVED_ALL_TRIMS]: receivedAllTrims,
-  [USED_CHANGED_TRIM]: userChangedTrim,
-  [USED_CHANGED_TRIM_END]: userChangedTrim,
-};
+const searchTrims = (state, { payload }) => ({
+  ...state,
+  search: payload,
+});
 
 const formattedMap = () => stompblock.map((item) => {
   const props = /(\d+):([\w\s]+)\|([\w\s]+)/.exec(item);
@@ -33,8 +37,16 @@ const formattedMap = () => stompblock.map((item) => {
   };
 });
 
+const handlers = {
+  [RECEIVED_ALL_TRIMS]: receivedAllTrims,
+  [USED_CHANGED_TRIM]: userChangedTrim,
+  [USED_CHANGED_TRIM_END]: userChangedTrim,
+  [SEARCH_TRIMS]: searchTrims,
+};
+
 export default createReducer({
   sortBy: 'idx',
   showNames: true,
+  search: '',
   data: formattedMap(),
 }, handlers);

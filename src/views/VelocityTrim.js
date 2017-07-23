@@ -17,7 +17,7 @@ const VelocityTrim = ({
   userChangedTrim,
   userChangedTrimEnd,
 }) => (
-  <li key={item.note}>
+  <li>
     <div
       className={styles.header}
       onMouseUp={() => playNote(item.note, 127)}

@@ -1,0 +1,12 @@
+@import "variables";
+
+.filters {
+  margin: 0 0 10px;
+
+  input[type="search"] {
+    font-size: 16px;
+    border: 1px solid $color-text-dimmer;
+    border-radius: 5px;
+    padding: 2px 6px;
+  }
+}
