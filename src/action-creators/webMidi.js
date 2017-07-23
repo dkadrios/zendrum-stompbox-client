@@ -8,11 +8,11 @@ let localInputDevice;
 let localOutputDevice;
 
 const sendSysex = (command, ...data) => {
-  console.log('sending sysex', Midi.STOMPBOX_DEVICE_ID, [
+  /* console.log('sending sysex', Midi.STOMPBOX_DEVICE_ID, [
     Midi.CURRENT_ANVIL_VERSION,
     command,
     ...data,
-  ]);
+  ]); */
 
   if (localOutputDevice) {
     WebMidi.getOutputById(localOutputDevice.id).sendSysex(
