@@ -9,11 +9,14 @@ import styles from '../styles/velocityTrim';
 
 const VelocityTrimList = (props) => {
   const { velocityTrim } = props;
-  const { data, search } = velocityTrim;
+  const { data, search, group } = velocityTrim;
 
   const searchRE = RegExp(search, 'i');
 
-  const filteredTrims = data.filter(item => searchRE.test(item.name));
+  const filteredTrims = data.filter(item =>
+    searchRE.test(item.name)
+      && (group === 'all' || group === item.group),
+  );
 
   return (
     <div className={styles.listContainer}>
