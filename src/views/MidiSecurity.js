@@ -6,10 +6,10 @@ const MidiSecurity = () => (
     <h1>Connect Instructions</h1>
     <p>
       This application requires special permissions before it can use
-      SysEx and connect to your Zendrum STOMPBOX.
+      SysEx and connect to your Zendrum STOMPBLOCK.
     </p>
     <p>
-      Please select &#8216;Allow&#8217; when prompted.
+      Please select &#8216;Allow&#8217; when prompted by your browser.
     </p>
   </div>
 );
