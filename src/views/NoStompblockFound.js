@@ -1,12 +1,20 @@
 import React from 'react';
+import Dialog from 'react-toolbox/lib/dialog';
+import FontIcon from 'react-toolbox/lib/font_icon';
 import styles from '../styles/midiSecurity';
 
 const NoStompblockFound = () => (
-  <div className={styles.noStompblockFound}>
-    <h1>STOMPBLOCK Not Found</h1>
-    <p>
-      Sorry, I could not find an available STOMPBLOCK attached to your computer.
-    </p>
+  <Dialog
+    active
+    title="STOMPBLOCK Not Found"
+    className={styles.noStompblockFound}
+  >
+    <div>
+      <FontIcon>error_outline</FontIcon>
+      <p>
+        Sorry, I could not find an available STOMPBLOCK attached to your device
+      </p>
+    </div>
     <h2>Troubleshooting</h2>
     <ul>
       <li>Check that your STOMPBLOCK is connected via USB</li>
@@ -14,7 +22,7 @@ const NoStompblockFound = () => (
       <li>If connecting through a USB Host device, try connecting directly instead</li>
       <li>Refresh this page</li>
     </ul>
-  </div>
+  </Dialog>
 );
 
 export default NoStompblockFound;

@@ -17,24 +17,32 @@ const MainInterface = (props) => {
   const versionMatch = version.anvil === version.expectedAnvil;
   const notResponding = stompblockAvailable && isNaN(version.anvil);
 
+  const wrap = renderer =>
+    (<div>
+      {renderer}
+      <PrimaryNav />
+      <InfoPanel />
+    </div>);
+
   const Renderer = () => {
-    let result = <MidiSecurity />;
+    let result = wrap(<MidiSecurity />);
 
     if (webMidi.enabled) {
       if (stompblockAvailable) {
         if (notResponding) {
-          result = <NotResponding />;
+          result = wrap(<NotResponding />);
         } else if (webMidi.enabled) {
           if (versionMatch) {
-            result = <div><PrimaryNav /><InfoPanel /></div>;
+            result = wrap('');
           } else {
-            result = <VersionNotSupported />;
+            result = wrap(<VersionNotSupported />);
           }
         }
       } else {
-        result = <NoStompblockFound />;
+        result = wrap(<NoStompblockFound />);
       }
     }
+
     return result;
   };
 

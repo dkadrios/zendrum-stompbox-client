@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Dialog from 'react-toolbox/lib/dialog';
 import { connect } from 'react-redux';
 import styles from '../styles/midiSecurity';
 
@@ -9,8 +10,11 @@ const VersionNotSupported = (props) => {
   const formatted = value => `v${(value / 10).toFixed(1)}`;
 
   return (
-    <div className={styles.versionNotSupported}>
-      <h1>Unsupported Version</h1>
+    <Dialog
+      active
+      title="Unsupported Version"
+      className={styles.versionNotSupported}
+    >
       <p>
         Your STOMPBLOCK is running an incompatible version of
         the <a href="https://zendrumstudio.com/anvil">ANVIL</a> operating system.
@@ -29,7 +33,7 @@ const VersionNotSupported = (props) => {
         <span>Your version: {formatted(version.anvil)}</span>
         <span>Current version: {formatted(version.expectedAnvil)}</span>
       </p>
-    </div>
+    </Dialog>
   );
 };
 

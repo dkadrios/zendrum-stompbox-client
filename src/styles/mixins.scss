@@ -8,3 +8,19 @@
     background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
+
+.iconParagraph {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 10px;
+
+  p {
+    padding-left: 10px;
+    line-height: 20px;
+  }
+}
+
+.warningHeader {
+  @extend .iconParagraph;
+  color: $color-text-alert;
+}

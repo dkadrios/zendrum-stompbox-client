@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 @import "node_modules/animate-sass/animate";
 
 .midiSecurity {
@@ -7,27 +8,30 @@
   @extend .slideInDown;
   @extend .zoomInDown;
 
-  font-size: 22px;
-  width: 550px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 200px;
   h1 {
     text-align: center;
   }
-  p {
-    text-align: justify;
+  div {
+    @extend .iconParagraph;
   }
 }
 
 .noStompblockFound {
   @extend .midiSecurity;
-  h1 {
-    color: $color-text-alert;
+  ul {
+    margin-top: 0;
   }
   li {
-    padding-bottom: 10px;
-    text-align: justify;
+    padding-top: 10px;
+    font-size: 14px;
+  }
+  h2 {
+    font-size: 16px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  div {
+    @extend .warningHeader;
   }
 }
 
@@ -36,12 +40,16 @@
   a {
     color: $color-facebook-blue;
   }
+  p {
+    margin-bottom: 10px;
+  }
   .version {
     text-align: center;
     border: 1px solid $color-text-alert;
     padding: 10px;
     border-radius: 10px;
-    background-color: lighten($color-text-alert, 80);
+    color: $color-text-dark;
+    background-color: lighten($color-text-alert, 50);
     span {
       padding-right: 20px;
     }

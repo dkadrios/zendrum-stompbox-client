@@ -6,7 +6,11 @@ import styles from '../styles/infoPanel';
 const InfoPanel = (props) => {
   const { version } = props;
 
-  const formatted = value => `v${(value / 10).toFixed(1)}`;
+  const formatted = (value) => { // eslint-disable-line
+    return isNaN(value)
+      ? 'N/A'
+      : `v${(value / 10).toFixed(1)}`;
+  };
 
   const foundVersion = () => (
     version.anvil === version.expectedAnvil

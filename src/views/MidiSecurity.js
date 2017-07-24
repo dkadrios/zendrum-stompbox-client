@@ -1,17 +1,25 @@
 import React from 'react';
+import Dialog from 'react-toolbox/lib/dialog';
+import FontIcon from 'react-toolbox/lib/font_icon';
 import styles from '../styles/midiSecurity';
 
 const MidiSecurity = () => (
-  <div className={styles.midiSecurity}>
-    <h1>Connect Instructions</h1>
+  <Dialog
+    active
+    title="Your Permission Is Required"
+    className={styles.midiSecurity}
+  >
+    <div>
+      <FontIcon>security</FontIcon>
+      <p>
+        This application requires special permissions before it can use
+        SysEx and connect to your Zendrum STOMPBLOCK.
+      </p>
+    </div>
     <p>
-      This application requires special permissions before it can use
-      SysEx and connect to your Zendrum STOMPBLOCK.
+      Please select &apos;Allow&apos; when prompted by your browser.
     </p>
-    <p>
-      Please select &#8216;Allow&#8217; when prompted by your browser.
-    </p>
-  </div>
+  </Dialog>
 );
 
 export default MidiSecurity;

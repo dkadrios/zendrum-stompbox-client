@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 .settings {
   section, p {
@@ -11,17 +12,5 @@
 
   section:nth-of-type(2) {
      margin-top: 80px;
-  }
-}
-
-.warningHeader {
-  display: flex;
-  flex-flow: row;
-  color: $color-text-alert;
-  margin-bottom: 10px;
-
-  p {
-    padding-left: 10px;
-    font-size: 16px;
   }
 }
