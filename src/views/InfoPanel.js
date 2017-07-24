@@ -21,7 +21,7 @@ const InfoPanel = (props) => {
   return (
     <footer className={styles.infoPanel}>
       <div className={styles.copyright}>
-        &copy; Copyright <a href="https://nebiru.com">Nebiru Software</a>, 2017
+        &copy; Copyright <a href="https://zendrumstudio.com">Zendrum Studio</a>, 2017
       </div>
       <div className={styles.versions}>
         <span className={styles.version}>Version : {formatted(version.client)}</span>
