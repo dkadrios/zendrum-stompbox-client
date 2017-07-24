@@ -8,7 +8,7 @@ let localInputDevice;
 let localOutputDevice;
 
 const sendSysex = (command, ...data) => {
-  /* console.log('sending sysex', Midi.STOMPBOX_DEVICE_ID, [
+  /* console.log('sending sysex', Midi.STOMPBLOCK_DEVICE_ID, [
     Midi.CURRENT_ANVIL_VERSION,
     command,
     ...data,
@@ -16,7 +16,7 @@ const sendSysex = (command, ...data) => {
 
   if (localOutputDevice) {
     WebMidi.getOutputById(localOutputDevice.id).sendSysex(
-      Midi.STOMPBOX_DEVICE_ID, [
+      Midi.STOMPBLOCK_DEVICE_ID, [
         Midi.CURRENT_ANVIL_VERSION,
         command,
         ...data,
@@ -28,11 +28,11 @@ const keepLocalReferencesForLater = (dispatch) => {
   localDispatch = dispatch;
 
   localInputDevice = WebMidi.inputs.reduce((res, device) =>
-    (device.name === 'Zendrum STOMPBOX' ? { ...device, found: true } : res),
+    (device.name === 'Zendrum STOMPBLOCK' ? { ...device, found: true } : res),
     { found: false });
 
   localOutputDevice = WebMidi.outputs.reduce((res, device) =>
-    (device.name === 'Zendrum STOMPBOX' ? { ...device, found: true } : res),
+    (device.name === 'Zendrum STOMPBLOCK' ? { ...device, found: true } : res),
     { found: false });
 };
 
@@ -184,7 +184,7 @@ const sysexCallback = ({ data }) => {
   // Check that it's one of our commands
   if (
     data.length > 5
-    && deviceId === Midi.STOMPBOX_DEVICE_ID
+    && deviceId === Midi.STOMPBLOCK_DEVICE_ID
     && (
       anvilVersion === Midi.CURRENT_ANVIL_VERSION
       || command === Midi.SYSEX_MSG_RECEIVE_VERSION

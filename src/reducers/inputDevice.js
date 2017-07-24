@@ -3,7 +3,7 @@ import { createReducer } from '../utils';
 
 const getDevices = (state, { payload }) => ({
   ...payload.inputs.reduce((res, device) =>
-    (device.name === 'Zendrum STOMPBOX' ? { ...device, found: true } : res),
+    (device.name === 'Zendrum STOMPBLOCK' ? { ...device, found: true } : res),
     { found: false }),
 });
 

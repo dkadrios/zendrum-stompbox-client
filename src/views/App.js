@@ -12,6 +12,8 @@ const App = () =>
         <div className={styles.app}>
           <Switch>
             <Route exact path="/" component={MainInterface} />
+            <Route exact path="/stompblock" component={MainInterface} />
+            <Route exact path="/stompblock/" component={MainInterface} />
             <Route component={NotFound404} />
           </Switch>
         </div>

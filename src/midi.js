@@ -1,4 +1,4 @@
-export const STOMPBOX_DEVICE_ID = 0x6B;
+export const STOMPBLOCK_DEVICE_ID = 0x6B;
 
 export const CURRENT_ANVIL_VERSION = 22;
 

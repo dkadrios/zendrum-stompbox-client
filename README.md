@@ -1,6 +1,6 @@
-# STOMPBOX Web Client
+# STOMPBLOCK Web Client
 
-This client is used on [https://zendrumstudio.com](https://zendrumstudio.com) for editing and interfacing with the [Zendrum STOMPBOX](http://zendrum.com)
+This client is used on [https://zendrumstudio.com](https://zendrumstudio.com) for editing and interfacing with the [Zendrum STOMPBLOCK](http://zendrum.com)
 
 It makes use of Web MIDI and SysEx and therefore must be served via HTTPS.
 

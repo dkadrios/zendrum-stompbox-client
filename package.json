@@ -1,7 +1,7 @@
 {
-  "name": "zendrum-stompbox-client",
+  "name": "zendrum-stompblock-client",
   "version": "0.0.1",
-  "description": "Web client for Zendrum STOMPBOX",
+  "description": "Web client for Zendrum STOMPBLOCK",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
@@ -14,7 +14,7 @@
   "author": "Darin Kadrioski <darin@nebiru.com>",
   "repository": {
     "type": "git",
-    "url": "git@github.com:dkadrios/zendrum-stompbox-client.git"
+    "url": "git@github.com:dkadrios/zendrum-stompblock-client.git"
   },
   "devDependencies": {
     "animate-sass": "0.6.6",
