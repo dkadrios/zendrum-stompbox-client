@@ -1,6 +1,5 @@
 import path from 'path';
-import webpack from 'webpack';
-import loaders from './webpack.loaders.config';
+import webpack from 'webpack'; // eslint-disable-line
 
 const PATHS = {
   build: path.join(__dirname, './dist'),
@@ -18,15 +17,50 @@ export default {
     filename: 'bundle.js',
     publicPath: '/static/',
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loaders: ['babel-loader'],
+        include: path.join(__dirname, 'src'),
+      },
+      {
+        test: /\.(svg)$/,
+        loader: 'file-loader?limit=8192',
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: '[name]--[local]--[hash:base64:8]',
+            },
+          },
+          'postcss-loader',
+        ],
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader?module&localIdentName=[local]---[hash:base64:5]',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+    ],
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
     }),
   ],
-  module: {
-    loaders: [...loaders],
-  },
   resolve: {
     extensions: ['.js', '.scss', '.css'],
   },
