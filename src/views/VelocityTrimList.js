@@ -14,8 +14,8 @@ const VelocityTrimList = (props) => {
   const searchRE = RegExp(search, 'i');
 
   const filteredTrims = data.filter(item =>
-    searchRE.test(item.name)
-      && (group === 'all' || group === item.group),
+    (group === 'all' || group === item.group)
+    && (searchRE.test(item.name) || searchRE.test(item.note)),
   );
 
   return (
