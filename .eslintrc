@@ -5,8 +5,12 @@
   ],
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
+  "plugins": [
+    "jest"
+  ],
   "settings": {
     "import/resolver": {
       "webpack": {
