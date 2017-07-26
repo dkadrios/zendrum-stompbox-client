@@ -24,6 +24,7 @@ const receivedSetting = (state, { type, payload }) => {
     case RECEIVED_MUTE_GROUPS_ENABLED:
       result = { ...state, muteGroupsEnabled: payload === 1 };
       break;
+    /* istanbul ignore next */
     default:
       break;
   }
@@ -44,6 +45,7 @@ const settingSetting = (state, { type, payload }) => {
     case SET_MUTE_GROUPS_ENABLED:
       result = { ...state, muteGroupsEnabled: payload };
       break;
+    /* istanbul ignore next */
     default:
       break;
   }

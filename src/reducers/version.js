@@ -1,8 +1,6 @@
 import { GET_SYSEX_VERSION, RECEIVED_VERSION } from '../actions';
 import { createReducer } from '../utils';
-import { CURRENT_ANVIL_VERSION } from '../midi';
-
-const CURRENT_CLIENT_VERSION = 10;
+import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../midi';
 
 const checkingVersion = state => ({
   ...state,
