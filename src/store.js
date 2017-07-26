@@ -22,6 +22,7 @@ export default function storeFactory(initialState = {}, debug = __DEV__) {
       : createStoreWithMiddleware
   )(createStore)(rootReducer, initialState);
 
+  /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       // eslint-disable-next-line

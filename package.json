@@ -17,6 +17,11 @@
     "type": "git",
     "url": "git@github.com:dkadrios/zendrum-stompblock-client.git"
   },
+  "jest": {
+    "globals": {
+      "__DEV__": true
+    }
+  },
   "devDependencies": {
     "animate-sass": "0.6.6",
     "autoprefixer": "7.1.2",
