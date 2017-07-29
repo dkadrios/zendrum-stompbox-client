@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import storeFactory from '../src/store';
-import * as actions from '../src/actions';
+import { RECEIVED_VERSION } from '../src/actions';
 
 describe('Store Factory', () => {
   beforeAll(() => {
@@ -15,9 +15,9 @@ describe('Store Factory', () => {
     let store;
 
     beforeEach(() => {
-      store = storeFactory({});
+      store = storeFactory({}, true, true);
       store.dispatch({
-        type: actions.RECEIVED_VERSION,
+        type: RECEIVED_VERSION,
       });
     });
 
@@ -27,8 +27,10 @@ describe('Store Factory', () => {
 
     it('logs state before action and state after', () => {
       const rows = console.log.mock.calls.map(args => args[0]);
-      rows.shift();
-      expect(rows)
+      expect(rows.length).toBe(4);
+      expect(rows[0]).toContain('RECEIVED_VERSION');
+
+      expect(rows.slice(1, 4))
         .toEqual([
           '%c prev state',
           '%c action    ',

@@ -1,10 +1,10 @@
 import deepFreeze from 'deep-freeze';
-import stompblock from '../../src/stompblock';
+import stompblockMapping from '../../src/stompblock-mapping';
 import velocityTrim from '../../src/reducers/velocityTrim';
 import * as actions from '../../src/actions';
 
 describe('velocityTrim reducer', () => {
-  const formattedMap = () => stompblock.map((item) => {
+  const formattedMap = () => stompblockMapping.map((item) => {
     const props = /(\d+):([\w\s]+)\|([\w\s]+)/.exec(item);
 
     return {

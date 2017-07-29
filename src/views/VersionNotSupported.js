@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'react-toolbox/lib/dialog';
 import { connect } from 'react-redux';
+import Dialog from 'react-toolbox/lib/dialog';
 import styles from '../styles/midiSecurity';
 
 const VersionNotSupported = (props) => {
@@ -9,9 +9,13 @@ const VersionNotSupported = (props) => {
 
   const formatted = value => `v${(value / 10).toFixed(1)}`;
 
+  const isVisible = () =>
+    version.checked
+    && version.anvil !== version.expectedAnvil;
+
   return (
     <Dialog
-      active
+      active={isVisible()}
       title="Unsupported Version"
       className={styles.versionNotSupported}
     >

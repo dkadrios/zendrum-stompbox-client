@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import stompblock from '../../src/stompblock';
+// import stompblock from '../../src/stompblock';
 import version from '../../src/reducers/version';
 import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi';
 import * as actions from '../../src/actions';
@@ -7,6 +7,7 @@ import * as actions from '../../src/actions';
 describe('version reducer', () => {
   const initialState = {
     checked: false,
+    checking: false,
     client: CURRENT_CLIENT_VERSION,
     anvil: NaN,
     expectedAnvil: CURRENT_ANVIL_VERSION,
@@ -24,7 +25,8 @@ describe('version reducer', () => {
     expect(version(initialState, action))
       .toEqual({
         ...initialState,
-        checked: true,
+        checking: true,
+        checked: false,
       });
   });
 
@@ -42,6 +44,8 @@ describe('version reducer', () => {
     expect(version(initialState, action))
       .toEqual({
         ...initialState,
+        checking: false,
+        checked: true,
         anvil: 33,
         serialNumber: '',
         userFirstName: '',

@@ -1,13 +1,7 @@
 @import "variables";
 @import "mixins";
-@import "node_modules/animate-sass/animate";
 
 .midiSecurity {
-  @extend .animated;
-  @extend .fadeIn;
-  @extend .slideInDown;
-  @extend .zoomInDown;
-
   h1 {
     text-align: center;
   }

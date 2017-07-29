@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VelocityTrim from './VelocityTrim';
 import VelocityTrimListFilter from './VelocityTrimListFilter';
-import * as webMidiActions from '../action-creators/webMidi';
+import * as sysexActions from '../action-creators/sysex';
 import styles from '../styles/velocityTrim';
 
 const VelocityTrimList = (props) => {
@@ -42,7 +42,7 @@ VelocityTrimList.propTypes = {
 };
 
 const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim });
-const mapDispatchToProps = dispatch => bindActionCreators(webMidiActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(sysexActions, dispatch);
 
 export default connect(
   mapStateToProps,

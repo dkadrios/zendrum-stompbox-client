@@ -1,25 +1,29 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
+import setup from 'redux-midi';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import { watchForDeviceChange, sysexMiddleware } from './midi';
 
 const logger = createLogger();
-
-const middlewares = [thunk];
+let middlewares = [thunk];
 
 /* global __DEV__ */
-export default function storeFactory(initialState = {}, debug = __DEV__) {
-  const createStoreWithMiddleware = applyMiddleware(...middlewares);
+export default function storeFactory(initialState = {}, debug = __DEV__, test = false) {
+  if (!test) {
+    const { inputMiddleware, outputMiddleware } = setup({ midiOptions: { sysex: true } });
+    middlewares = [...middlewares, inputMiddleware, outputMiddleware, sysexMiddleware];
+  }
 
   const store = (
     debug
       ? compose(
-          createStoreWithMiddleware,
+          applyMiddleware(...middlewares),
           applyMiddleware(logger),
           window.devToolsExtension
             ? window.devToolsExtension()
             : f => f)
-      : createStoreWithMiddleware
+      : applyMiddleware(...middlewares)
   )(createStore)(rootReducer, initialState);
 
   /* istanbul ignore next */
@@ -29,6 +33,10 @@ export default function storeFactory(initialState = {}, debug = __DEV__) {
       const nextRootReducer = require('./reducers/index');
       store.replaceReducer(nextRootReducer);
     });
+  }
+
+  if (!test) {
+    watchForDeviceChange(store);
   }
 
   return store;

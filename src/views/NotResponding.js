@@ -8,7 +8,7 @@ class NotResponding extends React.Component {
   };
 
   componentDidMount() {
-    setTimeout(() => this.setState({ visible: true }), 500);
+    // setTimeout(() => this.setState({ visible: true }), 500);
   }
 
   render() {

@@ -10,7 +10,9 @@
     "start": "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
     "lint": "eslint src, __tests__, *.js",
     "lint-fix": "npm run lint -- --fix",
-    "test": "jest --coverage"
+    "test": "jest",
+    "testcov": "jest --coverage",
+    "cov": "open ./coverage/lcov-report/index.html"
   },
   "author": "Darin Kadrioski <darin@nebiru.com>",
   "repository": {
@@ -23,7 +25,6 @@
     }
   },
   "devDependencies": {
-    "animate-sass": "0.6.6",
     "autoprefixer": "7.1.2",
     "babel-cli": "6.24.1",
     "babel-core": "6.25.0",
@@ -80,6 +81,7 @@
     "react-toolbox": "^2.0.0-beta.12",
     "redux": "3.7.2",
     "redux-logger": "3.0.6",
+    "redux-midi": "2.0.2",
     "redux-thunk": "2.2.0",
     "shortid": "^2.2.8",
     "webmidi": "2.0.0-rc.5"

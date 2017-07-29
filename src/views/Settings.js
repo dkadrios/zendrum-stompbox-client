@@ -10,7 +10,7 @@ import Switch from 'react-toolbox/lib/switch';
 import styles from '../styles/settings';
 import switchTheme from '../styles/react-toolbox-theme/Switch.scss';
 import buttonTheme from '../styles/react-toolbox-theme/WarningButton.scss';
-import * as webMidiActions from '../action-creators/webMidi';
+import * as sysexActions from '../action-creators/sysex';
 
 const Settings = (props) => {
   const {
@@ -109,7 +109,7 @@ Settings.propTypes = {
 };
 
 const mapStateToProps = ({ settings }) => ({ settings });
-const mapDispatchToProps = dispatch => bindActionCreators(webMidiActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(sysexActions, dispatch);
 
 export default connect(
   mapStateToProps,
