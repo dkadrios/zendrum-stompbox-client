@@ -1,12 +1,19 @@
 import deepFreeze from 'deep-freeze';
 import { RECEIVE_DEVICE_LIST } from 'redux-midi';
-import { STOMPBLOCK_FOUND, STOMPBLOCK_MISSING } from '../../src/actions';
+import {
+  STOMPBLOCK_FOUND,
+  STOMPBLOCK_MISSING,
+  MIDI_IN_ACTIVITY,
+  MIDI_OUT_ACTIVITY,
+} from '../../src/actions';
 import stompblock from '../../src/reducers/stompblock';
 
 describe('stompblock reducer', () => {
   const initialState = {
     accessGranted: false,
     found: false,
+    midiInActivity: false,
+    midiOutActivity: false,
   };
   deepFreeze(initialState);
 
@@ -40,6 +47,29 @@ describe('stompblock reducer', () => {
       .toEqual({
         ...initialState,
         accessGranted: true,
+      });
+  });
+
+  it('midiInActivityChanged success', () => {
+    const action = {
+      type: MIDI_IN_ACTIVITY,
+      payload: true,
+    };
+    expect(stompblock(initialState, action))
+      .toEqual({
+        ...initialState,
+        midiInActivity: true,
+      });
+  });
+  it('midiOutActivityChanged success', () => {
+    const action = {
+      type: MIDI_OUT_ACTIVITY,
+      payload: true,
+    };
+    expect(stompblock(initialState, action))
+      .toEqual({
+        ...initialState,
+        midiOutActivity: true,
       });
   });
 });

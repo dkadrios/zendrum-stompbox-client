@@ -1,5 +1,10 @@
-import { setListeningDevices, RECEIVE_MIDI_MESSAGE } from 'redux-midi';
-import { stompblockFound, stompblockMissing } from './action-creators/stompblock';
+import { setListeningDevices, RECEIVE_MIDI_MESSAGE, SEND_MIDI_MESSAGE } from 'redux-midi';
+import {
+  stompblockFound,
+  stompblockMissing,
+  midiInActivityChanged,
+  midiOutActivityChanged,
+} from './action-creators/stompblock';
 import { setOutputDeviceId, checkVersion } from './action-creators/sysex';
 import { STOMPBLOCK_FOUND } from './actions';
 import processMidiMessage from './sysex';
@@ -57,11 +62,32 @@ export const watchForDeviceChange = (store) => {
 };
 
 export const sysexMiddleware = store => next => action => { // eslint-disable-line
-  if (action.type === RECEIVE_MIDI_MESSAGE) {
-    processMidiMessage(store.dispatch, action.payload);
-  }
-  if (action.type === STOMPBLOCK_FOUND) {
-    store.dispatch(checkVersion());
+  let cancelMidiInTimer = f => f;
+  let cancelMidiOutTimer = f => f;
+
+  switch (action.type) {
+    case RECEIVE_MIDI_MESSAGE:
+      processMidiMessage(store.dispatch, action.payload);
+      cancelMidiInTimer();
+      store.dispatch(midiInActivityChanged(true));
+      cancelMidiInTimer = setTimeout(() => {
+        store.dispatch(midiInActivityChanged(false));
+      }, 200);
+      break;
+
+    case SEND_MIDI_MESSAGE:
+      cancelMidiOutTimer();
+      store.dispatch(midiOutActivityChanged(true));
+      cancelMidiOutTimer = setTimeout(() => {
+        store.dispatch(midiOutActivityChanged(false));
+      }, 200);
+      break;
+
+    case STOMPBLOCK_FOUND:
+      store.dispatch(checkVersion());
+      break;
+
+    default: break;
   }
   return next(action);
 };

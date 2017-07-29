@@ -1,6 +1,11 @@
 import deepFreeze from 'deep-freeze';
 import storeFactory from '../../src/store';
-import { stompblockFound, stompblockMissing } from '../../src/action-creators/stompblock';
+import {
+  stompblockFound,
+  stompblockMissing,
+  midiInActivityChanged,
+  midiOutActivityChanged,
+} from '../../src/action-creators/stompblock';
 
 describe('stompblock actions', () => {
   let store;
@@ -8,6 +13,8 @@ describe('stompblock actions', () => {
   const stompblock = {
     accessGranted: false,
     found: false,
+    midiInActivity: false,
+    midiOutActivity: false,
   };
 
   deepFreeze(stompblock);
@@ -31,6 +38,28 @@ describe('stompblock actions', () => {
 
     it('should report found', () => {
       expect(store.getState().stompblock.found).toBeFalsy();
+    });
+  });
+
+  describe('midiInActivityChanged', () => {
+    beforeAll(() => {
+      store = storeFactory({ stompblock }, false, true);
+      store.dispatch(midiInActivityChanged(true));
+    });
+
+    it('should report found', () => {
+      expect(store.getState().stompblock.midiInActivity).toBeTruthy();
+    });
+  });
+
+  describe('midiOutActivityChanged', () => {
+    beforeAll(() => {
+      store = storeFactory({ stompblock }, false, true);
+      store.dispatch(midiOutActivityChanged(true));
+    });
+
+    it('should report found', () => {
+      expect(store.getState().stompblock.midiOutActivity).toBeTruthy();
     });
   });
 });

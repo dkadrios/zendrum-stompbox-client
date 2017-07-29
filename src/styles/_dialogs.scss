@@ -1,0 +1,17 @@
+@import "variables";
+
+.iconParagraph {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 10px;
+
+  p {
+    padding-left: 10px;
+    line-height: 20px;
+  }
+}
+
+.warningHeader {
+  @extend .iconParagraph;
+  color: $color-text-alert;
+}

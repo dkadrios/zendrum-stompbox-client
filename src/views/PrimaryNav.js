@@ -5,6 +5,7 @@ import Navigation from 'react-toolbox/lib/navigation';
 import { Tab, Tabs } from 'react-toolbox';
 import VelocityTrimList from './VelocityTrimList';
 import Settings from './Settings';
+import MidiActivity from './MidiActivity';
 import appTheme from '../styles/react-toolbox-theme/AppBar.scss';
 import tabTheme from '../styles/react-toolbox-theme/Tabs.scss';
 import ZendrumLogo from '../images/ZendrumLogo.svg';
@@ -29,6 +30,7 @@ class PrimaryNav extends React.Component {
         </AppBar>
 
         <section>
+          <MidiActivity />
           <Tabs index={this.state.index} onChange={this.handleTabChange} theme={tabTheme}>
             <Tab label="Trims">
               <VelocityTrimList />

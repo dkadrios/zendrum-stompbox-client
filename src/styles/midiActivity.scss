@@ -1,0 +1,36 @@
+@import "mixins";
+
+$led-size: 11px;
+$red-base: #F00;
+$yellow-base: #FF0;
+
+.midiActivity {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 18px 5px;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  right: 0;
+
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+
+  .ledRed {
+    @include led($led-size, $red-base);
+  }
+
+  .ledRedBlink {
+    @include led-on($led-size, $red-base);
+  }
+
+  .ledYellow {
+    @include led($led-size, $yellow-base);
+  }
+
+  .ledYellowBlink {
+    @include led-on($led-size, $yellow-base);
+  }
+}
