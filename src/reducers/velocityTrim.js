@@ -1,7 +1,7 @@
 import {
   RECEIVED_ALL_TRIMS,
-  USED_CHANGED_TRIM,
-  USED_CHANGED_TRIM_END,
+  USER_CHANGED_TRIM,
+  USER_CHANGED_TRIM_END,
   SEARCH_TRIMS,
   CHANGE_GROUP,
   CHANGE_LIST_VIEW,
@@ -51,8 +51,8 @@ const formattedMap = () => stompblockMapping.map((item) => {
 
 const handlers = {
   [RECEIVED_ALL_TRIMS]: receivedAllTrims,
-  [USED_CHANGED_TRIM]: userChangedTrim,
-  [USED_CHANGED_TRIM_END]: userChangedTrim,
+  [USER_CHANGED_TRIM]: userChangedTrim,
+  [USER_CHANGED_TRIM_END]: userChangedTrim,
   [SEARCH_TRIMS]: searchTrims,
   [CHANGE_GROUP]: changeGroup,
   [CHANGE_LIST_VIEW]: changeListView,

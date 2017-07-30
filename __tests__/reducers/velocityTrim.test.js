@@ -55,7 +55,7 @@ describe('velocityTrim reducer', () => {
 
   it('userChangedTrim success', () => {
     const action = {
-      type: actions.USED_CHANGED_TRIM,
+      type: actions.USER_CHANGED_TRIM,
       payload: {
         noteNum: 1,
         value: 66,
@@ -72,7 +72,7 @@ describe('velocityTrim reducer', () => {
 
   it('userChangedTrim end success', () => {
     const action = {
-      type: actions.USED_CHANGED_TRIM_END,
+      type: actions.USER_CHANGED_TRIM_END,
       payload: {
         noteNum: 1,
         value: 66,

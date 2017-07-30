@@ -1,0 +1,295 @@
+import deepFreeze from 'deep-freeze';
+import storeFactory from '../../src/store';
+import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi';
+import {
+  confirmFactoryReset,
+  performFactoryReset,
+  setMuteEnabled,
+  setThruEnabled,
+  setMuteGroupsEnabled,
+  receivedVersion,
+  checkVersion,
+  reloadSysEx,
+  userChangedTrim,
+  userChangedTrimEnd,
+  setOutputDeviceId,
+  playNote,
+  receivedVelocityTrims,
+  receivedMuteEnabled,
+  receivedThruEnabled,
+  receivedMuteGroupsEnabled,
+} from '../../src/action-creators/sysex';
+
+describe('sysex actions', () => {
+  let store;
+
+  const settings = {
+    muteEnabledAtStart: false,
+    thruEnabledAtStart: true,
+    muteGroupsEnabled: true,
+    showResetDialog: false,
+    resetInProcess: false,
+  };
+
+  const version = {
+    checking: false,
+    checked: false,
+    client: CURRENT_CLIENT_VERSION,
+    anvil: NaN,
+    expectedAnvil: CURRENT_ANVIL_VERSION,
+    serialNumber: '',
+    userFirstName: '', // TODO
+    userLastName: '',
+    userEmail: '',
+  };
+
+  const velocityTrim = {
+    sortBy: 'idx',
+    showNames: true,
+    search: '',
+    group: 'all',
+    listView: 'medium',
+    data: [
+      { note: 1, trim: 127 },
+      { note: 2, trim: 127 },
+    ],
+  };
+
+  deepFreeze(settings);
+  deepFreeze(version);
+  deepFreeze(velocityTrim);
+
+  describe('confirmFactoryReset', () => {
+    beforeAll(() => {
+      store = storeFactory({ settings }, false, true);
+      store.dispatch(confirmFactoryReset(true));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().settings).toEqual({
+        ...settings,
+        showResetDialog: true,
+      });
+    });
+  });
+
+  describe('performFactoryReset', () => {
+    beforeAll(() => {
+      store = storeFactory({ settings }, false, true);
+      store.dispatch(performFactoryReset());
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().settings).toEqual({
+        ...settings,
+        resetInProcess: true,
+      });
+    });
+  });
+
+  describe('setMuteEnabled', () => {
+    beforeAll(() => {
+      store = storeFactory({ settings }, false, true);
+      store.dispatch(setMuteEnabled(true));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().settings).toEqual({
+        ...settings,
+        muteEnabledAtStart: true,
+      });
+    });
+  });
+
+  describe('setThruEnabled', () => {
+    beforeAll(() => {
+      store = storeFactory({ settings }, false, true);
+      store.dispatch(setThruEnabled(false));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().settings).toEqual({
+        ...settings,
+        thruEnabledAtStart: false,
+      });
+    });
+  });
+
+  describe('setMuteGroupsEnabled', () => {
+    beforeAll(() => {
+      store = storeFactory({ settings }, false, true);
+      store.dispatch(setMuteGroupsEnabled(false));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().settings).toEqual({
+        ...settings,
+        muteGroupsEnabled: false,
+      });
+    });
+  });
+
+  describe('receivedVersion', () => {
+    beforeAll(() => {
+      store = storeFactory({ version }, false, true);
+      store.dispatch(receivedVersion(20, 12345));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().version).toEqual({
+        ...version,
+        checked: true,
+        anvil: 20,
+        serialNumber: 12345,
+      });
+    });
+  });
+
+  describe('checkVersion', () => {
+    beforeAll(() => {
+      store = storeFactory({ version }, false, true);
+      store.dispatch(checkVersion());
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().version).toEqual({
+        ...version,
+        checking: true,
+      });
+    });
+  });
+
+  describe('reloadSysEx', () => {
+    beforeAll(() => {
+      store = storeFactory({ version }, false, true);
+      store.dispatch(reloadSysEx());
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().version).toEqual({
+        ...version,
+        checked: false,
+      });
+    });
+  });
+
+  describe('userChangedTrim', () => {
+    beforeAll(() => {
+      store = storeFactory({ velocityTrim }, false, true);
+      store.dispatch(userChangedTrim(1, 5));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().velocityTrim).toEqual({
+        ...velocityTrim,
+        data: [
+          { note: 1, trim: 5 },
+          { note: 2, trim: 127 },
+        ],
+      });
+    });
+  });
+
+  describe('userChangedTrimEnd', () => {
+    beforeAll(() => {
+      store = storeFactory({ velocityTrim }, false, true);
+      store.dispatch(userChangedTrimEnd(2, 15));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().velocityTrim).toEqual({
+        ...velocityTrim,
+        data: [
+          { note: 1, trim: 127 },
+          { note: 2, trim: 15 },
+        ],
+      });
+    });
+  });
+
+  describe('setOutputDeviceId', () => {
+    beforeAll(() => {
+      store = storeFactory({ velocityTrim }, false, true);
+      setOutputDeviceId(101);
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().velocityTrim).toEqual({
+        ...velocityTrim,
+      });
+    });
+  });
+
+  describe('playNote', () => {
+    beforeAll(() => {
+      store = storeFactory({ velocityTrim }, false, true);
+      store.dispatch(playNote(2, 15));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().velocityTrim).toEqual({
+        ...velocityTrim,
+      });
+    });
+  });
+
+  describe('receivedVelocityTrims', () => {
+    beforeAll(() => {
+      store = storeFactory({ velocityTrim }, false, true);
+      // first item is tossed to account for zero index
+      store.dispatch(receivedVelocityTrims([0, 31, 32]));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().velocityTrim).toEqual({
+        ...velocityTrim,
+        data: [
+          { note: 1, trim: 31 },
+          { note: 2, trim: 32 },
+        ],
+      });
+    });
+  });
+
+  describe('receivedMuteEnabled', () => {
+    beforeAll(() => {
+      store = storeFactory({ settings }, false, true);
+      store.dispatch(receivedMuteEnabled(1));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().settings).toEqual({
+        ...settings,
+        muteEnabledAtStart: true,
+      });
+    });
+  });
+
+  describe('receivedThruEnabled', () => {
+    beforeAll(() => {
+      store = storeFactory({ settings }, false, true);
+      store.dispatch(receivedThruEnabled(0));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().settings).toEqual({
+        ...settings,
+        thruEnabledAtStart: false,
+      });
+    });
+  });
+
+  describe('receivedMuteGroupsEnabled', () => {
+    beforeAll(() => {
+      store = storeFactory({ settings }, false, true);
+      store.dispatch(receivedMuteGroupsEnabled(0));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().settings).toEqual({
+        ...settings,
+        muteGroupsEnabled: false,
+      });
+    });
+  });
+});

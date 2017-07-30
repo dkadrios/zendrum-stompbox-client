@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import now from 'performance-now';
 import { sendMidiMessage } from 'redux-midi';
 import {
   GET_SYSEX_VERSION,
@@ -6,9 +7,9 @@ import {
   CONFIRM_FACTORY_RESET,
   RELOAD_SYSEX,
   RECEIVED_ALL_TRIMS,
-  USED_CHANGED_TRIM,
+  USER_CHANGED_TRIM,
   SET_MUTE_ENABLED,
-  USED_CHANGED_TRIM_END,
+  USER_CHANGED_TRIM_END,
   SET_THRU_ENABLED,
   SET_MUTE_GROUPS_ENABLED,
   RECEIVED_MUTE_ENABLED,
@@ -50,7 +51,7 @@ export const sysexAction = (command, ...data) =>
       ...data,
       SYSEX_END,
     ],
-    timestamp: performance.now(),
+    timestamp: now(),
     device: deviceId,
   });
 
@@ -98,7 +99,7 @@ export const receivedVelocityTrims = data => ({
 });
 
 export const userChangedTrim = (noteNum, value) => ({
-  type: USED_CHANGED_TRIM,
+  type: USER_CHANGED_TRIM,
   payload: { noteNum, value },
 });
 
@@ -106,7 +107,7 @@ export const userChangedTrim = (noteNum, value) => ({
 export const userChangedTrimEnd = (noteNum, value) =>
   thunkTogether(
     sysexAction(SYSEX_MSG_SET_ITEM, noteNum, value), {
-      type: USED_CHANGED_TRIM_END,
+      type: USER_CHANGED_TRIM_END,
       payload: { noteNum, value },
     });
 
