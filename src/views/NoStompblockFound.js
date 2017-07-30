@@ -10,7 +10,7 @@ const NoStompblockFound = (props) => {
 
   return (
     <Dialog
-      active={stompblock.accessGranted && !stompblock.found}
+      active={stompblock.searchedForStompblock && !stompblock.found}
       title="STOMPBLOCK Not Found"
       className={styles.noStompblockFound}
     >

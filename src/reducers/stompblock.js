@@ -1,11 +1,17 @@
 import { RECEIVE_DEVICE_LIST } from 'redux-midi';
 import {
+  SEARCHED_FOR_STOMPBLOCK,
   STOMPBLOCK_FOUND,
   STOMPBLOCK_MISSING,
   MIDI_IN_ACTIVITY,
   MIDI_OUT_ACTIVITY,
 } from '../actions';
 import { createReducer } from '../utils';
+
+const searchedForStompblock = state => ({
+  ...state,
+  searchedForStompblock: true,
+});
 
 const stompblockFound = state => ({
   ...state,
@@ -33,6 +39,7 @@ const midiOutActivityChanged = (state, { payload }) => ({
 });
 
 const handlers = {
+  [SEARCHED_FOR_STOMPBLOCK]: searchedForStompblock,
   [STOMPBLOCK_FOUND]: stompblockFound,
   [STOMPBLOCK_MISSING]: stompblockMissing,
   [RECEIVE_DEVICE_LIST]: receivedDeviceList,
@@ -41,6 +48,7 @@ const handlers = {
 };
 
 export default createReducer({
+  searchedForStompblock: false,
   accessGranted: false,
   found: false,
   midiInActivity: false,

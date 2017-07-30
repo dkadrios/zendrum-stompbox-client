@@ -1,5 +1,6 @@
 import { setListeningDevices, RECEIVE_MIDI_MESSAGE, SEND_MIDI_MESSAGE } from 'redux-midi';
 import {
+  searchedForStompblock,
   stompblockFound,
   stompblockMissing,
   midiInActivityChanged,
@@ -40,6 +41,7 @@ const findDevice = (devices, kind) => devices
 
 export const watchForDeviceChange = (store) => {
   let devices = [];
+  let initialDeviceCheck = true;
 
   store.subscribe(() => {
     const state = store.getState();
@@ -56,6 +58,11 @@ export const watchForDeviceChange = (store) => {
         store.dispatch(stompblockFound());
       } else {
         store.dispatch(stompblockMissing());
+      }
+
+      if (initialDeviceCheck) {
+        initialDeviceCheck = false;
+        store.dispatch(searchedForStompblock());
       }
     }
   });

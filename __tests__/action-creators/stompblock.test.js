@@ -1,6 +1,7 @@
 import deepFreeze from 'deep-freeze';
 import storeFactory from '../../src/store';
 import {
+  searchedForStompblock,
   stompblockFound,
   stompblockMissing,
   midiInActivityChanged,
@@ -11,6 +12,7 @@ describe('stompblock actions', () => {
   let store;
 
   const stompblock = {
+    searchedForStompblock: false,
     accessGranted: false,
     found: false,
     midiInActivity: false,
@@ -18,6 +20,17 @@ describe('stompblock actions', () => {
   };
 
   deepFreeze(stompblock);
+
+  describe('searchedForStompblock', () => {
+    beforeAll(() => {
+      store = storeFactory({ stompblock }, false, true);
+      store.dispatch(searchedForStompblock());
+    });
+
+    it('should report found', () => {
+      expect(store.getState().stompblock.searchedForStompblock).toBeTruthy();
+    });
+  });
 
   describe('stompblockFound', () => {
     beforeAll(() => {

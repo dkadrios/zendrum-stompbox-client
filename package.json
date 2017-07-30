@@ -84,8 +84,7 @@
     "redux-logger": "3.0.6",
     "redux-midi": "2.0.2",
     "redux-thunk": "2.2.0",
-    "shortid": "^2.2.8",
-    "webmidi": "2.0.0-rc.5"
+    "shortid": "^2.2.8"
   },
   "engines": {
     "node": ">=8.0.0"

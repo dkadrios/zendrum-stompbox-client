@@ -1,6 +1,7 @@
 import deepFreeze from 'deep-freeze';
 import { RECEIVE_DEVICE_LIST } from 'redux-midi';
 import {
+  SEARCHED_FOR_STOMPBLOCK,
   STOMPBLOCK_FOUND,
   STOMPBLOCK_MISSING,
   MIDI_IN_ACTIVITY,
@@ -10,12 +11,24 @@ import stompblock from '../../src/reducers/stompblock';
 
 describe('stompblock reducer', () => {
   const initialState = {
+    searchedForStompblock: false,
     accessGranted: false,
     found: false,
     midiInActivity: false,
     midiOutActivity: false,
   };
   deepFreeze(initialState);
+
+  it('searchedForStompblock success', () => {
+    const action = {
+      type: SEARCHED_FOR_STOMPBLOCK,
+    };
+    expect(stompblock(initialState, action))
+      .toEqual({
+        ...initialState,
+        searchedForStompblock: true,
+      });
+  });
 
   it('stompblockFound success', () => {
     const action = {
