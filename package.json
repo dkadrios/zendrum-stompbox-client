@@ -11,7 +11,7 @@
     "lint": "eslint src, __tests__, *.js",
     "lint-fix": "npm run lint -- --fix",
     "test": "jest",
-    "testcov": "jest --coverage",
+    "test:cov": "jest --coverage",
     "cov": "open ./coverage/lcov-report/index.html"
   },
   "author": "Darin Kadrioski <darin@nebiru.com>",

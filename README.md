@@ -22,14 +22,17 @@ $ yarn start
 
 Additional scripts available:
 
-|`yarn <script>`    |Description|
-|-------------------|-----------|
-|`start`            |Serves your app at `localhost:8000`|
-|`build`            |Builds the application to ./dist|
-|`test`             |Runs unit tests with Karma
-|`test:watch`       |Runs `test` in watch mode to re-run tests when changed|
-|`lint`             |Lints the project for potential errors|
-|`lint:fix`         |Lints the project and fixes all correctable errors
+|`yarn <script>` |Description|
+|----------------|-----------|
+|`clean`         | Removes `./dist` folder
+|`start`         |Serves your app at `localhost:8000`|
+|`build`         |Builds the application to `./dist`|
+|`build:webpack` |Produces a production build|
+|`test`          |Runs unit tests with Jest
+|`test:cov`      |Runs `test` and produces coverage report |
+|`cov`           |Launches coverage report in browser |
+|`lint`          |Lints the project for potential errors|
+|`lint:fix`      |Lints the project and fixes all correctable errors
 
 ## Live Development
 
