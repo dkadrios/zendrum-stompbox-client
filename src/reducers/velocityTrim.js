@@ -3,6 +3,7 @@ import {
   USER_CHANGED_TRIM,
   USER_CHANGED_TRIM_END,
   SEARCH_TRIMS,
+  SELECT_TRIM,
   CHANGE_GROUP,
   CHANGE_LIST_VIEW,
 } from '../actions';
@@ -26,6 +27,11 @@ const userChangedTrim = (state, { payload: { noteNum, value } }) => ({
 const searchTrims = (state, { payload }) => ({
   ...state,
   search: payload,
+});
+
+const selectTrim = (state, { payload }) => ({
+  ...state,
+  selectedNoteNum: payload,
 });
 
 const changeGroup = (state, { payload }) => ({
@@ -54,6 +60,7 @@ const handlers = {
   [USER_CHANGED_TRIM]: userChangedTrim,
   [USER_CHANGED_TRIM_END]: userChangedTrim,
   [SEARCH_TRIMS]: searchTrims,
+  [SELECT_TRIM]: selectTrim,
   [CHANGE_GROUP]: changeGroup,
   [CHANGE_LIST_VIEW]: changeListView,
 };
@@ -64,5 +71,6 @@ export default createReducer({
   search: '',
   group: 'all',
   listView: 'medium',
+  selectedNoteNum: NaN,
   data: formattedMap(),
 }, handlers);

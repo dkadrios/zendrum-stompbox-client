@@ -3,7 +3,7 @@ import AppBar from 'react-toolbox/lib/app_bar';
 import Navigation from 'react-toolbox/lib/navigation';
 // import Link from 'react-toolbox/lib/link';
 import { Tab, Tabs } from 'react-toolbox';
-import VelocityTrimList from './VelocityTrimList';
+import VelocityTrimListView from './VelocityTrimListView';
 import Settings from './Settings';
 import MidiActivity from './MidiActivity';
 import appTheme from '../styles/react-toolbox-theme/AppBar.scss';
@@ -33,7 +33,7 @@ class PrimaryNav extends React.Component {
           <MidiActivity />
           <Tabs index={this.state.index} onChange={this.handleTabChange} theme={tabTheme}>
             <Tab label="Trims">
-              <VelocityTrimList />
+              <VelocityTrimListView />
             </Tab>
             <Tab label="Settings">
               <Settings />

@@ -1,16 +1,26 @@
-import * as Actions from '../actions';
+import {
+  SEARCH_TRIMS,
+  SELECT_TRIM,
+  CHANGE_GROUP,
+  CHANGE_LIST_VIEW,
+} from '../actions';
 
 export const searchTrims = text => ({
-  type: Actions.SEARCH_TRIMS,
+  type: SEARCH_TRIMS,
   payload: text,
 });
 
+export const selectTrim = noteNum => ({
+  type: SELECT_TRIM,
+  payload: noteNum,
+});
+
 export const changeGroup = group => ({
-  type: Actions.CHANGE_GROUP,
+  type: CHANGE_GROUP,
   payload: group,
 });
 
 export const changeListView = view => ({
-  type: Actions.CHANGE_LIST_VIEW,
+  type: CHANGE_LIST_VIEW,
   payload: view,
 });

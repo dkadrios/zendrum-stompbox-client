@@ -18,7 +18,7 @@ class MidiSecurity extends React.Component {
     // Give web midi a change to start up before assuming no access given.
     setTimeout(() => {
       this.setState({ active: !this.props.stompblock.accessGranted });
-    }, 500);
+    }, 2000);
   }
 
   render() {

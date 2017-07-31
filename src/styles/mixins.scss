@@ -30,6 +30,12 @@
   }
 }
 
+@mixin outerGlow($color, $size, $opacity: 0.79) {
+  -webkit-box-shadow: 0px 0px $size $size rgba($color, $opacity);
+  -moz-box-shadow: 0px 0px $size $size rgba($color, $opacity);
+  box-shadow: 0px 0px $size $size rgba($color, $opacity);
+}
+
 @mixin led($led-size, $color, $shadow: rgba(0, 0, 0, 0.2)) {
   margin: 0 15px 0 5px;
   width: $led-size;

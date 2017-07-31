@@ -1,66 +1,68 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import Knob from 'react-canvas-knob';
+import VelocityTrimControls from './VelocityTrimControls';
 
-const wheelColor = (value) => { // eslint-disable-line
-  return value > 65 // eslint-disable-line
-    ? '#22FF55'
-    : value > 30
-      ? 'orange'
-      : 'yellow';
+const handleKeyDown = (event, item, userChangedTrimEnd) => {
+  let delta = 0;
+
+  event.nativeEvent.preventDefault();
+  switch (event.key) {
+    case 'ArrowUp': delta = 1; break;
+    case 'ArrowDown': delta = -1; break;
+    case 'PageUp': delta = 5; break;
+    case 'PageDown': delta = -5; break;
+    case 'Enter': delta = 100; break;
+    case 'Escape': delta = -100; break;
+    default: break;
+  }
+
+  if (delta !== 0) {
+    delta += item.trim;
+    if (delta < 0) delta = 0;
+    if (delta > 100) delta = 100;
+    userChangedTrimEnd(item.note, delta);
+  }
 };
 
-const VelocityTrim = ({
+const VelocityTrim = (props) => {
+  const {
   item,
-  styles,
-  playNote,
-  userChangedTrim,
-  userChangedTrimEnd,
-}) => (
-  <li>
-    <div
-      className={styles.header}
-      onMouseUp={() => playNote(item.note, 127)}
-      role="button"
+    styles,
+    selected,
+    playNote,
+    selectTrim,
+    userChangedTrimEnd,
+  } = props;
+  return (
+    <li
       tabIndex={item.note}
+      onKeyDown={e => handleKeyDown(e, item, userChangedTrimEnd)}
+      onMouseUp={() => (selected ? null : selectTrim(item.note))}
+      className={selected ? styles.selected : ''}
     >
-      <div>{item.note}</div>
-      <div>{item.group}</div>
-    </div>
-    <div className={styles.noteName} title={item.name}>{item.name}</div>
-    <div className={styles.trimContainer}>
-      <div>
-        <Knob
-          width={35}
-          height={35}
-          min={0}
-          max={100}
-          step={1}
-          thickness={0.45}
-          bgColor="#888888"
-          fgColor={wheelColor(item.trim)}
-          lineCap="butt"
-          disableTextInput
-          displayInput={false}
-          value={item.trim}
-          onChange={newVal => userChangedTrim(item.note, newVal)}
-          onChangeEnd={newVal => userChangedTrimEnd(item.note, newVal)}
-        />
+      <div
+        className={styles.header}
+        onMouseUp={() => playNote(item.note, 127)}
+        role="button"
+        tabIndex={item.note}
+      >
+        <div>{item.note}</div>
+        <div>{item.group}</div>
       </div>
-      <div>{item.trim}</div>
-      <div className={styles.buttons}>
-        <button type="button" onClick={() => userChangedTrimEnd(item.note, 100)}>MAX</button>
-        <button type="button" onClick={() => userChangedTrimEnd(item.note, 0)}>MUTE</button>
-      </div>
-    </div>
-  </li>
-);
+      <div className={styles.noteName} title={item.name}>{item.name}</div>
+      <VelocityTrimControls {...props} />
+    </li>
+  );
+};
 
 VelocityTrim.propTypes = {
   item: PropTypes.object.isRequired,
   styles: PropTypes.object.isRequired,
+  selected: PropTypes.bool.isRequired,
   playNote: PropTypes.func.isRequired,
-  userChangedTrim: PropTypes.func.isRequired,
+  selectTrim: PropTypes.func.isRequired,
   userChangedTrimEnd: PropTypes.func.isRequired,
 };
 

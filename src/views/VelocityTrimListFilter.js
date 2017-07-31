@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DebounceInput from 'react-debounce-input';
 import Dropdown from 'react-toolbox/lib/dropdown';
-import FontIcon from 'react-toolbox/lib/font_icon';
+import Tooltip from 'react-toolbox/lib/tooltip';
+import Button from 'react-toolbox/lib/button';
 import * as filterActions from '../action-creators/velocityTrimListFilter';
 import styles from '../styles/velocityTrimListFilter';
+import buttonTheme from '../styles/react-toolbox-theme/ToolButton.scss';
+
+const ToolTipButton = Tooltip(props => <Button {...props} />);
 
 const VelocityTrimListFilter = (props) => {
   const { velocityTrim, searchTrims, changeGroup, changeListView } = props;
@@ -43,27 +47,33 @@ const VelocityTrimListFilter = (props) => {
       />
 
       <div className={styles.buttonGroup}>
-        <button
-          title="View narrow"
+        <ToolTipButton
+          theme={buttonTheme}
+          icon="view_stream"
+          primary={listView === 'narrow'}
+          raised
+          tooltip="Narrow view"
           className={(listView === 'narrow') ? styles.selected : ''}
           onClick={() => changeListView('narrow')}
-        >
-          <FontIcon>view_stream</FontIcon>
-        </button>
-        <button
-          title="View medium"
+        />
+        <ToolTipButton
+          theme={buttonTheme}
+          icon="view_module"
+          primary={listView === 'medium'}
+          raised
+          tooltip="Medium view"
           className={(listView === 'medium') ? styles.selected : ''}
           onClick={() => changeListView('medium')}
-        >
-          <FontIcon>view_module</FontIcon>
-        </button>
-        <button
-          title="View wide"
+        />
+        <ToolTipButton
+          theme={buttonTheme}
+          icon="view_comfy"
+          primary={listView === 'wide'}
+          raised
+          tooltip="Wide view"
           className={(listView === 'wide') ? styles.selected : ''}
           onClick={() => changeListView('wide')}
-        >
-          <FontIcon>view_comfy</FontIcon>
-        </button>
+        />
       </div>
     </div>
   );

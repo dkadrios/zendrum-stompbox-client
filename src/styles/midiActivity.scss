@@ -1,3 +1,4 @@
+@import "variables";
 @import "mixins";
 
 $led-size: 11px;
@@ -10,13 +11,14 @@ $yellow-base: #FF0;
   padding: 18px 5px;
   align-items: center;
   justify-content: flex-end;
-  position: fixed;
+  position: absolute;
   right: 0;
 
   color: rgba(0, 0, 0, 0.7);
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
+  height: 11px;
 
   .ledRed {
     @include led($led-size, $red-base);

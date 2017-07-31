@@ -7,6 +7,28 @@ $color-border-lighter: lighten($color-border, 30);
   padding: 10px;
   outline: none;
 
+  ul.tips {
+    background-color: $color-border-lighter;
+    color: $color-appbar-text;
+    margin: 0 0 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    list-style-type: none;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px $color-shadow;
+
+    li {
+      display: inline;
+      padding: 0 10px;
+      border-right: 1px solid $color-text-mid;
+    }
+
+    li:last-child {
+      border-right: none;
+    }
+  }
+
   ul.narrowView,
   ul.mediumView,
   ul.wideView {
@@ -17,6 +39,10 @@ $color-border-lighter: lighten($color-border, 30);
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+
+    *:focus {
+      outline: none;
+    }
 
     li {
       border: 1px solid $color-border-lighter;
@@ -86,6 +112,10 @@ $color-border-lighter: lighten($color-border, 30);
           }
         }
       }
+    }
+
+    li.selected {
+      @include outerGlow($color-focus, 3px);
     }
   }
 
