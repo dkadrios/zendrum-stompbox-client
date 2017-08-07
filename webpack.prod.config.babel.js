@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string, import/no-extraneous-dependencies */
 import path from 'path';
-import fs from 'fs';
+import fs from 'fs-extra';
 import webpack from 'webpack';
 import autoPrefixer from 'autoprefixer';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
@@ -79,6 +79,11 @@ export default {
             html
               .replace('${script}', stats.assetsByChunkName.main[0])
               .replace('${style}', stats.assetsByChunkName.main[1]),
+          );
+
+          fs.copySync(
+            path.join(__dirname, '.htaccess'),
+            path.join(__dirname, 'dist', '.htaccess'),
           );
         }
       });
