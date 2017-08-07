@@ -4,6 +4,7 @@ node_modules/
 /db
 
 yarn.lock
+yarn-error.log
 
 dist
 coverage
