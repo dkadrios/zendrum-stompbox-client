@@ -1,2 +1,5 @@
-node_modules/**/*.js
+dist/
+coverage/
+node_modules
 **/*.svg.js
+**/*.scss

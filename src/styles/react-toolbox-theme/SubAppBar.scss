@@ -1,0 +1,9 @@
+@import '../variables';
+
+.appBar{
+  color: $color-appbar-text;
+  background-color: $color-subappbar-background;
+  border-radius: 4px;
+  padding: 0 20px;
+  height: 40px;
+}

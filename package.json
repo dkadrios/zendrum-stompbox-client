@@ -8,10 +8,12 @@
     "build:webpack": "NODE_ENV=production webpack -p --config webpack.prod.config.babel.js",
     "build": "npm run clean && npm run build:webpack",
     "start": "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
-    "lint": "eslint src, __tests__, *.js",
+    "lint": "eslint 'src/**' '__tests__/**' '*.js'",
     "lint-fix": "npm run lint -- --fix",
     "test": "jest",
+    "test:watch": "jest --watchAll",
     "test:cov": "jest --coverage",
+    "test:cov:watch": "jest --coverage --watchAll",
     "cov": "open ./coverage/lcov-report/index.html"
   },
   "author": "Darin Kadrioski <darin@nebiru.com>",
@@ -21,7 +23,8 @@
   },
   "jest": {
     "globals": {
-      "__DEV__": true
+      "__DEV__": true,
+      "__TEST__": true
     }
   },
   "devDependencies": {
@@ -56,13 +59,14 @@
     "postcss-mixins": "6.0.1",
     "react-transform-catch-errors": "1.0.2",
     "react-transform-hmr": "1.0.4",
-    "redbox-react": "1.4.3",
+    "redbox-react": "1.5.0",
+    "redux-mock-store": "1.2.3",
     "rimraf": "2.6.1",
     "sass-loader": "6.0.6",
     "style-loader": "0.18.2",
     "url-loader": "0.5.9",
     "webpack": "3.4.1",
-    "webpack-dev-middleware": "1.11.0",
+    "webpack-dev-middleware": "1.12.0",
     "webpack-dev-server": "2.6.1"
   },
   "dependencies": {

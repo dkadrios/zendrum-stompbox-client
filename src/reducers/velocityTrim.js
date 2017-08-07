@@ -8,7 +8,7 @@ import {
   CHANGE_LIST_VIEW,
 } from '../actions';
 import { createReducer } from '../utils';
-import stompblockMapping from '../stompblock-mapping';
+import stompblockMapping from '../mappings/stompblock';
 
 const receivedAllTrims = (state, { payload }) => ({
   ...state,
@@ -44,17 +44,6 @@ const changeListView = (state, { payload }) => ({
   listView: payload,
 });
 
-const formattedMap = () => stompblockMapping.map((item) => {
-  const props = /(\d+):([\w\s]+)\|([\w\s]+)/.exec(item);
-
-  return {
-    note: parseInt(props[1], 10),
-    group: props[2],
-    name: props[3],
-    trim: 0,
-  };
-});
-
 const handlers = {
   [RECEIVED_ALL_TRIMS]: receivedAllTrims,
   [USER_CHANGED_TRIM]: userChangedTrim,
@@ -72,5 +61,5 @@ export default createReducer({
   group: 'all',
   listView: 'medium',
   selectedNoteNum: NaN,
-  data: formattedMap(),
+  data: stompblockMapping,
 }, handlers);

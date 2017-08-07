@@ -18,6 +18,11 @@ import {
   receivedMuteEnabled,
   receivedThruEnabled,
   receivedMuteGroupsEnabled,
+  receivedMuteGroups,
+  deleteMuteGroup,
+  addMuteGroup,
+  deleteMuteItem,
+  addMuteItem,
 } from '../../src/action-creators/sysex';
 
 describe('sysex actions', () => {
@@ -29,6 +34,7 @@ describe('sysex actions', () => {
     muteGroupsEnabled: true,
     showResetDialog: false,
     resetInProcess: false,
+    muteGroups: [],
   };
 
   const version = {
@@ -55,9 +61,37 @@ describe('sysex actions', () => {
     ],
   };
 
+  const muteGroups = {
+    muteGroups: [{
+      muteables: [{
+        group: 'Kicks',
+        name: 'Funk Kick',
+        note: 25,
+        trim: 0,
+      }, {
+        group: 'Kicks',
+        name: 'Jazz Kick',
+        note: 26,
+        trim: 0,
+      }],
+      muters: [{
+        group: 'Snares',
+        name: 'Reggae Snare Drag',
+        note: 35,
+        trim: 0,
+      }, {
+        group: 'Snares',
+        name: 'Reggae Snare Off',
+        note: 36,
+        trim: 0,
+      }],
+    }],
+  };
+
   deepFreeze(settings);
   deepFreeze(version);
   deepFreeze(velocityTrim);
+  deepFreeze(muteGroups);
 
   describe('confirmFactoryReset', () => {
     beforeAll(() => {
@@ -289,6 +323,85 @@ describe('sysex actions', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         muteGroupsEnabled: false,
+      });
+    });
+  });
+
+  describe('receivedMuteGroups', () => {
+    beforeAll(() => {
+      store = storeFactory({ muteGroups }, false, true);
+      store.dispatch(receivedMuteGroups([1, 1, 1, 25, 26]));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().muteGroups).toEqual({
+        ...muteGroups,
+        muteGroups: [{
+          muteables: [{
+            group: 'Kicks',
+            name: 'Funk Kick',
+            note: 25,
+            trim: 0,
+          }],
+          muters: [{
+            group: 'Kicks',
+            name: 'Jazz Kick',
+            note: 26,
+            trim: 0,
+          }],
+        }],
+      });
+    });
+  });
+
+  describe('deleteMuteGroup', () => {
+    beforeAll(() => {
+      store = storeFactory({ muteGroups }, false, true);
+      store.dispatch(deleteMuteGroup(0));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().muteGroups).toEqual({
+        ...muteGroups, // muteGroups are not directly changed
+      });
+    });
+  });
+
+  describe('addMuteGroup', () => {
+    beforeAll(() => {
+      store = storeFactory({ muteGroups }, false, true);
+      store.dispatch(addMuteGroup());
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().muteGroups).toEqual({
+        ...muteGroups, // muteGroups are not directly changed
+      });
+    });
+  });
+
+  describe('deleteMuteItem', () => {
+    beforeAll(() => {
+      store = storeFactory({ muteGroups }, false, true);
+      store.dispatch(deleteMuteItem(1, true, 2));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().muteGroups).toEqual({
+        ...muteGroups, // muteGroups are not directly changed
+      });
+    });
+  });
+
+  describe('addMuteItem', () => {
+    beforeAll(() => {
+      store = storeFactory({ muteGroups }, false, true);
+      store.dispatch(addMuteItem(1, false, 25));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().muteGroups).toEqual({
+        ...muteGroups, // muteGroups are not directly changed
       });
     });
   });

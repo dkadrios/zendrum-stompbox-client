@@ -4,6 +4,7 @@ import {
   searchTrims,
   changeGroup,
   changeListView,
+  selectTrim,
 } from '../../src/action-creators/velocityTrimListFilter';
 
 describe('sysex actions', () => {
@@ -29,6 +30,20 @@ describe('sysex actions', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
         search: 'test',
+      });
+    });
+  });
+
+  describe('selectTrim', () => {
+    beforeAll(() => {
+      store = storeFactory({ velocityTrim }, false, true);
+      store.dispatch(selectTrim(25));
+    });
+
+    it('should succeed', () => {
+      expect(store.getState().velocityTrim).toEqual({
+        ...velocityTrim,
+        selectedNoteNum: 25,
       });
     });
   });

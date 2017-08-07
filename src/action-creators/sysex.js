@@ -15,6 +15,11 @@ import {
   RECEIVED_MUTE_ENABLED,
   RECEIVED_THRU_ENABLED,
   RECEIVED_MUTE_GROUPS_ENABLED,
+  RECEIVED_MUTE_GROUPS,
+  DELETE_MUTE_GROUP,
+  DELETE_MUTE_ITEM,
+  ADD_MUTE_GROUP,
+  ADD_MUTE_ITEM,
   PLAY_NOTE,
   FACTORY_RESET,
 } from '../actions';
@@ -31,6 +36,10 @@ import {
   SYSEX_MSG_SET_MUTE_GROUPS_ENABLED,
   SYSEX_MSG_PLAY_NOTE,
   SYSEX_MSG_FACTORY_RESET,
+  SYSEX_MSG_DELETE_MUTE_GROUP,
+  SYSEX_MSG_DELETE_MUTE_ITEM,
+  SYSEX_MSG_ADD_MUTE_GROUP,
+  SYSEX_MSG_ADD_MUTE_ITEM,
 } from '../midi';
 
 
@@ -146,3 +155,35 @@ export const receivedMuteGroupsEnabled = enabled => ({
   type: RECEIVED_MUTE_GROUPS_ENABLED,
   payload: enabled,
 });
+
+export const receivedMuteGroups = payload => ({
+  type: RECEIVED_MUTE_GROUPS,
+  payload,
+});
+
+export const deleteMuteGroup = groupIdx =>
+  thunkTogether(
+    sysexAction(SYSEX_MSG_DELETE_MUTE_GROUP, groupIdx), {
+      type: DELETE_MUTE_GROUP,
+      payload: groupIdx,
+    });
+
+export const addMuteGroup = () =>
+  thunkTogether(
+    sysexAction(SYSEX_MSG_ADD_MUTE_GROUP), {
+      type: ADD_MUTE_GROUP,
+    });
+
+export const deleteMuteItem = (groupIdx, muter, itemIdx) =>
+  thunkTogether(
+    sysexAction(SYSEX_MSG_DELETE_MUTE_ITEM, groupIdx, Number(muter), itemIdx), {
+      type: DELETE_MUTE_ITEM,
+      payload: { groupIdx, muter, itemIdx },
+    });
+
+export const addMuteItem = (groupIdx, muter, noteNum) =>
+  thunkTogether(
+    sysexAction(SYSEX_MSG_ADD_MUTE_ITEM, groupIdx, Number(muter), noteNum), {
+      type: ADD_MUTE_ITEM,
+      payload: { groupIdx, muter, noteNum },
+    });

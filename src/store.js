@@ -8,8 +8,8 @@ import { watchForDeviceChange, sysexMiddleware } from './midi';
 const logger = createLogger();
 let middlewares = [thunk];
 
-/* global __DEV__ */
-export default function storeFactory(initialState = {}, debug = __DEV__, test = false) {
+export default function storeFactory(initialState = {}, debug = __DEV__, test = __TEST__) {
+  /* istanbul ignore next */
   if (!test) {
     const { inputMiddleware, outputMiddleware } = setup({ midiOptions: { sysex: true } });
     middlewares = [...middlewares, inputMiddleware, outputMiddleware, sysexMiddleware];
@@ -21,6 +21,7 @@ export default function storeFactory(initialState = {}, debug = __DEV__, test = 
           applyMiddleware(...middlewares),
           applyMiddleware(logger),
           window.devToolsExtension
+            /* istanbul ignore next */
             ? window.devToolsExtension()
             : f => f)
       : applyMiddleware(...middlewares)
@@ -35,6 +36,7 @@ export default function storeFactory(initialState = {}, debug = __DEV__, test = 
     });
   }
 
+  /* istanbul ignore next */
   if (!test) {
     watchForDeviceChange(store);
   }

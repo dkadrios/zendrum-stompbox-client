@@ -7,6 +7,7 @@ import {
   SYSEX_MSG_RECEIVED_THRU_ENABLED,
   SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED,
   SYSEX_MSG_RECEIVE_ALL,
+  SYSEX_MSG_RECEIVED_MUTE_GROUPS,
 } from './midi';
 
 import {
@@ -16,6 +17,7 @@ import {
   receivedMuteEnabled,
   receivedThruEnabled,
   receivedMuteGroupsEnabled,
+  receivedMuteGroups,
   sysexAction,
 } from './action-creators/sysex';
 
@@ -23,7 +25,6 @@ export default (dispatch, { data }) => {
   const [kind, deviceId, anvilVersion, command, ...packet] = data.slice(0, data.length - 1);
   // One of our packets?
   if (kind === SYSEX_START
-    && deviceId === STOMPBLOCK_DEVICE_ID
     && deviceId === STOMPBLOCK_DEVICE_ID
     && (
       anvilVersion === CURRENT_ANVIL_VERSION
@@ -44,15 +45,20 @@ export default (dispatch, { data }) => {
         }
 
         dispatch(receivedVersion(
-          packet[0],
-          serial.reduce((val, char) => val + String.fromCharCode(char)), ''),
+          packet[0], // version
+          serial.reduce((val, char) => val + String.fromCharCode(char), '')),
         );
+
         if (packet[0] === CURRENT_ANVIL_VERSION) {
           // TODO dispatch registration check first, then chain that to reloadSysEx
           dispatch(sysexAction(SYSEX_MSG_RECEIVED_MUTE_ENABLED));
           dispatch(sysexAction(SYSEX_MSG_RECEIVED_THRU_ENABLED));
           dispatch(sysexAction(SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED));
-          dispatch(reloadSysEx());
+          dispatch(sysexAction(SYSEX_MSG_RECEIVED_MUTE_GROUPS));
+          /* istanbul ignore next */
+          if (!__TEST__) {
+            dispatch(reloadSysEx());
+          }
         }
         break;
 
@@ -71,6 +77,10 @@ export default (dispatch, { data }) => {
 
       case SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED:
         dispatch(receivedMuteGroupsEnabled(packet[0]));
+        break;
+
+      case SYSEX_MSG_RECEIVED_MUTE_GROUPS:
+        dispatch(receivedMuteGroups(packet));
         break;
 
       default:

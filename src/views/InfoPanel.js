@@ -24,6 +24,7 @@ const InfoPanel = (props) => {
         &copy; Copyright <a href="https://zendrumstudio.com">Zendrum Studio</a>, 2017
       </div>
       <div className={styles.versions}>
+        { /* SERIAL: {version.serialNumber} */}
         <span className={styles.version}>Version : {formatted(version.client)}</span>
         <span className={styles.version}><a href="https://zendrumstudio.com/anvil">ANVIL</a> : {foundVersion()}</span>
       </div>

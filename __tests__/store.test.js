@@ -42,4 +42,19 @@ describe('Store Factory', () => {
       expect(console.groupEnd.mock.calls.length).toBe(1),
     );
   });
+
+  /* describe('alternate code paths', () => {
+    let store;
+
+    beforeEach(() => {
+      store = storeFactory();
+      store.dispatch({
+        type: RECEIVED_VERSION,
+      });
+    });
+
+    it('ends the console group', () =>
+      expect(console.groupEnd.mock.calls.length).toBe(3),
+    );
+  }); */
 });

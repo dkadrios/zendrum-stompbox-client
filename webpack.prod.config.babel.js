@@ -64,6 +64,7 @@ export default {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       __DEV__: false,
+      __TEST__: false,
     }),
     new ExtractTextPlugin('[name].[hash].styles.css'),
     function () { // eslint-disable-line

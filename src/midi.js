@@ -12,11 +12,15 @@ import processMidiMessage from './sysex';
 
 export const STOMPBLOCK_DEVICE_ID = 0x6B;
 
-export const CURRENT_ANVIL_VERSION = 22;
+export const CURRENT_ANVIL_VERSION = 23;
 
-export const CURRENT_CLIENT_VERSION = 12;
+export const CURRENT_CLIENT_VERSION = 13;
 
 export const CHANNEL = 10;
+
+export const MAX_MUTEABLES_PER_GROUP = 6;
+export const MAX_MUTERS_PER_GROUP = 4;
+export const MAX_MUTE_GROUPS = 4;
 
 export const SYSEX_START = 0xF0;
 export const SYSEX_END = 0xF7;
@@ -33,6 +37,13 @@ export const SYSEX_MSG_SET_ITEM = 0x09;
 export const SYSEX_MSG_RECEIVED_MUTE_ENABLED = 0x0A;
 export const SYSEX_MSG_RECEIVED_THRU_ENABLED = 0x0B;
 export const SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED = 0x0C;
+// export const SYSEX_MSG_SET_MUTE_GROUPS = 0x0D;
+export const SYSEX_MSG_RECEIVED_MUTE_GROUPS = 0x0E;
+export const SYSEX_MSG_DELETE_MUTE_GROUP = 0x0F;
+export const SYSEX_MSG_DELETE_MUTE_ITEM = 0x10;
+export const SYSEX_MSG_ADD_MUTE_GROUP = 0x11;
+export const SYSEX_MSG_ADD_MUTE_ITEM = 0x12;
+
 export const SYSEX_MSG_FACTORY_RESET = 0x7E;
 
 const findDevice = (devices, kind) => devices
@@ -60,6 +71,7 @@ export const watchForDeviceChange = (store) => {
         store.dispatch(stompblockMissing());
       }
 
+      /* istanbul ignore next */
       if (initialDeviceCheck) {
         initialDeviceCheck = false;
         store.dispatch(searchedForStompblock());
@@ -68,26 +80,28 @@ export const watchForDeviceChange = (store) => {
   });
 };
 
+let midiInTimer;
+let midiOutTimer;
+
 export const sysexMiddleware = store => next => action => { // eslint-disable-line
-  let cancelMidiInTimer = f => f;
-  let cancelMidiOutTimer = f => f;
+  const flickerTimeout = 200;
 
   switch (action.type) {
     case RECEIVE_MIDI_MESSAGE:
       processMidiMessage(store.dispatch, action.payload);
-      cancelMidiInTimer();
-      store.dispatch(midiInActivityChanged(true));
-      cancelMidiInTimer = setTimeout(() => {
+      clearTimeout(midiInTimer);
+      /* istanbul ignore next */
+      midiInTimer = setTimeout(() => {
         store.dispatch(midiInActivityChanged(false));
-      }, 200);
+      }, flickerTimeout);
       break;
 
     case SEND_MIDI_MESSAGE:
-      cancelMidiOutTimer();
-      store.dispatch(midiOutActivityChanged(true));
-      cancelMidiOutTimer = setTimeout(() => {
+      clearTimeout(midiOutTimer);
+      /* istanbul ignore next */
+      midiOutTimer = setTimeout(() => {
         store.dispatch(midiOutActivityChanged(false));
-      }, 200);
+      }, flickerTimeout);
       break;
 
     case STOMPBLOCK_FOUND:
