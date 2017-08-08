@@ -1,6 +1,6 @@
-import React from 'react';
-import Dialog from 'react-toolbox/lib/dialog';
-import styles from '../styles/midiSecurity';
+import React from 'react'
+import Dialog from 'react-toolbox/lib/dialog'
+import styles from '../styles/midiSecurity'
 
 class NotResponding extends React.Component {
   state = {
@@ -32,8 +32,8 @@ class NotResponding extends React.Component {
             then refresh this page</li>
         </ul>
       </Dialog>
-    );
+    )
   }
 }
 
-export default NotResponding;
+export default NotResponding

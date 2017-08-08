@@ -1,10 +1,10 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import App from './views/App';
-import storeFactory from './store';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+import App from './views/App'
+import storeFactory from './store'
 
-const store = storeFactory({});
+const store = storeFactory({})
 
 const Root = () =>
   (
@@ -13,6 +13,6 @@ const Root = () =>
         <App />
       </BrowserRouter>
     </Provider>
-  );
+  )
 
-export default Root;
+export default Root

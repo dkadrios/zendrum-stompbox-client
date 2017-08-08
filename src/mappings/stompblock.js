@@ -1,4 +1,4 @@
-import mapper from './mapper';
+import mapper from './mapper'
 
 const raw = [
   '1:Perc|Tumba Thump',
@@ -127,6 +127,6 @@ const raw = [
   '124:Perc|Finger Snaps',
   '125:Perc|Finger Cymbal',
   '126:Perc|Gong',
-];
+]
 
-export default mapper(raw);
+export default mapper(raw)

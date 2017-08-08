@@ -1,24 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import VelocityTrimList from './VelocityTrimList';
-import VelocityTrimTips from './VelocityTrimTips';
-import VelocityTrimListFilter from './VelocityTrimListFilter';
-import * as sysexActions from '../action-creators/sysex';
-import * as trimActions from '../action-creators/velocityTrimListFilter';
-import styles from '../styles/velocityTrim';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import VelocityTrimList from './VelocityTrimList'
+import VelocityTrimTips from './VelocityTrimTips'
+import VelocityTrimListFilter from './VelocityTrimListFilter'
+import * as sysexActions from '../action-creators/sysex'
+import * as trimActions from '../action-creators/velocityTrimListFilter'
+import styles from '../styles/velocityTrim'
 
 const VelocityTrimListView = (props) => {
-  const { velocityTrim } = props;
-  const { data, search, group, selectedNoteNum } = velocityTrim;
+  const { velocityTrim } = props
+  const { data, search, group, selectedNoteNum } = velocityTrim
 
-  const searchRE = RegExp(search, 'i');
+  const searchRE = RegExp(search, 'i')
 
   const filteredTrims = data.filter(item =>
     (group === 'all' || group === item.group)
     && (searchRE.test(item.name) || searchRE.test(item.note)),
-  );
+  )
 
   return (
     <div className={styles.listContainer}>
@@ -30,18 +30,18 @@ const VelocityTrimListView = (props) => {
         {...velocityTrim}
       />
     </div>
-  );
-};
+  )
+}
 
 VelocityTrimListView.propTypes = {
   velocityTrim: PropTypes.object.isRequired,
-};
+}
 
-const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim });
+const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...sysexActions, ...trimActions }, dispatch);
+  bindActionCreators({ ...sysexActions, ...trimActions }, dispatch)
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(VelocityTrimListView);
+)(VelocityTrimListView)

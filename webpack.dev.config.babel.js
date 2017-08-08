@@ -1,10 +1,10 @@
-import path from 'path';
+import path from 'path'
 import webpack from 'webpack'; // eslint-disable-line
 
 const PATHS = {
   build: path.join(__dirname, './dist'),
   modules: path.join(__dirname, 'node_modules'),
-};
+}
 
 export default {
   devtool: 'source-map',
@@ -65,4 +65,4 @@ export default {
   resolve: {
     extensions: ['.js', '.scss', '.css'],
   },
-};
+}

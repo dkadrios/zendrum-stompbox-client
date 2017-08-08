@@ -1,30 +1,30 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import VelocityTrimControls from './VelocityTrimControls';
+import React from 'react'
+import PropTypes from 'prop-types'
+import VelocityTrimControls from './VelocityTrimControls'
 
 const handleKeyDown = (event, item, userChangedTrimEnd) => {
-  let delta = 0;
+  let delta = 0
 
-  event.nativeEvent.preventDefault();
+  event.nativeEvent.preventDefault()
   switch (event.key) {
-    case 'ArrowUp': delta = 1; break;
-    case 'ArrowDown': delta = -1; break;
-    case 'PageUp': delta = 5; break;
-    case 'PageDown': delta = -5; break;
-    case 'Enter': delta = 100; break;
-    case 'Escape': delta = -100; break;
-    default: break;
+    case 'ArrowUp': delta = 1; break
+    case 'ArrowDown': delta = -1; break
+    case 'PageUp': delta = 5; break
+    case 'PageDown': delta = -5; break
+    case 'Enter': delta = 100; break
+    case 'Escape': delta = -100; break
+    default: break
   }
 
   if (delta !== 0) {
-    delta += item.trim;
-    if (delta < 0) delta = 0;
-    if (delta > 100) delta = 100;
-    userChangedTrimEnd(item.note, delta);
+    delta += item.trim
+    if (delta < 0) delta = 0
+    if (delta > 100) delta = 100
+    userChangedTrimEnd(item.note, delta)
   }
-};
+}
 
 const VelocityTrim = (props) => {
   const {
@@ -34,7 +34,7 @@ const VelocityTrim = (props) => {
     playNote,
     selectTrim,
     userChangedTrimEnd,
-  } = props;
+  } = props
   return (
     <li
       tabIndex={item.note}
@@ -54,8 +54,8 @@ const VelocityTrim = (props) => {
       <div className={styles.noteName} title={item.name}>{item.name}</div>
       <VelocityTrimControls {...props} />
     </li>
-  );
-};
+  )
+}
 
 VelocityTrim.propTypes = {
   item: PropTypes.object.isRequired,
@@ -64,6 +64,6 @@ VelocityTrim.propTypes = {
   playNote: PropTypes.func.isRequired,
   selectTrim: PropTypes.func.isRequired,
   userChangedTrimEnd: PropTypes.func.isRequired,
-};
+}
 
-export default VelocityTrim;
+export default VelocityTrim

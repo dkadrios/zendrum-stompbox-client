@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import styles from '../styles/velocityTrim';
+import styles from '../styles/velocityTrim'
 
 const VelocityTrimTips = (props) => {
-  const { active } = props;
+  const { active } = props
 
   return (
     <ul className={styles.tips} style={{ visibility: active ? 'visible' : 'hidden' }}>
@@ -13,11 +13,11 @@ const VelocityTrimTips = (props) => {
       <li>ESC = Mute</li>
       <li>Enter = Max</li>
     </ul>
-  );
-};
+  )
+}
 
 VelocityTrimTips.propTypes = {
   active: PropTypes.bool.isRequired,
-};
+}
 
-export default VelocityTrimTips;
+export default VelocityTrimTips

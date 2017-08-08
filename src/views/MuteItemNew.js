@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Autocomplete from 'react-toolbox/lib/autocomplete';
-import stompblockMapping from '../mappings/stompblock';
-import styles from '../styles/muteGroups';
-import autocompleteTheme from '../styles/react-toolbox-theme/Autocomplete.scss';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Autocomplete from 'react-toolbox/lib/autocomplete'
+import stompblockMapping from '../mappings/stompblock'
+import styles from '../styles/muteGroups'
+import autocompleteTheme from '../styles/react-toolbox-theme/Autocomplete.scss'
 
 
 class MuteItemNew extends React.Component {
@@ -16,12 +16,12 @@ class MuteItemNew extends React.Component {
   source = stompblockMapping.map(item => `#${item.note} - ${item.name}`)
 
   handleAdd = (value, groupIdx, muter, addMuteItem) => {
-    const index = this.source.indexOf(value);
-    addMuteItem(groupIdx, muter, index + 1);
+    const index = this.source.indexOf(value)
+    addMuteItem(groupIdx, muter, index + 1)
   }
 
   render() {
-    const { addMuteItem, groupIdx, muter } = this.props;
+    const { addMuteItem, groupIdx, muter } = this.props
 
     return (
       <div className={styles.newItemContainer}>
@@ -35,8 +35,8 @@ class MuteItemNew extends React.Component {
           theme={autocompleteTheme}
         />
       </div>
-    );
+    )
   }
 }
 
-export default MuteItemNew;
+export default MuteItemNew

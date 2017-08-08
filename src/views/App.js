@@ -1,8 +1,8 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import MainInterface from './MainInterface';
-import NotFound404 from './NotFound404';
-import styles from '../styles/app';
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import MainInterface from './MainInterface'
+import NotFound404 from './NotFound404'
+import styles from '../styles/app'
 
 const App = () =>
   (<Switch>
@@ -19,6 +19,6 @@ const App = () =>
         </div>
       )}
     />
-  </Switch>);
+  </Switch>)
 
-export default App;
+export default App

@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Knob from 'react-canvas-knob';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Knob from 'react-canvas-knob'
 
 const wheelColor = (value) => { // eslint-disable-line
   return value > 65 // eslint-disable-line
     ? '#22FF55'
     : value > 30
       ? 'orange'
-      : 'yellow';
-};
+      : 'yellow'
+}
 
 const VelocityTrimControls = ({
   item,
@@ -41,13 +41,13 @@ const VelocityTrimControls = ({
       <button type="button" onClick={() => userChangedTrimEnd(item.note, 0)}>MUTE</button>
     </div>
   </div>
-);
+)
 
 VelocityTrimControls.propTypes = {
   item: PropTypes.object.isRequired,
   styles: PropTypes.object.isRequired,
   userChangedTrim: PropTypes.func.isRequired,
   userChangedTrimEnd: PropTypes.func.isRequired,
-};
+}
 
-export default VelocityTrimControls;
+export default VelocityTrimControls

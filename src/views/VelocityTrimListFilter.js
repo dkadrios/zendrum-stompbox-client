@@ -1,21 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import DebounceInput from 'react-debounce-input';
-import Dropdown from 'react-toolbox/lib/dropdown';
-import Tooltip from 'react-toolbox/lib/tooltip';
-import Button from 'react-toolbox/lib/button';
-import * as filterActions from '../action-creators/velocityTrimListFilter';
-import styles from '../styles/velocityTrimListFilter';
-import buttonTheme from '../styles/react-toolbox-theme/ToolButton.scss';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import DebounceInput from 'react-debounce-input'
+import Dropdown from 'react-toolbox/lib/dropdown'
+import Tooltip from 'react-toolbox/lib/tooltip'
+import Button from 'react-toolbox/lib/button'
+import * as filterActions from '../action-creators/velocityTrimListFilter'
+import styles from '../styles/velocityTrimListFilter'
+import buttonTheme from '../styles/react-toolbox-theme/ToolButton.scss'
 
-const ToolTipButton = Tooltip(props => <Button {...props} />);
+const ToolTipButton = Tooltip(props => <Button {...props} />)
 
 const VelocityTrimListFilter = (props) => {
-  const { velocityTrim, searchTrims, changeGroup, changeListView } = props;
+  const { velocityTrim, searchTrims, changeGroup, changeListView } = props
 
-  const { search, group, listView } = velocityTrim;
+  const { search, group, listView } = velocityTrim
 
   const groups = [
     { value: 'all', label: 'All groups' },
@@ -26,7 +26,7 @@ const VelocityTrimListFilter = (props) => {
     { value: 'Rides', label: 'Rides' },
     { value: 'Snares', label: 'Snares' },
     { value: 'Toms', label: 'Toms' },
-  ];
+  ]
 
   return (
     <div className={styles.filters}>
@@ -76,20 +76,20 @@ const VelocityTrimListFilter = (props) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
 VelocityTrimListFilter.propTypes = {
   velocityTrim: PropTypes.object.isRequired,
   searchTrims: PropTypes.func.isRequired,
   changeGroup: PropTypes.func.isRequired,
   changeListView: PropTypes.func.isRequired,
-};
+}
 
-const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim });
-const mapDispatchToProps = dispatch => bindActionCreators(filterActions, dispatch);
+const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })
+const mapDispatchToProps = dispatch => bindActionCreators(filterActions, dispatch)
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(VelocityTrimListFilter);
+)(VelocityTrimListFilter)

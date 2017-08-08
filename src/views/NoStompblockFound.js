@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Dialog from 'react-toolbox/lib/dialog';
-import FontIcon from 'react-toolbox/lib/font_icon';
-import styles from '../styles/midiSecurity';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import Dialog from 'react-toolbox/lib/dialog'
+import FontIcon from 'react-toolbox/lib/font_icon'
+import styles from '../styles/midiSecurity'
 
 const NoStompblockFound = (props) => {
-  const { stompblock } = props;
+  const { stompblock } = props
 
   return (
     <Dialog
@@ -27,13 +27,13 @@ const NoStompblockFound = (props) => {
         <li>If connecting through a USB Host device, try connecting directly instead</li>
       </ul>
     </Dialog>
-  );
-};
+  )
+}
 
 NoStompblockFound.propTypes = {
   stompblock: PropTypes.object.isRequired,
-};
+}
 
-const mapStateToProps = ({ stompblock }) => ({ stompblock });
+const mapStateToProps = ({ stompblock }) => ({ stompblock })
 
-export default connect(mapStateToProps)(NoStompblockFound);
+export default connect(mapStateToProps)(NoStompblockFound)

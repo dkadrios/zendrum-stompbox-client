@@ -1,9 +1,9 @@
 /* eslint-disable no-template-curly-in-string, import/no-extraneous-dependencies */
-import path from 'path';
-import fs from 'fs-extra';
-import webpack from 'webpack';
-import autoPrefixer from 'autoprefixer';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import path from 'path'
+import fs from 'fs-extra'
+import webpack from 'webpack'
+import autoPrefixer from 'autoprefixer'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export default {
   // devtool: 'source-map',
@@ -69,27 +69,27 @@ export default {
     new ExtractTextPlugin('[name].[hash].styles.css'),
     function () { // eslint-disable-line
       this.plugin('done', (statsData) => {
-        const stats = statsData.toJson();
+        const stats = statsData.toJson()
 
         if (!stats.errors.length) {
-          const html = fs.readFileSync(path.join(__dirname, 'index.prod.html'), 'utf8');
+          const html = fs.readFileSync(path.join(__dirname, 'index.prod.html'), 'utf8')
 
           fs.writeFileSync(
             path.join(__dirname, 'dist', 'index.html'),
             html
               .replace('${script}', stats.assetsByChunkName.main[0])
               .replace('${style}', stats.assetsByChunkName.main[1]),
-          );
+          )
 
           fs.copySync(
             path.join(__dirname, '.htaccess'),
             path.join(__dirname, 'dist', '.htaccess'),
-          );
+          )
         }
-      });
+      })
     },
   ],
   resolve: {
     extensions: ['.js', '.scss', '.css'],
   },
-};
+}

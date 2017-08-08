@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Button from 'react-toolbox/lib/button';
-import Dialog from 'react-toolbox/lib/dialog';
-import FontIcon from 'react-toolbox/lib/font_icon';
-import ProgressBar from 'react-toolbox/lib/progress_bar';
-import Switch from 'react-toolbox/lib/switch';
-import styles from '../styles/settings';
-import switchTheme from '../styles/react-toolbox-theme/Switch.scss';
-import buttonTheme from '../styles/react-toolbox-theme/WarningButton.scss';
-import * as sysexActions from '../action-creators/sysex';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import Button from 'react-toolbox/lib/button'
+import Dialog from 'react-toolbox/lib/dialog'
+import FontIcon from 'react-toolbox/lib/font_icon'
+import ProgressBar from 'react-toolbox/lib/progress_bar'
+import Switch from 'react-toolbox/lib/switch'
+import styles from '../styles/settings'
+import switchTheme from '../styles/react-toolbox-theme/Switch.scss'
+import buttonTheme from '../styles/react-toolbox-theme/WarningButton.scss'
+import * as sysexActions from '../action-creators/sysex'
 
 const Settings = (props) => {
   const {
@@ -20,7 +20,7 @@ const Settings = (props) => {
     setMuteGroupsEnabled,
     confirmFactoryReset,
     performFactoryReset,
-  } = props;
+  } = props
 
   const {
     muteEnabledAtStart,
@@ -28,12 +28,12 @@ const Settings = (props) => {
     muteGroupsEnabled,
     showResetDialog,
     resetInProcess,
-  } = settings;
+  } = settings
 
   const actions = [
     { label: 'Cancel', onClick: () => confirmFactoryReset(false) },
     { label: 'Perform Reset', onClick: performFactoryReset },
-  ];
+  ]
 
   return (
     <div className={styles.settings}>
@@ -96,8 +96,8 @@ const Settings = (props) => {
         <ProgressBar mode="indeterminate" />
       </Dialog>
     </div>
-  );
-};
+  )
+}
 
 Settings.propTypes = {
   settings: PropTypes.object.isRequired,
@@ -106,12 +106,12 @@ Settings.propTypes = {
   setMuteGroupsEnabled: PropTypes.func.isRequired,
   confirmFactoryReset: PropTypes.func.isRequired,
   performFactoryReset: PropTypes.func.isRequired,
-};
+}
 
-const mapStateToProps = ({ settings }) => ({ settings });
-const mapDispatchToProps = dispatch => bindActionCreators(sysexActions, dispatch);
+const mapStateToProps = ({ settings }) => ({ settings })
+const mapDispatchToProps = dispatch => bindActionCreators(sysexActions, dispatch)
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Settings);
+)(Settings)

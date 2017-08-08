@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Dialog from 'react-toolbox/lib/dialog';
-import FontIcon from 'react-toolbox/lib/font_icon';
-import styles from '../styles/midiSecurity';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import Dialog from 'react-toolbox/lib/dialog'
+import FontIcon from 'react-toolbox/lib/font_icon'
+import styles from '../styles/midiSecurity'
 
 class MidiSecurity extends React.Component {
   static propTypes = {
@@ -17,12 +17,12 @@ class MidiSecurity extends React.Component {
   componentWillMount() {
     // Give web midi a change to start up before assuming no access given.
     setTimeout(() => {
-      this.setState({ active: !this.props.stompblock.accessGranted });
-    }, 2000);
+      this.setState({ active: !this.props.stompblock.accessGranted })
+    }, 2000)
   }
 
   render() {
-    const { stompblock } = this.props;
+    const { stompblock } = this.props
 
     return (
       <Dialog
@@ -41,10 +41,10 @@ class MidiSecurity extends React.Component {
           Please select &apos;Allow&apos; when prompted by your browser.
         </p>
       </Dialog>
-    );
+    )
   }
 }
 
-const mapStateToProps = ({ stompblock }) => ({ stompblock });
+const mapStateToProps = ({ stompblock }) => ({ stompblock })
 
-export default connect(mapStateToProps)(MidiSecurity);
+export default connect(mapStateToProps)(MidiSecurity)

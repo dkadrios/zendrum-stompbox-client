@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import VelocityTrim from './VelocityTrim';
-import styles from '../styles/velocityTrim';
+import VelocityTrim from './VelocityTrim'
+import styles from '../styles/velocityTrim'
 
 const VelocityTrimList = (props) => {
-  const { listView, items, selectedNoteNum } = props;
+  const { listView, items, selectedNoteNum } = props
 
   return (
     <ul className={styles[`${listView}View`]}>
@@ -21,13 +21,13 @@ const VelocityTrimList = (props) => {
         ))
       }
     </ul>
-  );
-};
+  )
+}
 
 VelocityTrimList.propTypes = {
   items: PropTypes.array.isRequired,
   listView: PropTypes.string.isRequired,
   selectedNoteNum: PropTypes.number.isRequired,
-};
+}
 
-export default VelocityTrimList;
+export default VelocityTrimList

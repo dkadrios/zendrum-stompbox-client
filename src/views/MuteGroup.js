@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { AppBar } from 'react-toolbox';
-import MuteItem from './MuteItem';
-import MuteItemNew from './MuteItemNew';
-import styles from '../styles/muteGroups';
-import SubAppBarTheme from '../styles/react-toolbox-theme/SubAppBar.scss';
-import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../midi';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { AppBar } from 'react-toolbox'
+import MuteItem from './MuteItem'
+import MuteItemNew from './MuteItemNew'
+import styles from '../styles/muteGroups'
+import SubAppBarTheme from '../styles/react-toolbox-theme/SubAppBar.scss'
+import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../midi'
 
 const MuteGroup = (props) => {
   const {
@@ -14,9 +14,9 @@ const MuteGroup = (props) => {
     deleteMuteItem,
     deleteMuteGroup,
     addMuteItem,
-  } = props;
+  } = props
 
-  const { muteables, muters } = group;
+  const { muteables, muters } = group
 
   return (
     <div>
@@ -75,8 +75,8 @@ const MuteGroup = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 MuteGroup.propTypes = {
   group: PropTypes.object.isRequired,
@@ -84,6 +84,6 @@ MuteGroup.propTypes = {
   deleteMuteItem: PropTypes.func.isRequired,
   deleteMuteGroup: PropTypes.func.isRequired,
   addMuteItem: PropTypes.func.isRequired,
-};
+}
 
-export default MuteGroup;
+export default MuteGroup

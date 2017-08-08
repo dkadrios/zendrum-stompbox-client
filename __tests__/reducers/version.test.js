@@ -1,8 +1,8 @@
-import deepFreeze from 'deep-freeze';
+import deepFreeze from 'deep-freeze'
 // import stompblock from '../../src/stompblock';
-import version from '../../src/reducers/version';
-import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi';
-import * as actions from '../../src/actions';
+import version from '../../src/reducers/version'
+import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
+import * as actions from '../../src/actions'
 
 describe('version reducer', () => {
   const initialState = {
@@ -15,20 +15,20 @@ describe('version reducer', () => {
     userFirstName: '',
     userLastName: '',
     userEmail: '',
-  };
-  deepFreeze(initialState);
+  }
+  deepFreeze(initialState)
 
   it('checkingVersion success', () => {
     const action = {
       type: actions.GET_SYSEX_VERSION,
-    };
+    }
     expect(version(initialState, action))
       .toEqual({
         ...initialState,
         checking: true,
         checked: false,
-      });
-  });
+      })
+  })
 
   it('receivedVersion success', () => {
     const action = {
@@ -40,7 +40,7 @@ describe('version reducer', () => {
         userLastName: '',
         userEmail: '',
       },
-    };
+    }
     expect(version(initialState, action))
       .toEqual({
         ...initialState,
@@ -51,6 +51,6 @@ describe('version reducer', () => {
         userFirstName: '',
         userLastName: '',
         userEmail: '',
-      });
-  });
-});
+      })
+  })
+})

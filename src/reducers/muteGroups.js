@@ -1,15 +1,15 @@
 /* eslint-disable no-plusplus */
-import stompblockMapping from '../mappings/stompblock';
+import stompblockMapping from '../mappings/stompblock'
 import {
   RECEIVED_MUTE_GROUPS,
-} from '../actions';
-import { createReducer } from '../utils';
+} from '../actions'
+import { createReducer } from '../utils'
 
 const receivedMuteGroups = (state, { payload }) => {
   // TODO - surely there is more functional way to disassemble the data stream
-  const byteArr = [...payload];
-  const muteGroups = [];
-  let byteIdx = 1;
+  const byteArr = [...payload]
+  const muteGroups = []
+  let byteIdx = 1
 
   for (let groupIdx = 0; groupIdx < byteArr[0]; groupIdx++) {
     muteGroups[groupIdx] = {
@@ -21,8 +21,8 @@ const receivedMuteGroups = (state, { payload }) => {
         byteIdx + 2 + byteArr[byteIdx],
         byteIdx + 2 + byteArr[byteIdx] + byteArr[byteIdx + 1],
       ),
-    };
-    byteIdx += 2 + byteArr[byteIdx] + byteArr[byteIdx + 1];
+    }
+    byteIdx += 2 + byteArr[byteIdx] + byteArr[byteIdx + 1]
   }
 
   return {
@@ -33,13 +33,13 @@ const receivedMuteGroups = (state, { payload }) => {
       muters: group.muters.map(noteNum =>
         stompblockMapping.find(entry => entry.note === noteNum)),
     })),
-  };
-};
+  }
+}
 
 const handlers = {
   [RECEIVED_MUTE_GROUPS]: receivedMuteGroups,
-};
+}
 
 export default createReducer({
   muteGroups: [],
-}, handlers);
+}, handlers)

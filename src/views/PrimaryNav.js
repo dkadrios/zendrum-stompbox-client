@@ -1,15 +1,15 @@
-import React from 'react';
-import AppBar from 'react-toolbox/lib/app_bar';
-import Navigation from 'react-toolbox/lib/navigation';
+import React from 'react'
+import AppBar from 'react-toolbox/lib/app_bar'
+import Navigation from 'react-toolbox/lib/navigation'
 // import Link from 'react-toolbox/lib/link';
-import { Tab, Tabs } from 'react-toolbox';
-import VelocityTrimListView from './VelocityTrimListView';
-import Settings from './Settings';
-import MuteGroups from './MuteGroups';
-import MidiActivity from './MidiActivity';
-import appTheme from '../styles/react-toolbox-theme/AppBar.scss';
-import tabTheme from '../styles/react-toolbox-theme/Tabs.scss';
-import ZendrumLogo from '../images/ZendrumLogo.svg';
+import { Tab, Tabs } from 'react-toolbox'
+import VelocityTrimListView from './VelocityTrimListView'
+import Settings from './Settings'
+import MuteGroups from './MuteGroups'
+import MidiActivity from './MidiActivity'
+import appTheme from '../styles/react-toolbox-theme/AppBar.scss'
+import tabTheme from '../styles/react-toolbox-theme/Tabs.scss'
+import ZendrumLogo from '../images/ZendrumLogo.svg'
 
 class PrimaryNav extends React.Component {
   state = {
@@ -17,7 +17,7 @@ class PrimaryNav extends React.Component {
   };
 
   handleTabChange = (index) => {
-    this.setState({ index });
+    this.setState({ index })
   };
 
   render() {
@@ -45,8 +45,8 @@ class PrimaryNav extends React.Component {
           </Tabs>
         </section>
       </div>
-    );
+    )
   }
 }
 
-export default PrimaryNav;
+export default PrimaryNav

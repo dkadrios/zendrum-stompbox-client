@@ -1,6 +1,6 @@
-import deepFreeze from 'deep-freeze';
-import storeFactory from '../../src/store';
-import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi';
+import deepFreeze from 'deep-freeze'
+import storeFactory from '../../src/store'
+import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
 import {
   confirmFactoryReset,
   performFactoryReset,
@@ -23,10 +23,10 @@ import {
   addMuteGroup,
   deleteMuteItem,
   addMuteItem,
-} from '../../src/action-creators/sysex';
+} from '../../src/action-creators/sysex'
 
 describe('sysex actions', () => {
-  let store;
+  let store
 
   const settings = {
     muteEnabledAtStart: false,
@@ -35,7 +35,7 @@ describe('sysex actions', () => {
     showResetDialog: false,
     resetInProcess: false,
     muteGroups: [],
-  };
+  }
 
   const version = {
     checking: false,
@@ -47,7 +47,7 @@ describe('sysex actions', () => {
     userFirstName: '', // TODO
     userLastName: '',
     userEmail: '',
-  };
+  }
 
   const velocityTrim = {
     sortBy: 'idx',
@@ -59,7 +59,7 @@ describe('sysex actions', () => {
       { note: 1, trim: 127 },
       { note: 2, trim: 127 },
     ],
-  };
+  }
 
   const muteGroups = {
     muteGroups: [{
@@ -86,88 +86,88 @@ describe('sysex actions', () => {
         trim: 0,
       }],
     }],
-  };
+  }
 
-  deepFreeze(settings);
-  deepFreeze(version);
-  deepFreeze(velocityTrim);
-  deepFreeze(muteGroups);
+  deepFreeze(settings)
+  deepFreeze(version)
+  deepFreeze(velocityTrim)
+  deepFreeze(muteGroups)
 
   describe('confirmFactoryReset', () => {
     beforeAll(() => {
-      store = storeFactory({ settings }, false, true);
-      store.dispatch(confirmFactoryReset(true));
-    });
+      store = storeFactory({ settings }, false, true)
+      store.dispatch(confirmFactoryReset(true))
+    })
 
     it('should succeed', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         showResetDialog: true,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('performFactoryReset', () => {
     beforeAll(() => {
-      store = storeFactory({ settings }, false, true);
-      store.dispatch(performFactoryReset());
-    });
+      store = storeFactory({ settings }, false, true)
+      store.dispatch(performFactoryReset())
+    })
 
     it('should succeed', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         resetInProcess: true,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('setMuteEnabled', () => {
     beforeAll(() => {
-      store = storeFactory({ settings }, false, true);
-      store.dispatch(setMuteEnabled(true));
-    });
+      store = storeFactory({ settings }, false, true)
+      store.dispatch(setMuteEnabled(true))
+    })
 
     it('should succeed', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         muteEnabledAtStart: true,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('setThruEnabled', () => {
     beforeAll(() => {
-      store = storeFactory({ settings }, false, true);
-      store.dispatch(setThruEnabled(false));
-    });
+      store = storeFactory({ settings }, false, true)
+      store.dispatch(setThruEnabled(false))
+    })
 
     it('should succeed', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         thruEnabledAtStart: false,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('setMuteGroupsEnabled', () => {
     beforeAll(() => {
-      store = storeFactory({ settings }, false, true);
-      store.dispatch(setMuteGroupsEnabled(false));
-    });
+      store = storeFactory({ settings }, false, true)
+      store.dispatch(setMuteGroupsEnabled(false))
+    })
 
     it('should succeed', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         muteGroupsEnabled: false,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('receivedVersion', () => {
     beforeAll(() => {
-      store = storeFactory({ version }, false, true);
-      store.dispatch(receivedVersion(20, 12345));
-    });
+      store = storeFactory({ version }, false, true)
+      store.dispatch(receivedVersion(20, 12345))
+    })
 
     it('should succeed', () => {
       expect(store.getState().version).toEqual({
@@ -175,43 +175,43 @@ describe('sysex actions', () => {
         checked: true,
         anvil: 20,
         serialNumber: 12345,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('checkVersion', () => {
     beforeAll(() => {
-      store = storeFactory({ version }, false, true);
-      store.dispatch(checkVersion());
-    });
+      store = storeFactory({ version }, false, true)
+      store.dispatch(checkVersion())
+    })
 
     it('should succeed', () => {
       expect(store.getState().version).toEqual({
         ...version,
         checking: true,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('reloadSysEx', () => {
     beforeAll(() => {
-      store = storeFactory({ version }, false, true);
-      store.dispatch(reloadSysEx());
-    });
+      store = storeFactory({ version }, false, true)
+      store.dispatch(reloadSysEx())
+    })
 
     it('should succeed', () => {
       expect(store.getState().version).toEqual({
         ...version,
         checked: false,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('userChangedTrim', () => {
     beforeAll(() => {
-      store = storeFactory({ velocityTrim }, false, true);
-      store.dispatch(userChangedTrim(1, 5));
-    });
+      store = storeFactory({ velocityTrim }, false, true)
+      store.dispatch(userChangedTrim(1, 5))
+    })
 
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
@@ -220,15 +220,15 @@ describe('sysex actions', () => {
           { note: 1, trim: 5 },
           { note: 2, trim: 127 },
         ],
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('userChangedTrimEnd', () => {
     beforeAll(() => {
-      store = storeFactory({ velocityTrim }, false, true);
-      store.dispatch(userChangedTrimEnd(2, 15));
-    });
+      store = storeFactory({ velocityTrim }, false, true)
+      store.dispatch(userChangedTrimEnd(2, 15))
+    })
 
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
@@ -237,42 +237,42 @@ describe('sysex actions', () => {
           { note: 1, trim: 127 },
           { note: 2, trim: 15 },
         ],
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('setOutputDeviceId', () => {
     beforeAll(() => {
-      store = storeFactory({ velocityTrim }, false, true);
-      setOutputDeviceId(101);
-    });
+      store = storeFactory({ velocityTrim }, false, true)
+      setOutputDeviceId(101)
+    })
 
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('playNote', () => {
     beforeAll(() => {
-      store = storeFactory({ velocityTrim }, false, true);
-      store.dispatch(playNote(2, 15));
-    });
+      store = storeFactory({ velocityTrim }, false, true)
+      store.dispatch(playNote(2, 15))
+    })
 
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('receivedVelocityTrims', () => {
     beforeAll(() => {
-      store = storeFactory({ velocityTrim }, false, true);
+      store = storeFactory({ velocityTrim }, false, true)
       // first item is tossed to account for zero index
-      store.dispatch(receivedVelocityTrims([0, 31, 32]));
-    });
+      store.dispatch(receivedVelocityTrims([0, 31, 32]))
+    })
 
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
@@ -281,57 +281,57 @@ describe('sysex actions', () => {
           { note: 1, trim: 31 },
           { note: 2, trim: 32 },
         ],
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('receivedMuteEnabled', () => {
     beforeAll(() => {
-      store = storeFactory({ settings }, false, true);
-      store.dispatch(receivedMuteEnabled(1));
-    });
+      store = storeFactory({ settings }, false, true)
+      store.dispatch(receivedMuteEnabled(1))
+    })
 
     it('should succeed', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         muteEnabledAtStart: true,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('receivedThruEnabled', () => {
     beforeAll(() => {
-      store = storeFactory({ settings }, false, true);
-      store.dispatch(receivedThruEnabled(0));
-    });
+      store = storeFactory({ settings }, false, true)
+      store.dispatch(receivedThruEnabled(0))
+    })
 
     it('should succeed', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         thruEnabledAtStart: false,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('receivedMuteGroupsEnabled', () => {
     beforeAll(() => {
-      store = storeFactory({ settings }, false, true);
-      store.dispatch(receivedMuteGroupsEnabled(0));
-    });
+      store = storeFactory({ settings }, false, true)
+      store.dispatch(receivedMuteGroupsEnabled(0))
+    })
 
     it('should succeed', () => {
       expect(store.getState().settings).toEqual({
         ...settings,
         muteGroupsEnabled: false,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('receivedMuteGroups', () => {
     beforeAll(() => {
-      store = storeFactory({ muteGroups }, false, true);
-      store.dispatch(receivedMuteGroups([1, 1, 1, 25, 26]));
-    });
+      store = storeFactory({ muteGroups }, false, true)
+      store.dispatch(receivedMuteGroups([1, 1, 1, 25, 26]))
+    })
 
     it('should succeed', () => {
       expect(store.getState().muteGroups).toEqual({
@@ -350,59 +350,59 @@ describe('sysex actions', () => {
             trim: 0,
           }],
         }],
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('deleteMuteGroup', () => {
     beforeAll(() => {
-      store = storeFactory({ muteGroups }, false, true);
-      store.dispatch(deleteMuteGroup(0));
-    });
+      store = storeFactory({ muteGroups }, false, true)
+      store.dispatch(deleteMuteGroup(0))
+    })
 
     it('should succeed', () => {
       expect(store.getState().muteGroups).toEqual({
         ...muteGroups, // muteGroups are not directly changed
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('addMuteGroup', () => {
     beforeAll(() => {
-      store = storeFactory({ muteGroups }, false, true);
-      store.dispatch(addMuteGroup());
-    });
+      store = storeFactory({ muteGroups }, false, true)
+      store.dispatch(addMuteGroup())
+    })
 
     it('should succeed', () => {
       expect(store.getState().muteGroups).toEqual({
         ...muteGroups, // muteGroups are not directly changed
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('deleteMuteItem', () => {
     beforeAll(() => {
-      store = storeFactory({ muteGroups }, false, true);
-      store.dispatch(deleteMuteItem(1, true, 2));
-    });
+      store = storeFactory({ muteGroups }, false, true)
+      store.dispatch(deleteMuteItem(1, true, 2))
+    })
 
     it('should succeed', () => {
       expect(store.getState().muteGroups).toEqual({
         ...muteGroups, // muteGroups are not directly changed
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('addMuteItem', () => {
     beforeAll(() => {
-      store = storeFactory({ muteGroups }, false, true);
-      store.dispatch(addMuteItem(1, false, 25));
-    });
+      store = storeFactory({ muteGroups }, false, true)
+      store.dispatch(addMuteItem(1, false, 25))
+    })
 
     it('should succeed', () => {
       expect(store.getState().muteGroups).toEqual({
         ...muteGroups, // muteGroups are not directly changed
-      });
-    });
-  });
-});
+      })
+    })
+  })
+})

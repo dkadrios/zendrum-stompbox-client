@@ -7,4 +7,4 @@ module.exports = {
     'postcss-each': {},
     'postcss-cssnext': {},
   },
-};
+}

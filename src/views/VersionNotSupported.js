@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Dialog from 'react-toolbox/lib/dialog';
-import styles from '../styles/midiSecurity';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import Dialog from 'react-toolbox/lib/dialog'
+import styles from '../styles/midiSecurity'
 
 const VersionNotSupported = (props) => {
-  const { version } = props;
+  const { version } = props
 
-  const formatted = value => `v${(value / 10).toFixed(1)}`;
+  const formatted = value => `v${(value / 10).toFixed(1)}`
 
   const isVisible = () =>
     version.checked
-    && version.anvil !== version.expectedAnvil;
+    && version.anvil !== version.expectedAnvil
 
   return (
     <Dialog
@@ -38,13 +38,13 @@ const VersionNotSupported = (props) => {
         <span>Current version: {formatted(version.expectedAnvil)}</span>
       </p>
     </Dialog>
-  );
-};
+  )
+}
 
 VersionNotSupported.propTypes = {
   version: PropTypes.object.isRequired,
-};
+}
 
-const mapStateToProps = ({ version }) => ({ version });
+const mapStateToProps = ({ version }) => ({ version })
 
-export default connect(mapStateToProps)(VersionNotSupported);
+export default connect(mapStateToProps)(VersionNotSupported)
