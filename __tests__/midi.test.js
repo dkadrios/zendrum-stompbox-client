@@ -1,7 +1,11 @@
-import configureStore from 'redux-mock-store'; // eslint-disable-line
+import configureStore from 'redux-mock-store' // eslint-disable-line
 import { RECEIVE_MIDI_MESSAGE, SEND_MIDI_MESSAGE } from 'redux-midi'
-import { STOMPBLOCK_FOUND } from '../src/actions'
-import { SYSEX_START, SYSEX_MSG_RECEIVE_VERSION, sysexMiddleware, watchForDeviceChange } from '../src/midi'
+import {
+  SYSEX_START,
+  SYSEX_MSG_RECEIVE_VERSION,
+  sysexMiddleware,
+  watchForDeviceChange,
+} from '../src/midi'
 
 describe('web midi integration', () => {
   const middlewares = []
@@ -25,13 +29,16 @@ describe('web midi integration', () => {
   it('should find a device', () => {
     const initialState = {
       midi: {
-        devices: [{
-          type: 'input',
-          name: 'Zendrum STOMPBLOCK',
-        }, {
-          type: 'output',
-          name: 'Zendrum STOMPBLOCK',
-        }],
+        devices: [
+          {
+            type: 'input',
+            name: 'Zendrum STOMPBLOCK',
+          },
+          {
+            type: 'output',
+            name: 'Zendrum STOMPBLOCK',
+          },
+        ],
       },
     }
     const action = { type: 'FAKE_ACTION_FOR_NOW' }
@@ -50,9 +57,13 @@ describe('web midi integration', () => {
 })
 
 describe('our custom middleware for sysex', () => {
+  const middlewares = []
+  const mockStore = configureStore(middlewares)
   it('should pass the intercepted action to next', () => {
     const nextArgs = []
-    const fakeNext = (...args) => { nextArgs.push(args) }
+    const fakeNext = (...args) => {
+      nextArgs.push(args)
+    }
     const fakeStore = {}
 
     const action = { type: 'FAKE_ACTION' }
@@ -75,21 +86,23 @@ describe('our custom middleware for sysex', () => {
         ],
       },
     }
-    sysexMiddleware({})(next)(action)
+    const fakeStore = mockStore({})
+    sysexMiddleware(fakeStore)(next)(action)
     expect(next.mock.calls).toEqual([[action]])
   })
 
   it('should handle MIDI OUT messages', () => {
     const next = jest.fn()
     const action = { type: SEND_MIDI_MESSAGE }
+    const fakeStore = mockStore({})
 
-    sysexMiddleware({})(next)(action)
+    sysexMiddleware(fakeStore)(next)(action)
     expect(next.mock.calls).toEqual([[action]])
   })
 
   it('should handle stompblock being found', () => {
     const next = jest.fn()
-    const action = { type: STOMPBLOCK_FOUND }
+    const action = { type: 'STOMPBLOCK_FOUND' }
     const store = { dispatch: f => f }
     sysexMiddleware(store)(next)(action)
     expect(next.mock.calls).toEqual([[action]])

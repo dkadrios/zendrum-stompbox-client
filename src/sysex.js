@@ -1,3 +1,4 @@
+/* @flow */
 import {
   SYSEX_START,
   STOMPBLOCK_DEVICE_ID,
@@ -21,18 +22,25 @@ import {
   sysexAction,
 } from './action-creators/sysex'
 
-export default (dispatch, { data }) => {
-  const [kind, deviceId, anvilVersion, command, ...packet] = data.slice(0, data.length - 1)
+import type { SysexBarrier, SysexMessage } from './midi'
+import type { Dispatch } from './types/Store'
+
+export default (dispatch: Dispatch, { data }: { data: Array<number> }) => {
+  const [
+    kind: SysexBarrier,
+    deviceId: number,
+    anvilVersion: number,
+    command: SysexMessage,
+    ...packet
+  ] = data.slice(0, data.length - 1)
   // One of our packets?
-  if (kind === SYSEX_START
-    && deviceId === STOMPBLOCK_DEVICE_ID
-    && (
-      anvilVersion === CURRENT_ANVIL_VERSION
-      || command === SYSEX_MSG_RECEIVE_VERSION
-    )
+  if (
+    kind === SYSEX_START &&
+    deviceId === STOMPBLOCK_DEVICE_ID &&
+    (anvilVersion === CURRENT_ANVIL_VERSION || command === SYSEX_MSG_RECEIVE_VERSION)
   ) {
-    let serial
-    let trims
+    let serial: Array<number>
+    let trims: Array<number>
 
     switch (command) {
       case SYSEX_MSG_RECEIVE_VERSION:
@@ -44,9 +52,14 @@ export default (dispatch, { data }) => {
           serial.pop()
         }
 
-        dispatch(receivedVersion(
-          packet[0], // version
-          serial.reduce((val, char) => val + String.fromCharCode(char), '')),
+        dispatch(
+          receivedVersion(
+            packet[0], // version
+            serial.reduce(
+              (val: string, char: number): string => val + String.fromCharCode(char),
+              '',
+            ),
+          ),
         )
 
         if (packet[0] === CURRENT_ANVIL_VERSION) {
@@ -63,20 +76,20 @@ export default (dispatch, { data }) => {
         break
 
       case SYSEX_MSG_RECEIVE_ALL:
-        trims = packet.filter((item, idx) => idx < 127)
+        trims = packet.filter((item: number, idx: number): boolean => idx < 127)
         dispatch(receivedVelocityTrims(trims))
         break
 
       case SYSEX_MSG_RECEIVED_MUTE_ENABLED:
-        dispatch(receivedMuteEnabled(packet[0]))
+        dispatch(receivedMuteEnabled(!!packet[0]))
         break
 
       case SYSEX_MSG_RECEIVED_THRU_ENABLED:
-        dispatch(receivedThruEnabled(packet[0]))
+        dispatch(receivedThruEnabled(!!packet[0]))
         break
 
       case SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED:
-        dispatch(receivedMuteGroupsEnabled(packet[0]))
+        dispatch(receivedMuteGroupsEnabled(!!packet[0]))
         break
 
       case SYSEX_MSG_RECEIVED_MUTE_GROUPS:
@@ -84,7 +97,7 @@ export default (dispatch, { data }) => {
         break
 
       default:
-        console.log('Unknown SysEx message received: ', command); // eslint-disable-line
+        console.log('Unknown SysEx message received: ', command) // eslint-disable-line
     }
   }
 }

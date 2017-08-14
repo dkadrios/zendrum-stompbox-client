@@ -1,5 +1,5 @@
 import path from 'path'
-import webpack from 'webpack'; // eslint-disable-line
+import webpack from 'webpack' // eslint-disable-line
 
 const PATHS = {
   build: path.join(__dirname, './dist'),
@@ -8,9 +8,7 @@ const PATHS = {
 
 export default {
   devtool: 'source-map',
-  entry: [
-    './src/index',
-  ],
+  entry: ['./src/index'],
 
   output: {
     path: PATHS.build,
@@ -32,6 +30,7 @@ export default {
         test: /\.css$/,
         use: [
           'style-loader',
+          'css-modules-flow-types-loader',
           {
             loader: 'css-loader',
             options: {
@@ -48,6 +47,7 @@ export default {
         test: /\.scss$/,
         loaders: [
           'style-loader',
+          'css-modules-flow-types-loader',
           'css-loader?module&localIdentName=[local]---[hash:base64:5]',
           'postcss-loader',
           'sass-loader',

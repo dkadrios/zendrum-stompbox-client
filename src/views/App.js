@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import MainInterface from './MainInterface'
@@ -8,16 +9,15 @@ const App = () =>
   (<Switch>
     <Route
       path="/"
-      component={() => (
-        <div className={styles.app}>
+      component={() =>
+        (<div className={styles.app}>
           <Switch>
             <Route exact path="/" component={MainInterface} />
             <Route exact path="/stompblock" component={MainInterface} />
             <Route exact path="/stompblock/" component={MainInterface} />
             <Route component={NotFound404} />
           </Switch>
-        </div>
-      )}
+        </div>)}
     />
   </Switch>)
 

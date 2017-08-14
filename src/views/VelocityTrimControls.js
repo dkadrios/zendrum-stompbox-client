@@ -1,22 +1,25 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import Knob from 'react-canvas-knob'
+import type { TrimListItemProps } from '../types/VelocityTrimList'
+/*
+type Props = {
+  item: MappingEntry,
+  styles: Styles,
+  userChangedTrim: UserChangedTrim,
+  userChangedTrimEnd: UserChangedTrimEnd,
+} */
 
-const wheelColor = (value) => { // eslint-disable-line
-  return value > 65 // eslint-disable-line
-    ? '#22FF55'
-    : value > 30
-      ? 'orange'
-      : 'yellow'
-}
+const wheelColor = (value: number): string =>
+  value > 65 ? '#22FF55' : value > 30 ? 'orange' : 'yellow'
 
 const VelocityTrimControls = ({
   item,
   styles,
   userChangedTrim,
   userChangedTrimEnd,
-}) => (
-  <div className={styles.trimContainer}>
+}: TrimListItemProps) =>
+  (<div className={styles.trimContainer}>
     <div>
       <Knob
         width={35}
@@ -35,19 +38,17 @@ const VelocityTrimControls = ({
         onChangeEnd={newVal => userChangedTrimEnd(item.note, newVal)}
       />
     </div>
-    <div>{item.trim}</div>
-    <div className={styles.buttons}>
-      <button type="button" onClick={() => userChangedTrimEnd(item.note, 100)}>MAX</button>
-      <button type="button" onClick={() => userChangedTrimEnd(item.note, 0)}>MUTE</button>
+    <div>
+      {item.trim}
     </div>
-  </div>
-)
-
-VelocityTrimControls.propTypes = {
-  item: PropTypes.object.isRequired,
-  styles: PropTypes.object.isRequired,
-  userChangedTrim: PropTypes.func.isRequired,
-  userChangedTrimEnd: PropTypes.func.isRequired,
-}
+    <div className={styles.buttons}>
+      <button type="button" onClick={() => userChangedTrimEnd(item.note, 100)}>
+        MAX
+      </button>
+      <button type="button" onClick={() => userChangedTrimEnd(item.note, 0)}>
+        MUTE
+      </button>
+    </div>
+  </div>)
 
 export default VelocityTrimControls

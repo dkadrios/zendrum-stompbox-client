@@ -55,37 +55,42 @@ describe('sysex actions', () => {
     search: '',
     group: 'all',
     listView: 'medium',
-    data: [
-      { note: 1, trim: 127 },
-      { note: 2, trim: 127 },
-    ],
+    data: [{ note: 1, trim: 127 }, { note: 2, trim: 127 }],
   }
 
   const muteGroups = {
-    muteGroups: [{
-      muteables: [{
-        group: 'Kicks',
-        name: 'Funk Kick',
-        note: 25,
-        trim: 0,
-      }, {
-        group: 'Kicks',
-        name: 'Jazz Kick',
-        note: 26,
-        trim: 0,
-      }],
-      muters: [{
-        group: 'Snares',
-        name: 'Reggae Snare Drag',
-        note: 35,
-        trim: 0,
-      }, {
-        group: 'Snares',
-        name: 'Reggae Snare Off',
-        note: 36,
-        trim: 0,
-      }],
-    }],
+    muteGroups: [
+      {
+        muteables: [
+          {
+            group: 'Kicks',
+            name: 'Funk Kick',
+            note: 25,
+            trim: 0,
+          },
+          {
+            group: 'Kicks',
+            name: 'Jazz Kick',
+            note: 26,
+            trim: 0,
+          },
+        ],
+        muters: [
+          {
+            group: 'Snares',
+            name: 'Reggae Snare Drag',
+            note: 35,
+            trim: 0,
+          },
+          {
+            group: 'Snares',
+            name: 'Reggae Snare Off',
+            note: 36,
+            trim: 0,
+          },
+        ],
+      },
+    ],
   }
 
   deepFreeze(settings)
@@ -216,10 +221,7 @@ describe('sysex actions', () => {
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
-        data: [
-          { note: 1, trim: 5 },
-          { note: 2, trim: 127 },
-        ],
+        data: [{ note: 1, trim: 5 }, { note: 2, trim: 127 }],
       })
     })
   })
@@ -233,10 +235,7 @@ describe('sysex actions', () => {
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
-        data: [
-          { note: 1, trim: 127 },
-          { note: 2, trim: 15 },
-        ],
+        data: [{ note: 1, trim: 127 }, { note: 2, trim: 15 }],
       })
     })
   })
@@ -277,10 +276,7 @@ describe('sysex actions', () => {
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
-        data: [
-          { note: 1, trim: 31 },
-          { note: 2, trim: 32 },
-        ],
+        data: [{ note: 1, trim: 31 }, { note: 2, trim: 32 }],
       })
     })
   })
@@ -288,7 +284,7 @@ describe('sysex actions', () => {
   describe('receivedMuteEnabled', () => {
     beforeAll(() => {
       store = storeFactory({ settings }, false, true)
-      store.dispatch(receivedMuteEnabled(1))
+      store.dispatch(receivedMuteEnabled(true))
     })
 
     it('should succeed', () => {
@@ -302,7 +298,7 @@ describe('sysex actions', () => {
   describe('receivedThruEnabled', () => {
     beforeAll(() => {
       store = storeFactory({ settings }, false, true)
-      store.dispatch(receivedThruEnabled(0))
+      store.dispatch(receivedThruEnabled(false))
     })
 
     it('should succeed', () => {
@@ -316,7 +312,7 @@ describe('sysex actions', () => {
   describe('receivedMuteGroupsEnabled', () => {
     beforeAll(() => {
       store = storeFactory({ settings }, false, true)
-      store.dispatch(receivedMuteGroupsEnabled(0))
+      store.dispatch(receivedMuteGroupsEnabled(false))
     })
 
     it('should succeed', () => {
@@ -336,20 +332,26 @@ describe('sysex actions', () => {
     it('should succeed', () => {
       expect(store.getState().muteGroups).toEqual({
         ...muteGroups,
-        muteGroups: [{
-          muteables: [{
-            group: 'Kicks',
-            name: 'Funk Kick',
-            note: 25,
-            trim: 0,
-          }],
-          muters: [{
-            group: 'Kicks',
-            name: 'Jazz Kick',
-            note: 26,
-            trim: 0,
-          }],
-        }],
+        muteGroups: [
+          {
+            muteables: [
+              {
+                group: 'Kicks',
+                name: 'Funk Kick',
+                note: 25,
+                trim: 0,
+              },
+            ],
+            muters: [
+              {
+                group: 'Kicks',
+                name: 'Jazz Kick',
+                note: 26,
+                trim: 0,
+              },
+            ],
+          },
+        ],
       })
     })
   })

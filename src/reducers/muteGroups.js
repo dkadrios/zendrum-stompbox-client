@@ -1,22 +1,42 @@
+/* @flow */
 /* eslint-disable no-plusplus */
+
 import stompblockMapping from '../mappings/stompblock'
-import {
-  RECEIVED_MUTE_GROUPS,
-} from '../actions'
 import { createReducer } from '../utils'
 
-const receivedMuteGroups = (state, { payload }) => {
+import type { ReceivedMuteGroupsAction } from '../types/Action'
+import type { MappingEntry } from '../types/Mappings'
+
+type ArrayOfMappingEntries = Array<MappingEntry>
+
+export type MuteGroup = {
+  +muteables: ArrayOfMappingEntries,
+  +muters: ArrayOfMappingEntries,
+}
+
+export type PseudoMuteGroup = {
+  muteables: Array<number>,
+  muters: Array<number>,
+}
+
+export type MuteGroupsState = {
+  +muteGroups: Array<MuteGroup>,
+}
+
+const mapping: ArrayOfMappingEntries = [...stompblockMapping]
+
+const receivedMuteGroups = (
+  state: MuteGroupsState,
+  { payload }: ReceivedMuteGroupsAction,
+): MuteGroupsState => {
   // TODO - surely there is more functional way to disassemble the data stream
-  const byteArr = [...payload]
-  const muteGroups = []
+  const byteArr: Array<number> = [...payload]
+  const muteGroups: Array<PseudoMuteGroup> = []
   let byteIdx = 1
 
   for (let groupIdx = 0; groupIdx < byteArr[0]; groupIdx++) {
     muteGroups[groupIdx] = {
-      muteables: byteArr.slice(
-        byteIdx + 2,
-        byteIdx + 2 + byteArr[byteIdx],
-      ),
+      muteables: byteArr.slice(byteIdx + 2, byteIdx + 2 + byteArr[byteIdx]),
       muters: byteArr.slice(
         byteIdx + 2 + byteArr[byteIdx],
         byteIdx + 2 + byteArr[byteIdx] + byteArr[byteIdx + 1],
@@ -27,19 +47,23 @@ const receivedMuteGroups = (state, { payload }) => {
 
   return {
     ...state,
-    muteGroups: muteGroups.map(group => ({
-      muteables: group.muteables.map(noteNum =>
-        stompblockMapping.find(entry => entry.note === noteNum)),
-      muters: group.muters.map(noteNum =>
-        stompblockMapping.find(entry => entry.note === noteNum)),
+    muteGroups: muteGroups.map((group: PseudoMuteGroup): MuteGroup => ({
+      muteables: group.muteables.map((noteNum: number): any =>
+        mapping.find((entry: MappingEntry) => entry.note === noteNum),
+      ),
+      muters: group.muters.map((noteNum: number): any =>
+        mapping.find((entry: MappingEntry) => entry.note === noteNum),
+      ),
     })),
   }
 }
 
 const handlers = {
-  [RECEIVED_MUTE_GROUPS]: receivedMuteGroups,
+  RECEIVED_MUTE_GROUPS: receivedMuteGroups,
 }
 
-export default createReducer({
+const defaultState: MuteGroupsState = {
   muteGroups: [],
-}, handlers)
+}
+
+export default createReducer(defaultState, handlers)

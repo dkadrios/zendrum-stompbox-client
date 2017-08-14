@@ -1,5 +1,6 @@
+/* @flow */
+/* eslint-disable import/no-duplicates */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Button from 'react-toolbox/lib/button'
@@ -11,8 +12,29 @@ import styles from '../styles/settings'
 import switchTheme from '../styles/react-toolbox-theme/Switch.scss'
 import buttonTheme from '../styles/react-toolbox-theme/WarningButton.scss'
 import * as sysexActions from '../action-creators/sysex'
+import type { SettingsState } from '../reducers/settings'
+import typeof {
+  setMuteEnabled as SetMuteEnabled,
+  setThruEnabled as SetThruEnabled,
+  setMuteGroupsEnabled as SetMuteGroupsEnabled,
+  confirmFactoryReset as ConfirmFactoryReset,
+  performFactoryReset as PerformFactoryReset,
+} from '../action-creators/sysex'
+import type { Dispatch } from '../types/Store'
 
-const Settings = (props) => {
+type SettingsType = { +settings: SettingsState }
+type ToggleSwitchType = { +checked: boolean, +feature: string, +handler: Function }
+
+type Props = {
+  +settings: SettingsState,
+  +setMuteEnabled: SetMuteEnabled,
+  +setThruEnabled: SetThruEnabled,
+  +setMuteGroupsEnabled: SetMuteGroupsEnabled,
+  +confirmFactoryReset: ConfirmFactoryReset,
+  +performFactoryReset: PerformFactoryReset,
+}
+
+const Settings = (props: Props) => {
   const {
     settings,
     setMuteEnabled,
@@ -35,31 +57,24 @@ const Settings = (props) => {
     { label: 'Perform Reset', onClick: performFactoryReset },
   ]
 
+  const TS = ({ checked, feature, handler }: ToggleSwitchType) =>
+    (<Switch
+      theme={switchTheme}
+      checked={checked}
+      label={`Enable ${feature}`}
+      onChange={(value: boolean) => handler(value)}
+    />)
+
   return (
     <div className={styles.settings}>
-      <p>
-        These settings directly affect the behavior of your STOMPBLOCK.
-      </p>
+      <p>These settings directly affect the behavior of your STOMPBLOCK.</p>
       <section>
-        <Switch
-          theme={switchTheme}
-          checked={muteEnabledAtStart}
-          label="Enable MUTE when turned on"
-          onChange={value => setMuteEnabled(value)}
-        />
-
-        <Switch
-          theme={switchTheme}
-          checked={thruEnabledAtStart}
-          label="Enable THRU when turned on"
-          onChange={value => setThruEnabled(value)}
-        />
-
-        <Switch
-          theme={switchTheme}
+        <TS checked={muteEnabledAtStart} feature="MUTE when turned on" handler={setMuteEnabled} />
+        <TS checked={thruEnabledAtStart} feature="THRU when turned on" handler={setThruEnabled} />
+        <TS
           checked={muteGroupsEnabled}
-          label="Enable mute groups (e.g. hi-hats)"
-          onChange={value => setMuteGroupsEnabled(value)}
+          feature="mute groups (e.g. hi-hats)"
+          handler={setMuteGroupsEnabled}
         />
       </section>
 
@@ -88,10 +103,7 @@ const Settings = (props) => {
         <p>This will return all settings and trim values to their factory defaults.</p>
       </Dialog>
 
-      <Dialog
-        active={resetInProcess}
-        title="Factory Reset In Progress"
-      >
+      <Dialog active={resetInProcess} title="Factory Reset In Progress">
         <p>Please wait...</p>
         <ProgressBar mode="indeterminate" />
       </Dialog>
@@ -99,19 +111,7 @@ const Settings = (props) => {
   )
 }
 
-Settings.propTypes = {
-  settings: PropTypes.object.isRequired,
-  setMuteEnabled: PropTypes.func.isRequired,
-  setThruEnabled: PropTypes.func.isRequired,
-  setMuteGroupsEnabled: PropTypes.func.isRequired,
-  confirmFactoryReset: PropTypes.func.isRequired,
-  performFactoryReset: PropTypes.func.isRequired,
-}
+const mapStateToProps = ({ settings }: SettingsType) => ({ settings })
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(sysexActions, dispatch)
 
-const mapStateToProps = ({ settings }) => ({ settings })
-const mapDispatchToProps = dispatch => bindActionCreators(sysexActions, dispatch)
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Settings)
+export default connect(mapStateToProps, mapDispatchToProps)(Settings)

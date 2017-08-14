@@ -1,4 +1,5 @@
-import React from 'react'
+/* @flow */
+import React, { Component } from 'react'
 import AppBar from 'react-toolbox/lib/app_bar'
 import Navigation from 'react-toolbox/lib/navigation'
 // import Link from 'react-toolbox/lib/link';
@@ -9,16 +10,16 @@ import MuteGroups from './MuteGroups'
 import MidiActivity from './MidiActivity'
 import appTheme from '../styles/react-toolbox-theme/AppBar.scss'
 import tabTheme from '../styles/react-toolbox-theme/Tabs.scss'
-import ZendrumLogo from '../images/ZendrumLogo.svg'
+import ZendrumLogo from '../images/ZendrumLogo.svg.js'
 
-class PrimaryNav extends React.Component {
+class PrimaryNav extends Component {
   state = {
     index: 0,
-  };
+  }
 
-  handleTabChange = (index) => {
+  handleTabChange = (index: number) => {
     this.setState({ index })
-  };
+  }
 
   render() {
     return (

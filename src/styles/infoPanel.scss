@@ -31,4 +31,8 @@
   .copyright {
     @extend .versions;
   }
+
+  .wrongVersion {
+    @extend .version;
+  }
 }

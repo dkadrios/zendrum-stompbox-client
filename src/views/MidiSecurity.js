@@ -1,18 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+/* @flow */
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Dialog from 'react-toolbox/lib/dialog'
 import FontIcon from 'react-toolbox/lib/font_icon'
 import styles from '../styles/midiSecurity'
+import type { StompblockState } from '../reducers/stompblock'
 
-class MidiSecurity extends React.Component {
-  static propTypes = {
-    stompblock: PropTypes.object.isRequired,
-  };
+type Stompblock = { +stompblock: StompblockState }
 
+class MidiSecurity extends Component {
   state = {
     active: false,
-  };
+  }
 
   componentWillMount() {
     // Give web midi a change to start up before assuming no access given.
@@ -21,8 +20,10 @@ class MidiSecurity extends React.Component {
     }, 2000)
   }
 
+  props: Stompblock
+
   render() {
-    const { stompblock } = this.props
+    const { stompblock }: Stompblock = this.props
 
     return (
       <Dialog
@@ -33,18 +34,16 @@ class MidiSecurity extends React.Component {
         <div>
           <FontIcon>security</FontIcon>
           <p>
-            This application requires special permissions before it can use
-            SysEx and connect to your Zendrum STOMPBLOCK.
+            This application requires special permissions before it can use SysEx and connect to
+            your Zendrum STOMPBLOCK.
           </p>
         </div>
-        <p>
-          Please select &apos;Allow&apos; when prompted by your browser.
-        </p>
+        <p>Please select &apos;Allow&apos; when prompted by your browser.</p>
       </Dialog>
     )
   }
 }
 
-const mapStateToProps = ({ stompblock }) => ({ stompblock })
+const mapStateToProps = ({ stompblock }: Stompblock) => ({ stompblock })
 
 export default connect(mapStateToProps)(MidiSecurity)

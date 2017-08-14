@@ -2,7 +2,6 @@ import deepFreeze from 'deep-freeze'
 // import stompblock from '../../src/stompblock';
 import version from '../../src/reducers/version'
 import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
-import * as actions from '../../src/actions'
 
 describe('version reducer', () => {
   const initialState = {
@@ -20,19 +19,18 @@ describe('version reducer', () => {
 
   it('checkingVersion success', () => {
     const action = {
-      type: actions.GET_SYSEX_VERSION,
+      type: 'GET_SYSEX_VERSION',
     }
-    expect(version(initialState, action))
-      .toEqual({
-        ...initialState,
-        checking: true,
-        checked: false,
-      })
+    expect(version(initialState, action)).toEqual({
+      ...initialState,
+      checking: true,
+      checked: false,
+    })
   })
 
   it('receivedVersion success', () => {
     const action = {
-      type: actions.RECEIVED_VERSION,
+      type: 'RECEIVED_VERSION',
       payload: {
         anvil: 33,
         serialNumber: '',
@@ -41,16 +39,15 @@ describe('version reducer', () => {
         userEmail: '',
       },
     }
-    expect(version(initialState, action))
-      .toEqual({
-        ...initialState,
-        checking: false,
-        checked: true,
-        anvil: 33,
-        serialNumber: '',
-        userFirstName: '',
-        userLastName: '',
-        userEmail: '',
-      })
+    expect(version(initialState, action)).toEqual({
+      ...initialState,
+      checking: false,
+      checked: true,
+      anvil: 33,
+      serialNumber: '',
+      userFirstName: '',
+      userLastName: '',
+      userEmail: '',
+    })
   })
 })

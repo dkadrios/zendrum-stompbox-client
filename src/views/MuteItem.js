@@ -1,18 +1,21 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import Avatar from 'react-toolbox/lib/avatar'
 import Chip from 'react-toolbox/lib/chip'
 import Instrument from '../images/Instrument'
+import type { MappingEntry } from '../types/Mappings'
+import typeof { deleteMuteItem as DeleteMuteItem } from '../action-creators/sysex'
 
-const MuteItem = (props) => {
-  const {
-    item,
-    deleteMuteItem,
-    groupIdx,
-    itemIdx,
-    muter,
-  } = props
+type Props = {
+  +item: MappingEntry,
+  +deleteMuteItem: DeleteMuteItem,
+  +groupIdx: number,
+  +itemIdx: number,
+  +muter: boolean,
+}
 
+const MuteItem = (props: Props) => {
+  const { item, deleteMuteItem, groupIdx, itemIdx, muter } = props
   const { note, name, group } = item
 
   return (
@@ -21,14 +24,6 @@ const MuteItem = (props) => {
       <strong>#{note}</strong> <span>{name}</span>
     </Chip>
   )
-}
-
-MuteItem.propTypes = {
-  item: PropTypes.object.isRequired,
-  deleteMuteItem: PropTypes.func.isRequired,
-  groupIdx: PropTypes.number.isRequired,
-  itemIdx: PropTypes.number.isRequired,
-  muter: PropTypes.bool.isRequired,
 }
 
 export default MuteItem

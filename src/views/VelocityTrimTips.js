@@ -1,9 +1,8 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import styles from '../styles/velocityTrim'
 
-const VelocityTrimTips = (props) => {
+const VelocityTrimTips = (props: { active: boolean }) => {
   const { active } = props
 
   return (
@@ -14,10 +13,6 @@ const VelocityTrimTips = (props) => {
       <li>Enter = Max</li>
     </ul>
   )
-}
-
-VelocityTrimTips.propTypes = {
-  active: PropTypes.bool.isRequired,
 }
 
 export default VelocityTrimTips

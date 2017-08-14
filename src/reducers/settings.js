@@ -1,92 +1,113 @@
-import {
-  RECEIVED_MUTE_ENABLED,
-  RECEIVED_THRU_ENABLED,
-  RECEIVED_MUTE_GROUPS_ENABLED,
-  SET_MUTE_ENABLED,
-  SET_THRU_ENABLED,
-  SET_MUTE_GROUPS_ENABLED,
-  CONFIRM_FACTORY_RESET,
-  FACTORY_RESET,
-  RECEIVED_ALL_TRIMS,
-} from '../actions'
+/* @flow */
+
 import { createReducer } from '../utils'
+import type {
+  ReceivedMuteEnabledAction,
+  ReceivedThruEnabledAction,
+  ReceivedMuteGroupsEnabledAction,
+  SetMuteEnabledAction,
+  SetThruEnabledAction,
+  SetMuteGroupsEnabledAction,
+  ConfirmFactoryResetAction,
+} from '../types/Action'
 
-const receivedSetting = (state, { type, payload }) => {
-  let result
-
-  switch (type) {
-    case RECEIVED_MUTE_ENABLED:
-      result = { ...state, muteEnabledAtStart: payload === 1 }
-      break
-    case RECEIVED_THRU_ENABLED:
-      result = { ...state, thruEnabledAtStart: payload === 1 }
-      break
-    case RECEIVED_MUTE_GROUPS_ENABLED:
-      result = { ...state, muteGroupsEnabled: payload === 1 }
-      break
-    /* istanbul ignore next */
-    default:
-      break
-  }
-
-  return result
+export type SettingsState = {
+  +muteEnabledAtStart: boolean,
+  +thruEnabledAtStart: boolean,
+  +muteGroupsEnabled: boolean,
+  +showResetDialog: boolean,
+  +resetInProcess: boolean,
 }
 
-const settingSetting = (state, { type, payload }) => {
-  let result
+const receivedMuteEnabled = (
+  state: SettingsState,
+  { payload }: ReceivedMuteEnabledAction,
+): SettingsState => ({
+  ...state,
+  muteEnabledAtStart: payload,
+})
 
-  switch (type) {
-    case SET_MUTE_ENABLED:
-      result = { ...state, muteEnabledAtStart: payload }
-      break
-    case SET_THRU_ENABLED:
-      result = { ...state, thruEnabledAtStart: payload }
-      break
-    case SET_MUTE_GROUPS_ENABLED:
-      result = { ...state, muteGroupsEnabled: payload }
-      break
-    /* istanbul ignore next */
-    default:
-      break
-  }
+const receivedThruEnabled = (
+  state: SettingsState,
+  { payload }: ReceivedThruEnabledAction,
+): SettingsState => ({
+  ...state,
+  thruEnabledAtStart: payload,
+})
 
-  return result
-}
+const receivedMuteGroupsEnabled = (
+  state: SettingsState,
+  { payload }: ReceivedMuteGroupsEnabledAction,
+): SettingsState => ({
+  ...state,
+  muteGroupsEnabled: payload,
+})
 
-const confirmFactoryReset = (state, { payload }) =>
-  ({ ...state, showResetDialog: payload })
+const setMuteEnabled = (
+  state: SettingsState,
+  { payload }: SetMuteEnabledAction,
+): SettingsState => ({
+  ...state,
+  muteEnabledAtStart: payload,
+})
 
-const resetBeingPerformed = state => ({
+const setThruEnabled = (
+  state: SettingsState,
+  { payload }: SetThruEnabledAction,
+): SettingsState => ({
+  ...state,
+  thruEnabledAtStart: payload,
+})
+
+const setMuteGroupsEnabled = (
+  state: SettingsState,
+  { payload }: SetMuteGroupsEnabledAction,
+): SettingsState => ({
+  ...state,
+  muteGroupsEnabled: payload,
+})
+
+const confirmFactoryReset = (
+  state: SettingsState,
+  { payload }: ConfirmFactoryResetAction,
+): SettingsState => ({
+  ...state,
+  showResetDialog: payload,
+})
+
+const resetBeingPerformed = (state: SettingsState): SettingsState => ({
   ...state,
   showResetDialog: false,
   resetInProcess: true,
 })
 
-const factoryResetPerformed = state => ({
+const factoryResetPerformed = (state: SettingsState): SettingsState => ({
   ...state,
   showResetDialog: false,
   resetInProcess: false,
 })
 
 const handlers = {
-  [RECEIVED_MUTE_ENABLED]: receivedSetting,
-  [RECEIVED_THRU_ENABLED]: receivedSetting,
-  [RECEIVED_MUTE_GROUPS_ENABLED]: receivedSetting,
-  [SET_MUTE_ENABLED]: settingSetting,
-  [SET_THRU_ENABLED]: settingSetting,
-  [SET_MUTE_GROUPS_ENABLED]: settingSetting,
-  [CONFIRM_FACTORY_RESET]: confirmFactoryReset,
-  [FACTORY_RESET]: resetBeingPerformed,
+  RECEIVED_MUTE_ENABLED: receivedMuteEnabled,
+  RECEIVED_THRU_ENABLED: receivedThruEnabled,
+  RECEIVED_MUTE_GROUPS_ENABLED: receivedMuteGroupsEnabled,
+  SET_MUTE_ENABLED: setMuteEnabled,
+  SET_THRU_ENABLED: setThruEnabled,
+  SET_MUTE_GROUPS_ENABLED: setMuteGroupsEnabled,
+  CONFIRM_FACTORY_RESET: confirmFactoryReset,
+  FACTORY_RESET: resetBeingPerformed,
   /* Instead of catching 'FACTORY_RESET', watch for the actual result
    * of the reset, which is when all the trims come back in.
    */
-  [RECEIVED_ALL_TRIMS]: factoryResetPerformed,
+  RECEIVED_ALL_TRIMS: factoryResetPerformed,
 }
 
-export default createReducer({
+const defaultState: SettingsState = {
   muteEnabledAtStart: false,
   thruEnabledAtStart: true,
   muteGroupsEnabled: true,
   showResetDialog: false,
   resetInProcess: false,
-}, handlers)
+}
+
+export default createReducer(defaultState, handlers)

@@ -1,10 +1,12 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styles from '../styles/midiActivity'
+import type { StompblockState } from '../reducers/stompblock'
 
-const MidiActivity = (props) => {
-  const { stompblock } = props
+type Stompblock = { stompblock: StompblockState }
+
+const MidiActivity = ({ stompblock }: Stompblock) => {
   const { midiInActivity, midiOutActivity } = stompblock
 
   return (
@@ -17,12 +19,6 @@ const MidiActivity = (props) => {
   )
 }
 
-MidiActivity.propTypes = {
-  stompblock: PropTypes.object.isRequired,
-}
+const mapStateToProps = ({ stompblock }: Stompblock): Stompblock => ({ stompblock })
 
-const mapStateToProps = ({ stompblock }) => ({ stompblock })
-
-export default connect(
-  mapStateToProps,
-)(MidiActivity)
+export default connect(mapStateToProps)(MidiActivity)

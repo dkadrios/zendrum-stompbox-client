@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import NoStompblockFound from './NoStompblockFound'
 import NotResponding from './NotResponding'
@@ -6,15 +7,14 @@ import VersionNotSupported from './VersionNotSupported'
 import PrimaryNav from './PrimaryNav'
 import InfoPanel from './InfoPanel'
 
-const MainInterface = () => (
-  <div>
+const MainInterface = () =>
+  (<div>
     <PrimaryNav />
     <MidiSecurity />
     <NotResponding />
     <VersionNotSupported />
     <NoStompblockFound />
     <InfoPanel />
-  </div>
-)
+  </div>)
 
 export default MainInterface

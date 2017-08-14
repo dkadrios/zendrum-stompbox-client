@@ -1,8 +1,9 @@
 @import "variables";
-@import "mixins";
+@import "_dialogs";
 
 .settings {
-  section, p {
+  section,
+  p {
     margin-left: 20px;
   }
 
@@ -11,6 +12,9 @@
   }
 
   section:nth-of-type(2) {
-     margin-top: 80px;
+    margin-top: 80px;
   }
+}
+.warningHeader {
+  @extend .warningHeader;
 }

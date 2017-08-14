@@ -8,3 +8,6 @@ yarn-error.log
 
 dist
 coverage
+flow-coverage
+flow-typed
+**/*.scss.flow

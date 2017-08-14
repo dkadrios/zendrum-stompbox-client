@@ -1,4 +1,4 @@
-import configureStore from 'redux-mock-store'; // eslint-disable-line
+import configureStore from 'redux-mock-store' // eslint-disable-line
 import processMidiMessage from '../src/sysex'
 import {
   SYSEX_START,
@@ -23,7 +23,12 @@ describe('sysex processing', () => {
   const anvilVersion = CURRENT_ANVIL_VERSION
 
   const msg = (msgType, ...packet) => [
-    SYSEX_START, deviceId, anvilVersion, msgType, ...packet, SYSEX_END,
+    SYSEX_START,
+    deviceId,
+    anvilVersion,
+    msgType,
+    ...packet,
+    SYSEX_END,
   ]
 
   beforeEach(() => {
@@ -33,8 +38,17 @@ describe('sysex processing', () => {
   it('should return current version if not a match', () => {
     const serialNumber = [...Array(11)].map(() => 49)
     data = [
-      SYSEX_START, deviceId, 1, SYSEX_MSG_RECEIVE_VERSION,
-      anvilVersion, 0, ...serialNumber, 0, 0, 0, SYSEX_END,
+      SYSEX_START,
+      deviceId,
+      1,
+      SYSEX_MSG_RECEIVE_VERSION,
+      anvilVersion,
+      0,
+      ...serialNumber,
+      0,
+      0,
+      0,
+      SYSEX_END,
     ]
     processMidiMessage(store.dispatch, { data })
     const actions = store.getActions()
@@ -48,8 +62,17 @@ describe('sysex processing', () => {
   it('should fail gracefully if not a match', () => {
     const serialNumber = [...Array(11)].map(() => 49)
     data = [
-      SYSEX_START, deviceId, anvilVersion, SYSEX_MSG_RECEIVE_VERSION,
-      1, 0, ...serialNumber, 0, 0, 0, SYSEX_END,
+      SYSEX_START,
+      deviceId,
+      anvilVersion,
+      SYSEX_MSG_RECEIVE_VERSION,
+      1,
+      0,
+      ...serialNumber,
+      0,
+      0,
+      0,
+      SYSEX_END,
     ]
     processMidiMessage(store.dispatch, { data })
     const actions = store.getActions()
@@ -91,19 +114,19 @@ describe('sysex processing', () => {
   it('should test SYSEX_MSG_RECEIVED_MUTE_ENABLED', () => {
     data = msg(SYSEX_MSG_RECEIVED_MUTE_ENABLED, 0)
     processMidiMessage(store.dispatch, { data })
-    expect(store.getActions()).toEqual([{ type: 'RECEIVED_MUTE_ENABLED', payload: 0 }])
+    expect(store.getActions()).toEqual([{ type: 'RECEIVED_MUTE_ENABLED', payload: false }])
   })
 
   it('should test SYSEX_MSG_RECEIVED_THRU_ENABLED', () => {
     data = msg(SYSEX_MSG_RECEIVED_THRU_ENABLED, 1)
     processMidiMessage(store.dispatch, { data })
-    expect(store.getActions()).toEqual([{ type: 'RECEIVED_THRU_ENABLED', payload: 1 }])
+    expect(store.getActions()).toEqual([{ type: 'RECEIVED_THRU_ENABLED', payload: true }])
   })
 
   it('should test SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED', () => {
     data = msg(SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED, 1)
     processMidiMessage(store.dispatch, { data })
-    expect(store.getActions()).toEqual([{ type: 'RECEIVED_MUTE_GROUPS_ENABLED', payload: 1 }])
+    expect(store.getActions()).toEqual([{ type: 'RECEIVED_MUTE_GROUPS_ENABLED', payload: true }])
   })
 
   it('should test SYSEX_MSG_RECEIVED_MUTE_GROUPS', () => {

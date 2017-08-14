@@ -1,33 +1,42 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import VelocityTrim from './VelocityTrim'
 import styles from '../styles/velocityTrim'
+import type { MappingEntry } from '../types/Mappings'
+import type { TrimsState } from '../reducers/velocityTrim'
+import typeof {
+  userChangedTrim as UserChangedTrim,
+  userChangedTrimEnd as UserChangedTrimEnd,
+  playNote as PlayNote,
+} from '../action-creators/sysex'
+import typeof { selectTrim as SelectTrim } from '../action-creators/velocityTrimListFilter'
 
-const VelocityTrimList = (props) => {
-  const { listView, items, selectedNoteNum } = props
+type Props = {
+  +items: Array<MappingEntry>,
+  +velocityTrim: TrimsState,
+  +playNote: PlayNote,
+  +selectTrim: SelectTrim,
+  +userChangedTrim: UserChangedTrim,
+  +userChangedTrimEnd: UserChangedTrimEnd,
+}
+
+const VelocityTrimList = (props: Props) => {
+  const { items, velocityTrim } = props
+  const { listView, selectedNoteNum } = velocityTrim
 
   return (
     <ul className={styles[`${listView}View`]}>
-      {
-        items.map(item => (
-          <VelocityTrim
-            key={item.note}
-            item={item}
-            styles={styles}
-            selected={item.note === selectedNoteNum}
-            {...props}
-          />
-        ))
-      }
+      {items.map(item =>
+        (<VelocityTrim
+          key={item.note}
+          item={item}
+          styles={styles}
+          selected={item.note === selectedNoteNum}
+          {...props}
+        />),
+      )}
     </ul>
   )
-}
-
-VelocityTrimList.propTypes = {
-  items: PropTypes.array.isRequired,
-  listView: PropTypes.string.isRequired,
-  selectedNoteNum: PropTypes.number.isRequired,
 }
 
 export default VelocityTrimList
