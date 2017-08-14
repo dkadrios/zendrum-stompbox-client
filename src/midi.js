@@ -26,7 +26,7 @@ export const STOMPBLOCK_DEVICE_ID: number = 0x6b
 
 export const CURRENT_ANVIL_VERSION: number = 23
 
-export const CURRENT_CLIENT_VERSION: number = 13
+export const CURRENT_CLIENT_VERSION: number = 14
 
 export const CHANNEL: number = 10
 
