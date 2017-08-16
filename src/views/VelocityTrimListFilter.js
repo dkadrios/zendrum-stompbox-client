@@ -63,7 +63,7 @@ const VelocityTrimListFilter = (props: Props) => {
       <DebounceInput
         type="search"
         value={search}
-        placeholder="Filter by name"
+        placeholder="Filter by name or #"
         debounceTimeout={200}
         onChange={(e: KeyboardEventHandler) => searchTrims(e.target.value)}
       />

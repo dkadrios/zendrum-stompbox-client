@@ -7,6 +7,7 @@ import Perc from './Perc.svg.js'
 import Rides from './Rides.svg.js'
 import Snares from './Snares.svg.js'
 import Toms from './Toms.svg.js'
+import type { GroupName } from '../types/Mappings'
 
 type Image =
   | typeof Cymbals
@@ -17,7 +18,7 @@ type Image =
   | typeof Snares
   | typeof Toms
 
-export default (name: string): Image => {
+export default (name: GroupName): Image => {
   let result: ?Image
   switch (name) {
     case 'Cymbals':

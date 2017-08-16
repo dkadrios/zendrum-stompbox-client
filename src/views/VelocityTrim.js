@@ -1,7 +1,9 @@
 /* @flow */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react'
+import FontIcon from 'react-toolbox/lib/font_icon'
 import VelocityTrimControls from './VelocityTrimControls'
+import Instrument from '../images/Instrument'
 import typeof {
   userChangedTrim as UserChangedTrim,
   userChangedTrimEnd as UserChangedTrimEnd,
@@ -75,6 +77,9 @@ const VelocityTrim = (props: Props) => {
         </div>
         <div>
           {item.group}
+        </div>
+        <div>
+          {Instrument(item.group)}
         </div>
       </div>
       <div className={styles.noteName} title={item.name}>

@@ -5,13 +5,13 @@ $color-subappbar-background: #666;
 
 $color-background: #303030;
 $color-background-light: #eee;
-$color-background-dark: black; // rgb(63, 81, 181);
-
-$color-border: black; // rgb(63, 81, 181);
-$color-shadow: #ddd;
-$color-focus: #5e9ed6;
+$color-background-dark: black;
 
 $color-highlight: #b10000;
+
+$color-border: black;
+$color-shadow: #ddd;
+$color-focus: desaturate($color-highlight, 50);
 
 $color-button-alert: #ffcb01;
 $color-text-alert: #ff0000;

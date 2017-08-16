@@ -71,21 +71,31 @@
       box-sizing: content-box;
 
       .header {
+        color: $color-appbar-text;
         border: 1px outset $color-subappbar-background;
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-between;
+        align-items: center;
         padding: 1px 5px 0 8px;
         cursor: pointer;
 
         div:first-child {
           font-size: 24px;
-          color: $color-appbar-text;
         }
 
         div:nth-child(2) {
-          color: $color-appbar-text;
-          padding-top: 4px;
+          font-size: 90%;
+          flex-grow: 0;
+          color: $color-text-mid;
+          text-shadow: 0px 1px 1px $color-background;
+        }
+        svg {
+          fill: $color-appbar-text;
+          width: 20px;
+          height: 20px;
+          flex-grow: 0;
+          margin: 2px 0 0 5px;
         }
       }
 

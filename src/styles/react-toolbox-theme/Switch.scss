@@ -14,8 +14,10 @@
   }
 
   .off {
+    background-color: $color-subappbar-background;
+
     .thumb {
-      background-color: $color-subappbar-background;
+      background-color: $color-text-mid;
     }
   }
 }
