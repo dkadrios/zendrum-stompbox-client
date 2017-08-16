@@ -2,6 +2,7 @@
 
 | Date       | Version | Notes                           |
 |------------|:-------:|---------------------------------|
+| 2017-08-15 | 1.6     | Sticky header and footer        |
 | 2017-08-15 | 1.5     | Support ANVIL 2.4 (SysEx dumps) |
 | 2017-08-13 | 1.4     | Adopting FLOW                   |
 | 2017-08-06 | 1.3     | Configurable mute groups        |

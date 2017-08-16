@@ -13,7 +13,7 @@ $color-border-lighter: lighten($color-border, 30);
   ul.tips {
     background-color: $color-border-lighter;
     color: $color-appbar-text;
-    margin: 0 18px;
+    margin: 0 30px 0 18px;
     padding: 5px 10px;
     border-radius: 3px;
     list-style-type: none;
@@ -40,9 +40,9 @@ $color-border-lighter: lighten($color-border, 30);
     overflow: auto;
     height: 100vh;
     margin-bottom: $height-footer + $height-tips + $height-header + $height-tabs -
-      15;
+      25;
 
-    @include scroll-shadow-indicator();
+    @include scroll-shadow-indicator;
   }
 
   ul.narrowView,

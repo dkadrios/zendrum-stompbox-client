@@ -31,23 +31,25 @@ const MuteGroups = (props: Props) => {
   } = props
 
   return (
-    <div className={styles.muteGroups}>
-      {muteGroups.map((group, idx) =>
-        (<div key={idx}>
-          <MuteGroup
-            group={group}
-            ordinal={idx}
-            deleteMuteItem={deleteMuteItem}
-            addMuteItem={addMuteItem}
-            deleteMuteGroup={deleteMuteGroup}
-          />
-        </div>),
-      )}
-      <Button icon="add" label="Create New Group" raised primary onClick={addMuteGroup} />
-      <small>
-        Using {MAX_MUTE_GROUPS - muteGroups.length} of {MAX_MUTE_GROUPS}
-        &nbsp;available groups
-      </small>
+    <div className={styles.muteGroupsContainer}>
+      <div className={styles.muteGroups}>
+        {muteGroups.map((group, idx) =>
+          (<div key={idx}>
+            <MuteGroup
+              group={group}
+              ordinal={idx}
+              deleteMuteItem={deleteMuteItem}
+              addMuteItem={addMuteItem}
+              deleteMuteGroup={deleteMuteGroup}
+            />
+          </div>),
+        )}
+        <Button icon="add" label="Create New Group" raised primary onClick={addMuteGroup} />
+        <small>
+          Using {MAX_MUTE_GROUPS - muteGroups.length} of {MAX_MUTE_GROUPS}
+          &nbsp;available groups
+        </small>
+      </div>
     </div>
   )
 }

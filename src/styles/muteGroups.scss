@@ -1,38 +1,51 @@
 @import "variables";
+@import "mixins";
 
 $item-width: 350px;
 
-.muteGroups {
-  margin-bottom: 80px;
+.muteGroupsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
-  .muteGroup {
-    max-width: $item-width * 2;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    padding-bottom: 30px;
+  .muteGroups {
+    padding: 15px 30px 30px 15px;
+    overflow: auto;
+    height: 100vh;
+    margin-bottom: $height-footer + $height-tips + $height-header + $height-tabs -
+      25;
 
-    section {
-      max-width: $item-width;
-      padding: 0 0 0 10px;
-      h1 {
-        font-size: 14px;
-        font-weight: normal;
-        color: $color-subappbar-background;
-        white-space: nowrap;
+    @include scroll-shadow-indicator();
+
+    .muteGroup {
+      max-width: $item-width * 2;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      padding-bottom: 30px;
+
+      section {
+        max-width: $item-width;
+        padding: 0 0 0 10px;
+        h1 {
+          font-size: 14px;
+          font-weight: normal;
+          color: $color-subappbar-background;
+          white-space: nowrap;
+        }
+      }
+
+      .newItemContainer {
+        min-width: $item-width;
+        padding: 0 10px 10px;
       }
     }
 
-    .newItemContainer {
-      min-width: $item-width;
-      padding: 0 10px 10px;
-    }
-  }
-
-  small {
+    small {
       padding: 10px 20px;
       color: $color-text-mid;
       font-style: italic;
       font-size: 12px;
     }
+  }
 }
