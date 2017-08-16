@@ -1,8 +1,10 @@
 @import '../variables';
 
-.appBar{
+.appBar {
   color: $color-appbar-text;
   background-color: $color-appbar-background;
+  height: $height-header;
+  max-height: $height-header;
 
   .link {
     color: $color-appbar-text;

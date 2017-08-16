@@ -6,6 +6,8 @@
     margin: 0;
     padding: 0;
     background: $color-background;
+    overflow: hidden;
+    height: 100%;
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     cursor: default;
 
@@ -15,10 +17,24 @@
     }
   }
 
+  ::-webkit-scrollbar {
+    width: 14px;
+    background: $color-background-light;
+  }
+
+  ::-webkit-scrollbar-track {
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $color-text-mid;
+    border-radius: 8px;
+    margin: 1px;
+    width: 14px;
+  }
 }
 
 main {
-  overflow-y: auto;
+  height: 100%;
 }
 
 .app {

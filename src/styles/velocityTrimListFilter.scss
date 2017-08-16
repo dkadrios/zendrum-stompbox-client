@@ -3,11 +3,15 @@
 $input-height: 30px;
 
 .filters {
-  margin: 0 0 15px;
+  margin: 0 15px 15px;
   display: flex;
   flex-direction: row;
   outline: none;
   align-items: center;
+  height: $height-list-filter;
+  max-height: $height-list-filter;
+  overflow: hidden;
+  flex-shrink: 0;
 
   input[type="search"] {
     font-size: 16px;

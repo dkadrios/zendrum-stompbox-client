@@ -9,7 +9,7 @@ $color-background-dark: black; // rgb(63, 81, 181);
 
 $color-border: black; // rgb(63, 81, 181);
 $color-shadow: #ddd;
-$color-focus: #5E9ED6;
+$color-focus: #5e9ed6;
 
 $color-text-alert: #cc3300;
 
@@ -17,8 +17,14 @@ $color-text-dark: black;
 $color-text-dimmer: #ccc;
 $color-text-mid: #aaa;
 
-$color-facebook-blue: #3B5998;
+$color-facebook-blue: #3b5998;
 $color-twitter-blue: #55acee;
 
 $use-all: true;
 $use-fadeOut: true;
+
+$height-header: 64px;
+$height-tabs: 48px;
+$height-list-filter: 40px;
+$height-tips: 28px;
+$height-footer: 40px;

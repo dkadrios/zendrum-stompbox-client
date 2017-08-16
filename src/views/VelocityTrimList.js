@@ -25,17 +25,19 @@ const VelocityTrimList = (props: Props) => {
   const { listView, selectedNoteNum } = velocityTrim
 
   return (
-    <ul className={styles[`${listView}View`]}>
-      {items.map(item =>
-        (<VelocityTrim
-          key={item.note}
-          item={item}
-          styles={styles}
-          selected={item.note === selectedNoteNum}
-          {...props}
-        />),
-      )}
-    </ul>
+    <div className={styles.list}>
+      <ul className={styles[`${listView}View`]}>
+        {items.map(item =>
+          (<VelocityTrim
+            key={item.note}
+            item={item}
+            styles={styles}
+            selected={item.note === selectedNoteNum}
+            {...props}
+          />),
+        )}
+      </ul>
+    </div>
   )
 }
 

@@ -4,19 +4,25 @@
 $color-border-lighter: lighten($color-border, 30);
 
 .listContainer {
-  padding: 10px;
+  padding: 0;
   outline: none;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
   ul.tips {
     background-color: $color-border-lighter;
     color: $color-appbar-text;
-    margin: 0 0 18px;
+    margin: 0 18px;
     padding: 5px 10px;
     border-radius: 3px;
     list-style-type: none;
     font-size: 12px;
     font-weight: bold;
     box-shadow: 2px 2px 5px $color-shadow;
+    height: $height-tips;
+    max-height: $height-tips;
+    flex-shrink: 0;
 
     li {
       display: inline;
@@ -27,6 +33,16 @@ $color-border-lighter: lighten($color-border, 30);
     li:last-child {
       border-right: none;
     }
+  }
+
+  .list {
+    padding: 15px;
+    overflow: auto;
+    height: 100vh;
+    margin-bottom: $height-footer + $height-tips + $height-header + $height-tabs -
+      15;
+
+    @include scroll-shadow-indicator();
   }
 
   ul.narrowView,
@@ -98,7 +114,8 @@ $color-border-lighter: lighten($color-border, 30);
           height: 50px;
         }
 
-        div:nth-child(2) { // This is the knob 'value'
+        div:nth-child(2) {
+          // This is the knob 'value'
           padding-top: 10px;
           font-size: 18px;
         }

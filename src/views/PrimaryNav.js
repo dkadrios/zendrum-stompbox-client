@@ -9,7 +9,7 @@ import Settings from './Settings'
 import MuteGroups from './MuteGroups'
 import MidiActivity from './MidiActivity'
 import appTheme from '../styles/react-toolbox-theme/AppBar.scss'
-import tabTheme from '../styles/react-toolbox-theme/Tabs.scss'
+import tabsTheme from '../styles/react-toolbox-theme/Tabs.scss'
 import ZendrumLogo from '../images/ZendrumLogo.svg.js'
 
 class PrimaryNav extends Component {
@@ -33,7 +33,7 @@ class PrimaryNav extends Component {
 
         <section>
           <MidiActivity />
-          <Tabs index={this.state.index} onChange={this.handleTabChange} theme={tabTheme}>
+          <Tabs index={this.state.index} onChange={this.handleTabChange} theme={tabsTheme}>
             <Tab label="Trims">
               <VelocityTrimListView />
             </Tab>

@@ -5,7 +5,15 @@
     background-color: $color-background-dark;
   }
 
+  .tab {
+    padding: 10px 0 0;
+  }
   .active {
     outline: none;
+  }
+
+  .navigationContainer {
+    height: $height-tabs;
+    max-height: $height-tabs;
   }
 }

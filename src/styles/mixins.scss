@@ -1,12 +1,26 @@
-@mixin linearGradient($top, $bottom){
+@mixin linearGradient($top, $bottom) {
   background: $top; /* Old browsers */
-  background: -moz-linear-gradient(top,  $top 0%, $bottom 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  $top 0%,$bottom 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  $top 0%,$bottom 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+  background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, $top),
+    color-stop(100%, $bottom)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    top,
+    $top 0%,
+    $bottom 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $top 0%, $bottom 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $top 0%, $bottom 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $top 0%, $bottom 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr='#ffffff',
+      endColorstr='#000000',
+      GradientType=0
+    ); /* IE6-9 */
 }
 
 @mixin animation ($name, $duration: 300ms, $delay: 0, $ease: ease) {
@@ -42,14 +56,32 @@
   height: $led-size;
   border-radius: 50%;
   background-color: $color;
-  box-shadow:
-    $shadow 0 -1px 7px 1px,
-    inset darken($color, 80) 0 -1px 9px,
+  box-shadow: $shadow 0 -1px 7px 1px, inset darken($color, 80) 0 -1px 9px;
 }
 
 @mixin led-on($led-size, $color, $shadow: rgba(0, 0, 0, 0.2)) {
   @include led($led-size, $color, $shadow);
-  box-shadow:
-    $shadow 0 -1px 7px 1px,
-    $color 0 2px 12px; // adds glow
+  box-shadow: $shadow 0 -1px 7px 1px, $color 0 2px 12px; // adds glow
+}
+
+@mixin scroll-shadow-indicator() {
+  overflow: overlay;
+  overflow-x: hidden;
+  background: linear-gradient(#fff 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), #fff 70%) 0 100%,
+    radial-gradient(
+      farthest-side at 50% 0,
+      rgba(43, 43, 43, 0.25),
+      rgba(43, 43, 43, 0)
+    ),
+    radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(43, 43, 43, 0.2),
+        rgba(43, 43, 43, 0)
+      )
+      0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
 }
