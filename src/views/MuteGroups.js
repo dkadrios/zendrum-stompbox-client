@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Button } from 'react-toolbox/lib/button'
 import styles from '../styles/muteGroups'
+import actionTheme from '../styles/react-toolbox-theme/ActionButton.scss'
 import MuteGroup from './MuteGroup'
 import { MAX_MUTE_GROUPS } from '../midi'
 import * as sysexActions from '../action-creators/sysex'
@@ -44,7 +45,14 @@ const MuteGroups = (props: Props) => {
             />
           </div>),
         )}
-        <Button icon="add" label="Create New Group" raised primary onClick={addMuteGroup} />
+        <Button
+          theme={actionTheme}
+          icon="add"
+          label="Create New Group"
+          raised
+          primary
+          onClick={addMuteGroup}
+        />
         <small>
           Using {MAX_MUTE_GROUPS - muteGroups.length} of {MAX_MUTE_GROUPS}
           &nbsp;available groups

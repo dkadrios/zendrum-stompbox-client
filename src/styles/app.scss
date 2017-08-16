@@ -6,9 +6,13 @@
     margin: 0;
     padding: 0;
     background: $color-background;
+    color: $color-text-dark;
     overflow: hidden;
     height: 100%;
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     cursor: default;
 
     a {
@@ -20,6 +24,7 @@
   ::-webkit-scrollbar {
     width: 14px;
     background: $color-background-light;
+    border-radius: 8px;
   }
 
   ::-webkit-scrollbar-track {

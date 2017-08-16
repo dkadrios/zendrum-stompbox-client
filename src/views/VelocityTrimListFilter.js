@@ -8,6 +8,7 @@ import Tooltip from 'react-toolbox/lib/tooltip'
 import Button from 'react-toolbox/lib/button'
 import * as filterActions from '../action-creators/velocityTrimListFilter'
 import styles from '../styles/velocityTrimListFilter'
+import dropdownTheme from '../styles/react-toolbox-theme/Dropdown.scss'
 import buttonTheme from '../styles/react-toolbox-theme/ToolButton.scss'
 import type { TrimsState } from '../reducers/velocityTrim'
 import type { Dispatch } from '../types/Store'
@@ -68,6 +69,7 @@ const VelocityTrimListFilter = (props: Props) => {
       />
 
       <Dropdown
+        theme={dropdownTheme}
         className={styles.groups}
         auto
         onChange={(value: GroupName) => changeGroup(value)}

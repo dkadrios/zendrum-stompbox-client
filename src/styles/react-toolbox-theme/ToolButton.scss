@@ -2,19 +2,23 @@
 
 .base {
   min-width: 20px;
-  max-width: 37px;
-  max-height: 40px;
-  padding: 0 10px;
+  max-width: 30px;
+  max-height: 30px;
+  padding: 0 0 0 1px;
+  vertical-align: top;
+  font-size: 160%;
+  line-height: 30px;
 }
 
 .button,
 .raised {
   @extend .base;
-  color: $color-text-mid !important;
+  color: $color-background !important;
+  background-color: $color-subappbar-background !important;
 }
 
 .primary {
   @extend .base;
-  color: $color-text-dark !important;
-  background-color: $color-shadow !important;
+  color: $color-appbar-background !important;
+  background-color: $color-background-light !important;
 }

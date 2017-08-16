@@ -1,3 +1,5 @@
+@import 'variables';
+
 @mixin linearGradient($top, $bottom) {
   background: $top; /* Old browsers */
   background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6+ */
@@ -51,7 +53,7 @@
 }
 
 @mixin led($led-size, $color, $shadow: rgba(0, 0, 0, 0.2)) {
-  margin: 0 15px 0 5px;
+  margin: 0 12px 0 5px;
   width: $led-size;
   height: $led-size;
   border-radius: 50%;
@@ -67,8 +69,8 @@
 @mixin scroll-shadow-indicator() {
   overflow: overlay;
   overflow-x: hidden;
-  background: linear-gradient(#fff 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(rgba(255, 255, 255, 0), #fff 70%) 0 100%,
+  background: linear-gradient($color-background 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), $color-background 70%) 0 100%,
     radial-gradient(
       farthest-side at 50% 0,
       rgba(43, 43, 43, 0.25),
@@ -81,7 +83,7 @@
       )
       0 100%;
   background-repeat: no-repeat;
-  background-color: white;
+  background-color: $color-background;
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
   background-attachment: local, local, scroll, scroll;
 }

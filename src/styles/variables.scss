@@ -3,7 +3,7 @@ $color-appbar-text: white;
 
 $color-subappbar-background: #666;
 
-$color-background: white;
+$color-background: #303030;
 $color-background-light: #eee;
 $color-background-dark: black; // rgb(63, 81, 181);
 
@@ -11,17 +11,17 @@ $color-border: black; // rgb(63, 81, 181);
 $color-shadow: #ddd;
 $color-focus: #5e9ed6;
 
-$color-text-alert: #cc3300;
+$color-highlight: #b10000;
 
-$color-text-dark: black;
+$color-button-alert: #ffcb01;
+$color-text-alert: #ff0000;
+
+$color-text-dark: white;
 $color-text-dimmer: #ccc;
 $color-text-mid: #aaa;
 
 $color-facebook-blue: #3b5998;
 $color-twitter-blue: #55acee;
-
-$use-all: true;
-$use-fadeOut: true;
 
 $height-header: 64px;
 $height-tabs: 48px;

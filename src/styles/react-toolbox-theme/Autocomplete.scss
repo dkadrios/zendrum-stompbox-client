@@ -1,6 +1,47 @@
+@import "../variables";
+
 .autocomplete {
   padding: 0;
   height: 50px;
   position: relative;
-  top: -15px;
+  top: 0;
+
+  input {
+    border-bottom-color: $color-text-mid;
+    color: $color-text-dark;
+  }
+
+  label {
+    color: $color-text-dark;
+  }
+
+  .input::after {
+    border-top-color: $color-text-mid;
+  }
+  /*
+  input:focus {
+    &:after {
+      border-top-color: $color-highlight !important;
+    }
+  }*/
+
+  .bar::before {
+    background-color: $color-highlight !important;
+  }
+
+  input:focus ~ label {
+    color: $color-highlight !important;
+  }
+
+  input:focus ~ span::before {
+    background-color: $color-highlight !important;
+  }
+
+  input:focus ~ span::after {
+    background-color: $color-highlight !important;
+  }
+
+  .suggestion {
+    color: $color-background-dark;
+  }
 }

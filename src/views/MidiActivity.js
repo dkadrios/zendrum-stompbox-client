@@ -11,9 +11,9 @@ const MidiActivity = ({ stompblock }: Stompblock) => {
 
   return (
     <div className={styles.midiActivity}>
-      <div>MIDI IN</div>
+      <div>Midi in</div>
       <div className={midiInActivity ? styles.ledRedBlink : styles.ledRed} />
-      <div>OUT</div>
+      <div>out</div>
       <div className={midiOutActivity ? styles.ledYellowBlink : styles.ledYellow} />
     </div>
   )

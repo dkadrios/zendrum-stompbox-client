@@ -2,23 +2,24 @@
 @import "mixins";
 
 $led-size: 11px;
-$red-base: #F00;
-$yellow-base: #FF0;
+$red-base: #f00;
+$yellow-base: #ff0;
 
 .midiActivity {
   display: flex;
   flex-flow: row nowrap;
-  padding: 18px 5px;
+  margin: 10px 8px;
+  padding: 4px 0 4px 10px;
   align-items: center;
   justify-content: flex-end;
   position: absolute;
   right: 0;
 
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1;
-  height: 11px;
+  color: $color-text-dark;
+  text-transform: uppercase;
+
+  border: 2px $color-subappbar-background inset;
+  border-radius: 6px;
 
   .ledRed {
     @include led($led-size, $red-base);

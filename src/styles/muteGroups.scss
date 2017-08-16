@@ -7,6 +7,7 @@ $item-width: 350px;
   display: flex;
   flex-direction: column;
   height: 100vh;
+  color: $color-text-dimmer;
 
   .muteGroups {
     padding: 15px 30px 30px 15px;
@@ -30,7 +31,6 @@ $item-width: 350px;
         h1 {
           font-size: 14px;
           font-weight: normal;
-          color: $color-subappbar-background;
           white-space: nowrap;
         }
       }
@@ -43,7 +43,6 @@ $item-width: 350px;
 
     small {
       padding: 10px 20px;
-      color: $color-text-mid;
       font-style: italic;
       font-size: 12px;
     }

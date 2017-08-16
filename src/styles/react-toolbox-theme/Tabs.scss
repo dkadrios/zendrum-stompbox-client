@@ -2,14 +2,20 @@
 
 .tabs {
   .pointer {
-    background-color: $color-background-dark;
+    background-color: $color-highlight;
   }
 
   .tab {
     padding: 0;
   }
+
   .active {
     outline: none;
+    color: $color-text-dark !important;
+  }
+
+  .label {
+    color: $color-text-mid;
   }
 
   .navigationContainer {

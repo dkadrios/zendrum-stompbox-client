@@ -1,11 +1,21 @@
 @import "../variables";
 
 .field {
+  .text {
+    color: $color-appbar-text;
+  }
+
   .on {
-    background-color: lighten($color-background-dark, 50);
+    background-color: $color-subappbar-background;
 
     .thumb {
-      background-color: $color-background-dark;
+      background-color: $color-highlight;
+    }
+  }
+
+  .off {
+    .thumb {
+      background-color: $color-subappbar-background;
     }
   }
 }

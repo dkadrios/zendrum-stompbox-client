@@ -3,5 +3,6 @@
 .button,
 .primary,
 .raised {
-  background-color: $color-text-alert !important;
+  color: $color-background-dark !important;
+  background-color: $color-button-alert !important;
 }
