@@ -6,6 +6,7 @@ import {
   stompblockMissing,
   midiInActivityChanged,
   midiOutActivityChanged,
+  checkedRegistration,
 } from '../../src/action-creators/stompblock'
 
 describe('stompblock actions', () => {
@@ -60,7 +61,7 @@ describe('stompblock actions', () => {
       store.dispatch(midiInActivityChanged(true))
     })
 
-    it('should report found', () => {
+    it('should report activity', () => {
       expect(store.getState().stompblock.midiInActivity).toBeTruthy()
     })
   })
@@ -71,8 +72,26 @@ describe('stompblock actions', () => {
       store.dispatch(midiOutActivityChanged(true))
     })
 
-    it('should report found', () => {
+    it('should report activity', () => {
       expect(store.getState().stompblock.midiOutActivity).toBeTruthy()
+    })
+  })
+
+  describe('checkedRegistration', () => {
+    beforeAll(() => {
+      store = storeFactory({ stompblock }, false, true)
+      store.dispatch(
+        checkedRegistration({
+          serial: 'JIBBER_JABBER',
+          lastSeen: new Date(),
+          product: 'STOMPBLOCK',
+          registrations: [{ active: true }],
+        }),
+      )
+    })
+
+    it('should report registered', () => {
+      expect(store.getState().version.registered).toBeTruthy()
     })
   })
 })

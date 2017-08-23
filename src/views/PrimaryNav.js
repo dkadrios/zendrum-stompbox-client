@@ -1,4 +1,3 @@
-/* @flow */
 import React, { Component } from 'react'
 import AppBar from 'react-toolbox/lib/app_bar'
 import Navigation from 'react-toolbox/lib/navigation'
@@ -12,12 +11,13 @@ import appTheme from '../styles/react-toolbox-theme/AppBar.scss'
 import tabsTheme from '../styles/react-toolbox-theme/Tabs.scss'
 import ZendrumLogo from '../images/ZendrumLogo.svg.js'
 
-class PrimaryNav extends Component {
-  state = {
-    index: 0,
+class PrimaryNav extends Component<Object> {
+  constructor() {
+    super()
+    this.state = { index: 0 }
   }
 
-  handleTabChange = (index: number) => {
+  handleTabChange = (index) => {
     this.setState({ index })
   }
 

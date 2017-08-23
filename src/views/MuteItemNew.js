@@ -12,7 +12,7 @@ type Props = {
   +muter: boolean,
 }
 
-class MuteItemNew extends Component {
+class MuteItemNew extends Component<Object> {
   source = stompblockMapping.map(item => `#${item.note} - ${item.name}`)
   props: Props
 

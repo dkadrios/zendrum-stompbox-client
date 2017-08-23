@@ -1,16 +1,13 @@
-/* @flow */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Dialog from 'react-toolbox/lib/dialog'
 import FontIcon from 'react-toolbox/lib/font_icon'
 import styles from '../styles/midiSecurity'
-import type { StompblockState } from '../reducers/stompblock'
-
-type Stompblock = { +stompblock: StompblockState }
 
 class MidiSecurity extends Component {
-  state = {
-    active: false,
+  constructor(props) {
+    super(props)
+    this.state = { active: false }
   }
 
   componentWillMount() {
@@ -20,10 +17,8 @@ class MidiSecurity extends Component {
     }, 2000)
   }
 
-  props: Stompblock
-
   render() {
-    const { stompblock }: Stompblock = this.props
+    const { stompblock } = this.props
 
     return (
       <Dialog
@@ -44,6 +39,6 @@ class MidiSecurity extends Component {
   }
 }
 
-const mapStateToProps = ({ stompblock }: Stompblock) => ({ stompblock })
+const mapStateToProps = ({ stompblock }) => ({ stompblock })
 
 export default connect(mapStateToProps)(MidiSecurity)

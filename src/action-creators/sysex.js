@@ -1,7 +1,9 @@
 /* @flow */
+import fetch from 'isomorphic-fetch'
 import shortid from 'shortid'
 import now from 'performance-now'
 import { sendMidiMessage } from 'redux-midi'
+import { checkedRegistration } from './stompblock'
 import type { Action } from '../types/Action'
 import type { Dispatch } from '../types/Store'
 import {
@@ -24,6 +26,8 @@ import {
 } from '../midi'
 
 let deviceId = ''
+
+const URL_REGISTRATION_CHECK = 'http://nebiru.com:3002/productInstance/'
 
 const thunkTogether = (action1, action2) => (dispatch: Dispatch) => {
   dispatch(action2)
@@ -57,10 +61,16 @@ export const checkVersion = () =>
     { type: 'GET_SYSEX_VERSION' },
   )
 
-export const receivedVersion = (anvil: number, serialNumber: string): Action => ({
-  type: 'RECEIVED_VERSION',
-  payload: { anvil, serialNumber },
-})
+export const receivedVersion = (anvil: number, serialNumber: string) => (dispatch: Dispatch) => {
+  dispatch({
+    type: 'RECEIVED_VERSION',
+    payload: { anvil, serialNumber },
+  })
+
+  fetch(URL_REGISTRATION_CHECK + serialNumber)
+    .then(response => response.json())
+    .then(productInstance => dispatch(checkedRegistration(productInstance)))
+}
 
 export const confirmFactoryReset = (show: boolean): Action => ({
   type: 'CONFIRM_FACTORY_RESET',

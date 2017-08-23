@@ -1,7 +1,6 @@
 /* @flow */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react'
-import FontIcon from 'react-toolbox/lib/font_icon'
 import VelocityTrimControls from './VelocityTrimControls'
 import Instrument from '../images/Instrument'
 import typeof {
@@ -62,7 +61,7 @@ const VelocityTrim = (props: Props) => {
   return (
     <li
       tabIndex={item.note}
-      onKeyDown={(e: SyntheticKeyboardEvent) => handleKeyDown(e, item, userChangedTrimEnd)}
+      onKeyDown={(e: SyntheticKeyboardEvent<*>) => handleKeyDown(e, item, userChangedTrimEnd)}
       onMouseUp={() => (selected ? null : selectTrim(item.note))}
       className={selected ? styles.selected : ''}
     >

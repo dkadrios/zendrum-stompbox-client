@@ -11,9 +11,10 @@ describe('version reducer', () => {
     anvil: NaN,
     expectedAnvil: CURRENT_ANVIL_VERSION,
     serialNumber: '',
-    userFirstName: '',
-    userLastName: '',
-    userEmail: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    registered: false,
   }
   deepFreeze(initialState)
 
@@ -28,15 +29,95 @@ describe('version reducer', () => {
     })
   })
 
+  it('checkedRegistration success, not registered', () => {
+    const action = {
+      type: 'CHECKED_REGISTRATION',
+      payload: {
+        serial: 'JIBBER_JABBER',
+        lastSeen: new Date(),
+        product: 'STOMPBLOCK',
+        registrations: [],
+      },
+    }
+    expect(version(initialState, action)).toEqual({
+      ...initialState,
+      firstName: '',
+      lastName: '',
+      email: '',
+      registered: false,
+    })
+  })
+
+  it('checkedRegistration success, single registration', () => {
+    const action = {
+      type: 'CHECKED_REGISTRATION',
+      payload: {
+        serial: 'JIBBER_JABBER',
+        lastSeen: new Date(),
+        product: 'STOMPBLOCK',
+        registrations: [
+          {
+            registered: new Date(),
+            firstName: 'Mr.',
+            lastName: 'User',
+            email: 'email@email.com',
+            active: true,
+          },
+        ],
+      },
+    }
+    expect(version(initialState, action)).toEqual({
+      ...initialState,
+      firstName: 'Mr.',
+      lastName: 'User',
+      email: 'email@email.com',
+      registered: true,
+    })
+  })
+
+  it('checkedRegistration success, previously owned', () => {
+    const action = {
+      type: 'CHECKED_REGISTRATION',
+      payload: {
+        serial: 'JIBBER_JABBER',
+        lastSeen: new Date(),
+        product: 'STOMPBLOCK',
+        registrations: [
+          {
+            registered: new Date(),
+            firstName: 'Previous',
+            lastName: 'Owner',
+            email: 'owner@email.com',
+            active: false,
+          },
+          {
+            registered: new Date(),
+            firstName: 'Mr.',
+            lastName: 'User',
+            email: 'email@email.com',
+            active: true,
+          },
+        ],
+      },
+    }
+    expect(version(initialState, action)).toEqual({
+      ...initialState,
+      firstName: 'Mr.',
+      lastName: 'User',
+      email: 'email@email.com',
+      registered: true,
+    })
+  })
+
   it('receivedVersion success', () => {
     const action = {
       type: 'RECEIVED_VERSION',
       payload: {
         anvil: 33,
         serialNumber: '',
-        userFirstName: '',
-        userLastName: '',
-        userEmail: '',
+        firstName: '',
+        lastName: '',
+        email: '',
       },
     }
     expect(version(initialState, action)).toEqual({
@@ -45,9 +126,9 @@ describe('version reducer', () => {
       checked: true,
       anvil: 33,
       serialNumber: '',
-      userFirstName: '',
-      userLastName: '',
-      userEmail: '',
+      firstName: '',
+      lastName: '',
+      email: '',
     })
   })
 })

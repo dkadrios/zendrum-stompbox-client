@@ -171,7 +171,7 @@ describe('sysex actions', () => {
   describe('receivedVersion', () => {
     beforeAll(() => {
       store = storeFactory({ version }, false, true)
-      store.dispatch(receivedVersion(20, 12345))
+      store.dispatch(receivedVersion(20, 'TEST_SERIAL'))
     })
 
     it('should succeed', () => {
@@ -179,7 +179,7 @@ describe('sysex actions', () => {
         ...version,
         checked: true,
         anvil: 20,
-        serialNumber: 12345,
+        serialNumber: 'TEST_SERIAL',
       })
     })
   })
