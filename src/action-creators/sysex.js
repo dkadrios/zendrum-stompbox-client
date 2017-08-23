@@ -27,7 +27,7 @@ import {
 
 let deviceId = ''
 
-const URL_REGISTRATION_CHECK = 'http://nebiru.com:3002/productInstance/'
+const URL_REGISTRATION_CHECK = 'https://nebiru.com:3002/productInstance/'
 
 const thunkTogether = (action1, action2) => (dispatch: Dispatch) => {
   dispatch(action2)
