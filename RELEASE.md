@@ -2,6 +2,7 @@
 
 | Date       | Version | Notes                           |
 |------------|:-------:|---------------------------------|
+| 2017-08-22 | 2.1     | Capture device serial numbers   |
 | 2017-08-15 | 2.0     | Completely new skin             |
 | 2017-08-15 | 1.6     | Sticky header and footer        |
 | 2017-08-15 | 1.5     | Support ANVIL 2.4 (SysEx dumps) |
