@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import AppBar from 'react-toolbox/lib/app_bar'
 import Navigation from 'react-toolbox/lib/navigation'
-// import Link from 'react-toolbox/lib/link';
 import { Tab, Tabs } from 'react-toolbox'
+import UserInfo from './UserInfo'
 import VelocityTrimListView from './VelocityTrimListView'
 import Settings from './Settings'
 import MuteGroups from './MuteGroups'
@@ -26,8 +26,7 @@ class PrimaryNav extends Component<Object> {
       <div>
         <AppBar title="STOMPBLOCK" leftIcon={<ZendrumLogo />} theme={appTheme}>
           <Navigation type="horizontal">
-            {/* <Link href='http://' label='Inbox' icon='inbox' theme={theme} />
-            <Link href='http://' active label='Profile' icon='person' theme={theme} /> */}
+            <UserInfo />
           </Navigation>
         </AppBar>
 

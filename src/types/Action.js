@@ -2,7 +2,7 @@
 
 import type { GroupName } from './Mappings'
 import type { ListView } from '../types/VelocityTrimList'
-import type { ProductInstance } from '../types/Registration'
+import type { ProductInstance, Registration } from '../types/Registration'
 
 export type SearchedForStompblockAction = {
   type: 'SEARCHED_FOR_STOMPBLOCK',
@@ -29,6 +29,11 @@ export type MidiOutActivityAction = {
 export type CheckedRegistrationAction = {
   type: 'CHECKED_REGISTRATION',
   payload: ProductInstance,
+}
+
+export type DeviceRegisteredAction = {
+  type: 'DEVICE_REGISTERED',
+  payload: Registration,
 }
 
 export type SearchTrimsAction = {
@@ -124,6 +129,7 @@ export type Action =
   | MidiInActivityAction
   | MidiOutActivityAction
   | CheckedRegistrationAction
+  | DeviceRegisteredAction
   | SearchTrimsAction
   | SelectTrimAction
   | ChangeGroupAction

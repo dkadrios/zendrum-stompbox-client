@@ -13,6 +13,7 @@ export type VersionState = {
   +firstName: string,
   +lastName: string,
   +email: string,
+  +checkedRegistration: boolean,
   +registered: boolean,
 }
 
@@ -33,16 +34,15 @@ const receivedVersion = (
 })
 
 const checkedRegistration = (state: VersionState, { payload }: CheckedRegistrationAction) => {
-  const newState = { ...state }
+  let newState = { ...state, checkedRegistration: true }
   const A = payload.registrations.filter(entry => entry.active)
 
   newState.registered = A.length === 1
 
   if (newState.registered) {
     const { firstName, lastName, email } = A[0]
-    return { ...newState, firstName, lastName, email }
+    newState = { ...newState, firstName, lastName, email }
   }
-
   return newState
 }
 
@@ -54,6 +54,7 @@ const stompblockMissing = (state: VersionState): VersionState => ({
   firstName: '',
   lastName: '',
   email: '',
+  checkedRegistration: false,
   registered: false,
 })
 
@@ -62,6 +63,7 @@ const handlers = {
   RECEIVED_VERSION: receivedVersion,
   STOMPBLOCK_MISSING: stompblockMissing,
   CHECKED_REGISTRATION: checkedRegistration,
+  DEVICE_REGISTERED: checkedRegistration,
 }
 
 const defaultState: VersionState = {
@@ -71,9 +73,10 @@ const defaultState: VersionState = {
   anvil: NaN,
   expectedAnvil: CURRENT_ANVIL_VERSION,
   serialNumber: '',
-  firstName: '', // TODO
+  firstName: '',
   lastName: '',
   email: '',
+  checkedRegistration: false,
   registered: false,
 }
 

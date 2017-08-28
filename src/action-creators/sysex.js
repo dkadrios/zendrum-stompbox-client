@@ -4,6 +4,7 @@ import shortid from 'shortid'
 import now from 'performance-now'
 import { sendMidiMessage } from 'redux-midi'
 import { checkedRegistration } from './stompblock'
+import { PRODUCT_INSTANCE } from '../endpoints'
 import type { Action } from '../types/Action'
 import type { Dispatch } from '../types/Store'
 import {
@@ -26,8 +27,6 @@ import {
 } from '../midi'
 
 let deviceId = ''
-
-const URL_REGISTRATION_CHECK = 'https://nebiru.com:3002/productInstance/'
 
 const thunkTogether = (action1, action2) => (dispatch: Dispatch) => {
   dispatch(action2)
@@ -67,7 +66,7 @@ export const receivedVersion = (anvil: number, serialNumber: string) => (dispatc
     payload: { anvil, serialNumber },
   })
 
-  fetch(URL_REGISTRATION_CHECK + serialNumber)
+  fetch(PRODUCT_INSTANCE + serialNumber)
     .then(response => response.json())
     .then(productInstance => dispatch(checkedRegistration(productInstance)))
 }

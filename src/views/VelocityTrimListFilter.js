@@ -53,7 +53,7 @@ const VelocityTrimListFilter = (props: Props) => {
       icon={icon}
       primary={listView === view}
       raised
-      tooltip={capitalize(view)}
+      tooltip={`${capitalize(view)} view`}
       className={selected ? styles.selected : ''}
       onClick={() => changeListView(view)}
     />)

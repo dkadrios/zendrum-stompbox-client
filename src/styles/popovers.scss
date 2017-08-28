@@ -1,0 +1,21 @@
+@import "variables";
+
+.Popover {
+  div:first-child {
+    padding: 1rem 2rem;
+    background: $color-background-light;
+    color: $color-border;
+    border-radius: 0.3rem;
+    box-shadow: 0px 3px 5px #000;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  svg {
+    fill: $color-background-light;
+  }
+
+  span {
+    outline: none;
+  }
+}
