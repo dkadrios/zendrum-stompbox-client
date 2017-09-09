@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@import 'variables';
+@import 'mixins';
 
 $item-width: 350px;
 
@@ -47,4 +47,13 @@ $item-width: 350px;
       font-size: 12px;
     }
   }
+}
+
+.instrument {
+  background-color: $color-subappbar-background;
+  width: 31px !important;
+  height: 31px !important;
+  position: relative;
+  top: -1px;
+  left: 1px;
 }

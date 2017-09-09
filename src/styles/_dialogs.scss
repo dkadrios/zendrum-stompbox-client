@@ -1,4 +1,8 @@
-@import "variables";
+@import 'variables';
+
+.baseDialog {
+  max-width: 540px;
+}
 
 .iconParagraph {
   display: flex;

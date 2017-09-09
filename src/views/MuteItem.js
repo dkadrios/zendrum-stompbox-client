@@ -3,6 +3,7 @@ import React from 'react'
 import Avatar from 'react-toolbox/lib/avatar'
 import Chip from 'react-toolbox/lib/chip'
 import Instrument from '../images/Instrument'
+import * as styles from '../styles/muteGroups.scss'
 import type { MappingEntry } from '../types/Mappings'
 import typeof { deleteMuteItem as DeleteMuteItem } from '../action-creators/sysex'
 
@@ -20,7 +21,7 @@ const MuteItem = (props: Props) => {
 
   return (
     <Chip deletable onDeleteClick={() => deleteMuteItem(groupIdx, muter, itemIdx)}>
-      <Avatar icon={Instrument(group)} style={{ backgroundColor: '#666' }} />
+      <Avatar icon={Instrument(group)} className={styles.instrument} />
       <strong>#{note}</strong> <span>{name}</span>
     </Chip>
   )

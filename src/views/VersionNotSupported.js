@@ -19,7 +19,7 @@ const VersionNotSupported = (props: { version: VersionState }) => {
         <a href="https://zendrumstudio.com/anvil">ANVIL</a> operating system.
       </p>
       <p>
-        An updated version has been released by <a href="https://nebiru.com">Nebiru Software</a> and
+        An updated version has been released by <a href="https://nebiru.com">Nebiru Software</a> that
         likely adds some cool new feature or squashes a pesky bug.
       </p>
       <p>

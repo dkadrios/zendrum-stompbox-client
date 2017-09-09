@@ -57,13 +57,14 @@ const Settings = (props: Props) => {
     { label: 'Perform Reset', onClick: performFactoryReset },
   ]
 
-  const TS = ({ checked, feature, handler }: ToggleSwitchType) =>
-    (<Switch
+  const TS = ({ checked, feature, handler }: ToggleSwitchType) => (
+    <Switch
       theme={switchTheme}
       checked={checked}
       label={`Enable ${feature}`}
       onChange={(value: boolean) => handler(value)}
-    />)
+    />
+  )
 
   return (
     <div className={styles.settings}>
@@ -95,6 +96,7 @@ const Settings = (props: Props) => {
         onEscKeyDown={() => confirmFactoryReset(false)}
         onOverlayClick={() => confirmFactoryReset(false)}
         title="Confirm Factory Reset"
+        className={styles.resetDialog}
       >
         <div className={styles.warningHeader}>
           <FontIcon>warning</FontIcon>
@@ -103,7 +105,11 @@ const Settings = (props: Props) => {
         <p>This will return all settings and trim values to their factory defaults.</p>
       </Dialog>
 
-      <Dialog active={resetInProcess} title="Factory Reset In Progress">
+      <Dialog
+        active={resetInProcess}
+        title="Factory Reset In Progress"
+        className={styles.resetDialog}
+      >
         <p>Please wait...</p>
         <ProgressBar mode="indeterminate" />
       </Dialog>

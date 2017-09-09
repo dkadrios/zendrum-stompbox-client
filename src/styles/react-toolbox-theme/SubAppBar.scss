@@ -7,8 +7,9 @@
   padding: 0 20px;
   height: $height-footer;
   max-height: $height-footer;
+  max-width: 700px;
 
   .rightIcon {
-    color: $color-button-alert !important;
+    //color: $color-button-alert !important;
   }
 }

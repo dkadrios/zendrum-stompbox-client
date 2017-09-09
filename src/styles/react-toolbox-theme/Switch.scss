@@ -1,4 +1,4 @@
-@import "../variables";
+@import '../variables';
 
 .field {
   .text {
@@ -9,7 +9,7 @@
     background-color: $color-subappbar-background;
 
     .thumb {
-      background-color: $color-highlight;
+      background-color: darken($color-background, 10);
     }
   }
 
@@ -17,7 +17,7 @@
     background-color: $color-subappbar-background;
 
     .thumb {
-      background-color: $color-text-mid;
+      background-color: darken($color-text-mid, 5);
     }
   }
 }

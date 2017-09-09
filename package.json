@@ -5,9 +5,11 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "NODE_ENV=production webpack -p --config webpack.prod.config.babel.js",
+    "build:webpack":
+      "NODE_ENV=production webpack -p --config webpack.prod.config.babel.js",
     "build": "npm run clean && npm run build:webpack",
-    "start": "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
+    "start":
+      "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
     "lint": "eslint 'src/**' '__tests__/**' '*.js'",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
@@ -15,7 +17,8 @@
     "test:cov": "jest --coverage",
     "test:cov:watch": "jest --coverage --watchAll",
     "cov": "open ./coverage/lcov-report/index.html",
-    "flow:cov": "flow-coverage-report -i 'src/**/*.js' -i 'src/**/*.jsx' -x 'src/test/**' -t html -t json -t text"
+    "flow:cov":
+      "flow-coverage-report -i 'src/**/*.js' -i 'src/**/*.jsx' -x 'src/test/**' -t html -t json -t text"
   },
   "author": "Darin Kadrioski <darin@nebiru.com>",
   "repository": {
@@ -104,6 +107,6 @@
     "shortid": "2.2.8"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=7.0.0"
   }
 }

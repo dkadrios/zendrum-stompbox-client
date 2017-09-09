@@ -1,7 +1,8 @@
-@import "variables";
-@import "_dialogs";
+@import 'variables';
+@import '_dialogs';
 
 .midiSecurity {
+  @extend .baseDialog;
   h1 {
     text-align: center;
   }
@@ -42,7 +43,7 @@
     border: 1px solid $color-text-alert;
     padding: 10px;
     border-radius: 10px;
-    color: $color-text-dark;
+    color: $color-border;
     background-color: lighten($color-text-alert, 50);
     span {
       padding-right: 20px;

@@ -85,8 +85,8 @@ class UserRegistration extends Component {
   }
 
   render() {
-    const HOCInput = name =>
-      (<Input
+    const HOCInput = name => (
+      <Input
         type="text"
         label={fieldLabels[name]}
         name={name}
@@ -95,7 +95,8 @@ class UserRegistration extends Component {
         onChange={this.handleChange}
         onBlur={this.validateFormField}
         maxLength={64}
-      />)
+      />
+    )
 
     this.actions = [
       { label: 'Cancel', onClick: this.close },
@@ -107,6 +108,7 @@ class UserRegistration extends Component {
         active={this.props.active}
         onEscKeyDown={this.close}
         onOverlayClick={this.close}
+        className={styles.registrationDialog}
         title="STOMPBLOCK Registration"
       >
         <p>

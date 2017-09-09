@@ -34,8 +34,8 @@ const MuteGroups = (props: Props) => {
   return (
     <div className={styles.muteGroupsContainer}>
       <div className={styles.muteGroups}>
-        {muteGroups.map((group, idx) =>
-          (<div key={idx}>
+        {muteGroups.map((group, idx) => (
+          <div key={idx}>
             <MuteGroup
               group={group}
               ordinal={idx}
@@ -43,16 +43,9 @@ const MuteGroups = (props: Props) => {
               addMuteItem={addMuteItem}
               deleteMuteGroup={deleteMuteGroup}
             />
-          </div>),
-        )}
-        <Button
-          theme={actionTheme}
-          icon="add"
-          label="Create New Group"
-          raised
-          primary
-          onClick={addMuteGroup}
-        />
+          </div>
+        ))}
+        <Button icon="add" label="Create New Group" raised primary onClick={addMuteGroup} />
         <small>
           Using {MAX_MUTE_GROUPS - muteGroups.length} of {MAX_MUTE_GROUPS}
           &nbsp;available groups

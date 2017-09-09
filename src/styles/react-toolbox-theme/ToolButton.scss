@@ -1,4 +1,4 @@
-@import "../variables";
+@import '../variables';
 
 .base {
   min-width: 20px;
@@ -21,4 +21,9 @@
   @extend .base;
   color: $color-appbar-background !important;
   background-color: $color-background-light !important;
+}
+
+.icon {
+  position: relative;
+  top: -2px;
 }

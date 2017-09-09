@@ -1,4 +1,23 @@
-@import "variables";
+@import 'variables';
+
+.registrationDialog {
+  max-width: 500px;
+
+  .gravatarNotice {
+    display: flex;
+    max-width: 300px;
+
+    svg {
+      width: 36px;
+      height: 36px;
+      margin-right: 7px;
+    }
+
+    a {
+      color: $color-background;
+    }
+  }
+}
 
 .userInfo {
   .name {
@@ -7,19 +26,4 @@
   }
   cursor: pointer;
   outline: none;
-}
-
-.gravatarNotice {
-  display: flex;
-  max-width: 300px;
-
-  svg {
-    width: 36px;
-    height: 36px;
-    margin-right: 7px;
-  }
-
-  a {
-    color: $color-background;
-  }
 }
