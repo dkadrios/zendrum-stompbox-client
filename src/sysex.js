@@ -37,7 +37,9 @@ export default (dispatch: Dispatch, { data }: { data: Array<number> }) => {
   if (
     kind === SYSEX_START &&
     deviceId === STOMPBLOCK_DEVICE_ID &&
-    (anvilVersion === CURRENT_ANVIL_VERSION || command === SYSEX_MSG_RECEIVE_VERSION)
+    (anvilVersion === CURRENT_ANVIL_VERSION ||
+      anvilVersion === 24 ||
+      command === SYSEX_MSG_RECEIVE_VERSION)
   ) {
     let serial: Array<number>
     let trims: Array<number>
@@ -62,7 +64,7 @@ export default (dispatch: Dispatch, { data }: { data: Array<number> }) => {
           ),
         )
 
-        if (packet[0] === CURRENT_ANVIL_VERSION) {
+        if (packet[0] === CURRENT_ANVIL_VERSION || packet[0] === 24) {
           // TODO dispatch registration check first, then chain that to reloadSysEx
           dispatch(sysexAction(SYSEX_MSG_RECEIVED_MUTE_ENABLED))
           dispatch(sysexAction(SYSEX_MSG_RECEIVED_THRU_ENABLED))

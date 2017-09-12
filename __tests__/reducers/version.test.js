@@ -6,6 +6,7 @@ import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
 describe('version reducer', () => {
   const initialState = {
     checked: false,
+    checkedRegistration: true,
     checking: false,
     client: CURRENT_CLIENT_VERSION,
     anvil: NaN,
