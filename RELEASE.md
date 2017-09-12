@@ -2,6 +2,8 @@
 
 | Date       | Version | Notes                           |
 |------------|:-------:|---------------------------------|
+| 2017-09-11 | 2.4     | Allowing ANVIL 2.4 to connect   |
+| 2017-09-08 | 2.3     | UI tweaks                       |
 | 2017-08-28 | 2.2     | Enabling user registration      |
 | 2017-08-22 | 2.1     | Capture device serial numbers   |
 | 2017-08-15 | 2.0     | Completely new skin             |

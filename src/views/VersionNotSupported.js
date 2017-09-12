@@ -10,7 +10,9 @@ const VersionNotSupported = (props: { version: VersionState }) => {
 
   const formatted = value => `v${(value / 10).toFixed(1)}`
 
-  const isVisible = () => version.checked && version.anvil !== version.expectedAnvil
+  // SPECIAL CASE made for version 2.4 -- allow it to work with 2.5 UI
+  const isVisible = () =>
+    version.checked && version.anvil !== version.expectedAnvil && version.anvil !== 24
 
   return (
     <Dialog active={isVisible()} title="Unsupported Version" className={styles.versionNotSupported}>
@@ -19,8 +21,8 @@ const VersionNotSupported = (props: { version: VersionState }) => {
         <a href="https://zendrumstudio.com/anvil">ANVIL</a> operating system.
       </p>
       <p>
-        An updated version has been released by <a href="https://nebiru.com">Nebiru Software</a> that
-        likely adds some cool new feature or squashes a pesky bug.
+        An updated version has been released by <a href="https://nebiru.com">Nebiru Software</a>{' '}
+        that likely adds some cool new feature or squashes a pesky bug.
       </p>
       <p>
         In order to continue using this application, you&apos;ll need to first update your
@@ -28,12 +30,8 @@ const VersionNotSupported = (props: { version: VersionState }) => {
         <a href="https://zendrumstudio.com/anvil">ANVIL homepage</a>.
       </p>
       <p className={styles.version}>
-        <span>
-          Your version: {formatted(version.anvil)}
-        </span>
-        <span>
-          Current version: {formatted(version.expectedAnvil)}
-        </span>
+        <span>Your version: {formatted(version.anvil)}</span>
+        <span>Current version: {formatted(version.expectedAnvil)}</span>
       </p>
     </Dialog>
   )
