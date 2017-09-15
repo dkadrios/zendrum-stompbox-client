@@ -1,5 +1,5 @@
 import React from 'react'
-import MainInterface from './MainInterface'
+import MainInterface from './views/MainInterface'
 import styles from '../styles/app'
 
 const App = () => (

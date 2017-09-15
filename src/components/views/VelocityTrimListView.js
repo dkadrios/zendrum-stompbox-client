@@ -2,20 +2,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import VelocityTrimList from './VelocityTrimList'
-import VelocityTrimTips from './VelocityTrimTips'
-import VelocityTrimListFilter from './VelocityTrimListFilter'
-import * as sysexActions from '../action-creators/sysex'
-import * as trimActions from '../action-creators/velocityTrimListFilter'
-import styles from '../styles/velocityTrim'
-import type { TrimsState } from '../reducers/velocityTrim'
-import type { Dispatch } from '../types/Store'
+import VelocityTrimList from '../VelocityTrimList'
+import VelocityTrimTips from '../VelocityTrimTips'
+import VelocityTrimListFilter from '../VelocityTrimListFilter'
+import * as sysexActions from '../../action-creators/sysex'
+import * as trimActions from '../../action-creators/velocityTrimListFilter'
+import styles from '../../styles/velocityTrim'
+import type { TrimsState } from '../../reducers/velocityTrim'
+import type { Dispatch } from '../../types/Store'
 import typeof {
   playNote as PlayNote,
   userChangedTrim as UserChangedTrim,
   userChangedTrimEnd as UserChangedTrimEnd,
-} from '../action-creators/sysex'
-import typeof { selectTrim as SelectTrim } from '../action-creators/velocityTrimListFilter'
+} from '../../action-creators/sysex'
+import typeof { selectTrim as SelectTrim } from '../../action-creators/velocityTrimListFilter'
 
 type Props = {
   +velocityTrim: TrimsState,

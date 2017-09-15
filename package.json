@@ -28,7 +28,8 @@
   "jest": {
     "globals": {
       "__DEV__": true,
-      "__TEST__": true
+      "__TEST__": true,
+      "__API__": "http://localhost:3002"
     }
   },
   "devDependencies": {
