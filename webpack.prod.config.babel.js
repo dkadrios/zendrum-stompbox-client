@@ -1,4 +1,4 @@
-/* eslint-disable no-template-curly-in-string, import/no-extraneous-dependencies */
+/* eslint-disable no-template-curly-in-string, import/no-extraneous-dependencies, func-names */
 import path from 'path'
 import fs from 'fs-extra'
 import webpack from 'webpack'
@@ -65,7 +65,6 @@ export default {
     }),
     new ExtractTextPlugin('[name].[hash].styles.css'),
     function () {
-      // eslint-disable-line
       this.plugin('done', (statsData) => {
         const stats = statsData.toJson()
 

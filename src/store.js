@@ -22,6 +22,7 @@ export default function storeFactory(
     middlewares = [...middlewares, inputMiddleware, outputMiddleware, sysexMiddleware]
   }
 
+  /* eslint-disable indent */
   const store: Store = (debug
     ? compose(
         applyMiddleware(...middlewares),
@@ -32,6 +33,7 @@ export default function storeFactory(
           : f => f,
       )
     : applyMiddleware(...middlewares))(createStore)(rootReducer, initialState)
+  /* eslint-enable indent */
 
   /* istanbul ignore next */
   if (module.hot) {
