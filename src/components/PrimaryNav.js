@@ -14,7 +14,15 @@ import ZendrumLogo from '../images/ZendrumLogo.svg.js'
 class PrimaryNav extends Component<Object> {
   constructor() {
     super()
-    this.state = { index: 0 }
+    this.state = { index: -1 }
+  }
+
+  componentDidMount = () => {
+    /* There's a bug inside react-toolbox's Tab that keeps the active
+       tab from rendering initially.
+       Pausing for a bit before setting it seems to fix it (hacky!)
+    */
+    setTimeout(() => this.handleTabChange(0), 200)
   }
 
   handleTabChange = (index) => {
