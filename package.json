@@ -5,11 +5,9 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack":
-      "NODE_ENV=production webpack -p --config webpack.prod.config.babel.js",
+    "build:webpack": "NODE_ENV=production webpack -p --config webpack.prod.config.babel.js",
     "build": "npm run clean && npm run build:webpack",
-    "start":
-      "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
+    "start": "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
     "lint": "eslint 'src/**' '__tests__/**' '*.js'",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
@@ -17,8 +15,7 @@
     "test:cov": "jest --coverage",
     "test:cov:watch": "jest --coverage --watchAll",
     "cov": "open ./coverage/lcov-report/index.html",
-    "flow:cov":
-      "flow-coverage-report -i 'src/**/*.js' -i 'src/**/*.jsx' -x 'src/test/**' -t html -t json -t text"
+    "flow:cov": "flow-coverage-report -i 'src/**/*.js' -i 'src/**/*.jsx' -x 'src/test/**' -t html -t json -t text"
   },
   "author": "Darin Kadrioski <darin@nebiru.com>",
   "repository": {
@@ -94,9 +91,6 @@
     "react-gravatar": "2.6.3",
     "react-popover": "0.4.16",
     "react-redux": "5.0.6",
-    "react-router": "4.2.0",
-    "react-router-dom": "4.2.2",
-    "react-router-redux": "4.0.8",
     "react-toolbox": "^2.0.0-beta.12",
     "react-visible": "2.0.0",
     "redux": "3.7.2",

@@ -7,9 +7,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export default {
   // devtool: 'source-map',
-  entry: [
-    './src/index',
-  ],
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].bundle.js',
@@ -44,9 +42,7 @@ export default {
               loader: 'postcss-loader',
               options: {
                 sourceMap: false,
-                plugins: () => [
-                  autoPrefixer,
-                ],
+                plugins: () => [autoPrefixer],
               },
             },
             {
@@ -65,9 +61,11 @@ export default {
     new webpack.DefinePlugin({
       __DEV__: false,
       __TEST__: false,
+      __API__: "'https://nebiru.com:3002'",
     }),
     new ExtractTextPlugin('[name].[hash].styles.css'),
-    function () { // eslint-disable-line
+    function () {
+      // eslint-disable-line
       this.plugin('done', (statsData) => {
         const stats = statsData.toJson()
 
@@ -81,10 +79,7 @@ export default {
               .replace('${style}', stats.assetsByChunkName.main[1]),
           )
 
-          fs.copySync(
-            path.join(__dirname, '.htaccess'),
-            path.join(__dirname, 'dist', '.htaccess'),
-          )
+          fs.copySync(path.join(__dirname, '.htaccess'), path.join(__dirname, 'dist', '.htaccess'))
         }
       })
     },

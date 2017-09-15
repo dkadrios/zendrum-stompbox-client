@@ -40,10 +40,6 @@ Additional scripts available:
 
 Hot reloading is enabled by default when the application is running in development mode (`yarn start`).
 
-## Routing
-`react-router` is available for use, however currently the app only supports the
-single route `./`
-
 ## Testing
 To add a unit test, create a `.test.js` file anywhere inside of `__tests__`.
 To run the tests and also generate the coverage report, use:

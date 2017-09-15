@@ -1,3 +1,3 @@
-export const PRODUCT_INSTANCE = 'https://nebiru.com:3002/productInstance/'
+export const PRODUCT_INSTANCE = `${__API__}/productInstance/`
 
 export default PRODUCT_INSTANCE
