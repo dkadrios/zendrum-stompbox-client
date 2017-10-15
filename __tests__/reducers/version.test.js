@@ -2,6 +2,11 @@ import deepFreeze from 'deep-freeze'
 // import stompblock from '../../src/stompblock';
 import version from '../../src/reducers/version'
 import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
+import {
+  GET_SYSEX_VERSION,
+  RECEIVED_VERSION,
+  CHECKED_REGISTRATION,
+} from '../../src/action-creators/actions'
 
 describe('version reducer', () => {
   const initialState = {
@@ -21,7 +26,7 @@ describe('version reducer', () => {
 
   it('checkingVersion success', () => {
     const action = {
-      type: 'GET_SYSEX_VERSION',
+      type: GET_SYSEX_VERSION,
     }
     expect(version(initialState, action)).toEqual({
       ...initialState,
@@ -32,8 +37,8 @@ describe('version reducer', () => {
 
   it('checkedRegistration success, not registered', () => {
     const action = {
-      type: 'CHECKED_REGISTRATION',
-      payload: {
+      type: CHECKED_REGISTRATION,
+      productInstance: {
         serial: 'JIBBER_JABBER',
         lastSeen: new Date(),
         product: 'STOMPBLOCK',
@@ -51,8 +56,8 @@ describe('version reducer', () => {
 
   it('checkedRegistration success, single registration', () => {
     const action = {
-      type: 'CHECKED_REGISTRATION',
-      payload: {
+      type: CHECKED_REGISTRATION,
+      productInstance: {
         serial: 'JIBBER_JABBER',
         lastSeen: new Date(),
         product: 'STOMPBLOCK',
@@ -78,8 +83,8 @@ describe('version reducer', () => {
 
   it('checkedRegistration success, previously owned', () => {
     const action = {
-      type: 'CHECKED_REGISTRATION',
-      payload: {
+      type: CHECKED_REGISTRATION,
+      productInstance: {
         serial: 'JIBBER_JABBER',
         lastSeen: new Date(),
         product: 'STOMPBLOCK',
@@ -112,14 +117,9 @@ describe('version reducer', () => {
 
   it('receivedVersion success', () => {
     const action = {
-      type: 'RECEIVED_VERSION',
-      payload: {
-        anvil: 33,
-        serialNumber: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-      },
+      type: RECEIVED_VERSION,
+      anvil: 33,
+      serialNumber: '',
     }
     expect(version(initialState, action)).toEqual({
       ...initialState,

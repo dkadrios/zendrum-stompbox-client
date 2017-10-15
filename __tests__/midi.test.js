@@ -7,6 +7,11 @@ import {
   sysexMiddleware,
   watchForDeviceChange,
 } from '../src/midi'
+import {
+  STOMPBLOCK_MISSING,
+  SEARCHED_FOR_STOMPBLOCK,
+  STOMPBLOCK_FOUND,
+} from '../src/action-creators/actions'
 
 describe('web midi integration', () => {
   const middlewares = []
@@ -22,8 +27,8 @@ describe('web midi integration', () => {
     const actions = store.getActions()
     expect(actions).toEqual([
       action,
-      { type: 'STOMPBLOCK_MISSING' },
-      { type: 'SEARCHED_FOR_STOMPBLOCK' },
+      { type: STOMPBLOCK_MISSING },
+      { type: SEARCHED_FOR_STOMPBLOCK },
     ])
   })
 
@@ -51,8 +56,8 @@ describe('web midi integration', () => {
     expect(actions).toEqual([
       action,
       { payload: [undefined], type: 'redux-midi/midi/SET_LISTENING_DEVICES' },
-      { type: 'STOMPBLOCK_FOUND' },
-      { type: 'SEARCHED_FOR_STOMPBLOCK' },
+      { type: STOMPBLOCK_FOUND },
+      { type: SEARCHED_FOR_STOMPBLOCK },
     ])
   })
 })
@@ -103,7 +108,7 @@ describe('our custom middleware for sysex', () => {
 
   it('should handle stompblock being found', () => {
     const next = jest.fn()
-    const action = { type: 'STOMPBLOCK_FOUND' }
+    const action = { type: STOMPBLOCK_FOUND }
     const store = { dispatch: f => f }
     sysexMiddleware(store)(next)(action)
     expect(next.mock.calls).toEqual([[action]])

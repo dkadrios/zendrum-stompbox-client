@@ -66,7 +66,8 @@ export const setOutputDeviceId = (id) => {
 export const playNote = (noteNum, velocity) =>
   thunkTogether(sysexAction(SYSEX_MSG_PLAY_NOTE, noteNum, velocity), {
     type: PLAY_NOTE,
-    payload: { noteNum, velocity },
+    noteNum,
+    velocity,
   })
 
 export const checkVersion = () =>
@@ -82,7 +83,8 @@ export const checkVersion = () =>
 export const receivedVersion = (anvil, serialNumber) => (dispatch) => {
   dispatch({
     type: RECEIVED_VERSION,
-    payload: { anvil, serialNumber },
+    anvil,
+    serialNumber,
   })
 
   fetch(PRODUCT_INSTANCE + serialNumber)
@@ -90,9 +92,9 @@ export const receivedVersion = (anvil, serialNumber) => (dispatch) => {
     .then(productInstance => dispatch(checkedRegistration(productInstance)))
 }
 
-export const confirmFactoryReset = show => ({
+export const confirmFactoryReset = showResetDialog => ({
   type: CONFIRM_FACTORY_RESET,
-  payload: show,
+  showResetDialog,
 })
 
 export const performFactoryReset = () =>
@@ -101,65 +103,67 @@ export const performFactoryReset = () =>
 export const reloadSysEx = () =>
   thunkTogether(sysexAction(SYSEX_MSG_GET_ALL), { type: RELOAD_SYSEX })
 
-export const receivedVelocityTrims = data => ({
+export const receivedVelocityTrims = incomingTrims => ({
   type: RECEIVED_ALL_TRIMS,
-  payload: data,
+  incomingTrims,
 })
 
 export const userChangedTrim = (noteNum, value) => ({
   type: USER_CHANGED_TRIM,
-  payload: { noteNum, value },
+  noteNum,
+  value,
 })
 
 // This is the only one we send to the firmware
 export const userChangedTrimEnd = (noteNum, value) =>
   thunkTogether(sysexAction(SYSEX_MSG_SET_ITEM, noteNum, value), {
     type: USER_CHANGED_TRIM_END,
-    payload: { noteNum, value },
+    noteNum,
+    value,
   })
 
-export const setMuteEnabled = enabled =>
-  thunkTogether(sysexAction(SYSEX_MSG_SET_MUTE_ENABLED, Number(enabled)), {
+export const setMuteEnabled = muteEnabledAtStart =>
+  thunkTogether(sysexAction(SYSEX_MSG_SET_MUTE_ENABLED, Number(muteEnabledAtStart)), {
     type: SET_MUTE_ENABLED,
-    payload: enabled,
+    muteEnabledAtStart,
   })
 
-export const setThruEnabled = enabled =>
-  thunkTogether(sysexAction(SYSEX_MSG_SET_THRU_ENABLED, Number(enabled)), {
+export const setThruEnabled = thruEnabledAtStart =>
+  thunkTogether(sysexAction(SYSEX_MSG_SET_THRU_ENABLED, Number(thruEnabledAtStart)), {
     type: SET_THRU_ENABLED,
-    payload: enabled,
+    thruEnabledAtStart,
   })
 
-export const setMuteGroupsEnabled = enabled =>
-  thunkTogether(sysexAction(SYSEX_MSG_SET_MUTE_GROUPS_ENABLED, Number(enabled)), {
+export const setMuteGroupsEnabled = muteGroupsEnabled =>
+  thunkTogether(sysexAction(SYSEX_MSG_SET_MUTE_GROUPS_ENABLED, Number(muteGroupsEnabled)), {
     type: SET_MUTE_GROUPS_ENABLED,
-    payload: enabled,
+    muteGroupsEnabled,
   })
 
-export const receivedMuteEnabled = enabled => ({
+export const receivedMuteEnabled = muteEnabledAtStart => ({
   type: RECEIVED_MUTE_ENABLED,
-  payload: enabled,
+  muteEnabledAtStart,
 })
 
-export const receivedThruEnabled = enabled => ({
+export const receivedThruEnabled = thruEnabledAtStart => ({
   type: RECEIVED_THRU_ENABLED,
-  payload: enabled,
+  thruEnabledAtStart,
 })
 
-export const receivedMuteGroupsEnabled = enabled => ({
+export const receivedMuteGroupsEnabled = muteGroupsEnabled => ({
   type: RECEIVED_MUTE_GROUPS_ENABLED,
-  payload: enabled,
+  muteGroupsEnabled,
 })
 
-export const receivedMuteGroups = payload => ({
+export const receivedMuteGroups = groups => ({
   type: RECEIVED_MUTE_GROUPS,
-  payload,
+  groups,
 })
 
 export const deleteMuteGroup = groupIdx =>
   thunkTogether(sysexAction(SYSEX_MSG_DELETE_MUTE_GROUP, groupIdx), {
     type: DELETE_MUTE_GROUP,
-    payload: groupIdx,
+    groupIdx,
   })
 
 export const addMuteGroup = () =>
@@ -170,11 +174,15 @@ export const addMuteGroup = () =>
 export const deleteMuteItem = (groupIdx, muter, itemIdx) =>
   thunkTogether(sysexAction(SYSEX_MSG_DELETE_MUTE_ITEM, groupIdx, Number(muter), itemIdx), {
     type: DELETE_MUTE_ITEM,
-    payload: { groupIdx, muter, itemIdx },
+    groupIdx,
+    muter,
+    itemIdx,
   })
 
 export const addMuteItem = (groupIdx, muter, noteNum) =>
   thunkTogether(sysexAction(SYSEX_MSG_ADD_MUTE_ITEM, groupIdx, Number(muter), noteNum), {
     type: ADD_MUTE_ITEM,
-    payload: { groupIdx, muter, noteNum },
+    groupIdx,
+    muter,
+    noteNum,
   })

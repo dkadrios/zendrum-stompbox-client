@@ -14,16 +14,17 @@ const checkingVersion = state => ({
   checked: false,
 })
 
-const receivedVersion = (state, { payload }) => ({
+const receivedVersion = (state, { anvil, serialNumber }) => ({
   ...state,
-  ...payload,
+  anvil,
+  serialNumber,
   checking: false,
   checked: true,
 })
 
-const checkedRegistration = (state, { payload }) => {
+const checkedRegistration = (state, { productInstance: { registrations } }) => {
   let newState = { ...state, checkedRegistration: true }
-  const A = payload.registrations.filter(entry => entry.active)
+  const A = registrations.filter(entry => entry.active)
 
   newState.registered = A.length === 1
 

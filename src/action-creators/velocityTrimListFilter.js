@@ -1,21 +1,21 @@
 import { SEARCH_TRIMS, SELECT_TRIM, CHANGE_GROUP, CHANGE_LIST_VIEW } from './actions'
 
-export const searchTrims = text => ({
+export const searchTrims = search => ({
   type: SEARCH_TRIMS,
-  payload: text,
+  search,
 })
 
-export const selectTrim = noteNum => ({
+export const selectTrim = selectedNoteNum => ({
   type: SELECT_TRIM,
-  payload: noteNum,
+  selectedNoteNum,
 })
 
 export const changeGroup = group => ({
   type: CHANGE_GROUP,
-  payload: group,
+  group,
 })
 
-export const changeListView = view => ({
+export const changeListView = listView => ({
   type: CHANGE_LIST_VIEW,
-  payload: view,
+  listView,
 })

@@ -11,39 +11,24 @@ import {
   RECEIVED_ALL_TRIMS,
 } from '../action-creators/actions'
 
-const receivedMuteEnabled = (state, { payload }) => ({
+const receivedMuteEnabled = (state, { muteEnabledAtStart }) => ({
   ...state,
-  muteEnabledAtStart: payload,
+  muteEnabledAtStart,
 })
 
-const receivedThruEnabled = (state, { payload }) => ({
+const receivedThruEnabled = (state, { thruEnabledAtStart }) => ({
   ...state,
-  thruEnabledAtStart: payload,
+  thruEnabledAtStart,
 })
 
-const receivedMuteGroupsEnabled = (state, { payload }) => ({
+const receivedMuteGroupsEnabled = (state, { muteGroupsEnabled }) => ({
   ...state,
-  muteGroupsEnabled: payload,
+  muteGroupsEnabled,
 })
 
-const setMuteEnabled = (state, { payload }) => ({
+const confirmFactoryReset = (state, { showResetDialog }) => ({
   ...state,
-  muteEnabledAtStart: payload,
-})
-
-const setThruEnabled = (state, { payload }) => ({
-  ...state,
-  thruEnabledAtStart: payload,
-})
-
-const setMuteGroupsEnabled = (state, { payload }) => ({
-  ...state,
-  muteGroupsEnabled: payload,
-})
-
-const confirmFactoryReset = (state, { payload }) => ({
-  ...state,
-  showResetDialog: payload,
+  showResetDialog,
 })
 
 const resetBeingPerformed = state => ({
@@ -62,9 +47,9 @@ const handlers = {
   [RECEIVED_MUTE_ENABLED]: receivedMuteEnabled,
   [RECEIVED_THRU_ENABLED]: receivedThruEnabled,
   [RECEIVED_MUTE_GROUPS_ENABLED]: receivedMuteGroupsEnabled,
-  [SET_MUTE_ENABLED]: setMuteEnabled,
-  [SET_THRU_ENABLED]: setThruEnabled,
-  [SET_MUTE_GROUPS_ENABLED]: setMuteGroupsEnabled,
+  [SET_MUTE_ENABLED]: receivedMuteEnabled,
+  [SET_THRU_ENABLED]: receivedThruEnabled,
+  [SET_MUTE_GROUPS_ENABLED]: receivedMuteGroupsEnabled,
   [CONFIRM_FACTORY_RESET]: confirmFactoryReset,
   [FACTORY_RESET]: resetBeingPerformed,
   /* Instead of catching 'FACTORY_RESET', watch for the actual result

@@ -22,24 +22,24 @@ export const stompblockMissing = () => ({
   type: STOMPBLOCK_MISSING,
 })
 
-export const midiInActivityChanged = activity => ({
+export const midiInActivityChanged = midiInActivity => ({
   type: MIDI_IN_ACTIVITY,
-  payload: activity,
+  midiInActivity,
 })
 
-export const midiOutActivityChanged = activity => ({
+export const midiOutActivityChanged = midiOutActivity => ({
   type: MIDI_OUT_ACTIVITY,
-  payload: activity,
+  midiOutActivity,
 })
 
 export const checkedRegistration = productInstance => ({
   type: CHECKED_REGISTRATION,
-  payload: productInstance,
+  productInstance,
 })
 
 export const deviceRegistered = registration => ({
   type: DEVICE_REGISTERED,
-  payload: registration,
+  registration,
 })
 
 export const submitRegistration = (serialNumber, registration) => (dispatch) => {

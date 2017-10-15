@@ -13,6 +13,14 @@ import {
   SYSEX_MSG_RECEIVED_MUTE_GROUPS,
 } from '../src/midi'
 
+import {
+  RECEIVED_ALL_TRIMS,
+  RECEIVED_MUTE_ENABLED,
+  RECEIVED_THRU_ENABLED,
+  RECEIVED_MUTE_GROUPS_ENABLED,
+  RECEIVED_MUTE_GROUPS,
+} from '../src/action-creators/actions'
+
 describe('sysex processing', () => {
   let store
   let data
@@ -101,10 +109,6 @@ describe('sysex processing', () => {
 
     const actions = store.getActions()
     expect(actions.length).toBe(5)
-    /* expect(actions[0]).toEqual({
-      type: 'RECEIVED_VERSION',
-      payload: { anvil: 23, serialNumber: '11111111111' },
-    }); */
     expect(actions[1].type).toEqual('redux-midi/midi/SEND_MIDI_MESSAGE')
     expect(actions[2].type).toEqual('redux-midi/midi/SEND_MIDI_MESSAGE')
     expect(actions[3].type).toEqual('redux-midi/midi/SEND_MIDI_MESSAGE')
@@ -114,31 +118,33 @@ describe('sysex processing', () => {
   it('should test SYSEX_MSG_RECEIVE_ALL', () => {
     data = msg(SYSEX_MSG_RECEIVE_ALL, 0)
     processMidiMessage(store.dispatch, { data })
-    expect(store.getActions()).toEqual([{ type: 'RECEIVED_ALL_TRIMS', payload: [0] }])
+    expect(store.getActions()).toEqual([{ type: RECEIVED_ALL_TRIMS, incomingTrims: [0] }])
   })
 
   it('should test SYSEX_MSG_RECEIVED_MUTE_ENABLED', () => {
     data = msg(SYSEX_MSG_RECEIVED_MUTE_ENABLED, 0)
     processMidiMessage(store.dispatch, { data })
-    expect(store.getActions()).toEqual([{ type: 'RECEIVED_MUTE_ENABLED', payload: false }])
+    expect(store.getActions()).toEqual([{ type: RECEIVED_MUTE_ENABLED, muteEnabledAtStart: false }])
   })
 
   it('should test SYSEX_MSG_RECEIVED_THRU_ENABLED', () => {
     data = msg(SYSEX_MSG_RECEIVED_THRU_ENABLED, 1)
     processMidiMessage(store.dispatch, { data })
-    expect(store.getActions()).toEqual([{ type: 'RECEIVED_THRU_ENABLED', payload: true }])
+    expect(store.getActions()).toEqual([{ type: RECEIVED_THRU_ENABLED, thruEnabledAtStart: true }])
   })
 
   it('should test SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED', () => {
     data = msg(SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED, 1)
     processMidiMessage(store.dispatch, { data })
-    expect(store.getActions()).toEqual([{ type: 'RECEIVED_MUTE_GROUPS_ENABLED', payload: true }])
+    expect(store.getActions()).toEqual([
+      { type: RECEIVED_MUTE_GROUPS_ENABLED, muteGroupsEnabled: true },
+    ])
   })
 
   it('should test SYSEX_MSG_RECEIVED_MUTE_GROUPS', () => {
     data = msg(SYSEX_MSG_RECEIVED_MUTE_GROUPS, 'groups')
     processMidiMessage(store.dispatch, { data })
-    expect(store.getActions()).toEqual([{ type: 'RECEIVED_MUTE_GROUPS', payload: ['groups'] }])
+    expect(store.getActions()).toEqual([{ type: RECEIVED_MUTE_GROUPS, groups: ['groups'] }])
   })
 
   it('should fail gracefully for unknown msg types', () => {

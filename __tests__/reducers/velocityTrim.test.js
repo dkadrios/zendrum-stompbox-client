@@ -2,6 +2,16 @@ import deepFreeze from 'deep-freeze'
 import stompblock from '../../src/mappings/stompblock'
 import velocityTrim from '../../src/reducers/velocityTrim'
 
+import {
+  SEARCH_TRIMS,
+  RECEIVED_ALL_TRIMS,
+  USER_CHANGED_TRIM,
+  USER_CHANGED_TRIM_END,
+  SELECT_TRIM,
+  CHANGE_GROUP,
+  CHANGE_LIST_VIEW,
+} from '../../src/action-creators/actions'
+
 describe('velocityTrim reducer', () => {
   const initialState = {
     sortBy: 'idx',
@@ -15,8 +25,8 @@ describe('velocityTrim reducer', () => {
 
   it('receivedAllTrims success', () => {
     let action = {
-      type: 'RECEIVED_ALL_TRIMS',
-      payload: [],
+      type: RECEIVED_ALL_TRIMS,
+      incomingTrims: [],
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
       group: 'Perc',
@@ -26,10 +36,10 @@ describe('velocityTrim reducer', () => {
     })
 
     action = {
-      type: 'RECEIVED_ALL_TRIMS',
+      type: RECEIVED_ALL_TRIMS,
       // Not arguing, because the app is working fine as-is...
       // ...but this really should be zero-indexed and not starting at one
-      payload: [0, 77],
+      incomingTrims: [0, 77],
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
       group: 'Perc',
@@ -41,11 +51,9 @@ describe('velocityTrim reducer', () => {
 
   it('userChangedTrim success', () => {
     const action = {
-      type: 'USER_CHANGED_TRIM',
-      payload: {
-        noteNum: 1,
-        value: 66,
-      },
+      type: USER_CHANGED_TRIM,
+      noteNum: 1,
+      value: 66,
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
       group: 'Perc',
@@ -57,11 +65,9 @@ describe('velocityTrim reducer', () => {
 
   it('userChangedTrim end success', () => {
     const action = {
-      type: 'USER_CHANGED_TRIM_END',
-      payload: {
-        noteNum: 1,
-        value: 66,
-      },
+      type: USER_CHANGED_TRIM_END,
+      noteNum: 1,
+      value: 66,
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
       group: 'Perc',
@@ -73,8 +79,8 @@ describe('velocityTrim reducer', () => {
 
   it('searchTrims success', () => {
     const action = {
-      type: 'SEARCH_TRIMS',
-      payload: 'search text',
+      type: SEARCH_TRIMS,
+      search: 'search text',
     }
     expect(velocityTrim(initialState, action)).toEqual({
       ...initialState,
@@ -84,8 +90,8 @@ describe('velocityTrim reducer', () => {
 
   it('selectTrim success', () => {
     const action = {
-      type: 'SELECT_TRIM',
-      payload: 10,
+      type: SELECT_TRIM,
+      selectedNoteNum: 10,
     }
     expect(velocityTrim(initialState, action)).toEqual({
       ...initialState,
@@ -95,8 +101,8 @@ describe('velocityTrim reducer', () => {
 
   it('changeGroup success', () => {
     const action = {
-      type: 'CHANGE_GROUP',
-      payload: 'new group',
+      type: CHANGE_GROUP,
+      group: 'new group',
     }
     expect(velocityTrim(initialState, action)).toEqual({
       ...initialState,
@@ -106,8 +112,8 @@ describe('velocityTrim reducer', () => {
 
   it('changeListView success', () => {
     const action = {
-      type: 'CHANGE_LIST_VIEW',
-      payload: 'new view',
+      type: CHANGE_LIST_VIEW,
+      listView: 'new view',
     }
     expect(velocityTrim(initialState, action)).toEqual({
       ...initialState,

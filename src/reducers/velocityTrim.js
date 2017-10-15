@@ -10,34 +10,37 @@ import {
   LOAD_MAPPING,
 } from '../action-creators/actions'
 
-const receivedAllTrims = (state, { payload }) => ({
+const receivedAllTrims = (state, { incomingTrims }) => ({
   ...state,
-  data: state.data.map((item, idx) => ({ ...item, trim: payload[idx + 1] })),
+  data: state.data.map((item, idx) => ({ ...item, trim: incomingTrims[idx + 1] })),
 })
 
-const userChangedTrim = (state, { payload: { noteNum, value } }) => ({
+const userChangedTrim = (state, { noteNum, value }) => ({
   ...state,
-  data: state.data.map((item, idx) => (idx === noteNum - 1 ? { ...item, trim: value } : { ...item })),
+  data: state.data.map((
+    item,
+    idx, //-
+  ) => (idx === noteNum - 1 ? { ...item, trim: value } : { ...item })),
 })
 
-const searchTrims = (state, { payload }) => ({
+const searchTrims = (state, { search }) => ({
   ...state,
-  search: payload,
+  search,
 })
 
-const selectTrim = (state, { payload }) => ({
+const selectTrim = (state, { selectedNoteNum }) => ({
   ...state,
-  selectedNoteNum: payload,
+  selectedNoteNum,
 })
 
-const changeGroup = (state, { payload }) => ({
+const changeGroup = (state, { group }) => ({
   ...state,
-  group: payload,
+  group,
 })
 
-const changeListView = (state, { payload }) => ({
+const changeListView = (state, { listView }) => ({
   ...state,
-  listView: payload,
+  listView,
 })
 
 const loadMapping = (state, { entries }) => ({

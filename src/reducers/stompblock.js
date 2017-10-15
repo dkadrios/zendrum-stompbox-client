@@ -27,14 +27,14 @@ const receivedDeviceList = state => ({
   accessGranted: true, // assume we have access if device list was received
 })
 
-const midiInActivityChanged = (state, { payload }) => ({
+const midiInActivityChanged = (state, { midiInActivity }) => ({
   ...state,
-  midiInActivity: payload,
+  midiInActivity,
 })
 
-const midiOutActivityChanged = (state, { payload }) => ({
+const midiOutActivityChanged = (state, { midiOutActivity }) => ({
   ...state,
-  midiOutActivity: payload,
+  midiOutActivity,
 })
 
 const handlers = {

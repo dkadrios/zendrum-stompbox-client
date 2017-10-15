@@ -2,9 +2,9 @@
 import { createReducer } from '../utils'
 import { RECEIVED_MUTE_GROUPS } from '../action-creators/actions'
 
-const receivedMuteGroups = (state, { payload }) => {
+const receivedMuteGroups = (state, { groups }) => {
   // TODO - surely there is more functional way to disassemble the data stream
-  const byteArr = [...payload]
+  const byteArr = [...groups]
   const data = []
   let byteIdx = 1
 

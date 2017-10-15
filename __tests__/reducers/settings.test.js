@@ -1,5 +1,16 @@
 import deepFreeze from 'deep-freeze'
 import settings from '../../src/reducers/settings'
+import {
+  RECEIVED_MUTE_ENABLED,
+  RECEIVED_THRU_ENABLED,
+  RECEIVED_MUTE_GROUPS_ENABLED,
+  SET_MUTE_ENABLED,
+  SET_THRU_ENABLED,
+  SET_MUTE_GROUPS_ENABLED,
+  CONFIRM_FACTORY_RESET,
+  FACTORY_RESET,
+  RECEIVED_ALL_TRIMS,
+} from '../../src/action-creators/actions'
 
 describe('settings reducer', () => {
   const initialState = {
@@ -13,8 +24,8 @@ describe('settings reducer', () => {
 
   it('receivedSetting success', () => {
     let action = {
-      type: 'RECEIVED_MUTE_ENABLED',
-      payload: true,
+      type: RECEIVED_MUTE_ENABLED,
+      muteEnabledAtStart: true,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -22,8 +33,8 @@ describe('settings reducer', () => {
     })
 
     action = {
-      type: 'RECEIVED_THRU_ENABLED',
-      payload: false,
+      type: RECEIVED_THRU_ENABLED,
+      thruEnabledAtStart: false,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -31,8 +42,8 @@ describe('settings reducer', () => {
     })
 
     action = {
-      type: 'RECEIVED_MUTE_GROUPS_ENABLED',
-      payload: false,
+      type: RECEIVED_MUTE_GROUPS_ENABLED,
+      muteGroupsEnabled: false,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -42,8 +53,8 @@ describe('settings reducer', () => {
 
   it('settingSetting success', () => {
     let action = {
-      type: 'SET_MUTE_ENABLED',
-      payload: true,
+      type: SET_MUTE_ENABLED,
+      muteEnabledAtStart: true,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -51,8 +62,8 @@ describe('settings reducer', () => {
     })
 
     action = {
-      type: 'SET_THRU_ENABLED',
-      payload: false,
+      type: SET_THRU_ENABLED,
+      thruEnabledAtStart: false,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -60,8 +71,8 @@ describe('settings reducer', () => {
     })
 
     action = {
-      type: 'SET_MUTE_GROUPS_ENABLED',
-      payload: false,
+      type: SET_MUTE_GROUPS_ENABLED,
+      muteGroupsEnabled: false,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -71,8 +82,8 @@ describe('settings reducer', () => {
 
   it('confirmFactoryReset success', () => {
     let action = {
-      type: 'CONFIRM_FACTORY_RESET',
-      payload: true,
+      type: CONFIRM_FACTORY_RESET,
+      showResetDialog: true,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -81,8 +92,8 @@ describe('settings reducer', () => {
     })
 
     action = {
-      type: 'CONFIRM_FACTORY_RESET',
-      payload: false,
+      type: CONFIRM_FACTORY_RESET,
+      showResetDialog: false,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -93,7 +104,7 @@ describe('settings reducer', () => {
 
   it('resetBeingPerformed success', () => {
     const action = {
-      type: 'FACTORY_RESET',
+      type: FACTORY_RESET,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
@@ -104,7 +115,7 @@ describe('settings reducer', () => {
 
   it('factoryResetPerformed success', () => {
     const action = {
-      type: 'RECEIVED_ALL_TRIMS',
+      type: RECEIVED_ALL_TRIMS,
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
