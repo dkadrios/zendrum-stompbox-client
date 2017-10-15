@@ -1,12 +1,12 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:flowtype/recommended"],
+  "extends": ["airbnb"],
   "env": {
     "browser": true,
     "node": true,
     "jest": true
   },
-  "plugins": ["jest", "flowtype"],
+  "plugins": ["jest"],
   "globals": {
     "__DEV__": true,
     "__TEST__": true,
@@ -36,7 +36,6 @@
     "import/no-duplicates": [0],
     "jsx-a11y/href-no-hash": [0],
     "jsx-a11y/click-events-have-key-events": [0],
-    "flowtype/space-after-type-colon": [0],
     "function-paren-newline": ["error", "multiline"],
     "object-curly-newline": [
       "error",

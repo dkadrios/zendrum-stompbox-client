@@ -37,21 +37,15 @@ const handleKeyDown = (event, item, userChangedTrimEnd) => {
   }
 }
 
-const VelocityTrim = props => {
-  const {
-    item,
-    styles,
-    selected,
-    playNote,
-    selectTrim,
-    userChangedTrimEnd,
-  } = props
+const VelocityTrim = (props) => {
+  const { item, styles, selected, playNote, selectTrim, userChangedTrimEnd } = props
   return (
     <li
       tabIndex={item.note}
       onKeyDown={e => handleKeyDown(e, item, userChangedTrimEnd)}
       onMouseUp={() => (selected ? null : selectTrim(item.note))}
       className={selected ? styles.selected : ''}
+      role="presentation"
     >
       <div
         className={styles.header}

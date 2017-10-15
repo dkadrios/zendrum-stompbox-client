@@ -4,7 +4,7 @@ import styles from '../styles/infoPanel'
 
 const InfoPanel = ({ version }) => {
   const formatted = value =>
-    isNaN(value) ? 'N/A' : `v${(value / 10).toFixed(1)}`
+    Number.isNaN(value) ? 'N/A' : `v${(value / 10).toFixed(1)}`
 
   const year = () => new Date().getFullYear()
 

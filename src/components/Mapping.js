@@ -13,7 +13,7 @@ const Mapping = (props) => {
   const mappingClass = classNames({ [styles.mapping]: true, [styles.selected]: selected })
   return (
     <div className={mappingClass}>
-      <div onClick={() => onChange(name)}>
+      <div onClick={() => onChange(name)} role="presentation">
         <MicroSD />
         {Sticker(name)}
         <p>{label}</p>

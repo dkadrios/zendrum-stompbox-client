@@ -7,10 +7,8 @@ const receivedAllTrims = (state, { payload }) => ({
 
 const userChangedTrim = (state, { payload: { noteNum, value } }) => ({
   ...state,
-  data: state.data.map(
-    (item, idx) =>
-      idx === noteNum - 1 ? { ...item, trim: value } : { ...item },
-  ),
+  data: state.data.map((item, idx) =>
+    idx === noteNum - 1 ? { ...item, trim: value } : { ...item }),
 })
 
 const searchTrims = (state, { payload }) => ({

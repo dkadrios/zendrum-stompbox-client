@@ -1,5 +1,3 @@
-/* @flow */
-
 import Cymbals from './Cymbals.svg.js'
 import Hats from './Hats.svg.js'
 import Kicks from './Kicks.svg.js'
@@ -7,19 +5,9 @@ import Perc from './Perc.svg.js'
 import Rides from './Rides.svg.js'
 import Snares from './Snares.svg.js'
 import Toms from './Toms.svg.js'
-import type { GroupName } from '../types/Mappings'
 
-type Image =
-  | typeof Cymbals
-  | typeof Hats
-  | typeof Kicks
-  | typeof Perc
-  | typeof Rides
-  | typeof Snares
-  | typeof Toms
-
-export default (name: GroupName): Image => {
-  let result: ?Image
+export default (name) => {
+  let result
   switch (name) {
     case 'Cymbals':
       result = Cymbals

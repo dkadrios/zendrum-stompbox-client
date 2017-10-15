@@ -33,7 +33,7 @@ class UserInfo extends Component {
     const popoverContent = () =>
       (<span onClick={() => this.showDialog(true)} role="button" tabIndex="0">
         Please take a moment to register your STOMPBLOCK
-      </span>)
+       </span>)
 
     return (
       <div

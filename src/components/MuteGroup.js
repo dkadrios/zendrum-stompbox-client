@@ -6,7 +6,7 @@ import styles from '../styles/muteGroups'
 import SubAppBarTheme from '../styles/react-toolbox-theme/SubAppBar.scss'
 import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../midi'
 
-const MuteGroup = props => {
+const MuteGroup = (props) => {
   const {
     group,
     ordinal,

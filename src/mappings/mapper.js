@@ -1,5 +1,5 @@
 export default raw =>
-  raw.map(item => {
+  raw.map((item) => {
     const props = /(\d+):([\w\s]+)\|([\w\s/]+)/.exec(item)
 
     return {

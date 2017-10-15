@@ -57,9 +57,10 @@ export const watchForDeviceChange = (store) => {
 
   store.subscribe(() => {
     const state = store.getState()
+
     if (state.midi.devices && state.midi.devices !== devices) {
       // we'll enter this block whenever a device is attached or removed
-      devices = state.midi.devices
+      devices = state.midi.devices // eslint-disable-line
 
       const inputDevice = findDevice(devices, 'input')
       const outputDevice = findDevice(devices, 'output')

@@ -13,7 +13,7 @@ import buttonTheme from '../../styles/react-toolbox-theme/WarningButton.scss'
 import * as sysexActions from '../../action-creators/sysex'
 import * as mappingActions from '../../action-creators/mapping'
 
-const Settings = props => {
+const Settings = (props) => {
   const {
     settings,
     mapping,

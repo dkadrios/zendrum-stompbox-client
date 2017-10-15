@@ -1,9 +1,7 @@
+/* eslint-disable no-plusplus */
 import { createReducer } from '../utils'
 
-const receivedMuteGroups = (
-  state: MuteGroupsState,
-  { payload }: ReceivedMuteGroupsAction,
-): MuteGroupsState => {
+const receivedMuteGroups = (state, { payload }) => {
   // TODO - surely there is more functional way to disassemble the data stream
   const byteArr = [...payload]
   const data = []

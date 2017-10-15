@@ -14,7 +14,7 @@ const capitalize = s => s[0].toUpperCase() + s.slice(1)
 
 const ToolTipButton = Tooltip(props => <Button {...props} />)
 
-const VelocityTrimListFilter = props => {
+const VelocityTrimListFilter = (props) => {
   const { velocityTrim, searchTrims, changeGroup, changeListView } = props
 
   const { search, group, listView } = velocityTrim
@@ -82,6 +82,4 @@ const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })
 const mapDispatchToProps = dispatch =>
   bindActionCreators(filterActions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  VelocityTrimListFilter,
-)
+export default connect(mapStateToProps, mapDispatchToProps)(VelocityTrimListFilter)

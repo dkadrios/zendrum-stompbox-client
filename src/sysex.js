@@ -50,12 +50,10 @@ export default (dispatch, { data }) => {
           serial.pop()
         }
 
-        dispatch(
-          receivedVersion(
-            packet[0], // version
-            serial.reduce((val, char) => val + String.fromCharCode(char), ''),
-          ),
-        )
+        dispatch(receivedVersion(
+          packet[0], // version
+          serial.reduce((val, char) => val + String.fromCharCode(char), ''),
+        ))
 
         if (packet[0] === CURRENT_ANVIL_VERSION || packet[0] === 24) {
           // TODO dispatch registration check first, then chain that to reloadSysEx

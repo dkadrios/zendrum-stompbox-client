@@ -7,7 +7,7 @@ import MuteGroup from '../MuteGroup'
 import { MAX_MUTE_GROUPS } from '../../midi'
 import * as sysexActions from '../../action-creators/sysex'
 
-const MuteGroups = props => {
+const MuteGroups = (props) => {
   const {
     muteGroups: { data },
     mapping: { entries },

@@ -25,7 +25,7 @@ import {
 
 let deviceId = ''
 
-const thunkTogether = (action1, action2) => dispatch => {
+const thunkTogether = (action1, action2) => (dispatch) => {
   dispatch(action2)
   dispatch(action1)
 }
@@ -44,7 +44,7 @@ export const sysexAction = (command, ...data) =>
     device: deviceId,
   })
 
-export const setOutputDeviceId = id => {
+export const setOutputDeviceId = (id) => {
   deviceId = id
 }
 
@@ -64,7 +64,7 @@ export const checkVersion = () =>
     { type: 'GET_SYSEX_VERSION' },
   )
 
-export const receivedVersion = (anvil, serialNumber) => dispatch => {
+export const receivedVersion = (anvil, serialNumber) => (dispatch) => {
   dispatch({
     type: 'RECEIVED_VERSION',
     payload: { anvil, serialNumber },

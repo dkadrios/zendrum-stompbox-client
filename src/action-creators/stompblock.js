@@ -33,7 +33,7 @@ export const deviceRegistered = registration => ({
   payload: registration,
 })
 
-export const submitRegistration = (serialNumber, registration) => dispatch => {
+export const submitRegistration = (serialNumber, registration) => (dispatch) => {
   fetch(PRODUCT_INSTANCE + serialNumber, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

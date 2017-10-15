@@ -2,7 +2,7 @@ import React from 'react'
 import VelocityTrim from './VelocityTrim'
 import styles from '../styles/velocityTrim'
 
-const VelocityTrimList = props => {
+const VelocityTrimList = (props) => {
   const { items, velocityTrim } = props
   const { listView, selectedNoteNum } = velocityTrim
 

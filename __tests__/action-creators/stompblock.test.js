@@ -80,14 +80,12 @@ describe('stompblock actions', () => {
   describe('checkedRegistration', () => {
     beforeAll(() => {
       store = storeFactory({ stompblock }, false, true)
-      store.dispatch(
-        checkedRegistration({
-          serial: 'JIBBER_JABBER',
-          lastSeen: new Date(),
-          product: 'STOMPBLOCK',
-          registrations: [{ active: true }],
-        }),
-      )
+      store.dispatch(checkedRegistration({
+        serial: 'JIBBER_JABBER',
+        lastSeen: new Date(),
+        product: 'STOMPBLOCK',
+        registrations: [{ active: true }],
+      }))
     })
 
     it('should report registered', () => {
