@@ -1,4 +1,3 @@
-/* @flow */
 import { applyMiddleware, compose, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
 import setup from 'redux-midi'
@@ -6,16 +5,10 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 import { watchForDeviceChange, sysexMiddleware } from './midi'
 
-import type { Store } from './types/Store'
-
 const logger = createLogger()
 let middlewares = [thunk]
 
-export default function storeFactory(
-  initialState: * = {},
-  debug: boolean = __DEV__,
-  test: boolean = __TEST__,
-): Store {
+export default function storeFactory(initialState = {}, debug = __DEV__, test = __TEST__) {
   /* istanbul ignore next */
   if (!test) {
     const { inputMiddleware, outputMiddleware } = setup({ midiOptions: { sysex: true } })
@@ -23,7 +16,7 @@ export default function storeFactory(
   }
 
   /* eslint-disable indent */
-  const store: Store = (debug
+  const store = (debug
     ? compose(
         applyMiddleware(...middlewares),
         applyMiddleware(logger),

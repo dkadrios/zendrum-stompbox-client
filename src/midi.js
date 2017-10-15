@@ -1,4 +1,3 @@
-/* @flow */
 import { setListeningDevices, RECEIVE_MIDI_MESSAGE, SEND_MIDI_MESSAGE } from 'redux-midi'
 import {
   searchedForStompblock,
@@ -11,94 +10,59 @@ import { setOutputDeviceId, checkVersion } from './action-creators/sysex'
 import { loadMapping } from './action-creators/mapping'
 import processMidiMessage from './sysex'
 
-import type { Store } from './types/Store'
-import type { State } from './types/State'
-// import type { Action } from './types/Action'
+export const STOMPBLOCK_DEVICE_ID = 0x6b
 
-type DeviceType = 'input' | 'output'
+export const CURRENT_ANVIL_VERSION = 25
 
-type Device = {
-  name: string,
-  type: DeviceType,
-  id: number,
-}
+export const CURRENT_CLIENT_VERSION = 30
 
-export const STOMPBLOCK_DEVICE_ID: number = 0x6b
+export const CHANNEL = 10
 
-export const CURRENT_ANVIL_VERSION: number = 25
+export const MAX_MUTEABLES_PER_GROUP = 6
+export const MAX_MUTERS_PER_GROUP = 4
+export const MAX_MUTE_GROUPS = 4
 
-export const CURRENT_CLIENT_VERSION: number = 30
+export const SYSEX_START = 0xf0
+export const SYSEX_END = 0xf7
 
-export const CHANNEL: number = 10
+export const SYSEX_MSG_GET_VERSION = 0x01
+export const SYSEX_MSG_RECEIVE_VERSION = 0x02
+export const SYSEX_MSG_GET_ALL = 0x03
+export const SYSEX_MSG_RECEIVE_ALL = 0x04
+export const SYSEX_MSG_SET_MUTE_ENABLED = 0x05
+export const SYSEX_MSG_SET_THRU_ENABLED = 0x06
+export const SYSEX_MSG_SET_MUTE_GROUPS_ENABLED = 0x07
+export const SYSEX_MSG_PLAY_NOTE = 0x08
+export const SYSEX_MSG_SET_ITEM = 0x09
+export const SYSEX_MSG_RECEIVED_MUTE_ENABLED = 0x0a
+export const SYSEX_MSG_RECEIVED_THRU_ENABLED = 0x0b
+export const SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED = 0x0c
+// export const SYSEX_MSG_SET_MUTE_GROUPS = 0x0D;
+export const SYSEX_MSG_RECEIVED_MUTE_GROUPS = 0x0e
+export const SYSEX_MSG_DELETE_MUTE_GROUP = 0x0f
+export const SYSEX_MSG_DELETE_MUTE_ITEM = 0x10
+export const SYSEX_MSG_ADD_MUTE_GROUP = 0x11
+export const SYSEX_MSG_ADD_MUTE_ITEM = 0x12
 
-export const MAX_MUTEABLES_PER_GROUP: number = 6
-export const MAX_MUTERS_PER_GROUP: number = 4
-export const MAX_MUTE_GROUPS: number = 4
+export const SYSEX_MSG_FACTORY_RESET = 0x7e
 
-export const SYSEX_START: number = 0xf0
-export const SYSEX_END: number = 0xf7
-
-export const SYSEX_MSG_GET_VERSION: number = 0x01
-export const SYSEX_MSG_RECEIVE_VERSION: number = 0x02
-export const SYSEX_MSG_GET_ALL: number = 0x03
-export const SYSEX_MSG_RECEIVE_ALL: number = 0x04
-export const SYSEX_MSG_SET_MUTE_ENABLED: number = 0x05
-export const SYSEX_MSG_SET_THRU_ENABLED: number = 0x06
-export const SYSEX_MSG_SET_MUTE_GROUPS_ENABLED: number = 0x07
-export const SYSEX_MSG_PLAY_NOTE: number = 0x08
-export const SYSEX_MSG_SET_ITEM: number = 0x09
-export const SYSEX_MSG_RECEIVED_MUTE_ENABLED: number = 0x0a
-export const SYSEX_MSG_RECEIVED_THRU_ENABLED: number = 0x0b
-export const SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED: number = 0x0c
-// export const SYSEX_MSG_SET_MUTE_GROUPS: number = 0x0D;
-export const SYSEX_MSG_RECEIVED_MUTE_GROUPS: number = 0x0e
-export const SYSEX_MSG_DELETE_MUTE_GROUP: number = 0x0f
-export const SYSEX_MSG_DELETE_MUTE_ITEM: number = 0x10
-export const SYSEX_MSG_ADD_MUTE_GROUP: number = 0x11
-export const SYSEX_MSG_ADD_MUTE_ITEM: number = 0x12
-
-export const SYSEX_MSG_FACTORY_RESET: number = 0x7e
-
-export type SysexBarrier = 0xf0 | 0xf7
-
-export type SysexMessage =
-  | 0x01
-  | 0x02
-  | 0x03
-  | 0x04
-  | 0x05
-  | 0x06
-  | 0x07
-  | 0x08
-  | 0x09
-  | 0x0a
-  | 0x0b
-  | 0x0c
-  | 0x0d
-  | 0x0e
-  | 0x0f
-  | 0x10
-  | 0x11
-  | 0x12
-  | 0x7e
-
-const findDevice = (devices: Array<Device>, kind: DeviceType): Device =>
+const findDevice = (devices, kind) =>
   devices
     .filter(device => device.type === kind && device.name === 'Zendrum STOMPBLOCK')
     .reduce((prev, cur) => cur, undefined)
 
-export const watchForDeviceChange = (store: Store) => {
-  let devices: Array<Device> = []
-  let initialDeviceCheck: boolean = true
+export const watchForDeviceChange = (store) => {
+  let devices = []
+  let initialDeviceCheck = true
 
   store.subscribe(() => {
-    const state: State = store.getState()
+    const state = store.getState()
     if (state.midi.devices && state.midi.devices !== devices) {
       // we'll enter this block whenever a device is attached or removed
       devices = state.midi.devices
 
-      const inputDevice: Device = findDevice(devices, 'input')
-      const outputDevice: Device = findDevice(devices, 'output')
+      const inputDevice = findDevice(devices, 'input')
+      const outputDevice = findDevice(devices, 'output')
 
       if (inputDevice && outputDevice) {
         store.dispatch(setListeningDevices([inputDevice.id]))
@@ -117,14 +81,11 @@ export const watchForDeviceChange = (store: Store) => {
   })
 }
 
-let midiInTimer: number
-let midiOutTimer: number
+let midiInTimer
+let midiOutTimer
 
-export const sysexMiddleware = (store: Store) => (next: Function) => (action: {
-  type: string,
-  payload: any,
-}) => {
-  const flickerTimeout: number = 200
+export const sysexMiddleware = store => next => (action) => {
+  const flickerTimeout = 200
 
   switch (action.type) {
     case RECEIVE_MIDI_MESSAGE:

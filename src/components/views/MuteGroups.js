@@ -1,5 +1,3 @@
-/* @flow */
-/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -8,20 +6,8 @@ import styles from '../../styles/muteGroups'
 import MuteGroup from '../MuteGroup'
 import { MAX_MUTE_GROUPS } from '../../midi'
 import * as sysexActions from '../../action-creators/sysex'
-import type { MuteGroup as MuteGroupType, MuteGroupsState } from '../../reducers/muteGroups'
-import type { Dispatch } from '../../types/Store'
 
-type MuteGroupsType = { +muteGroups: MuteGroupsState }
-
-type Props = {
-  +muteGroups: { muteGroups: Array<MuteGroupType> },
-  +deleteMuteItem: Function,
-  +addMuteItem: Function,
-  +deleteMuteGroup: Function,
-  +addMuteGroup: Function,
-}
-
-const MuteGroups = (props: Props) => {
+const MuteGroups = props => {
   const {
     muteGroups: { data },
     mapping: { entries },
@@ -46,7 +32,13 @@ const MuteGroups = (props: Props) => {
             />
           </div>
         ))}
-        <Button icon="add" label="Create New Group" raised primary onClick={addMuteGroup} />
+        <Button
+          icon="add"
+          label="Create New Group"
+          raised
+          primary
+          onClick={addMuteGroup}
+        />
         <small>
           Using {MAX_MUTE_GROUPS - data.length} of {MAX_MUTE_GROUPS}
           &nbsp;available groups
@@ -56,7 +48,8 @@ const MuteGroups = (props: Props) => {
   )
 }
 
-const mapStateToProps = ({ muteGroups, mapping }: MuteGroupsType) => ({ muteGroups, mapping })
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(sysexActions, dispatch)
+const mapStateToProps = ({ muteGroups, mapping }) => ({ muteGroups, mapping })
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(sysexActions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(MuteGroups)

@@ -1,7 +1,6 @@
-/* @flow */
 import mapper from './mapper'
 
-const raw: Array<string> = [
+const raw = [
   '1:Perc|Tumba Thump',
   '2:Perc|Tumba Open',
   '3:Perc|Quinto Slap',

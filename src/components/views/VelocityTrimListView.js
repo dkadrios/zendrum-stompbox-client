@@ -1,4 +1,3 @@
-/* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -8,24 +7,8 @@ import VelocityTrimListFilter from '../VelocityTrimListFilter'
 import * as sysexActions from '../../action-creators/sysex'
 import * as trimActions from '../../action-creators/velocityTrimListFilter'
 import styles from '../../styles/velocityTrim'
-import type { TrimsState } from '../../reducers/velocityTrim'
-import type { Dispatch } from '../../types/Store'
-import typeof {
-  playNote as PlayNote,
-  userChangedTrim as UserChangedTrim,
-  userChangedTrimEnd as UserChangedTrimEnd,
-} from '../../action-creators/sysex'
-import typeof { selectTrim as SelectTrim } from '../../action-creators/velocityTrimListFilter'
 
-type Props = {
-  +velocityTrim: TrimsState,
-  +playNote: PlayNote,
-  +userChangedTrim: UserChangedTrim,
-  +userChangedTrimEnd: UserChangedTrimEnd,
-  +selectTrim: SelectTrim,
-}
-
-const VelocityTrimListView = (props: Props) => {
+const VelocityTrimListView = props => {
   const { velocityTrim } = props
   const { data, search, group, selectedNoteNum } = velocityTrim
 
@@ -46,8 +29,10 @@ const VelocityTrimListView = (props: Props) => {
   )
 }
 
-const mapStateToProps = ({ velocityTrim }: Props) => ({ velocityTrim })
-const mapDispatchToProps = (dispatch: Dispatch) =>
+const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })
+const mapDispatchToProps = dispatch =>
   bindActionCreators({ ...sysexActions, ...trimActions }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(VelocityTrimListView)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  VelocityTrimListView,
+)

@@ -16,9 +16,7 @@
     "test:watch": "jest --watchAll",
     "test:cov": "jest --coverage",
     "test:cov:watch": "jest --coverage --watchAll",
-    "cov": "open ./coverage/lcov-report/index.html",
-    "flow:cov":
-      "flow-coverage-report -i 'src/**/*.js' -i 'src/**/*.jsx' -x 'src/test/**' -t html -t json -t text"
+    "cov": "open ./coverage/lcov-report/index.html"
   },
   "author": "Darin Kadrioski <darin@nebiru.com>",
   "repository": {
@@ -47,13 +45,10 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.7",
-    "css-modules-flow-types-cli": "^1.0.1",
-    "css-modules-flow-types-loader": "^1.0.1",
     "deep-freeze": "^0.0.1",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-import-resolver-webpack": "^0.8.3",
-    "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jest": "^21.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
@@ -61,7 +56,6 @@
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
-    "flow-bin": "^0.57.2",
     "fs-extra": "^4.0.2",
     "jest": "^21.2.1",
     "jest-localstorage-mock": "^2.0.1",

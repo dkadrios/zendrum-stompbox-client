@@ -1,47 +1,31 @@
-/* @flow */
 import { createReducer } from '../utils'
-import type { MidiInActivityAction, MidiOutActivityAction } from '../types/Action'
 
-export type StompblockState = {
-  +searchedForStompblock: boolean,
-  +accessGranted: boolean,
-  +found: boolean,
-  +midiInActivity: boolean,
-  +midiOutActivity: boolean,
-}
-
-const searchedForStompblock = (state: StompblockState): StompblockState => ({
+const searchedForStompblock = state => ({
   ...state,
   searchedForStompblock: true,
 })
 
-const stompblockFound = (state: StompblockState): StompblockState => ({
+const stompblockFound = state => ({
   ...state,
   found: true,
 })
 
-const stompblockMissing = (state: StompblockState): StompblockState => ({
+const stompblockMissing = state => ({
   ...state,
   found: false,
 })
 
-const receivedDeviceList = (state: StompblockState): StompblockState => ({
+const receivedDeviceList = state => ({
   ...state,
   accessGranted: true, // assume we have access if device list was received
 })
 
-const midiInActivityChanged = (
-  state: StompblockState,
-  { payload }: MidiInActivityAction,
-): StompblockState => ({
+const midiInActivityChanged = (state, { payload }) => ({
   ...state,
   midiInActivity: payload,
 })
 
-const midiOutActivityChanged = (
-  state: StompblockState,
-  { payload }: MidiOutActivityAction,
-): StompblockState => ({
+const midiOutActivityChanged = (state, { payload }) => ({
   ...state,
   midiOutActivity: payload,
 })
@@ -55,7 +39,7 @@ const handlers = {
   MIDI_OUT_ACTIVITY: midiOutActivityChanged,
 }
 
-const defaultState: StompblockState = {
+const defaultState = {
   searchedForStompblock: false,
   accessGranted: false,
   found: false,

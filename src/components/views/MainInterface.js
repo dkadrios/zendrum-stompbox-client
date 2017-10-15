@@ -1,4 +1,3 @@
-/* @flow */
 import React from 'react'
 import NoStompblockFound from '../NoStompblockFound'
 import NotResponding from '../NotResponding'

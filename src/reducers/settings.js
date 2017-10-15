@@ -1,87 +1,47 @@
-/* @flow */
-
 import { createReducer } from '../utils'
-import type {
-  ReceivedMuteEnabledAction,
-  ReceivedThruEnabledAction,
-  ReceivedMuteGroupsEnabledAction,
-  SetMuteEnabledAction,
-  SetThruEnabledAction,
-  SetMuteGroupsEnabledAction,
-  ConfirmFactoryResetAction,
-} from '../types/Action'
 
-export type SettingsState = {
-  +muteEnabledAtStart: boolean,
-  +thruEnabledAtStart: boolean,
-  +muteGroupsEnabled: boolean,
-  +showResetDialog: boolean,
-  +resetInProcess: boolean,
-}
-
-const receivedMuteEnabled = (
-  state: SettingsState,
-  { payload }: ReceivedMuteEnabledAction,
-): SettingsState => ({
+const receivedMuteEnabled = (state, { payload }) => ({
   ...state,
   muteEnabledAtStart: payload,
 })
 
-const receivedThruEnabled = (
-  state: SettingsState,
-  { payload }: ReceivedThruEnabledAction,
-): SettingsState => ({
+const receivedThruEnabled = (state, { payload }) => ({
   ...state,
   thruEnabledAtStart: payload,
 })
 
-const receivedMuteGroupsEnabled = (
-  state: SettingsState,
-  { payload }: ReceivedMuteGroupsEnabledAction,
-): SettingsState => ({
+const receivedMuteGroupsEnabled = (state, { payload }) => ({
   ...state,
   muteGroupsEnabled: payload,
 })
 
-const setMuteEnabled = (
-  state: SettingsState,
-  { payload }: SetMuteEnabledAction,
-): SettingsState => ({
+const setMuteEnabled = (state, { payload }) => ({
   ...state,
   muteEnabledAtStart: payload,
 })
 
-const setThruEnabled = (
-  state: SettingsState,
-  { payload }: SetThruEnabledAction,
-): SettingsState => ({
+const setThruEnabled = (state, { payload }) => ({
   ...state,
   thruEnabledAtStart: payload,
 })
 
-const setMuteGroupsEnabled = (
-  state: SettingsState,
-  { payload }: SetMuteGroupsEnabledAction,
-): SettingsState => ({
+const setMuteGroupsEnabled = (state, { payload }) => ({
   ...state,
   muteGroupsEnabled: payload,
 })
 
-const confirmFactoryReset = (
-  state: SettingsState,
-  { payload }: ConfirmFactoryResetAction,
-): SettingsState => ({
+const confirmFactoryReset = (state, { payload }) => ({
   ...state,
   showResetDialog: payload,
 })
 
-const resetBeingPerformed = (state: SettingsState): SettingsState => ({
+const resetBeingPerformed = state => ({
   ...state,
   showResetDialog: false,
   resetInProcess: true,
 })
 
-const factoryResetPerformed = (state: SettingsState): SettingsState => ({
+const factoryResetPerformed = state => ({
   ...state,
   showResetDialog: false,
   resetInProcess: false,
@@ -102,7 +62,7 @@ const handlers = {
   RECEIVED_ALL_TRIMS: factoryResetPerformed,
 }
 
-const defaultState: SettingsState = {
+const defaultState = {
   muteEnabledAtStart: false,
   thruEnabledAtStart: true,
   muteGroupsEnabled: true,

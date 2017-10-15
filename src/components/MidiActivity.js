@@ -1,12 +1,8 @@
-/* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
 import styles from '../styles/midiActivity'
-import type { StompblockState } from '../reducers/stompblock'
 
-type Stompblock = { stompblock: StompblockState }
-
-const MidiActivity = ({ stompblock }: Stompblock) => {
+const MidiActivity = ({ stompblock }) => {
   const { midiInActivity, midiOutActivity } = stompblock
 
   return (
@@ -14,11 +10,13 @@ const MidiActivity = ({ stompblock }: Stompblock) => {
       <div>Midi in</div>
       <div className={midiInActivity ? styles.ledRedBlink : styles.ledRed} />
       <div>out</div>
-      <div className={midiOutActivity ? styles.ledYellowBlink : styles.ledYellow} />
+      <div
+        className={midiOutActivity ? styles.ledYellowBlink : styles.ledYellow}
+      />
     </div>
   )
 }
 
-const mapStateToProps = ({ stompblock }: Stompblock): Stompblock => ({ stompblock })
+const mapStateToProps = ({ stompblock }) => ({ stompblock })
 
 export default connect(mapStateToProps)(MidiActivity)

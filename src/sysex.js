@@ -1,4 +1,3 @@
-/* @flow */
 import {
   SYSEX_START,
   STOMPBLOCK_DEVICE_ID,
@@ -22,10 +21,7 @@ import {
   sysexAction,
 } from './action-creators/sysex'
 
-import type { SysexBarrier, SysexMessage } from './midi'
-import type { Dispatch } from './types/Store'
-
-export default (dispatch: Dispatch, { data }: { data: Array<number> }) => {
+export default (dispatch, { data }) => {
   const [
     kind: SysexBarrier,
     deviceId: number,
@@ -41,8 +37,8 @@ export default (dispatch: Dispatch, { data }: { data: Array<number> }) => {
       anvilVersion === 24 ||
       command === SYSEX_MSG_RECEIVE_VERSION)
   ) {
-    let serial: Array<number>
-    let trims: Array<number>
+    let serial
+    let trims
 
     switch (command) {
       case SYSEX_MSG_RECEIVE_VERSION:
@@ -57,10 +53,7 @@ export default (dispatch: Dispatch, { data }: { data: Array<number> }) => {
         dispatch(
           receivedVersion(
             packet[0], // version
-            serial.reduce(
-              (val: string, char: number): string => val + String.fromCharCode(char),
-              '',
-            ),
+            serial.reduce((val, char) => val + String.fromCharCode(char), ''),
           ),
         )
 
@@ -78,7 +71,7 @@ export default (dispatch: Dispatch, { data }: { data: Array<number> }) => {
         break
 
       case SYSEX_MSG_RECEIVE_ALL:
-        trims = packet.filter((item: number, idx: number): boolean => idx < 127)
+        trims = packet.filter((item, idx) => idx < 127)
         dispatch(receivedVelocityTrims(trims))
         break
 

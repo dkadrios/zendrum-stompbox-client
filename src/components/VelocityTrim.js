@@ -1,15 +1,6 @@
-/* @flow */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react'
 import VelocityTrimControls from './VelocityTrimControls'
 import Instrument from '../images/Instrument'
-import typeof {
-  userChangedTrim as UserChangedTrim,
-  userChangedTrimEnd as UserChangedTrimEnd,
-  playNote as PlayNote,
-} from '../action-creators/sysex'
-import typeof { selectTrim as SelectTrim } from '../action-creators/velocityTrimListFilter'
-import type { MappingEntry } from '../types/Mappings'
 
 const handleKeyDown = (event, item, userChangedTrimEnd) => {
   let delta = 0
@@ -46,22 +37,19 @@ const handleKeyDown = (event, item, userChangedTrimEnd) => {
   }
 }
 
-type Props = {
-  +item: MappingEntry,
-  +styles: any,
-  +selected: boolean,
-  +playNote: PlayNote,
-  +selectTrim: SelectTrim,
-  +userChangedTrim: UserChangedTrim,
-  +userChangedTrimEnd: UserChangedTrimEnd,
-}
-
-const VelocityTrim = (props: Props) => {
-  const { item, styles, selected, playNote, selectTrim, userChangedTrimEnd } = props
+const VelocityTrim = props => {
+  const {
+    item,
+    styles,
+    selected,
+    playNote,
+    selectTrim,
+    userChangedTrimEnd,
+  } = props
   return (
     <li
       tabIndex={item.note}
-      onKeyDown={(e: SyntheticKeyboardEvent<*>) => handleKeyDown(e, item, userChangedTrimEnd)}
+      onKeyDown={e => handleKeyDown(e, item, userChangedTrimEnd)}
       onMouseUp={() => (selected ? null : selectTrim(item.note))}
       className={selected ? styles.selected : ''}
     >
@@ -71,15 +59,9 @@ const VelocityTrim = (props: Props) => {
         role="button"
         tabIndex={item.note}
       >
-        <div>
-          {item.note}
-        </div>
-        <div>
-          {item.group}
-        </div>
-        <div>
-          {Instrument(item.group)}
-        </div>
+        <div>{item.note}</div>
+        <div>{item.group}</div>
+        <div>{Instrument(item.group)}</div>
       </div>
       <div className={styles.noteName} title={item.name}>
         {item.name}

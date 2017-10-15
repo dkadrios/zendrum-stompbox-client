@@ -1,64 +1,39 @@
-/* @flow */
-
 import { createReducer } from '../utils'
-import type { GroupName, MappingEntry } from '../types/Mappings'
-import type {
-  ReceivedVelocityTrimsAction,
-  UserChangedTrimAction,
-  SearchTrimsAction,
-  SelectTrimAction,
-  ChangeGroupAction,
-  ChangeListViewAction,
-} from '../types/Action'
-import type { ListView } from '../types/VelocityTrimList'
 
-export type TrimsState = {
-  +sortBy: 'idx',
-  +showNames: boolean,
-  +search: string,
-  +group: GroupName | 'all',
-  +listView: ListView,
-  +selectedNoteNum: number,
-  +data: Array<MappingEntry>,
-}
-
-const receivedAllTrims = (
-  state: TrimsState,
-  { payload }: ReceivedVelocityTrimsAction,
-): TrimsState => ({
+const receivedAllTrims = (state, { payload }) => ({
   ...state,
   data: state.data.map((item, idx) => ({ ...item, trim: payload[idx + 1] })),
 })
 
-const userChangedTrim = (
-  state: TrimsState,
-  { payload: { noteNum, value } }: UserChangedTrimAction,
-): TrimsState => ({
+const userChangedTrim = (state, { payload: { noteNum, value } }) => ({
   ...state,
-  data: state.data.map((item, idx) => (idx === noteNum - 1 ? { ...item, trim: value } : { ...item })),
+  data: state.data.map(
+    (item, idx) =>
+      idx === noteNum - 1 ? { ...item, trim: value } : { ...item },
+  ),
 })
 
-const searchTrims = (state: TrimsState, { payload }: SearchTrimsAction): TrimsState => ({
+const searchTrims = (state, { payload }) => ({
   ...state,
   search: payload,
 })
 
-const selectTrim = (state: TrimsState, { payload }: SelectTrimAction): TrimsState => ({
+const selectTrim = (state, { payload }) => ({
   ...state,
   selectedNoteNum: payload,
 })
 
-const changeGroup = (state: TrimsState, { payload }: ChangeGroupAction): TrimsState => ({
+const changeGroup = (state, { payload }) => ({
   ...state,
   group: payload,
 })
 
-const changeListView = (state: TrimsState, { payload }: ChangeListViewAction): TrimsState => ({
+const changeListView = (state, { payload }) => ({
   ...state,
   listView: payload,
 })
 
-const loadMapping = (state: MappingState, { entries }: LoadMappingAction): MappingState => ({
+const loadMapping = (state, { entries }) => ({
   ...state,
   data: state.data.map((item, idx) => ({ ...item, ...entries[idx] })),
 })
@@ -84,7 +59,7 @@ const handlers = {
   LOAD_MAPPING: loadMapping,
 }
 
-const defaultState: TrimsState = {
+const defaultState = {
   sortBy: 'idx',
   showNames: true,
   search: '',

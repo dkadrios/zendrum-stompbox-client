@@ -1,39 +1,20 @@
-/* @flow */
 import { createReducer } from '../utils'
 import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../midi'
-import type { ReceivedVersionAction, CheckedRegistrationAction } from '../types/Action'
 
-export type VersionState = {
-  +checking: boolean,
-  +checked: boolean,
-  +client: number,
-  +anvil: number,
-  +expectedAnvil: number,
-  +serialNumber: string,
-  +firstName: string,
-  +lastName: string,
-  +email: string,
-  +checkedRegistration: boolean,
-  +registered: boolean,
-}
-
-const checkingVersion = (state: VersionState): VersionState => ({
+const checkingVersion = state => ({
   ...state,
   checking: true,
   checked: false,
 })
 
-const receivedVersion = (
-  state: VersionState,
-  { payload }: ReceivedVersionAction,
-): VersionState => ({
+const receivedVersion = (state, { payload }) => ({
   ...state,
   ...payload,
   checking: false,
   checked: true,
 })
 
-const checkedRegistration = (state: VersionState, { payload }: CheckedRegistrationAction) => {
+const checkedRegistration = (state, { payload }) => {
   let newState = { ...state, checkedRegistration: true }
   const A = payload.registrations.filter(entry => entry.active)
 
@@ -46,7 +27,7 @@ const checkedRegistration = (state: VersionState, { payload }: CheckedRegistrati
   return newState
 }
 
-const stompblockMissing = (state: VersionState): VersionState => ({
+const stompblockMissing = state => ({
   ...state,
   checking: false,
   checked: false,
@@ -66,7 +47,7 @@ const handlers = {
   DEVICE_REGISTERED: checkedRegistration,
 }
 
-const defaultState: VersionState = {
+const defaultState = {
   checking: false,
   checked: false,
   client: CURRENT_CLIENT_VERSION,

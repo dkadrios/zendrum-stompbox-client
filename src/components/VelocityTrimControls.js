@@ -1,16 +1,7 @@
-/* @flow */
 import React from 'react'
 import Knob from 'react-canvas-knob'
-import type { TrimListItemProps } from '../types/VelocityTrimList'
-/*
-type Props = {
-  item: MappingEntry,
-  styles: Styles,
-  userChangedTrim: UserChangedTrim,
-  userChangedTrimEnd: UserChangedTrimEnd,
-} */
 
-const wheelColor = (value: number): string =>
+const wheelColor = value =>
   value > 65 ? '#22FF55' : value > 30 ? 'orange' : 'yellow'
 
 const VelocityTrimControls = ({
@@ -18,8 +9,7 @@ const VelocityTrimControls = ({
   styles,
   userChangedTrim,
   userChangedTrimEnd,
-}:
-TrimListItemProps) => (
+}: TrimListItemProps) => (
   <div className={styles.trimContainer}>
     <div>
       <Knob

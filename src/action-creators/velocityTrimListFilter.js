@@ -1,25 +1,19 @@
-/* @flow */
-
-import type { Action } from '../types/Action'
-import type { GroupName } from '../types/Mappings'
-import type { ListView } from '../types/VelocityTrimList'
-
-export const searchTrims = (text: string): Action => ({
+export const searchTrims = text => ({
   type: 'SEARCH_TRIMS',
   payload: text,
 })
 
-export const selectTrim = (noteNum: number): Action => ({
+export const selectTrim = noteNum => ({
   type: 'SELECT_TRIM',
   payload: noteNum,
 })
 
-export const changeGroup = (group: GroupName): Action => ({
+export const changeGroup = group => ({
   type: 'CHANGE_GROUP',
   payload: group,
 })
 
-export const changeListView = (view: ListView): Action => ({
+export const changeListView = view => ({
   type: 'CHANGE_LIST_VIEW',
   payload: view,
 })

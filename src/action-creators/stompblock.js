@@ -1,45 +1,39 @@
-/* @flow */
 import fetch from 'isomorphic-fetch'
 import { PRODUCT_INSTANCE } from '../endpoints'
-import type { Dispatch } from '../types/Store'
-import type { Action } from '../types/Action'
-import type { ProductInstance, Registration } from '../types/Registration'
 
-export const searchedForStompblock = (): Action => ({
+export const searchedForStompblock = () => ({
   type: 'SEARCHED_FOR_STOMPBLOCK',
 })
 
-export const stompblockFound = (): Action => ({
+export const stompblockFound = () => ({
   type: 'STOMPBLOCK_FOUND',
 })
 
-export const stompblockMissing = (): Action => ({
+export const stompblockMissing = () => ({
   type: 'STOMPBLOCK_MISSING',
 })
 
-export const midiInActivityChanged = (activity: boolean): Action => ({
+export const midiInActivityChanged = activity => ({
   type: 'MIDI_IN_ACTIVITY',
   payload: activity,
 })
 
-export const midiOutActivityChanged = (activity: boolean): Action => ({
+export const midiOutActivityChanged = activity => ({
   type: 'MIDI_OUT_ACTIVITY',
   payload: activity,
 })
 
-export const checkedRegistration = (productInstance: ProductInstance): Action => ({
+export const checkedRegistration = productInstance => ({
   type: 'CHECKED_REGISTRATION',
   payload: productInstance,
 })
 
-export const deviceRegistered = (registration: Registration): Action => ({
+export const deviceRegistered = registration => ({
   type: 'DEVICE_REGISTERED',
   payload: registration,
 })
 
-export const submitRegistration = (serialNumber: string, registration: Registration) => (
-  dispatch: Dispatch,
-) => {
+export const submitRegistration = (serialNumber, registration) => dispatch => {
   fetch(PRODUCT_INSTANCE + serialNumber, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
