@@ -1,13 +1,9 @@
 /* @flow */
 /* eslint-disable no-plusplus */
 
-import stompblockMapping from '../mappings/stompblock'
 import { createReducer } from '../utils'
 
 import type { ReceivedMuteGroupsAction } from '../types/Action'
-import type { MappingEntry } from '../types/Mappings'
-
-type ArrayOfMappingEntries = Array<MappingEntry>
 
 export type MuteGroup = {
   +muteables: ArrayOfMappingEntries,
@@ -20,10 +16,8 @@ export type PseudoMuteGroup = {
 }
 
 export type MuteGroupsState = {
-  +muteGroups: Array<MuteGroup>,
+  +data: Array<MuteGroup>,
 }
-
-const mapping: ArrayOfMappingEntries = [...stompblockMapping]
 
 const receivedMuteGroups = (
   state: MuteGroupsState,
@@ -31,11 +25,11 @@ const receivedMuteGroups = (
 ): MuteGroupsState => {
   // TODO - surely there is more functional way to disassemble the data stream
   const byteArr: Array<number> = [...payload]
-  const muteGroups: Array<PseudoMuteGroup> = []
+  const data: Array<PseudoMuteGroup> = []
   let byteIdx = 1
 
   for (let groupIdx = 0; groupIdx < byteArr[0]; groupIdx++) {
-    muteGroups[groupIdx] = {
+    data[groupIdx] = {
       muteables: byteArr.slice(byteIdx + 2, byteIdx + 2 + byteArr[byteIdx]),
       muters: byteArr.slice(
         byteIdx + 2 + byteArr[byteIdx],
@@ -47,13 +41,9 @@ const receivedMuteGroups = (
 
   return {
     ...state,
-    muteGroups: muteGroups.map((group: PseudoMuteGroup): MuteGroup => ({
-      muteables: group.muteables.map((noteNum: number): any =>
-        mapping.find((entry: MappingEntry) => entry.note === noteNum),
-      ),
-      muters: group.muters.map((noteNum: number): any =>
-        mapping.find((entry: MappingEntry) => entry.note === noteNum),
-      ),
+    data: data.map((group: PseudoMuteGroup): MuteGroup => ({
+      muteables: [...group.muteables],
+      muters: [...group.muters],
     })),
   }
 }
@@ -63,7 +53,7 @@ const handlers = {
 }
 
 const defaultState: MuteGroupsState = {
-  muteGroups: [],
+  data: [],
 }
 
 export default createReducer(defaultState, handlers)

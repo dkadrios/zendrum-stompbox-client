@@ -2,22 +2,24 @@
 
 import { combineReducers } from 'redux'
 import { reducer } from 'redux-midi'
-import stompblock from './stompblock'
-import settings from './settings'
-import version from './version'
-import velocityTrim from './velocityTrim'
+import mapping from './mapping'
 import muteGroups from './muteGroups'
+import settings from './settings'
+import stompblock from './stompblock'
+import velocityTrim from './velocityTrim'
+import version from './version'
 
 type midiReducer = typeof reducer
 const midi: midiReducer = reducer
 
 const reducers = {
+  mapping,
   midi,
-  stompblock,
-  settings,
-  version,
-  velocityTrim,
   muteGroups,
+  settings,
+  stompblock,
+  velocityTrim,
+  version,
 }
 
 export type Reducers = typeof reducers

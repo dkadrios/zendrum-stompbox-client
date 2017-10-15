@@ -2,17 +2,16 @@
 @import '_dialogs';
 
 .settings {
-  section,
-  p {
+  h2 {
     margin-left: 20px;
   }
 
   section {
-    margin-top: 20px;
+    margin: 20px 0 40px 40px;
   }
 
-  section:nth-of-type(2) {
-    margin-top: 80px;
+  section:nth-of-type(3) {
+    margin-top: 60px;
   }
 }
 

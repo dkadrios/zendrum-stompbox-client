@@ -18,8 +18,9 @@ const VelocityTrimControls = ({
   styles,
   userChangedTrim,
   userChangedTrimEnd,
-}: TrimListItemProps) =>
-  (<div className={styles.trimContainer}>
+}:
+TrimListItemProps) => (
+  <div className={styles.trimContainer}>
     <div>
       <Knob
         width={35}
@@ -38,9 +39,7 @@ const VelocityTrimControls = ({
         onChangeEnd={newVal => userChangedTrimEnd(item.note, newVal)}
       />
     </div>
-    <div>
-      {item.trim}
-    </div>
+    <div>{item.trim}</div>
     <div className={styles.buttons}>
       <button type="button" onClick={() => userChangedTrimEnd(item.note, 100)}>
         MAX
@@ -49,6 +48,7 @@ const VelocityTrimControls = ({
         MUTE
       </button>
     </div>
-  </div>)
+  </div>
+)
 
 export default VelocityTrimControls

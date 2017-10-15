@@ -7,3 +7,5 @@ export type MappingEntry = {
   +group: GroupName,
   +trim: number,
 }
+
+export type ArrayOfMappingEntries = Array<MappingEntry>

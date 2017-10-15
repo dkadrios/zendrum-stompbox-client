@@ -16,8 +16,8 @@ type Props = {
 }
 
 const MuteItem = (props: Props) => {
-  const { item, deleteMuteItem, groupIdx, itemIdx, muter } = props
-  const { note, name, group } = item
+  const { note, deleteMuteItem, groupIdx, itemIdx, muter, mapping } = props
+  const { name, group } = mapping.find(item => item.note === note)
 
   return (
     <Chip deletable onDeleteClick={() => deleteMuteItem(groupIdx, muter, itemIdx)}>

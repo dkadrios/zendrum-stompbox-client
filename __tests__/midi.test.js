@@ -1,4 +1,5 @@
 import configureStore from 'redux-mock-store' // eslint-disable-line
+import 'jest-localstorage-mock'
 import { RECEIVE_MIDI_MESSAGE, SEND_MIDI_MESSAGE } from 'redux-midi'
 import {
   SYSEX_START,

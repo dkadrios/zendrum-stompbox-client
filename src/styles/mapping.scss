@@ -1,0 +1,55 @@
+@import 'variables';
+
+.mappingSelector {
+  p {
+    max-width: 450px;
+  }
+
+  .mappingCont {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+  }
+
+  .mapping {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    margin-right: 40px;
+
+    min-width: 110px;
+    max-width: 110px;
+
+    p {
+      color: $color-text-dimmer;
+    }
+
+    svg:first-of-type {
+      position: relative;
+      left: 3px;
+    }
+
+    svg:nth-of-type(2) {
+      max-width: 60px;
+      max-height: 80px;
+      position: absolute;
+      left: 33px;
+      top: 25px;
+    }
+  }
+
+  .selected {
+    p {
+      font-weight: bold;
+      color: $color-text-dark;
+    }
+
+    svg:first-of-type {
+      -webkit-filter: drop-shadow(0 0 14px $color-highlight);
+      filter: drop-shadow(0 0 5px $color-highlight);
+    }
+  }
+}

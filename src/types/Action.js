@@ -122,6 +122,12 @@ export type SetMuteGroupsAction = {
   payload: Array<number>,
 }
 
+export type LoadMappingAction = {
+  type: 'LOAD_MAPPING',
+  name: string,
+  entries: ArrayOfMappings,
+}
+
 export type Action =
   | SearchedForStompblockAction
   | StompblockFoundAction
@@ -146,3 +152,4 @@ export type Action =
   | SetThruEnabledAction
   | SetMuteGroupsEnabledAction
   | SetMuteGroupsAction
+  | LoadMappingAction

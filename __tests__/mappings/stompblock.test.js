@@ -10,7 +10,6 @@ describe('stompblock mapping', () => {
       group: 'Kicks',
       name: 'Funk Kick',
       note: 25,
-      trim: 0,
     })
   })
 })

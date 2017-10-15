@@ -23,7 +23,8 @@ type Props = {
 
 const MuteGroups = (props: Props) => {
   const {
-    muteGroups: { muteGroups },
+    muteGroups: { data },
+    mapping: { entries },
     deleteMuteItem,
     addMuteItem,
     deleteMuteGroup,
@@ -33,9 +34,10 @@ const MuteGroups = (props: Props) => {
   return (
     <div className={styles.muteGroupsContainer}>
       <div className={styles.muteGroups}>
-        {muteGroups.map((group, idx) => (
+        {data.map((group, idx) => (
           <div key={idx}>
             <MuteGroup
+              mapping={entries}
               group={group}
               ordinal={idx}
               deleteMuteItem={deleteMuteItem}
@@ -46,7 +48,7 @@ const MuteGroups = (props: Props) => {
         ))}
         <Button icon="add" label="Create New Group" raised primary onClick={addMuteGroup} />
         <small>
-          Using {MAX_MUTE_GROUPS - muteGroups.length} of {MAX_MUTE_GROUPS}
+          Using {MAX_MUTE_GROUPS - data.length} of {MAX_MUTE_GROUPS}
           &nbsp;available groups
         </small>
       </div>
@@ -54,7 +56,7 @@ const MuteGroups = (props: Props) => {
   )
 }
 
-const mapStateToProps = ({ muteGroups }: MuteGroupsType) => ({ muteGroups })
+const mapStateToProps = ({ muteGroups, mapping }: MuteGroupsType) => ({ muteGroups, mapping })
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(sysexActions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(MuteGroups)

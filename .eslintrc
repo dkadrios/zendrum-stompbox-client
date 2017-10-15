@@ -27,12 +27,27 @@
       }
     ],
     "react/no-unused-prop-types": [0],
+    "react/no-array-index-key": [0],
     "react/prop-types": [0],
     "import/extensions": [0],
     "semi": [2, "never"],
     "no-nested-ternary": [0],
     "no-confusing-arrow": [0],
     "import/no-duplicates": [0],
-    "jsx-a11y/href-no-hash": "off"
+    "jsx-a11y/href-no-hash": [0],
+    "jsx-a11y/click-events-have-key-events": [0],
+    "flowtype/space-after-type-colon": [0],
+    "function-paren-newline": ["error", "multiline"],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": {
+          "consistent": true
+        },
+        "ObjectPattern": {
+          "multiline": true
+        }
+      }
+    ]
   }
 }

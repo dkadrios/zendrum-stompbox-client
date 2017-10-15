@@ -8,6 +8,7 @@ import {
   midiOutActivityChanged,
 } from './action-creators/stompblock'
 import { setOutputDeviceId, checkVersion } from './action-creators/sysex'
+import { loadMapping } from './action-creators/mapping'
 import processMidiMessage from './sysex'
 
 import type { Store } from './types/Store'
@@ -26,7 +27,7 @@ export const STOMPBLOCK_DEVICE_ID: number = 0x6b
 
 export const CURRENT_ANVIL_VERSION: number = 25
 
-export const CURRENT_CLIENT_VERSION: number = 24
+export const CURRENT_CLIENT_VERSION: number = 30
 
 export const CHANNEL: number = 10
 
@@ -147,6 +148,7 @@ export const sysexMiddleware = (store: Store) => (next: Function) => (action: {
 
     case 'STOMPBLOCK_FOUND':
       store.dispatch(checkVersion())
+      store.dispatch(loadMapping())
       break
 
     default:

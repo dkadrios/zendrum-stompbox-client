@@ -1,7 +1,6 @@
 /* @flow */
 
 import { createReducer } from '../utils'
-import stompblockMapping from '../mappings/stompblock'
 import type { GroupName, MappingEntry } from '../types/Mappings'
 import type {
   ReceivedVelocityTrimsAction,
@@ -36,9 +35,7 @@ const userChangedTrim = (
   { payload: { noteNum, value } }: UserChangedTrimAction,
 ): TrimsState => ({
   ...state,
-  data: state.data.map(
-    (item, idx) => (idx === noteNum - 1 ? { ...item, trim: value } : { ...item }),
-  ),
+  data: state.data.map((item, idx) => (idx === noteNum - 1 ? { ...item, trim: value } : { ...item })),
 })
 
 const searchTrims = (state: TrimsState, { payload }: SearchTrimsAction): TrimsState => ({
@@ -61,6 +58,21 @@ const changeListView = (state: TrimsState, { payload }: ChangeListViewAction): T
   listView: payload,
 })
 
+const loadMapping = (state: MappingState, { entries }: LoadMappingAction): MappingState => ({
+  ...state,
+  data: state.data.map((item, idx) => ({ ...item, ...entries[idx] })),
+})
+
+const initialTrims = () =>
+  Array(126)
+    .fill(0)
+    .map((item, idx) => ({
+      note: idx + 1,
+      name: '',
+      group: '',
+      trim: 0,
+    }))
+
 const handlers = {
   RECEIVED_ALL_TRIMS: receivedAllTrims,
   USER_CHANGED_TRIM: userChangedTrim,
@@ -69,6 +81,7 @@ const handlers = {
   SELECT_TRIM: selectTrim,
   CHANGE_GROUP: changeGroup,
   CHANGE_LIST_VIEW: changeListView,
+  LOAD_MAPPING: loadMapping,
 }
 
 const defaultState: TrimsState = {
@@ -78,7 +91,7 @@ const defaultState: TrimsState = {
   group: 'all',
   listView: 'medium',
   selectedNoteNum: NaN,
-  data: stompblockMapping,
+  data: initialTrims(),
 }
 
 export default createReducer(defaultState, handlers)

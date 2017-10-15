@@ -24,14 +24,15 @@ type Props = {
 }
 
 const MuteGroup = (props: Props) => {
-  const { group, ordinal, deleteMuteItem, deleteMuteGroup, addMuteItem } = props
+  const { group, ordinal, deleteMuteItem, deleteMuteGroup, addMuteItem, mapping } = props
   const { muteables, muters } = group
 
   const List = (list, muter) =>
-    list.map((item: MappingEntry, idx: number) => (
+    list.map((note: MappingEntry, idx: number) => (
       <MuteItem
         key={idx}
-        item={item}
+        note={note}
+        mapping={mapping}
         groupIdx={ordinal}
         itemIdx={idx}
         muter={muter}
@@ -41,13 +42,11 @@ const MuteGroup = (props: Props) => {
 
   const NewItem = muter => (
     <div>
-      <MuteItemNew groupIdx={ordinal} muter={muter} addMuteItem={addMuteItem} />
+      <MuteItemNew mapping={mapping} groupIdx={ordinal} muter={muter} addMuteItem={addMuteItem} />
       <small>
-        {muter ? MAX_MUTERS_PER_GROUP : MAX_MUTEABLES_PER_GROUP} MAX ({muter ? (
-          MAX_MUTERS_PER_GROUP - muters.length
-        ) : (
-          MAX_MUTEABLES_PER_GROUP - muteables.length
-        )}{' '}
+        {muter ? MAX_MUTERS_PER_GROUP : MAX_MUTEABLES_PER_GROUP} MAX ({muter
+          ? MAX_MUTERS_PER_GROUP - muters.length
+          : MAX_MUTEABLES_PER_GROUP - muteables.length}{' '}
         available)
       </small>
     </div>

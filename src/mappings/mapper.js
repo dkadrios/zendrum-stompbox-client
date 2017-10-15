@@ -10,6 +10,5 @@ export default (raw: Array<string>): Array<MappingEntry> =>
       note: parseInt(props[1], 10),
       group: props[2],
       name: props[3],
-      trim: 0,
     }
   })

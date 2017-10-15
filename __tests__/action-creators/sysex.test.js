@@ -332,24 +332,10 @@ describe('sysex actions', () => {
     it('should succeed', () => {
       expect(store.getState().muteGroups).toEqual({
         ...muteGroups,
-        muteGroups: [
+        data: [
           {
-            muteables: [
-              {
-                group: 'Kicks',
-                name: 'Funk Kick',
-                note: 25,
-                trim: 0,
-              },
-            ],
-            muters: [
-              {
-                group: 'Kicks',
-                name: 'Jazz Kick',
-                note: 26,
-                trim: 0,
-              },
-            ],
+            muteables: [25],
+            muters: [26],
           },
         ],
       })
