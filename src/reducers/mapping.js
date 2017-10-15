@@ -1,4 +1,5 @@
 import { createReducer } from '../utils'
+import { LOAD_MAPPING } from '../action-creators/actions'
 
 const loadMapping = (state, { name, entries }) => ({
   ...state,
@@ -7,7 +8,7 @@ const loadMapping = (state, { name, entries }) => ({
 })
 
 const handlers = {
-  LOAD_MAPPING: loadMapping,
+  [LOAD_MAPPING]: loadMapping,
 }
 
 const defaultState = {

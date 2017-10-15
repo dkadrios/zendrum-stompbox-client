@@ -1,5 +1,6 @@
 import stompblockMapping from '../mappings/stompblock'
 import enrich1Mapping from '../mappings/emrichNumber1'
+import { LOAD_MAPPING } from './actions'
 
 export const loadMapping = () => {
   const name = localStorage.getItem('mapping') || 'stompblock'
@@ -17,7 +18,7 @@ export const loadMapping = () => {
   }
 
   return {
-    type: 'LOAD_MAPPING',
+    type: LOAD_MAPPING,
     name,
     entries,
   }

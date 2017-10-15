@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus */
 import { createReducer } from '../utils'
+import { RECEIVED_MUTE_GROUPS } from '../action-creators/actions'
 
 const receivedMuteGroups = (state, { payload }) => {
   // TODO - surely there is more functional way to disassemble the data stream
@@ -28,7 +29,7 @@ const receivedMuteGroups = (state, { payload }) => {
 }
 
 const handlers = {
-  RECEIVED_MUTE_GROUPS: receivedMuteGroups,
+  [RECEIVED_MUTE_GROUPS]: receivedMuteGroups,
 }
 
 const defaultState = {

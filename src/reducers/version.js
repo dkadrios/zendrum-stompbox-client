@@ -1,5 +1,12 @@
 import { createReducer } from '../utils'
 import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../midi'
+import {
+  GET_SYSEX_VERSION,
+  RECEIVED_VERSION,
+  STOMPBLOCK_MISSING,
+  CHECKED_REGISTRATION,
+  DEVICE_REGISTERED,
+} from '../action-creators/actions'
 
 const checkingVersion = state => ({
   ...state,
@@ -40,11 +47,11 @@ const stompblockMissing = state => ({
 })
 
 const handlers = {
-  GET_SYSEX_VERSION: checkingVersion,
-  RECEIVED_VERSION: receivedVersion,
-  STOMPBLOCK_MISSING: stompblockMissing,
-  CHECKED_REGISTRATION: checkedRegistration,
-  DEVICE_REGISTERED: checkedRegistration,
+  [GET_SYSEX_VERSION]: checkingVersion,
+  [RECEIVED_VERSION]: receivedVersion,
+  [STOMPBLOCK_MISSING]: stompblockMissing,
+  [CHECKED_REGISTRATION]: checkedRegistration,
+  [DEVICE_REGISTERED]: checkedRegistration,
 }
 
 const defaultState = {
