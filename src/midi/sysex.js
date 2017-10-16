@@ -1,0 +1,23 @@
+export const SYSEX_START = 0xf0
+export const SYSEX_END = 0xf7
+
+export const SYSEX_MSG_GET_VERSION = 0x01
+export const SYSEX_MSG_RECEIVE_VERSION = 0x02
+export const SYSEX_MSG_GET_ALL = 0x03
+export const SYSEX_MSG_RECEIVE_ALL = 0x04
+export const SYSEX_MSG_SET_MUTE_ENABLED = 0x05
+export const SYSEX_MSG_SET_THRU_ENABLED = 0x06
+export const SYSEX_MSG_SET_MUTE_GROUPS_ENABLED = 0x07
+export const SYSEX_MSG_PLAY_NOTE = 0x08
+export const SYSEX_MSG_SET_ITEM = 0x09
+export const SYSEX_MSG_RECEIVED_MUTE_ENABLED = 0x0a
+export const SYSEX_MSG_RECEIVED_THRU_ENABLED = 0x0b
+export const SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED = 0x0c
+// export const SYSEX_MSG_SET_MUTE_GROUPS = 0x0D;
+export const SYSEX_MSG_RECEIVED_MUTE_GROUPS = 0x0e
+export const SYSEX_MSG_DELETE_MUTE_GROUP = 0x0f
+export const SYSEX_MSG_DELETE_MUTE_ITEM = 0x10
+export const SYSEX_MSG_ADD_MUTE_GROUP = 0x11
+export const SYSEX_MSG_ADD_MUTE_ITEM = 0x12
+
+export const SYSEX_MSG_FACTORY_RESET = 0x7e

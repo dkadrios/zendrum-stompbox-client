@@ -4,17 +4,10 @@ import MuteItem from './MuteItem'
 import MuteItemNew from './MuteItemNew'
 import styles from '../styles/muteGroups'
 import SubAppBarTheme from '../styles/react-toolbox-theme/SubAppBar.scss'
-import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../midi'
+import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../midi/'
 
 const MuteGroup = (props) => {
-  const {
-    group,
-    ordinal,
-    deleteMuteItem,
-    deleteMuteGroup,
-    addMuteItem,
-    mapping,
-  } = props
+  const { group, ordinal, deleteMuteItem, deleteMuteGroup, addMuteItem, mapping } = props
   const { muteables, muters } = group
 
   const List = (list, muter) =>
@@ -32,12 +25,7 @@ const MuteGroup = (props) => {
 
   const NewItem = muter => (
     <div>
-      <MuteItemNew
-        mapping={mapping}
-        groupIdx={ordinal}
-        muter={muter}
-        addMuteItem={addMuteItem}
-      />
+      <MuteItemNew mapping={mapping} groupIdx={ordinal} muter={muter} addMuteItem={addMuteItem} />
       <small>
         {muter ? MAX_MUTERS_PER_GROUP : MAX_MUTEABLES_PER_GROUP} MAX ({muter
           ? MAX_MUTERS_PER_GROUP - muters.length

@@ -10,8 +10,9 @@ import MappingSelector from '../MappingSelector'
 import styles from '../../styles/settings'
 import switchTheme from '../../styles/react-toolbox-theme/Switch.scss'
 import buttonTheme from '../../styles/react-toolbox-theme/WarningButton.scss'
-import * as sysexActions from '../../action-creators/sysex'
+import * as settingActions from '../../action-creators/settings'
 import * as mappingActions from '../../action-creators/mapping'
+import * as stompblockActions from '../../action-creators/stompblock'
 
 const Settings = (props) => {
   const {
@@ -52,25 +53,13 @@ const Settings = (props) => {
   return (
     <div className={styles.settings}>
       <h2>Card</h2>
-      <MappingSelector
-        selected={mappingName}
-        available={availableMaps}
-        onChange={selectMapping}
-      />
+      <MappingSelector selected={mappingName} available={availableMaps} onChange={selectMapping} />
 
       <h2>Preferences</h2>
       <section>
         <p>These settings directly affect the behavior of your STOMPBLOCK.</p>
-        <TS
-          checked={muteEnabledAtStart}
-          feature="MUTE when turned on"
-          handler={setMuteEnabled}
-        />
-        <TS
-          checked={thruEnabledAtStart}
-          feature="THRU when turned on"
-          handler={setThruEnabled}
-        />
+        <TS checked={muteEnabledAtStart} feature="MUTE when turned on" handler={setMuteEnabled} />
+        <TS checked={thruEnabledAtStart} feature="THRU when turned on" handler={setThruEnabled} />
         <TS
           checked={muteGroupsEnabled}
           feature="mute groups (e.g. hi-hats)"
@@ -101,10 +90,7 @@ const Settings = (props) => {
           <FontIcon>warning</FontIcon>
           <p>Sure to perform reset?</p>
         </div>
-        <p>
-          This will return all settings and trim values to their factory
-          defaults.
-        </p>
+        <p>This will return all settings and trim values to their factory defaults.</p>
       </Dialog>
 
       <Dialog
@@ -121,6 +107,6 @@ const Settings = (props) => {
 
 const mapStateToProps = ({ settings, mapping }) => ({ settings, mapping })
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...sysexActions, ...mappingActions }, dispatch)
+  bindActionCreators({ ...settingActions, ...mappingActions, ...stompblockActions }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings)

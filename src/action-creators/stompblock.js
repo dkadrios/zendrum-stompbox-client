@@ -8,6 +8,9 @@ import {
   MIDI_OUT_ACTIVITY,
   CHECKED_REGISTRATION,
   DEVICE_REGISTERED,
+  CONFIRM_FACTORY_RESET,
+  FACTORY_RESET,
+  RELOAD_SYSEX,
 } from './actions'
 
 export const searchedForStompblock = () => ({
@@ -51,3 +54,12 @@ export const submitRegistration = (serialNumber, registration) => (dispatch) => 
     .then(response => response.json())
     .then(newRegistration => dispatch(deviceRegistered(newRegistration)))
 }
+
+export const confirmFactoryReset = showResetDialog => ({
+  type: CONFIRM_FACTORY_RESET,
+  showResetDialog,
+})
+
+export const performFactoryReset = () => ({ type: FACTORY_RESET })
+
+export const reloadSysEx = () => ({ type: RELOAD_SYSEX })

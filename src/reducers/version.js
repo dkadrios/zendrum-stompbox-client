@@ -1,5 +1,5 @@
 import { createReducer } from '../utils'
-import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../midi'
+import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../midi/'
 import {
   GET_SYSEX_VERSION,
   RECEIVED_VERSION,

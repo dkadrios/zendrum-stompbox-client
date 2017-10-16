@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import { Button } from 'react-toolbox/lib/button'
 import styles from '../../styles/muteGroups'
 import MuteGroup from '../MuteGroup'
-import { MAX_MUTE_GROUPS } from '../../midi'
-import * as sysexActions from '../../action-creators/sysex'
+import { MAX_MUTE_GROUPS } from '../../midi/'
+import * as muteGroupActions from '../../action-creators/muteGroups'
 
 const MuteGroups = (props) => {
   const {
@@ -32,13 +32,7 @@ const MuteGroups = (props) => {
             />
           </div>
         ))}
-        <Button
-          icon="add"
-          label="Create New Group"
-          raised
-          primary
-          onClick={addMuteGroup}
-        />
+        <Button icon="add" label="Create New Group" raised primary onClick={addMuteGroup} />
         <small>
           Using {MAX_MUTE_GROUPS - data.length} of {MAX_MUTE_GROUPS}
           &nbsp;available groups
@@ -49,7 +43,6 @@ const MuteGroups = (props) => {
 }
 
 const mapStateToProps = ({ muteGroups, mapping }) => ({ muteGroups, mapping })
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(sysexActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(muteGroupActions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(MuteGroups)

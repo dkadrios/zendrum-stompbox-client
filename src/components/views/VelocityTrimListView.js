@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import VelocityTrimList from '../VelocityTrimList'
 import VelocityTrimTips from '../VelocityTrimTips'
 import VelocityTrimListFilter from '../VelocityTrimListFilter'
-import * as sysexActions from '../../action-creators/sysex'
-import * as trimActions from '../../action-creators/velocityTrimListFilter'
+import * as trimActions from '../../action-creators/velocityTrim'
+import * as trimFilterActions from '../../action-creators/velocityTrimListFilter'
 import styles from '../../styles/velocityTrim'
 
 const VelocityTrimListView = (props) => {
@@ -29,6 +29,6 @@ const VelocityTrimListView = (props) => {
 
 const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...sysexActions, ...trimActions }, dispatch)
+  bindActionCreators({ ...trimActions, ...trimFilterActions }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(VelocityTrimListView)

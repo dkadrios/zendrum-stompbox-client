@@ -2,28 +2,32 @@ import deepFreeze from 'deep-freeze'
 import storeFactory from '../../src/store'
 import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
 import {
-  confirmFactoryReset,
-  performFactoryReset,
   setMuteEnabled,
   setThruEnabled,
   setMuteGroupsEnabled,
-  receivedVersion,
-  checkVersion,
-  reloadSysEx,
-  userChangedTrim,
-  userChangedTrimEnd,
-  setOutputDeviceId,
-  playNote,
-  receivedVelocityTrims,
   receivedMuteEnabled,
   receivedThruEnabled,
   receivedMuteGroupsEnabled,
+} from '../../src/action-creators/settings'
+import {
   receivedMuteGroups,
   deleteMuteGroup,
   addMuteGroup,
   deleteMuteItem,
   addMuteItem,
-} from '../../src/action-creators/sysex'
+} from '../../src/action-creators/muteGroups'
+import { receivedVersion, checkVersion } from '../../src/action-creators/version'
+import {
+  receivedVelocityTrims,
+  userChangedTrim,
+  playNote,
+  userChangedTrimEnd,
+} from '../../src/action-creators/velocityTrim'
+import {
+  confirmFactoryReset,
+  performFactoryReset,
+  reloadSysEx,
+} from '../../src/action-creators/stompblock'
 
 describe('sysex actions', () => {
   let store
@@ -236,19 +240,6 @@ describe('sysex actions', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
         data: [{ note: 1, trim: 127 }, { note: 2, trim: 15 }],
-      })
-    })
-  })
-
-  describe('setOutputDeviceId', () => {
-    beforeAll(() => {
-      store = storeFactory({ velocityTrim }, false, true)
-      setOutputDeviceId(101)
-    })
-
-    it('should succeed', () => {
-      expect(store.getState().velocityTrim).toEqual({
-        ...velocityTrim,
       })
     })
   })

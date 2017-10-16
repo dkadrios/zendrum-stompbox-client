@@ -26,7 +26,6 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "react/no-unused-prop-types": [0],
     "react/no-array-index-key": [0],
     "react/prop-types": [0],
     "import/extensions": [0],

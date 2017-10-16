@@ -3,7 +3,9 @@ import { createLogger } from 'redux-logger'
 import setup from 'redux-midi'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
-import { watchForDeviceChange, sysexMiddleware } from './midi'
+import sysexInputMiddleware from './middleware/sysexInput'
+import sysexOutputMiddleware from './middleware/sysexOutput'
+import { watchForDeviceChange } from './midi/'
 
 const logger = createLogger()
 let middlewares = [thunk]
@@ -12,7 +14,13 @@ export default function storeFactory(initialState = {}, debug = __DEV__, test = 
   /* istanbul ignore next */
   if (!test) {
     const { inputMiddleware, outputMiddleware } = setup({ midiOptions: { sysex: true } })
-    middlewares = [...middlewares, inputMiddleware, outputMiddleware, sysexMiddleware]
+    middlewares = [
+      ...middlewares,
+      inputMiddleware,
+      outputMiddleware,
+      sysexInputMiddleware,
+      sysexOutputMiddleware,
+    ]
   }
 
   /* eslint-disable indent */
@@ -39,6 +47,15 @@ export default function storeFactory(initialState = {}, debug = __DEV__, test = 
 
   /* istanbul ignore next */
   if (!test) {
+    /*
+    * This effectively bootstraps the application.
+    *
+    * Whenever our device is detected, either initially or due to being
+    * plugged in, watchForDeviceChange will dispatch stompblockFound().
+    * This action is intercepted in /middleware/sysexInput, which then
+    * dispatches additional events to request the internal state of the
+    * device.
+    */
     watchForDeviceChange(store)
   }
 
