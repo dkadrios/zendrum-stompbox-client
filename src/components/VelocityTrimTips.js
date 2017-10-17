@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from '../styles/velocityTrim'
 
 const VelocityTrimTips = ({ active }) => (
@@ -11,5 +12,9 @@ const VelocityTrimTips = ({ active }) => (
     </ul>
   </div>
 )
+
+VelocityTrimTips.propTypes = {
+  active: PropTypes.bool.isRequired,
+}
 
 export default VelocityTrimTips

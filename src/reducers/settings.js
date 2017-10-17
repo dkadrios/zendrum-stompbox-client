@@ -9,6 +9,7 @@ import {
   CONFIRM_FACTORY_RESET,
   FACTORY_RESET,
   RECEIVED_ALL_TRIMS,
+  CHANGE_PRIMARY_NAV_TAB,
 } from '../action-creators/actions'
 
 const receivedMuteEnabled = (state, { muteEnabledAtStart }) => ({
@@ -43,6 +44,11 @@ const factoryResetPerformed = state => ({
   resetInProcess: false,
 })
 
+const changeTabIndex = (state, { primaryNavTabIdx }) => ({
+  ...state,
+  primaryNavTabIdx,
+})
+
 const handlers = {
   [RECEIVED_MUTE_ENABLED]: receivedMuteEnabled,
   [RECEIVED_THRU_ENABLED]: receivedThruEnabled,
@@ -56,9 +62,11 @@ const handlers = {
    * of the reset, which is when all the trims come back in.
    */
   [RECEIVED_ALL_TRIMS]: factoryResetPerformed,
+  [CHANGE_PRIMARY_NAV_TAB]: changeTabIndex,
 }
 
 const defaultState = {
+  primaryNavTabIdx: 0,
   muteEnabledAtStart: false,
   thruEnabledAtStart: true,
   muteGroupsEnabled: true,

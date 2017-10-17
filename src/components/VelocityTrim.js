@@ -1,6 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import VelocityTrimControls from './VelocityTrimControls'
 import Instrument from '../images/Instrument'
+import styles from '../styles/velocityTrim'
+import { trimShape } from '../reducers/velocityTrim'
 
 const handleKeyDown = (event, item, userChangedTrimEnd) => {
   let delta = 0
@@ -38,7 +41,7 @@ const handleKeyDown = (event, item, userChangedTrimEnd) => {
 }
 
 const VelocityTrim = (props) => {
-  const { item, styles, selected, playNote, selectTrim, userChangedTrimEnd } = props
+  const { item, selected, playNote, selectTrim, userChangedTrimEnd } = props
   return (
     <li
       tabIndex={item.note}
@@ -63,6 +66,14 @@ const VelocityTrim = (props) => {
       <VelocityTrimControls {...props} />
     </li>
   )
+}
+
+VelocityTrim.propTypes = {
+  item: trimShape.isRequired,
+  selected: PropTypes.bool.isRequired,
+  playNote: PropTypes.func.isRequired,
+  selectTrim: PropTypes.func.isRequired,
+  userChangedTrimEnd: PropTypes.func.isRequired,
 }
 
 export default VelocityTrim

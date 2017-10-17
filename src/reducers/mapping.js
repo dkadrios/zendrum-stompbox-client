@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
 import { LOAD_MAPPING } from '../action-creators/actions'
 
@@ -19,5 +20,11 @@ const defaultState = {
     { name: 'emrichNumber1', label: 'John Emrich - Articulations #1' },
   ],
 }
+
+export const mappingShape = PropTypes.shape({
+  note: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  group: PropTypes.string.isRequired,
+})
 
 export default createReducer(defaultState, handlers)

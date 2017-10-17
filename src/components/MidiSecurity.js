@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Dialog from 'react-toolbox/lib/dialog'
 import FontIcon from 'react-toolbox/lib/font_icon'
@@ -37,6 +38,10 @@ class MidiSecurity extends Component {
       </Dialog>
     )
   }
+}
+
+MidiSecurity.propTypes = {
+  stompblock: PropTypes.shape({ accessGranted: PropTypes.bool }).isRequired,
 }
 
 const mapStateToProps = ({ stompblock }) => ({ stompblock })

@@ -1,9 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Knob from 'react-canvas-knob'
+import styles from '../styles/velocityTrim'
+import { trimShape } from '../reducers/velocityTrim'
 
 const wheelColor = value => (value > 65 ? '#22FF55' : value > 30 ? 'orange' : 'yellow')
 
-const VelocityTrimControls = ({ item, styles, userChangedTrim, userChangedTrimEnd }) => (
+const VelocityTrimControls = ({ item, userChangedTrim, userChangedTrimEnd }) => (
   <div className={styles.trimContainer}>
     <div>
       <Knob
@@ -34,5 +37,14 @@ const VelocityTrimControls = ({ item, styles, userChangedTrim, userChangedTrimEn
     </div>
   </div>
 )
+
+VelocityTrimControls.defaultProps = {
+  item: {},
+}
+VelocityTrimControls.propTypes = {
+  item: trimShape,
+  userChangedTrim: PropTypes.func.isRequired,
+  userChangedTrimEnd: PropTypes.func.isRequired,
+}
 
 export default VelocityTrimControls

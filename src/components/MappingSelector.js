@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Mapping from './Mapping'
 import { mappingSelector, mappingCont } from '../styles/mapping'
 
@@ -23,6 +24,15 @@ const MappingSelector = (props) => {
       </div>
     </section>
   )
+}
+
+MappingSelector.propTypes = {
+  selected: PropTypes.bool.isRequired,
+  available: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    label: PropTypes.string,
+  })).isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default MappingSelector

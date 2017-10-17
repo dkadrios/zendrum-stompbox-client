@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Avatar from 'react-toolbox/lib/avatar'
@@ -6,69 +7,59 @@ import Gravatar from 'react-gravatar'
 import Popover from 'react-popover'
 import Visible from 'react-visible'
 import UserRegistration from './UserRegistration'
+import UserInfoPopover from './UserInfoPopover'
 import styles from '../styles/registration'
 import popoverStyle from '../styles/popovers'
-import * as stompblockActions from '../action-creators/stompblock'
+import { userShape } from '../reducers/user'
+import * as userActions from '../action-creators/user'
 
-class UserInfo extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { popoverVisible: !props.version.registered, dialogVisible: false }
-  }
+const UserInfo = ({ user, submitRegistration, showDialog, hideDialog, hidePopover }) => {
+  const {
+    serialNumber,
+    checkedRegistration,
+    firstName,
+    lastName,
+    email,
+    dialogVisible,
+    popoverVisible,
+  } = user
 
-  componentWillReceiveProps(newProps) {
-    this.setState({ popoverVisible: !newProps.version.registered })
-  }
+  return (
+    <div className={styles.userInfo} onClick={showDialog} role="button" tabIndex="0">
+      <Visible isVisible={checkedRegistration}>
+        <span className={styles.name}>{`${firstName} ${lastName}`}</span>
+        <Popover
+          isOpen={popoverVisible}
+          place="below"
+          body={<UserInfoPopover showDialog={showDialog} />}
+          className={popoverStyle.Popover}
+          onOuterAction={hidePopover}
+        >
+          <Avatar>
+            <Gravatar email={email} default="mm" rating="x" />
+          </Avatar>
+        </Popover>
+      </Visible>
 
-  showDialog(active) {
-    this.setState({ dialogVisible: active, popoverVisible: false })
-  }
-
-  submitForm(registration) {
-    this.props.submitRegistration(this.props.version.serialNumber, registration)
-  }
-
-  render() {
-    const { version } = this.props
-    const popoverContent = () =>
-      (<span onClick={() => this.showDialog(true)} role="button" tabIndex="0">
-        Please take a moment to register your STOMPBLOCK
-       </span>)
-
-    return (
-      <div
-        className={styles.userInfo}
-        onClick={() => this.showDialog(true)}
-        role="button"
-        tabIndex="0"
-      >
-        <Visible isVisible={version.checkedRegistration}>
-          <span className={styles.name}>{`${version.firstName} ${version.lastName}`}</span>
-          <Popover
-            isOpen={this.state.popoverVisible}
-            place="below"
-            body={popoverContent()}
-            className={popoverStyle.Popover}
-            onOuterAction={() => this.setState({ popoverVisible: false })}
-          >
-            <Avatar>
-              <Gravatar email={version.email} default="mm" rating="x" />
-            </Avatar>
-          </Popover>
-        </Visible>
-
-        <UserRegistration
-          active={this.state.dialogVisible}
-          showDialog={active => this.showDialog(active)}
-          submitForm={payload => this.submitForm(payload)}
-          {...this.props}
-        />
-      </div>
-    )
-  }
+      <UserRegistration
+        active={dialogVisible}
+        hideDialog={hideDialog}
+        submitForm={registration => submitRegistration(serialNumber, registration)}
+        {...user}
+      />
+    </div>
+  )
 }
 
-const mapStateToProps = ({ version }) => ({ version })
-const mapDispatchToProps = dispatch => bindActionCreators(stompblockActions, dispatch)
+UserInfo.propTypes = {
+  user: PropTypes.shape(userShape).isRequired,
+  submitRegistration: PropTypes.func.isRequired,
+  showDialog: PropTypes.func.isRequired,
+  hideDialog: PropTypes.func.isRequired,
+  hidePopover: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = ({ user }) => ({ user })
+const mapDispatchToProps = dispatch => bindActionCreators(userActions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)

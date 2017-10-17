@@ -1,13 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { AppBar } from 'react-toolbox'
 import MuteItem from './MuteItem'
-import MuteItemNew from './MuteItemNew'
+import MuteGroupNewItem from './MuteGroupNewItem'
+import { mappingShape } from '../reducers/mapping'
 import styles from '../styles/muteGroups'
 import SubAppBarTheme from '../styles/react-toolbox-theme/SubAppBar.scss'
-import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../midi/'
 
 const MuteGroup = (props) => {
-  const { group, ordinal, deleteMuteItem, deleteMuteGroup, addMuteItem, mapping } = props
+  const { group, ordinal, deleteMuteItem, deleteMuteGroup, mapping } = props
   const { muteables, muters } = group
 
   const List = (list, muter) =>
@@ -22,18 +23,6 @@ const MuteGroup = (props) => {
         deleteMuteItem={deleteMuteItem}
       />
     ))
-
-  const NewItem = muter => (
-    <div>
-      <MuteItemNew mapping={mapping} groupIdx={ordinal} muter={muter} addMuteItem={addMuteItem} />
-      <small>
-        {muter ? MAX_MUTERS_PER_GROUP : MAX_MUTEABLES_PER_GROUP} MAX ({muter
-          ? MAX_MUTERS_PER_GROUP - muters.length
-          : MAX_MUTEABLES_PER_GROUP - muteables.length}{' '}
-        available)
-      </small>
-    </div>
-  )
 
   return (
     <div>
@@ -54,11 +43,23 @@ const MuteGroup = (props) => {
           {List(muters, true)}
         </section>
 
-        {NewItem(false)}
-        {NewItem(true)}
+        <MuteGroupNewItem {...props} muter={false} />
+        <MuteGroupNewItem {...props} muter />
       </div>
     </div>
   )
+}
+
+MuteGroup.propTypes = {
+  group: PropTypes.shape({
+    muteables: PropTypes.arrayOf(PropTypes.number),
+    muters: PropTypes.arrayOf(PropTypes.number),
+  }).isRequired,
+  ordinal: PropTypes.number.isRequired,
+  addMuteItem: PropTypes.func.isRequired,
+  deleteMuteItem: PropTypes.func.isRequired,
+  deleteMuteGroup: PropTypes.func.isRequired,
+  mapping: mappingShape.isRequired,
 }
 
 export default MuteGroup

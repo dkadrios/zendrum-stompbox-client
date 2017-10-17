@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Dialog from 'react-toolbox/lib/dialog'
 import FontIcon from 'react-toolbox/lib/font_icon'
@@ -12,20 +13,23 @@ const NoStompblockFound = ({ stompblock }) => (
   >
     <div>
       <FontIcon>error_outline</FontIcon>
-      <p>
-        Sorry, I cannot not find an available STOMPBLOCK attached to your device
-      </p>
+      <p>Sorry, I cannot not find an available STOMPBLOCK attached to your device</p>
     </div>
     <h2>Troubleshooting</h2>
     <ul>
       <li>Check that your STOMPBLOCK is connected via USB</li>
       <li>Check that no other software is utilizing your STOMPBLOCK</li>
-      <li>
-        If connecting through a USB Host device, try connecting directly instead
-      </li>
+      <li>If connecting through a USB Host device, try connecting directly instead</li>
     </ul>
   </Dialog>
 )
+
+NoStompblockFound.propTypes = {
+  stompblock: PropTypes.shape({
+    searchedForStompblock: PropTypes.bool.isRequired,
+    found: PropTypes.bool.isRequired,
+  }).isRequired,
+}
 
 const mapStateToProps = ({ stompblock }) => ({ stompblock })
 

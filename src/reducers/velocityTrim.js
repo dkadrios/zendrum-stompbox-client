@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
 import {
   RECEIVED_ALL_TRIMS,
@@ -53,8 +54,8 @@ const initialTrims = () =>
     .fill(0)
     .map((item, idx) => ({
       note: idx + 1,
-      name: '',
-      group: '',
+      name: '---',
+      group: 'Loading...',
       trim: 0,
     }))
 
@@ -78,5 +79,22 @@ const defaultState = {
   selectedNoteNum: NaN,
   data: initialTrims(),
 }
+
+export const trimShape = PropTypes.shape({
+  note: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  group: PropTypes.string.isRequired,
+  trim: PropTypes.number.isRequired,
+})
+
+export const velocityTrimShape = PropTypes.shape({
+  sortBy: PropTypes.oneOf(['idx']).isRequired, // might expand on this later
+  showNames: PropTypes.bool.isRequired,
+  search: PropTypes.string.isRequired,
+  group: PropTypes.string.isRequired, // PropTypes.oneOf([]),
+  listView: PropTypes.oneOf(['narrow', 'medium', 'wide']).isRequired,
+  selectedNoteNum: PropTypes.number,
+  data: PropTypes.arrayOf(trimShape).isRequired,
+})
 
 export default createReducer(defaultState, handlers)

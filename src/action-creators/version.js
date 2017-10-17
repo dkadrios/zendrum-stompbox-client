@@ -1,6 +1,5 @@
 import shortid from 'shortid'
-import { checkedRegistration } from './stompblock'
-import { PRODUCT_INSTANCE } from '../endpoints'
+import { checkRegistration } from './user'
 import { GET_SYSEX_VERSION, RECEIVED_VERSION } from './actions'
 
 export const checkVersion = () => ({
@@ -15,7 +14,5 @@ export const receivedVersion = (anvil, serialNumber) => (dispatch) => {
     serialNumber,
   })
 
-  fetch(PRODUCT_INSTANCE + serialNumber)
-    .then(response => response.json())
-    .then(productInstance => dispatch(checkedRegistration(productInstance)))
+  dispatch(checkRegistration(serialNumber))
 }

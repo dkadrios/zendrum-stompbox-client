@@ -5,6 +5,7 @@ import {
   RECEIVED_MUTE_ENABLED,
   RECEIVED_THRU_ENABLED,
   RECEIVED_MUTE_GROUPS_ENABLED,
+  CHANGE_PRIMARY_NAV_TAB,
 } from './actions'
 
 export const setMuteEnabled = muteEnabledAtStart => ({
@@ -35,4 +36,9 @@ export const receivedThruEnabled = thruEnabledAtStart => ({
 export const receivedMuteGroupsEnabled = muteGroupsEnabled => ({
   type: RECEIVED_MUTE_GROUPS_ENABLED,
   muteGroupsEnabled,
+})
+
+export const changePrimaryNavTab = primaryNavTabIdx => ({
+  type: CHANGE_PRIMARY_NAV_TAB,
+  primaryNavTabIdx,
 })

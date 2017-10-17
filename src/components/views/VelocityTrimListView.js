@@ -7,6 +7,7 @@ import VelocityTrimListFilter from '../VelocityTrimListFilter'
 import * as trimActions from '../../action-creators/velocityTrim'
 import * as trimFilterActions from '../../action-creators/velocityTrimListFilter'
 import styles from '../../styles/velocityTrim'
+import { velocityTrimShape } from '../../reducers/velocityTrim'
 
 const VelocityTrimListView = (props) => {
   const { velocityTrim } = props
@@ -25,6 +26,10 @@ const VelocityTrimListView = (props) => {
       <VelocityTrimList items={filteredTrims} {...props} />
     </div>
   )
+}
+
+VelocityTrimListView.propTypes = {
+  velocityTrim: velocityTrimShape.isRequired,
 }
 
 const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })

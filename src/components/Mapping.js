@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import MicroSD from '../images/MicroSD.svg.js'
 import ZendrumLogo from '../images/ZendrumLogo.svg.js'
@@ -20,6 +21,13 @@ const Mapping = (props) => {
       </div>
     </div>
   )
+}
+
+Mapping.propTypes = {
+  selected: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default Mapping

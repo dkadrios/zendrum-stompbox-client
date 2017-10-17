@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Button } from 'react-toolbox/lib/button'
@@ -40,6 +41,15 @@ const MuteGroups = (props) => {
       </div>
     </div>
   )
+}
+
+MuteGroups.propTypes = {
+  muteGroups: PropTypes.shape({ data: PropTypes.array.isRequired }).isRequired,
+  mapping: PropTypes.shape({ entries: PropTypes.array.isRequired }).isRequired,
+  deleteMuteItem: PropTypes.func.isRequired,
+  addMuteItem: PropTypes.func.isRequired,
+  deleteMuteGroup: PropTypes.func.isRequired,
+  addMuteGroup: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ muteGroups, mapping }) => ({ muteGroups, mapping })

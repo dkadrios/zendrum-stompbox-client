@@ -1,60 +1,45 @@
-import React, { Component } from 'react'
-import AppBar from 'react-toolbox/lib/app_bar'
-import Navigation from 'react-toolbox/lib/navigation'
+import React from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
 import { Tab, Tabs } from 'react-toolbox'
-import UserInfo from './UserInfo'
+import * as settingsActions from '../action-creators/settings'
 import VelocityTrimListView from './views/VelocityTrimListView'
 import Settings from './views/Settings'
 import MuteGroups from './views/MuteGroups'
 import MidiActivity from './MidiActivity'
-import appTheme from '../styles/react-toolbox-theme/AppBar.scss'
+import TopBar from '../components/TopBar'
 import tabsTheme from '../styles/react-toolbox-theme/Tabs.scss'
-import ZendrumLogo from '../images/ZendrumLogo.svg.js'
 
-class PrimaryNav extends Component<Object> {
-  constructor() {
-    super()
-    this.state = { index: -1 }
-  }
+const PrimaryNav = ({ settings: { primaryNavTabIdx }, changePrimaryNavTab }) => (
+  <div>
+    <TopBar />
 
-  componentDidMount = () => {
-    /* There's a bug inside react-toolbox's Tab that keeps the active
-       tab from rendering initially.
-       Pausing for a bit before setting it seems to fix it (hacky!)
-    */
-    setTimeout(() => this.handleTabChange(0), 200)
-  }
+    <section>
+      <MidiActivity />
+      <Tabs index={primaryNavTabIdx} onChange={changePrimaryNavTab} theme={tabsTheme}>
+        <Tab label="Trims">
+          <VelocityTrimListView />
+        </Tab>
+        <Tab label="Mute Groups">
+          <MuteGroups />
+        </Tab>
+        <Tab label="Settings">
+          <Settings />
+        </Tab>
+      </Tabs>
+    </section>
+  </div>
+)
 
-  handleTabChange = (index) => {
-    this.setState({ index })
-  }
-
-  render() {
-    return (
-      <div>
-        <AppBar title="STOMPBLOCK" leftIcon={<ZendrumLogo />} theme={appTheme}>
-          <Navigation type="horizontal">
-            <UserInfo />
-          </Navigation>
-        </AppBar>
-
-        <section>
-          <MidiActivity />
-          <Tabs index={this.state.index} onChange={this.handleTabChange} theme={tabsTheme}>
-            <Tab label="Trims">
-              <VelocityTrimListView />
-            </Tab>
-            <Tab label="Mute Groups">
-              <MuteGroups />
-            </Tab>
-            <Tab label="Settings">
-              <Settings />
-            </Tab>
-          </Tabs>
-        </section>
-      </div>
-    )
-  }
+PrimaryNav.propTypes = {
+  settings: PropTypes.shape({
+    primaryNavTabIdx: PropTypes.number.isRequired,
+  }).isRequired,
+  changePrimaryNavTab: PropTypes.func.isRequired,
 }
 
-export default PrimaryNav
+const mapStateToProps = ({ settings }) => ({ settings })
+const mapDispatchToProps = dispatch => bindActionCreators(settingsActions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNav)
