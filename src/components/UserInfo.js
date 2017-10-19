@@ -13,10 +13,10 @@ import popoverStyle from '../styles/popovers'
 import { userShape } from '../reducers/user'
 import * as userActions from '../action-creators/user'
 
-const UserInfo = ({ user, submitRegistration, showDialog, hideDialog, hidePopover }) => {
+const UserInfo = ({ user, showDialog, hideDialog, hidePopover, submitRegistrationForm }) => {
   const {
-    serialNumber,
     checkedRegistration,
+    registered,
     firstName,
     lastName,
     email,
@@ -27,24 +27,29 @@ const UserInfo = ({ user, submitRegistration, showDialog, hideDialog, hidePopove
   return (
     <div className={styles.userInfo} onClick={showDialog} role="button" tabIndex="0">
       <Visible isVisible={checkedRegistration}>
-        <span className={styles.name}>{`${firstName} ${lastName}`}</span>
-        <Popover
-          isOpen={popoverVisible}
-          place="below"
-          body={<UserInfoPopover showDialog={showDialog} />}
-          className={popoverStyle.Popover}
-          onOuterAction={hidePopover}
-        >
-          <Avatar>
-            <Gravatar email={email} default="mm" rating="x" />
-          </Avatar>
-        </Popover>
+        <div className={styles.layout}>
+          <section>
+            <div>{registered && 'Registered to:'}</div>
+            <span className={styles.name}>{`${firstName} ${lastName}`}</span>
+          </section>
+          <Popover
+            isOpen={popoverVisible}
+            place="below"
+            body={<UserInfoPopover showDialog={showDialog} />}
+            className={popoverStyle.Popover}
+            onOuterAction={hidePopover}
+          >
+            <Avatar>
+              <Gravatar email={email} default="mm" rating="x" />
+            </Avatar>
+          </Popover>
+        </div>
       </Visible>
 
       <UserRegistration
         active={dialogVisible}
         hideDialog={hideDialog}
-        submitForm={registration => submitRegistration(serialNumber, registration)}
+        submitRegistrationForm={submitRegistrationForm}
         {...user}
       />
     </div>
@@ -53,10 +58,10 @@ const UserInfo = ({ user, submitRegistration, showDialog, hideDialog, hidePopove
 
 UserInfo.propTypes = {
   user: PropTypes.shape(userShape).isRequired,
-  submitRegistration: PropTypes.func.isRequired,
   showDialog: PropTypes.func.isRequired,
   hideDialog: PropTypes.func.isRequired,
   hidePopover: PropTypes.func.isRequired,
+  submitRegistrationForm: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ user }) => ({ user })

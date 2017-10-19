@@ -1,6 +1,5 @@
 import deepFreeze from 'deep-freeze'
-import version from '../../src/reducers/version'
-import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
+import user from '../../src/reducers/user'
 import {
   GET_SYSEX_VERSION,
   RECEIVED_VERSION,
@@ -9,11 +8,14 @@ import {
 
 describe('version reducer', () => {
   const initialState = {
-    checked: false,
-    checking: false,
-    client: CURRENT_CLIENT_VERSION,
-    anvil: NaN,
-    expectedAnvil: CURRENT_ANVIL_VERSION,
+    checkedRegistration: true,
+    serialNumber: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    registered: false,
+    dialogVisible: false,
+    popoverVisible: false,
   }
   deepFreeze(initialState)
 
@@ -21,10 +23,8 @@ describe('version reducer', () => {
     const action = {
       type: GET_SYSEX_VERSION,
     }
-    expect(version(initialState, action)).toEqual({
+    expect(user(initialState, action)).toEqual({
       ...initialState,
-      checking: true,
-      checked: false,
     })
   })
 
@@ -38,8 +38,13 @@ describe('version reducer', () => {
         registrations: [],
       },
     }
-    expect(version(initialState, action)).toEqual({
+    expect(user(initialState, action)).toEqual({
       ...initialState,
+      firstName: '',
+      lastName: '',
+      email: '',
+      registered: false,
+      popoverVisible: true,
     })
   })
 
@@ -61,8 +66,12 @@ describe('version reducer', () => {
         ],
       },
     }
-    expect(version(initialState, action)).toEqual({
+    expect(user(initialState, action)).toEqual({
       ...initialState,
+      firstName: 'Mr.',
+      lastName: 'User',
+      email: 'email@email.com',
+      registered: true,
     })
   })
 
@@ -91,8 +100,12 @@ describe('version reducer', () => {
         ],
       },
     }
-    expect(version(initialState, action)).toEqual({
+    expect(user(initialState, action)).toEqual({
       ...initialState,
+      firstName: 'Mr.',
+      lastName: 'User',
+      email: 'email@email.com',
+      registered: true,
     })
   })
 
@@ -102,11 +115,12 @@ describe('version reducer', () => {
       anvil: 33,
       serialNumber: '',
     }
-    expect(version(initialState, action)).toEqual({
+    expect(user(initialState, action)).toEqual({
       ...initialState,
-      checking: false,
-      checked: true,
-      anvil: 33,
+      serialNumber: '',
+      firstName: '',
+      lastName: '',
+      email: '',
     })
   })
 })

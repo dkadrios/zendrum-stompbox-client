@@ -175,15 +175,14 @@ describe('sysex actions', () => {
   describe('receivedVersion', () => {
     beforeAll(() => {
       store = storeFactory({ version }, false, true)
-      store.dispatch(receivedVersion(20, 'TEST_SERIAL'))
+      store.dispatch(receivedVersion(40, 'TEST_SERIAL'))
     })
 
     it('should succeed', () => {
       expect(store.getState().version).toEqual({
         ...version,
         checked: true,
-        anvil: 20,
-        serialNumber: 'TEST_SERIAL',
+        anvil: 40,
       })
     })
   })

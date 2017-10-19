@@ -3,9 +3,23 @@
 .registrationDialog {
   max-width: 500px;
 
+  form {
+    margin: 20px 0 30px;
+    border: 2px groove lighten($color-text-mid, 50);
+    border-radius: 5px;
+    padding: 15px;
+    background-color: $color-background-light;
+  }
+
+  .nameFields {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
   .gravatarNotice {
     display: flex;
-    max-width: 300px;
+    max-width: 330px;
 
     svg {
       width: 36px;
@@ -20,10 +34,25 @@
 }
 
 .userInfo {
-  .name {
-    padding: 0 10px 0 0;
-    font-size: 16px;
-  }
   cursor: pointer;
   outline: none;
+  .layout {
+    display: flex;
+    flex-flow: row nowrap;
+
+    section {
+      display: flex;
+      flex-flow: column nowrap;
+      align-self: center;
+      color: $color-text-dimmer;
+      div {
+        font-size: 13px;
+        text-decoration: underline;
+      }
+      .name {
+        padding: 0 10px 0 0;
+        font-size: 15px;
+      }
+    }
+  }
 }

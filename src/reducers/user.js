@@ -15,19 +15,6 @@ const receivedVersion = (state, { serialNumber }) => ({
   serialNumber,
 })
 
-const checkedRegistration = (state, { productInstance: { registrations } }) => {
-  let newState = { ...state, checkedRegistration: true }
-  const A = registrations.filter(entry => entry.active)
-
-  newState.registered = A.length === 1
-
-  if (newState.registered) {
-    const { firstName, lastName, email } = A[0]
-    newState = { ...newState, firstName, lastName, email }
-  }
-  return newState
-}
-
 const toggleDialog = dialogVisible => state => ({
   ...state,
   dialogVisible,
@@ -37,6 +24,20 @@ const togglePopover = popoverVisible => state => ({
   ...state,
   popoverVisible,
 })
+
+const checkedRegistration = (state, { productInstance: { registrations } }) => {
+  let newState = { ...state, checkedRegistration: true }
+  const A = registrations.filter(entry => entry.active)
+
+  newState.registered = A.length === 1
+
+  if (newState.registered) {
+    const { firstName, lastName, email } = A[0]
+    newState = { ...newState, firstName, lastName, email }
+    return togglePopover(false)(newState)
+  }
+  return togglePopover(true)(newState)
+}
 
 const handlers = {
   [RECEIVED_VERSION]: receivedVersion,
@@ -55,7 +56,7 @@ const defaultState = {
   email: '',
   checkedRegistration: false,
   registered: false,
-  dialogVisible: true,
+  dialogVisible: false,
   popoverVisible: false,
 }
 

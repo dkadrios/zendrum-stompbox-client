@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import { submit } from 'redux-form'
 import { PRODUCT_INSTANCE } from '../endpoints'
 import {
   SHOW_REGISTRATION_DLG,
@@ -14,9 +15,9 @@ export const checkedRegistration = productInstance => ({
   productInstance,
 })
 
-export const deviceRegistered = registration => ({
+export const deviceRegistered = productInstance => ({
   type: DEVICE_REGISTERED,
-  registration,
+  productInstance,
 })
 
 export const showDialog = () => ({
@@ -35,7 +36,14 @@ export const hidePopover = () => ({
   type: HIDE_REGISTRATION_NAG,
 })
 
-export const submitRegistration = (serialNumber, registration) => (dispatch) => {
+export const submitRegistrationForm = () => (dispatch) => {
+  dispatch(submit('userRegistrationForm'))
+}
+
+export const submitRegistration = form => (dispatch) => {
+  const { serialNumber, firstName, lastName, email } = form
+  const registration = { firstName, lastName, email }
+
   fetch(PRODUCT_INSTANCE + serialNumber, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -43,6 +51,7 @@ export const submitRegistration = (serialNumber, registration) => (dispatch) => 
   })
     .then(response => response.json())
     .then(newRegistration => dispatch(deviceRegistered(newRegistration)))
+    .then(() => dispatch(hideDialog()))
 }
 
 export const checkRegistration = serialNumber => (dispatch) => {

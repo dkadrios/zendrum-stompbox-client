@@ -6,8 +6,9 @@ import {
   stompblockMissing,
   midiInActivityChanged,
   midiOutActivityChanged,
-  checkedRegistration,
 } from '../../src/action-creators/stompblock'
+
+import { checkedRegistration } from '../../src/action-creators/user'
 
 describe('stompblock actions', () => {
   let store
@@ -89,7 +90,7 @@ describe('stompblock actions', () => {
     })
 
     it('should report registered', () => {
-      expect(store.getState().version.registered).toBeTruthy()
+      expect(store.getState().user.registered).toBeTruthy()
     })
   })
 })
