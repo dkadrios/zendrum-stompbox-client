@@ -7,10 +7,12 @@ import {
   STOMPBLOCK_MISSING,
   MIDI_IN_ACTIVITY,
   MIDI_OUT_ACTIVITY,
+  NOT_RESPONDING,
 } from '../../src/action-creators/actions'
 
 describe('stompblock reducer', () => {
   const initialState = {
+    responding: true,
     searchedForStompblock: false,
     accessGranted: false,
     found: false,
@@ -36,6 +38,16 @@ describe('stompblock reducer', () => {
     expect(stompblock(initialState, action)).toEqual({
       ...initialState,
       found: true,
+    })
+  })
+
+  it('notResponding success', () => {
+    const action = {
+      type: NOT_RESPONDING,
+    }
+    expect(stompblock(initialState, action)).toEqual({
+      ...initialState,
+      responding: false,
     })
   })
 

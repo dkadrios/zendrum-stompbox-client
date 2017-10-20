@@ -6,6 +6,7 @@ import {
   stompblockMissing,
   midiInActivityChanged,
   midiOutActivityChanged,
+  notResponding,
 } from '../../src/action-creators/stompblock'
 
 import { checkedRegistration } from '../../src/action-creators/user'
@@ -14,6 +15,7 @@ describe('stompblock actions', () => {
   let store
 
   const stompblock = {
+    responding: true,
     searchedForStompblock: false,
     accessGranted: false,
     found: false,
@@ -53,6 +55,17 @@ describe('stompblock actions', () => {
 
     it('should report found', () => {
       expect(store.getState().stompblock.found).toBeFalsy()
+    })
+  })
+
+  describe('notResponding', () => {
+    beforeAll(() => {
+      store = storeFactory({ stompblock }, false, true)
+      store.dispatch(notResponding())
+    })
+
+    it('should report false', () => {
+      expect(store.getState().stompblock.responding).toBeFalsy()
     })
   })
 

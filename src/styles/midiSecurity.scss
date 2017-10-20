@@ -3,6 +3,11 @@
 
 .midiSecurity {
   @extend .baseDialog;
+
+  p {
+    line-height: normal;
+  }
+
   h1 {
     text-align: center;
   }

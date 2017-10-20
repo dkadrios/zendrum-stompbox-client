@@ -10,10 +10,12 @@ import {
   CONFIRM_FACTORY_RESET,
   FACTORY_RESET,
   RECEIVED_ALL_TRIMS,
+  CHANGE_PRIMARY_NAV_TAB,
 } from '../../src/action-creators/actions'
 
 describe('settings reducer', () => {
   const initialState = {
+    primaryNavTabIdx: 0,
     muteEnabledAtStart: false,
     thruEnabledAtStart: true,
     muteGroupsEnabled: true,
@@ -121,6 +123,17 @@ describe('settings reducer', () => {
       ...initialState,
       showResetDialog: false,
       resetInProcess: false,
+    })
+  })
+
+  it('changeTabIdx success', () => {
+    const action = {
+      type: CHANGE_PRIMARY_NAV_TAB,
+      primaryNavTabIdx: 8,
+    }
+    expect(settings(initialState, action)).toEqual({
+      ...initialState,
+      primaryNavTabIdx: 8,
     })
   })
 })

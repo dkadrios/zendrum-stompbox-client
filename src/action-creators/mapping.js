@@ -3,6 +3,7 @@ import enrich1Mapping from '../mappings/emrichNumber1'
 import { LOAD_MAPPING } from './actions'
 
 export const loadMapping = () => {
+  /* istanbul ignore next */
   const name = localStorage.getItem('mapping') || 'stompblock'
   let entries
 
@@ -13,6 +14,7 @@ export const loadMapping = () => {
     case 'emrichNumber1':
       entries = enrich1Mapping
       break
+    /* istanbul ignore next */
     default:
       entries = stompblockMapping
   }

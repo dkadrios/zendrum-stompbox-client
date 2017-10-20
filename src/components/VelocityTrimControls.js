@@ -4,7 +4,7 @@ import Knob from 'react-canvas-knob'
 import styles from '../styles/velocityTrim'
 import { trimShape } from '../reducers/velocityTrim'
 
-const wheelColor = value => (value > 65 ? '#22FF55' : value > 30 ? 'orange' : 'yellow')
+const wheelColor = value => (value > 65 ? '#11ff00' : value > 30 ? 'orange' : 'yellow')
 
 const VelocityTrimControls = ({ item, userChangedTrim, userChangedTrimEnd }) => (
   <div className={styles.trimContainer}>

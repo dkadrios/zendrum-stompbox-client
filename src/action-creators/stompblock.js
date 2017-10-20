@@ -7,6 +7,7 @@ import {
   CONFIRM_FACTORY_RESET,
   FACTORY_RESET,
   RELOAD_SYSEX,
+  NOT_RESPONDING,
 } from './actions'
 
 export const searchedForStompblock = () => ({
@@ -19,6 +20,10 @@ export const stompblockFound = () => ({
 
 export const stompblockMissing = () => ({
   type: STOMPBLOCK_MISSING,
+})
+
+export const notResponding = () => ({
+  type: NOT_RESPONDING,
 })
 
 export const midiInActivityChanged = midiInActivity => ({

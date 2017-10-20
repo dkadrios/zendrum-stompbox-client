@@ -4,15 +4,19 @@ import {
   GET_SYSEX_VERSION,
   RECEIVED_VERSION,
   CHECKED_REGISTRATION,
+  SHOW_REGISTRATION_DLG,
+  HIDE_REGISTRATION_DLG,
+  SHOW_REGISTRATION_NAG,
+  HIDE_REGISTRATION_NAG,
 } from '../../src/action-creators/actions'
 
 describe('version reducer', () => {
   const initialState = {
-    checkedRegistration: true,
     serialNumber: '',
     firstName: '',
     lastName: '',
     email: '',
+    checkedRegistration: true,
     registered: false,
     dialogVisible: false,
     popoverVisible: false,
@@ -121,6 +125,30 @@ describe('version reducer', () => {
       firstName: '',
       lastName: '',
       email: '',
+    })
+  })
+
+  it('toggleDialog success', () => {
+    expect(user(initialState, { type: SHOW_REGISTRATION_DLG })).toEqual({
+      ...initialState,
+      dialogVisible: true,
+    })
+
+    expect(user(initialState, { type: HIDE_REGISTRATION_DLG })).toEqual({
+      ...initialState,
+      dialogVisible: false,
+    })
+  })
+
+  it('togglePopover success', () => {
+    expect(user(initialState, { type: SHOW_REGISTRATION_NAG })).toEqual({
+      ...initialState,
+      popoverVisible: true,
+    })
+
+    expect(user(initialState, { type: HIDE_REGISTRATION_NAG })).toEqual({
+      ...initialState,
+      popoverVisible: false,
     })
   })
 })

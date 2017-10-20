@@ -8,6 +8,11 @@
   flex-direction: column;
   height: 100vh;
 
+  canvas {
+    -webkit-filter: drop-shadow(2px 2px 3px $color-border);
+    filter: drop-shadow(2px 2px 3px $color-border);
+  }
+
   .tips {
     color: $color-appbar-text;
     margin: 0 30px 0 14px;

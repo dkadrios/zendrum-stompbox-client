@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
 import {
   SEARCHED_FOR_STOMPBLOCK,
@@ -5,6 +6,8 @@ import {
   STOMPBLOCK_MISSING,
   MIDI_IN_ACTIVITY,
   MIDI_OUT_ACTIVITY,
+  NOT_RESPONDING,
+  RECEIVED_VERSION,
 } from '../action-creators/actions'
 
 const searchedForStompblock = state => ({
@@ -20,6 +23,16 @@ const stompblockFound = state => ({
 const stompblockMissing = state => ({
   ...state,
   found: false,
+})
+
+const notResponding = state => ({
+  ...state,
+  responding: false,
+})
+
+const responding = state => ({
+  ...state,
+  responding: true,
 })
 
 const receivedDeviceList = state => ({
@@ -44,14 +57,26 @@ const handlers = {
   'redux-midi/midi/RECEIVE_DEVICE_LIST': receivedDeviceList,
   [MIDI_IN_ACTIVITY]: midiInActivityChanged,
   [MIDI_OUT_ACTIVITY]: midiOutActivityChanged,
+  [NOT_RESPONDING]: notResponding,
+  [RECEIVED_VERSION]: responding,
 }
 
 const defaultState = {
+  responding: true, // Assume responding until proven otherwise
   searchedForStompblock: false,
   accessGranted: false,
   found: false,
   midiInActivity: false,
   midiOutActivity: false,
+}
+
+export const stompblockShape = {
+  responding: PropTypes.bool,
+  searchedForStompblock: PropTypes.bool,
+  accessGranted: PropTypes.bool,
+  found: PropTypes.bool,
+  midiInActivity: PropTypes.bool,
+  midiOutActivity: PropTypes.bool,
 }
 
 export default createReducer(defaultState, handlers)

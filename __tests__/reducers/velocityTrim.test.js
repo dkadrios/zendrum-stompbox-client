@@ -10,6 +10,7 @@ import {
   SELECT_TRIM,
   CHANGE_GROUP,
   CHANGE_LIST_VIEW,
+  LOAD_MAPPING,
 } from '../../src/action-creators/actions'
 
 describe('velocityTrim reducer', () => {
@@ -19,6 +20,7 @@ describe('velocityTrim reducer', () => {
     search: '',
     group: 'all',
     listView: 'medium',
+    selectedNoteNum: 42,
     data: stompblock,
   }
   deepFreeze(initialState)
@@ -118,6 +120,43 @@ describe('velocityTrim reducer', () => {
     expect(velocityTrim(initialState, action)).toEqual({
       ...initialState,
       listView: 'new view',
+    })
+  })
+
+  it('loadMapping success', () => {
+    const initializedState = {
+      ...initialState,
+      data: [
+        {
+          note: 72,
+          name: '---',
+          group: 'Loading...',
+          trim: 0,
+        },
+      ],
+    }
+
+    const action = {
+      type: LOAD_MAPPING,
+      entries: [
+        {
+          note: 72,
+          name: 'Rock Tom 3',
+          group: 'Toms',
+          trim: 92,
+        },
+      ],
+    }
+    expect(velocityTrim(initializedState, action)).toEqual({
+      ...initializedState,
+      data: [
+        {
+          note: 72,
+          name: 'Rock Tom 3',
+          group: 'Toms',
+          trim: 92,
+        },
+      ],
     })
   })
 })

@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import Dialog from 'react-toolbox/lib/dialog'
 import FontIcon from 'react-toolbox/lib/font_icon'
 import styles from '../styles/midiSecurity'
+import { stompblockShape } from '../reducers/stompblock'
 
-const NoStompblockFound = ({ stompblock }) => (
+const NoStompblockFound = ({ stompblock: { searchedForStompblock, found } }) => (
   <Dialog
-    active={stompblock.searchedForStompblock && !stompblock.found}
+    active={searchedForStompblock && !found}
     title="STOMPBLOCK Not Found"
     className={styles.noStompblockFound}
   >
@@ -25,10 +26,7 @@ const NoStompblockFound = ({ stompblock }) => (
 )
 
 NoStompblockFound.propTypes = {
-  stompblock: PropTypes.shape({
-    searchedForStompblock: PropTypes.bool.isRequired,
-    found: PropTypes.bool.isRequired,
-  }).isRequired,
+  stompblock: PropTypes.shape(stompblockShape).isRequired,
 }
 
 const mapStateToProps = ({ stompblock }) => ({ stompblock })
