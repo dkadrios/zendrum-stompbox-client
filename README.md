@@ -5,8 +5,8 @@ This client is used on [https://zendrumstudio.com](https://zendrumstudio.com/sto
 It makes use of Web MIDI and SysEx and therefore must be served via HTTPS.
 
 ## Requirements
-* node `^7.0.0`
-* yarn `^0.27.0` or npm `^5.0.0`
+* node `^8.7.0`
+* yarn `^1.2.1`
 
 ## Installation
 
