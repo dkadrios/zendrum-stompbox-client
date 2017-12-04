@@ -38,7 +38,7 @@ MuteItemNew.propTypes = {
   addMuteItem: PropTypes.func.isRequired,
   groupIdx: PropTypes.number.isRequired,
   muter: PropTypes.bool.isRequired,
-  mapping: PropTypes.arrayOf(mappingShape).isRequired,
+  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
 }
 
 export default MuteItemNew

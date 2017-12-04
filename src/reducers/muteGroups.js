@@ -1,4 +1,5 @@
 /* eslint-disable no-plusplus */
+import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
 import { RECEIVED_MUTE_GROUPS } from '../action-creators/actions'
 
@@ -34,6 +35,15 @@ const handlers = {
 
 const defaultState = {
   data: [],
+}
+
+export const muteGroupShape = {
+  muteables: PropTypes.arrayOf(PropTypes.number),
+  muters: PropTypes.arrayOf(PropTypes.number),
+}
+
+export const muteGroupsShape = {
+  data: PropTypes.arrayOf(PropTypes.shape(muteGroupShape)),
 }
 
 export default createReducer(defaultState, handlers)

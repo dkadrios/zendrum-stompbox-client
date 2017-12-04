@@ -10,7 +10,7 @@ export const STOMPBLOCK_DEVICE_ID = 0x6b
 
 export const CURRENT_ANVIL_VERSION = 25
 
-export const CURRENT_CLIENT_VERSION = 30
+export const CURRENT_CLIENT_VERSION = 31
 
 export const CHANNEL = 10
 

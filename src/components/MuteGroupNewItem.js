@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import MuteItemNew from './MuteItemNew'
 import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../midi/'
 import { mappingShape } from '../reducers/mapping'
+import { muteGroupShape } from '../reducers/muteGroups'
 
 const MuteGroupNewItem = (props) => {
   const { muter, group, ordinal, addMuteItem, mapping } = props
@@ -23,13 +24,10 @@ const MuteGroupNewItem = (props) => {
 
 MuteGroupNewItem.propTypes = {
   muter: PropTypes.bool.isRequired,
-  group: PropTypes.shape({
-    muteables: PropTypes.arrayOf(PropTypes.number),
-    muters: PropTypes.arrayOf(PropTypes.number),
-  }).isRequired,
+  group: PropTypes.shape(muteGroupShape).isRequired,
   ordinal: PropTypes.number.isRequired,
   addMuteItem: PropTypes.func.isRequired,
-  mapping: mappingShape.isRequired,
+  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
 }
 
 export default MuteGroupNewItem

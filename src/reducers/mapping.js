@@ -21,10 +21,10 @@ const defaultState = {
   ],
 }
 
-export const mappingShape = PropTypes.shape({
+export const mappingShape = {
   note: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   group: PropTypes.string.isRequired,
-})
+}
 
 export default createReducer(defaultState, handlers)

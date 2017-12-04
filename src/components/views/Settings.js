@@ -26,27 +26,33 @@ const Settings = (props) => {
   const { name: mappingName, available: availableMaps } = mapping
 
   return (
-    <div className={styles.settings}>
-      <h2>Card</h2>
-      <MappingSelector selected={mappingName} available={availableMaps} onChange={selectMapping} />
-
-      <h2>Preferences</h2>
-      <section>
-        <p>These settings directly affect the behavior of your STOMPBLOCK.</p>
-        <TS checked={muteEnabledAtStart} feature="MUTE when turned on" handler={setMuteEnabled} />
-        <TS checked={thruEnabledAtStart} feature="THRU when turned on" handler={setThruEnabled} />
-        <TS
-          checked={muteGroupsEnabled}
-          feature="mute groups (e.g. hi-hats)"
-          handler={setMuteGroupsEnabled}
+    <div className={styles.settingsCont}>
+      <div className={styles.settings}>
+        <h2>Card</h2>
+        <MappingSelector
+          selected={mappingName}
+          available={availableMaps}
+          onChange={selectMapping}
         />
-      </section>
 
-      <FactoryReset
-        settings={settings}
-        confirmFactoryReset={confirmFactoryReset}
-        performFactoryReset={performFactoryReset}
-      />
+        <h2>Preferences</h2>
+        <section>
+          <p>These settings directly affect the behavior of your STOMPBLOCK.</p>
+          <TS checked={muteEnabledAtStart} feature="MUTE when turned on" handler={setMuteEnabled} />
+          <TS checked={thruEnabledAtStart} feature="THRU when turned on" handler={setThruEnabled} />
+          <TS
+            checked={muteGroupsEnabled}
+            feature="mute groups (e.g. hi-hats)"
+            handler={setMuteGroupsEnabled}
+          />
+        </section>
+
+        <FactoryReset
+          settings={settings}
+          confirmFactoryReset={confirmFactoryReset}
+          performFactoryReset={performFactoryReset}
+        />
+      </div>
     </div>
   )
 }

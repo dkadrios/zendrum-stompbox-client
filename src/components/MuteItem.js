@@ -24,7 +24,7 @@ MuteItem.propTypes = {
   groupIdx: PropTypes.number.isRequired,
   itemIdx: PropTypes.number.isRequired,
   muter: PropTypes.bool.isRequired,
-  mapping: mappingShape.isRequired,
+  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
 }
 
 export default MuteItem

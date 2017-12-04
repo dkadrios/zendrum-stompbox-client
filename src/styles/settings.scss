@@ -1,7 +1,20 @@
 @import 'variables';
+@import 'mixins';
 @import '_dialogs';
 
+$settings-height: $height-footer + $height-header + $height-tabs;
+
+.settingsCont {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .settings {
+  overflow-y: auto;
+  width: 100vw;
+  height: calc(100vh - #{$settings-height});
+
   h2 {
     margin-left: 20px;
   }

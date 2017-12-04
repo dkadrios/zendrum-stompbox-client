@@ -4,8 +4,9 @@ import { AppBar } from 'react-toolbox'
 import MuteItem from './MuteItem'
 import MuteGroupNewItem from './MuteGroupNewItem'
 import { mappingShape } from '../reducers/mapping'
+import { muteGroupShape } from '../reducers/muteGroups'
 import styles from '../styles/muteGroups'
-import SubAppBarTheme from '../styles/react-toolbox-theme/SubAppBar.scss'
+import SubAppBarTheme from '../styles/react-toolbox-theme/SubAppBar'
 
 const MuteGroup = (props) => {
   const { group, ordinal, deleteMuteItem, deleteMuteGroup, mapping } = props
@@ -51,15 +52,12 @@ const MuteGroup = (props) => {
 }
 
 MuteGroup.propTypes = {
-  group: PropTypes.shape({
-    muteables: PropTypes.arrayOf(PropTypes.number),
-    muters: PropTypes.arrayOf(PropTypes.number),
-  }).isRequired,
+  group: PropTypes.shape(muteGroupShape).isRequired,
   ordinal: PropTypes.number.isRequired,
   addMuteItem: PropTypes.func.isRequired,
   deleteMuteItem: PropTypes.func.isRequired,
   deleteMuteGroup: PropTypes.func.isRequired,
-  mapping: mappingShape.isRequired,
+  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
 }
 
 export default MuteGroup

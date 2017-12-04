@@ -7,8 +7,10 @@ import styles from '../../styles/muteGroups'
 import MuteGroup from '../MuteGroup'
 import { MAX_MUTE_GROUPS } from '../../midi/'
 import * as muteGroupActions from '../../action-creators/muteGroups'
+import { muteGroupsShape } from '../../reducers/muteGroups'
 
 const MuteGroups = (props) => {
+  // debugger // eslint-disable-line
   const {
     muteGroups: { data },
     mapping: { entries },
@@ -44,7 +46,7 @@ const MuteGroups = (props) => {
 }
 
 MuteGroups.propTypes = {
-  muteGroups: PropTypes.shape({ data: PropTypes.array.isRequired }).isRequired,
+  muteGroups: PropTypes.shape(muteGroupsShape).isRequired,
   mapping: PropTypes.shape({ entries: PropTypes.array.isRequired }).isRequired,
   deleteMuteItem: PropTypes.func.isRequired,
   addMuteItem: PropTypes.func.isRequired,
