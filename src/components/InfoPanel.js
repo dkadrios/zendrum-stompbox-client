@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styles from '../styles/infoPanel'
+import { versionShape } from '../reducers/version'
 
 const InfoPanel = ({ version }) => {
   const { expectedAnvil, anvil, client } = version
@@ -34,11 +35,7 @@ const InfoPanel = ({ version }) => {
 }
 
 InfoPanel.propTypes = {
-  version: PropTypes.shape({
-    expectedAnvil: PropTypes.number,
-    anvil: PropTypes.number,
-    client: PropTypes.number,
-  }).isRequired,
+  version: PropTypes.shape(versionShape).isRequired,
 }
 
 const mapStateToProps = ({ version }) => ({ version })

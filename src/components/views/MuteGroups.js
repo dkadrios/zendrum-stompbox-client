@@ -10,7 +10,6 @@ import * as muteGroupActions from '../../action-creators/muteGroups'
 import { muteGroupsShape } from '../../reducers/muteGroups'
 
 const MuteGroups = (props) => {
-  // debugger // eslint-disable-line
   const {
     muteGroups: { data },
     mapping: { entries },

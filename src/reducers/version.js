@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
 import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../midi/'
 import { GET_SYSEX_VERSION, RECEIVED_VERSION, STOMPBLOCK_MISSING } from '../action-creators/actions'
@@ -33,6 +34,14 @@ const defaultState = {
   client: CURRENT_CLIENT_VERSION,
   anvil: NaN,
   expectedAnvil: CURRENT_ANVIL_VERSION,
+}
+
+export const versionShape = {
+  checking: PropTypes.bool,
+  checked: PropTypes.bool,
+  client: PropTypes.number,
+  anvil: PropTypes.number,
+  expectedAnvil: PropTypes.number,
 }
 
 export default createReducer(defaultState, handlers)
