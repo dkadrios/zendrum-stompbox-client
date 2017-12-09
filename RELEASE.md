@@ -2,6 +2,7 @@
 
 | Date       | Version | Notes                                                                                                                                                          |
 | ---------- | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2017-12-08 |   3.3   | Start recording firmware version in preparation of the 3.x rollout                                                                                             |
 | 2017-12-08 |   3.2   | Toolbar settings persist in session<br>Support for second sound bank<br>Support for new hardware features (channels, vel. variance, etc)<br>MIDI chase feature |
 | 2017-12-03 |   3.1   | Settings page would not show scrollbar                                                                                                                         |
 | 2017-10-20 |   3.0   | Major overhaul; Support 3rd party cards                                                                                                                        |

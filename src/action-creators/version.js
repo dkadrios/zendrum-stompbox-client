@@ -14,5 +14,5 @@ export const receivedVersion = (anvil, serialNumber) => (dispatch) => {
     serialNumber,
   })
 
-  dispatch(checkRegistration(serialNumber))
+  dispatch(checkRegistration(serialNumber, anvil))
 }

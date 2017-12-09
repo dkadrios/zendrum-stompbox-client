@@ -44,7 +44,7 @@ export const submitRegistration = form => (dispatch) => {
   const { serialNumber, firstName, lastName, email } = form
   const registration = { firstName, lastName, email }
 
-  fetch(PRODUCT_INSTANCE + serialNumber, {
+  fetch(`${PRODUCT_INSTANCE}/${serialNumber}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(registration),
@@ -54,8 +54,8 @@ export const submitRegistration = form => (dispatch) => {
     .then(() => dispatch(hideDialog()))
 }
 
-export const checkRegistration = serialNumber => (dispatch) => {
-  fetch(PRODUCT_INSTANCE + serialNumber)
+export const checkRegistration = (serialNumber, anvil) => (dispatch) => {
+  fetch(`${PRODUCT_INSTANCE}/${serialNumber}?v=${anvil}`)
     .then(response => response.json())
     .then(productInstance => dispatch(checkedRegistration(productInstance)))
 }
