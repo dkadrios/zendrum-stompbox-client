@@ -9,7 +9,6 @@ import Settings from './views/Settings'
 import MuteGroups from './views/MuteGroups'
 import MidiActivity from './MidiActivity'
 import TopBar from '../components/TopBar'
-import tabsTheme from '../styles/react-toolbox-theme/Tabs.scss'
 
 const PrimaryNav = ({ settings: { primaryNavTabIdx }, changePrimaryNavTab }) => (
   <div>
@@ -17,7 +16,7 @@ const PrimaryNav = ({ settings: { primaryNavTabIdx }, changePrimaryNavTab }) => 
 
     <section>
       <MidiActivity />
-      <Tabs index={primaryNavTabIdx} onChange={changePrimaryNavTab} theme={tabsTheme}>
+      <Tabs index={primaryNavTabIdx} onChange={changePrimaryNavTab}>
         <Tab label="Trims">
           <VelocityTrimListView />
         </Tab>

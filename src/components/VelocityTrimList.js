@@ -6,7 +6,7 @@ import { trimShape } from '../reducers/velocityTrim'
 
 const VelocityTrimList = (props) => {
   const { items, velocityTrim } = props
-  const { listView, selectedNoteNum } = velocityTrim
+  const { listView, selectedNoteNum, bank } = velocityTrim
 
   return (
     <div className={styles.list}>
@@ -15,6 +15,7 @@ const VelocityTrimList = (props) => {
           <VelocityTrim
             key={item.note}
             item={item}
+            bank={bank}
             selected={item.note === selectedNoteNum}
             {...props}
           />

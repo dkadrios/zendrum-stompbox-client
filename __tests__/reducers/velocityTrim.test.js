@@ -31,7 +31,7 @@ describe('velocityTrim reducer', () => {
       incomingTrims: [],
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
-      group: 'Perc',
+      group: 'Percussion',
       name: 'Tumba Thump',
       note: 1,
       trim: undefined,
@@ -42,9 +42,10 @@ describe('velocityTrim reducer', () => {
       // Not arguing, because the app is working fine as-is...
       // ...but this really should be zero-indexed and not starting at one
       incomingTrims: [0, 77],
+      bank: 1,
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
-      group: 'Perc',
+      group: 'Percussion',
       name: 'Tumba Thump',
       note: 1,
       trim: 77,
@@ -56,9 +57,10 @@ describe('velocityTrim reducer', () => {
       type: USER_CHANGED_TRIM,
       noteNum: 1,
       value: 66,
+      bank: 1,
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
-      group: 'Perc',
+      group: 'Percussion',
       name: 'Tumba Thump',
       note: 1,
       trim: 66,
@@ -70,9 +72,10 @@ describe('velocityTrim reducer', () => {
       type: USER_CHANGED_TRIM_END,
       noteNum: 1,
       value: 66,
+      bank: 1,
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
-      group: 'Perc',
+      group: 'Percussion',
       name: 'Tumba Thump',
       note: 1,
       trim: 66,

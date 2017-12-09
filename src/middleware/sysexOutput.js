@@ -11,6 +11,10 @@ import {
   DELETE_MUTE_ITEM,
   ADD_MUTE_ITEM,
   USER_CHANGED_TRIM_END,
+  SET_CHANNEL_A,
+  SET_CHANNEL_B,
+  SET_VELOCITY_VARIANCE,
+  SET_ROUND_ROBIN_ENABLED,
 } from '../action-creators/actions'
 import {
   SYSEX_MSG_SET_MUTE_ENABLED,
@@ -28,6 +32,10 @@ import {
   deleteMuteItem,
   addMuteItem,
   changeTrim,
+  setChannelA,
+  setChannelB,
+  setVelocityVariance,
+  setRoundRobinEnabled,
 } from '../midi/sysexOutput'
 
 export default store => next => (action) => {
@@ -53,7 +61,7 @@ export default store => next => (action) => {
       break
 
     case PLAY_NOTE:
-      playNote(store.dispatch, action.noteNum, action.velocity)
+      playNote(store.dispatch, action.bank, action.noteNum, action.velocity)
       break
 
     case FACTORY_RESET:
@@ -81,7 +89,20 @@ export default store => next => (action) => {
       break
 
     case USER_CHANGED_TRIM_END:
-      changeTrim(store.dispatch, action.noteNum, action.value)
+      changeTrim(store.dispatch, action.bank, action.noteNum, action.value)
+      break
+
+    case SET_CHANNEL_A:
+      setChannelA(store.dispatch, action.channelA)
+      break
+    case SET_CHANNEL_B:
+      setChannelB(store.dispatch, action.channelB)
+      break
+    case SET_VELOCITY_VARIANCE:
+      setVelocityVariance(store.dispatch, action.velocityVariance)
+      break
+    case SET_ROUND_ROBIN_ENABLED:
+      setRoundRobinEnabled(store.dispatch, action.roundRobinEnabled)
       break
 
     default:

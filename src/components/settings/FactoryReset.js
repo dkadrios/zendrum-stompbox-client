@@ -4,8 +4,9 @@ import Button from 'react-toolbox/lib/button'
 import Dialog from 'react-toolbox/lib/dialog'
 import FontIcon from 'react-toolbox/lib/font_icon'
 import ProgressBar from 'react-toolbox/lib/progress_bar'
-import buttonTheme from '../styles/react-toolbox-theme/WarningButton.scss'
-import styles from '../styles/settings'
+import buttonTheme from '../../styles/react-toolbox-theme/WarningButton.scss'
+import styles from '../../styles/settings'
+import { settingsShape } from '../../reducers/settings'
 
 const FactoryReset = (props) => {
   const { settings, confirmFactoryReset, performFactoryReset } = props
@@ -18,16 +19,14 @@ const FactoryReset = (props) => {
 
   return (
     <div>
-      <section>
-        <Button
-          theme={buttonTheme}
-          icon="warning"
-          label="Perform Factory Reset"
-          raised
-          primary
-          onMouseUp={() => confirmFactoryReset(true)}
-        />
-      </section>
+      <Button
+        theme={buttonTheme}
+        icon="warning"
+        label="Perform Factory Reset"
+        raised
+        primary
+        onMouseUp={() => confirmFactoryReset(true)}
+      />
 
       <Dialog
         actions={actions}
@@ -57,10 +56,7 @@ const FactoryReset = (props) => {
 }
 
 FactoryReset.propTypes = {
-  settings: PropTypes.shape({
-    showResetDialog: PropTypes.bool.isRequired,
-    resetInProcess: PropTypes.bool.isRequired,
-  }).isRequired,
+  settings: PropTypes.shape(settingsShape).isRequired,
   confirmFactoryReset: PropTypes.func.isRequired,
   performFactoryReset: PropTypes.func.isRequired,
 }

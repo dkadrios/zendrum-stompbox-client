@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze'
 import storeFactory from '../../src/store'
-import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
+import { CURRENT_CLIENT_VERSION } from '../../src/midi'
 import {
   setMuteEnabled,
   setThruEnabled,
@@ -46,7 +46,6 @@ describe('sysex actions', () => {
     checked: false,
     client: CURRENT_CLIENT_VERSION,
     anvil: NaN,
-    expectedAnvil: CURRENT_ANVIL_VERSION,
     serialNumber: '',
     userFirstName: '', // TODO
     userLastName: '',
@@ -260,7 +259,7 @@ describe('sysex actions', () => {
     beforeAll(() => {
       store = storeFactory({ velocityTrim }, false, true)
       // first item is tossed to account for zero index
-      store.dispatch(receivedVelocityTrims([0, 31, 32]))
+      store.dispatch(receivedVelocityTrims([0, 31, 32], 1))
     })
 
     it('should succeed', () => {

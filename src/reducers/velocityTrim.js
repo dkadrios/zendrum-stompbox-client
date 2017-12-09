@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { createReducer } from '../utils'
+import { createReducer, getSetting } from '../utils'
 import {
   RECEIVED_ALL_TRIMS,
   USER_CHANGED_TRIM,
@@ -9,14 +9,24 @@ import {
   CHANGE_GROUP,
   CHANGE_LIST_VIEW,
   LOAD_MAPPING,
+  CHANGE_CHASE_ENABLED,
+  NOTE_PLAYED,
 } from '../action-creators/actions'
 
-const receivedAllTrims = (state, { incomingTrims }) => ({
-  ...state,
-  data: state.data.map((item, idx) => ({ ...item, trim: incomingTrims[idx + 1] })),
-})
+const receivedAllTrims = (state, { incomingTrims, bank }) => {
+  const newState = { ...state }
 
-const userChangedTrim = (state, { noteNum, value }) => ({
+  if (bank === 1) {
+    newState.data = state.data.map((item, idx) => ({ ...item, trim: incomingTrims[idx + 1] }))
+  } else {
+    console.log('Bank 2 not supported yet.') // eslint-disable-line
+  }
+
+  return newState
+}
+
+// TODO: integrate bank
+const userChangedTrim = (state, { noteNum, value /* , bank */ }) => ({
   ...state,
   data: state.data.map((
     item,
@@ -49,6 +59,19 @@ const loadMapping = (state, { entries }) => ({
   data: state.data.map((item, idx) => ({ ...item, ...entries[idx] })),
 })
 
+const changeChaseEnabled = (state, { chaseEnabled }) => ({
+  ...state,
+  chaseEnabled,
+})
+
+const notePlayed = (
+  state,
+  { noteNum, bank }, // In the future we may want to select the bank too
+) =>
+  state.chaseEnabled && bank === state.bank
+    ? selectTrim(state, { selectedNoteNum: noteNum })
+    : { ...state }
+
 const initialTrims = () =>
   Array(126)
     .fill(0)
@@ -67,17 +90,21 @@ const handlers = {
   [SELECT_TRIM]: selectTrim,
   [CHANGE_GROUP]: changeGroup,
   [CHANGE_LIST_VIEW]: changeListView,
+  [CHANGE_CHASE_ENABLED]: changeChaseEnabled,
   [LOAD_MAPPING]: loadMapping,
+  [NOTE_PLAYED]: notePlayed,
 }
 
 const defaultState = {
   sortBy: 'idx',
   showNames: true,
-  search: '',
-  group: 'all',
-  listView: 'medium',
+  search: getSetting('search', ''),
+  group: getSetting('group', 'all'),
+  listView: getSetting('listView', 'medium'),
   selectedNoteNum: NaN,
   data: initialTrims(),
+  bank: 1,
+  chaseEnabled: getSetting('chaseEnabled', true),
 }
 
 export const trimShape = PropTypes.shape({
@@ -95,6 +122,8 @@ export const velocityTrimShape = PropTypes.shape({
   listView: PropTypes.oneOf(['narrow', 'medium', 'wide']).isRequired,
   selectedNoteNum: PropTypes.number,
   data: PropTypes.arrayOf(trimShape).isRequired,
+  bank: PropTypes.number.isRequired,
+  chaseEnabled: PropTypes.bool.isRequired,
 })
 
 export default createReducer(defaultState, handlers)

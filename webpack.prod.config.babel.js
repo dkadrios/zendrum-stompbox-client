@@ -26,6 +26,7 @@ export default {
       },
       {
         test: /(\.css|\.scss)$/,
+        exclude: /third-party/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -53,6 +54,22 @@ export default {
             },
           ],
         }),
+      },
+      {
+        test: /third-party.*\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: false,
+              importLoaders: 1,
+              localIdentName: '[local]',
+            },
+          },
+          'postcss-loader',
+        ],
       },
     ],
   },

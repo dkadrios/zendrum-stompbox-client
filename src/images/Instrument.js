@@ -9,25 +9,25 @@ import Toms from './Toms.svg.js'
 export default (name) => {
   let result
   switch (name) {
-    case 'Cymbals':
+    case 'Cymbal':
       result = Cymbals
       break
-    case 'Hats':
+    case 'Hi-hat':
       result = Hats
       break
-    case 'Kicks':
+    case 'Kick':
       result = Kicks
       break
-    case 'Perc':
+    case 'Percussion':
       result = Perc
       break
-    case 'Rides':
+    case 'Ride':
       result = Rides
       break
-    case 'Snares':
+    case 'Snare':
       result = Snares
       break
-    case 'Toms':
+    case 'Tom':
       result = Toms
       break
     default:

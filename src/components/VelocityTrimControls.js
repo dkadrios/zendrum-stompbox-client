@@ -6,7 +6,7 @@ import { trimShape } from '../reducers/velocityTrim'
 
 const wheelColor = value => (value > 65 ? '#11ff00' : value > 30 ? 'orange' : 'yellow')
 
-const VelocityTrimControls = ({ item, userChangedTrim, userChangedTrimEnd }) => (
+const VelocityTrimControls = ({ item, bank, userChangedTrim, userChangedTrimEnd }) => (
   <div className={styles.trimContainer}>
     <div>
       <Knob
@@ -22,16 +22,16 @@ const VelocityTrimControls = ({ item, userChangedTrim, userChangedTrimEnd }) => 
         disableTextInput
         displayInput={false}
         value={item.trim}
-        onChange={newVal => userChangedTrim(item.note, newVal)}
-        onChangeEnd={newVal => userChangedTrimEnd(item.note, newVal)}
+        onChange={newVal => userChangedTrim(item.note, newVal, bank)}
+        onChangeEnd={newVal => userChangedTrimEnd(item.note, newVal, bank)}
       />
     </div>
     <div>{item.trim}</div>
     <div className={styles.buttons}>
-      <button type="button" onClick={() => userChangedTrimEnd(item.note, 100)}>
+      <button type="button" onClick={() => userChangedTrimEnd(item.note, 100, bank)}>
         MAX
       </button>
-      <button type="button" onClick={() => userChangedTrimEnd(item.note, 0)}>
+      <button type="button" onClick={() => userChangedTrimEnd(item.note, 0, bank)}>
         MUTE
       </button>
     </div>
@@ -45,6 +45,7 @@ VelocityTrimControls.propTypes = {
   item: trimShape,
   userChangedTrim: PropTypes.func.isRequired,
   userChangedTrimEnd: PropTypes.func.isRequired,
+  bank: PropTypes.number.isRequired,
 }
 
 export default VelocityTrimControls

@@ -9,7 +9,7 @@
     background-color: $color-subappbar-background;
 
     .thumb {
-      background-color: darken($color-background, 10);
+      background-color: $color-highlight;
     }
   }
 
@@ -17,7 +17,7 @@
     background-color: $color-subappbar-background;
 
     .thumb {
-      background-color: darken($color-text-mid, 5);
+      background-color: darken($color-text-mid, 15);
     }
   }
 }

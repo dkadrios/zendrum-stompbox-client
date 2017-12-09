@@ -28,6 +28,8 @@ export default {
       },
       {
         test: /\.css$/,
+        // Anything in third-party should not be hashed
+        exclude: /third-party/,
         use: [
           'style-loader',
           {
@@ -37,6 +39,22 @@ export default {
               sourceMap: true,
               importLoaders: 1,
               localIdentName: '[name]--[local]--[hash:base64:8]',
+            },
+          },
+          'postcss-loader',
+        ],
+      },
+      {
+        test: /third-party.*\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: false,
+              importLoaders: 1,
+              localIdentName: '[local]',
             },
           },
           'postcss-loader',

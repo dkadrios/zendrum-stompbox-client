@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze'
 import version from '../../src/reducers/version'
-import { CURRENT_ANVIL_VERSION, CURRENT_CLIENT_VERSION } from '../../src/midi'
+import { CURRENT_CLIENT_VERSION } from '../../src/midi'
 import {
   GET_SYSEX_VERSION,
   RECEIVED_VERSION,
@@ -13,7 +13,7 @@ describe('version reducer', () => {
     checking: false,
     client: CURRENT_CLIENT_VERSION,
     anvil: NaN,
-    expectedAnvil: CURRENT_ANVIL_VERSION,
+    hasSoundBankSupport: true,
   }
   deepFreeze(initialState)
 

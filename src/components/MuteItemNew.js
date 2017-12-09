@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Autocomplete from 'react-toolbox/lib/autocomplete'
 import styles from '../styles/muteGroups'
-import autocompleteTheme from '../styles/react-toolbox-theme/Autocomplete.scss'
 import { mappingShape } from '../reducers/mapping'
 
 class MuteItemNew extends Component {
@@ -27,7 +26,6 @@ class MuteItemNew extends Component {
           source={this.source}
           onChange={value => this.handleAdd(value)}
           suggestionMatch="anywhere"
-          theme={autocompleteTheme}
         />
       </div>
     )

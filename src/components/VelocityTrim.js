@@ -5,7 +5,7 @@ import Instrument from '../images/Instrument'
 import styles from '../styles/velocityTrim'
 import { trimShape } from '../reducers/velocityTrim'
 
-const handleKeyDown = (event, item, userChangedTrimEnd) => {
+const handleKeyDown = (event, item, bank, userChangedTrimEnd) => {
   let delta = 0
 
   event.nativeEvent.preventDefault()
@@ -36,32 +36,33 @@ const handleKeyDown = (event, item, userChangedTrimEnd) => {
     delta += item.trim
     if (delta < 0) delta = 0
     if (delta > 100) delta = 100
-    userChangedTrimEnd(item.note, delta)
+    userChangedTrimEnd(item.note, delta, bank)
   }
 }
 
 const VelocityTrim = (props) => {
-  const { item, selected, playNote, selectTrim, userChangedTrimEnd } = props
+  const { item, bank, selected, playNote, selectTrim, userChangedTrimEnd } = props
+  const { note, trim, group, name } = item
   return (
     <li
-      tabIndex={item.note}
-      onKeyDown={e => handleKeyDown(e, item, userChangedTrimEnd)}
-      onMouseUp={() => (selected ? null : selectTrim(item.note))}
+      tabIndex={note}
+      onKeyDown={e => handleKeyDown(e, item, bank, userChangedTrimEnd)}
+      onMouseUp={() => (selected ? null : selectTrim(note))}
       className={selected ? styles.selected : ''}
       role="presentation"
     >
       <div
         className={styles.header}
-        onMouseUp={() => playNote(item.note, 127)}
+        onMouseUp={() => playNote(note, trim, bank)}
         role="button"
-        tabIndex={item.note}
+        tabIndex={note}
       >
-        <div>{item.note}</div>
-        <div>{item.group}</div>
-        <div>{Instrument(item.group)}</div>
+        <div>{note}</div>
+        <div>{group}</div>
+        <div>{Instrument(group)}</div>
       </div>
-      <div className={styles.noteName} title={item.name}>
-        {item.name}
+      <div className={styles.noteName} title={name}>
+        {name}
       </div>
       <VelocityTrimControls {...props} />
     </li>
@@ -74,6 +75,7 @@ VelocityTrim.propTypes = {
   playNote: PropTypes.func.isRequired,
   selectTrim: PropTypes.func.isRequired,
   userChangedTrimEnd: PropTypes.func.isRequired,
+  bank: PropTypes.number.isRequired,
 }
 
 export default VelocityTrim

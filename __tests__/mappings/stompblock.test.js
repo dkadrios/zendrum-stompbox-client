@@ -7,7 +7,7 @@ describe('stompblock mapping', () => {
 
   it('should pass the smell test', () => {
     expect(stompblock[24]).toEqual({
-      group: 'Kicks',
+      group: 'Kick',
       name: 'Funk Kick',
       note: 25,
     })

@@ -21,6 +21,11 @@ const defaultState = {
   ],
 }
 
+export const mappingsShape = {
+  name: PropTypes.string.isRequired,
+  available: PropTypes.array.isRequired,
+}
+
 export const mappingShape = {
   note: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,

@@ -8,11 +8,12 @@ import { deviceStore, devicesChanged, stompblockAttached, stompblockInputId } fr
 
 export const STOMPBLOCK_DEVICE_ID = 0x6b
 
-export const CURRENT_ANVIL_VERSION = 25
+export const CURRENT_CLIENT_VERSION = 32
 
-export const CURRENT_CLIENT_VERSION = 31
+export const MASK_CHANNEL = 15 // 00001111
+export const MASK_STATUS = 112 // 01110000
 
-export const CHANNEL = 10
+export const STATUS_NOTE_OFF = 8 // 1000
 
 export const MAX_MUTEABLES_PER_GROUP = 6
 export const MAX_MUTERS_PER_GROUP = 4

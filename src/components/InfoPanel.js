@@ -5,18 +5,11 @@ import styles from '../styles/infoPanel'
 import { versionShape } from '../reducers/version'
 
 const InfoPanel = ({ version }) => {
-  const { expectedAnvil, anvil, client } = version
+  const { anvil, client } = version
   const formatted = value => (Number.isNaN(value) ? 'N/A' : `v${(value / 10).toFixed(1)}`)
 
   const year = () => new Date().getFullYear()
   const copyright = (yr = 2017) => (yr === year() ? yr : `${yr} - ${year()}`)
-
-  const foundVersion = () =>
-    anvil === expectedAnvil ? (
-      formatted(anvil)
-    ) : (
-      <span className={styles.wrongVersion}>{formatted(anvil)}</span>
-    )
 
   return (
     <footer className={styles.infoPanel}>
@@ -27,7 +20,7 @@ const InfoPanel = ({ version }) => {
         {/* SERIAL: {serialNumber} */}
         <span className={styles.version}>Version : {formatted(client)}</span>
         <span className={styles.version}>
-          <a href="https://zendrumstudio.com/anvil">ANVIL</a> : {foundVersion()}
+          <a href="https://zendrumstudio.com/anvil">ANVIL</a> : {formatted(anvil)}
         </span>
       </div>
     </footer>

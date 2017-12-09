@@ -11,6 +11,7 @@ import {
   FACTORY_RESET,
   RECEIVED_ALL_TRIMS,
   CHANGE_PRIMARY_NAV_TAB,
+  RECEIVED_VERSION,
 } from '../../src/action-creators/actions'
 
 describe('settings reducer', () => {
@@ -134,6 +135,23 @@ describe('settings reducer', () => {
     expect(settings(initialState, action)).toEqual({
       ...initialState,
       primaryNavTabIdx: 8,
+    })
+  })
+
+  it('hasSoundBankSupport success', () => {
+    const action = {
+      type: RECEIVED_VERSION,
+      checked: true,
+      anvil: 40,
+    }
+    expect(settings(initialState, action)).toEqual({
+      ...initialState,
+      hasSoundBankSupport: true,
+    })
+
+    expect(settings(initialState, { ...action, anvil: 25 })).toEqual({
+      ...initialState,
+      hasSoundBankSupport: false,
     })
   })
 })

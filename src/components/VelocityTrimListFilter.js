@@ -4,15 +4,17 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import DebounceInput from 'react-debounce-input'
 import Dropdown from 'react-toolbox/lib/dropdown'
+import Switch from 'react-toolbox/lib/switch'
 import availableGroups from '../mappings/'
 import Btn from '../components/HOC/ToolbarButton'
+import Tooltipped from '../components/HOC/Tooltipped'
 import * as filterActions from '../action-creators/velocityTrimListFilter'
+import { velocityTrimShape } from '../reducers/velocityTrim'
 import styles from '../styles/velocityTrimListFilter'
-import dropdownTheme from '../styles/react-toolbox-theme/Dropdown.scss'
 
 const VelocityTrimListFilter = (props) => {
-  const { velocityTrim, searchTrims, changeGroup, changeListView } = props
-  const { search, group, listView } = velocityTrim
+  const { velocityTrim, searchTrims, changeGroup, changeListView, setChaseEnabled } = props
+  const { search, group, listView, chaseEnabled } = velocityTrim
 
   return (
     <div className={styles.filters}>
@@ -25,7 +27,6 @@ const VelocityTrimListFilter = (props) => {
       />
 
       <Dropdown
-        theme={dropdownTheme}
         className={styles.groups}
         auto
         onChange={value => changeGroup(value)}
@@ -53,19 +54,22 @@ const VelocityTrimListFilter = (props) => {
           onClick={() => changeListView('wide')}
         />
       </div>
+
+      <div className={styles.midiChase}>
+        <Tooltipped tooltip="Highlight any notes played on Zendrum or other instrument">
+          <Switch checked={chaseEnabled} label="MIDI Chase" onChange={setChaseEnabled} />
+        </Tooltipped>
+      </div>
     </div>
   )
 }
 
 VelocityTrimListFilter.propTypes = {
-  velocityTrim: PropTypes.shape({
-    search: PropTypes.string.isRequired,
-    group: PropTypes.string.isRequired,
-    listView: PropTypes.oneOf(['narrow', 'medium', 'wide']).isRequired,
-  }).isRequired,
+  velocityTrim: velocityTrimShape.isRequired,
   searchTrims: PropTypes.func.isRequired,
   changeGroup: PropTypes.func.isRequired,
   changeListView: PropTypes.func.isRequired,
+  setChaseEnabled: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })

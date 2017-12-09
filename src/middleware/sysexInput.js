@@ -15,7 +15,7 @@ export default store => next => (action) => {
 
   switch (action.type) {
     case RECEIVE_MIDI_MESSAGE:
-      processMidiMessage(store.dispatch, action.payload)
+      processMidiMessage(store, action.payload)
       clearTimeout(midiInTimer)
       store.dispatch(midiInActivityChanged(true))
       /* istanbul ignore next */

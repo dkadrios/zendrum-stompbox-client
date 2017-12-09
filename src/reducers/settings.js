@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
 import {
   RECEIVED_MUTE_ENABLED,
@@ -10,7 +11,18 @@ import {
   FACTORY_RESET,
   RECEIVED_ALL_TRIMS,
   CHANGE_PRIMARY_NAV_TAB,
+  RECEIVED_MIDI_SETTINGS,
+  SET_CHANNEL_A,
+  SET_CHANNEL_B,
+  SET_VELOCITY_VARIANCE,
+  SET_ROUND_ROBIN_ENABLED,
+  RECEIVED_VERSION,
 } from '../action-creators/actions'
+
+const receivedVersion = (state, { anvil }) => ({
+  ...state,
+  hasSoundBankSupport: anvil >= 30,
+})
 
 const receivedMuteEnabled = (state, { muteEnabledAtStart }) => ({
   ...state,
@@ -49,7 +61,39 @@ const changeTabIndex = (state, { primaryNavTabIdx }) => ({
   primaryNavTabIdx,
 })
 
+const receivedMidiSettings = (
+  state,
+  { channelA, channelB, velocityVariance, roundRobinEnabled },
+) => ({
+  ...state,
+  channelA,
+  channelB,
+  velocityVariance,
+  roundRobinEnabled,
+})
+
+const changeChannelA = (state, { channelA }) => ({
+  ...state,
+  channelA,
+})
+
+const changeChannelB = (state, { channelB }) => ({
+  ...state,
+  channelB,
+})
+
+const changeVelocityVariance = (state, { velocityVariance }) => ({
+  ...state,
+  velocityVariance,
+})
+
+const changeRoundRobinEnabled = (state, { roundRobinEnabled }) => ({
+  ...state,
+  roundRobinEnabled,
+})
+
 const handlers = {
+  [RECEIVED_VERSION]: receivedVersion,
   [RECEIVED_MUTE_ENABLED]: receivedMuteEnabled,
   [RECEIVED_THRU_ENABLED]: receivedThruEnabled,
   [RECEIVED_MUTE_GROUPS_ENABLED]: receivedMuteGroupsEnabled,
@@ -63,6 +107,11 @@ const handlers = {
    */
   [RECEIVED_ALL_TRIMS]: factoryResetPerformed,
   [CHANGE_PRIMARY_NAV_TAB]: changeTabIndex,
+  [RECEIVED_MIDI_SETTINGS]: receivedMidiSettings,
+  [SET_CHANNEL_A]: changeChannelA,
+  [SET_CHANNEL_B]: changeChannelB,
+  [SET_VELOCITY_VARIANCE]: changeVelocityVariance,
+  [SET_ROUND_ROBIN_ENABLED]: changeRoundRobinEnabled,
 }
 
 const defaultState = {
@@ -72,6 +121,25 @@ const defaultState = {
   muteGroupsEnabled: true,
   showResetDialog: false,
   resetInProcess: false,
+  channelA: 10,
+  channelB: 11,
+  velocityVariance: 0,
+  roundRobinEnabled: false,
+  hasSoundBankSupport: false,
+}
+
+export const settingsShape = {
+  primaryNavTabIdx: PropTypes.number,
+  muteEnabledAtStart: PropTypes.bool,
+  thruEnabledAtStart: PropTypes.bool,
+  muteGroupsEnabled: PropTypes.bool,
+  showResetDialog: PropTypes.bool,
+  resetInProcess: PropTypes.bool,
+  channelA: PropTypes.number,
+  channelB: PropTypes.number,
+  velocityVariance: PropTypes.number,
+  roundRobinEnabled: PropTypes.bool,
+  hasSoundBankSupport: PropTypes.bool,
 }
 
 export default createReducer(defaultState, handlers)
