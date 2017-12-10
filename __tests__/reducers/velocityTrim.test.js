@@ -46,8 +46,8 @@ describe('velocityTrim reducer', () => {
     }
     expect(velocityTrim(initialState, action).data).toContainEqual({
       group: 'Percussion',
-      name: 'Tumba Thump',
-      note: 1,
+      name: 'Tumba Open',
+      note: 2,
       trim: 77,
     })
   })

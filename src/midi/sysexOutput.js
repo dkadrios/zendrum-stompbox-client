@@ -60,7 +60,12 @@ export const setBooleanValue = (dispatch, command, value) =>
   dispatch(transmitAction(command, [value]))
 
 export const playNote = (dispatch, bank, noteNum, velocity) =>
-  dispatch(transmitAction(SYSEX_MSG_PLAY_NOTE, [noteNum, velocity, bank]))
+  dispatch(transmitAction(
+    SYSEX_MSG_PLAY_NOTE,
+    bank //
+      ? [noteNum, velocity, bank]
+      : [noteNum, velocity],
+  ))
 
 export const performFactoryReset = dispatch => dispatch(transmitAction(SYSEX_MSG_FACTORY_RESET))
 
@@ -76,7 +81,12 @@ export const addMuteItem = (dispatch, groupIdx, muter, noteNum) =>
   dispatch(transmitAction(SYSEX_MSG_ADD_MUTE_ITEM, [groupIdx, Number(muter), noteNum]))
 
 export const changeTrim = (dispatch, bank, noteNum, value) =>
-  dispatch(transmitAction(SYSEX_MSG_SET_ITEM, [noteNum, value, bank]))
+  dispatch(transmitAction(
+    SYSEX_MSG_SET_ITEM,
+    bank //
+      ? [noteNum, value, bank]
+      : [noteNum, value],
+  ))
 
 export const setChannelA = (dispatch, channelA) =>
   dispatch(transmitAction(SYSEX_MSG_SET_CHANNEL_A, [channelA]))

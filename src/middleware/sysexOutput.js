@@ -42,26 +42,29 @@ export default store => next => (action) => {
   // Allow the reducers to process the command first
   const result = next(action)
 
+  // For legacy units, blank out bank if not available
+  const act = store.getState().settings.hasSoundBankSupport ? { ...action } : { ...action, bank: 0 }
+
   // If it's an action that affects the hardware device, process it
-  switch (action.type) {
+  switch (act.type) {
     case GET_SYSEX_VERSION:
-      askForVersion(store.dispatch, action.serialNumber)
+      askForVersion(store.dispatch, act.serialNumber)
       break
 
     case SET_MUTE_ENABLED:
-      setBooleanValue(store.dispatch, SYSEX_MSG_SET_MUTE_ENABLED, action.muteEnabledAtStart)
+      setBooleanValue(store.dispatch, SYSEX_MSG_SET_MUTE_ENABLED, act.muteEnabledAtStart)
       break
 
     case SET_THRU_ENABLED:
-      setBooleanValue(store.dispatch, SYSEX_MSG_SET_THRU_ENABLED, action.thruEnabledAtStart)
+      setBooleanValue(store.dispatch, SYSEX_MSG_SET_THRU_ENABLED, act.thruEnabledAtStart)
       break
 
     case SET_MUTE_GROUPS_ENABLED:
-      setBooleanValue(store.dispatch, SYSEX_MSG_SET_MUTE_GROUPS_ENABLED, action.muteGroupsEnabled)
+      setBooleanValue(store.dispatch, SYSEX_MSG_SET_MUTE_GROUPS_ENABLED, act.muteGroupsEnabled)
       break
 
     case PLAY_NOTE:
-      playNote(store.dispatch, action.bank, action.noteNum, action.velocity)
+      playNote(store.dispatch, act.bank, act.noteNum, act.velocity)
       break
 
     case FACTORY_RESET:
@@ -73,7 +76,7 @@ export default store => next => (action) => {
       break
 
     case DELETE_MUTE_GROUP:
-      deleteMuteGroup(store.dispatch, action.groupIdx)
+      deleteMuteGroup(store.dispatch, act.groupIdx)
       break
 
     case ADD_MUTE_GROUP:
@@ -81,28 +84,28 @@ export default store => next => (action) => {
       break
 
     case DELETE_MUTE_ITEM:
-      deleteMuteItem(store.dispatch, action.groupIdx, action.muter, action.itemIdx)
+      deleteMuteItem(store.dispatch, act.groupIdx, act.muter, act.itemIdx)
       break
 
     case ADD_MUTE_ITEM:
-      addMuteItem(store.dispatch, action.groupIdx, action.muter, action.noteNum)
+      addMuteItem(store.dispatch, act.groupIdx, act.muter, act.noteNum)
       break
 
     case USER_CHANGED_TRIM_END:
-      changeTrim(store.dispatch, action.bank, action.noteNum, action.value)
+      changeTrim(store.dispatch, act.bank, act.noteNum, act.value)
       break
 
     case SET_CHANNEL_A:
-      setChannelA(store.dispatch, action.channelA)
+      setChannelA(store.dispatch, act.channelA)
       break
     case SET_CHANNEL_B:
-      setChannelB(store.dispatch, action.channelB)
+      setChannelB(store.dispatch, act.channelB)
       break
     case SET_VELOCITY_VARIANCE:
-      setVelocityVariance(store.dispatch, action.velocityVariance)
+      setVelocityVariance(store.dispatch, act.velocityVariance)
       break
     case SET_ROUND_ROBIN_ENABLED:
-      setRoundRobinEnabled(store.dispatch, action.roundRobinEnabled)
+      setRoundRobinEnabled(store.dispatch, act.roundRobinEnabled)
       break
 
     default:

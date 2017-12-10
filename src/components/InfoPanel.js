@@ -18,10 +18,8 @@ const InfoPanel = ({ version }) => {
       </div>
       <div className={styles.versions}>
         {/* SERIAL: {serialNumber} */}
-        <span className={styles.version}>Version : {formatted(client)}</span>
-        <span className={styles.version}>
-          <a href="https://zendrumstudio.com/anvil">ANVIL</a> : {formatted(anvil)}
-        </span>
+        <span className={styles.version}>Client : {formatted(client)}</span>
+        <span className={styles.version}>Firmware : {formatted(anvil)}</span>
       </div>
     </footer>
   )

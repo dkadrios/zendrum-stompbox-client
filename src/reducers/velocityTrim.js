@@ -17,7 +17,7 @@ const receivedAllTrims = (state, { incomingTrims, bank }) => {
   const newState = { ...state }
 
   if (bank === 1) {
-    newState.data = state.data.map((item, idx) => ({ ...item, trim: incomingTrims[idx + 1] }))
+    newState.data = state.data.map((item, idx) => ({ ...item, trim: incomingTrims[idx] }))
   } else {
     console.log('Bank 2 not supported yet.') // eslint-disable-line
   }
