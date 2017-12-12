@@ -56,7 +56,7 @@ const VelocityTrimListFilter = (props) => {
       </div>
 
       <div className={styles.midiChase}>
-        <Tooltipped tooltip="Highlight any notes played on Zendrum or other instrument">
+        <Tooltipped tooltip="Highlight any notes played on Zendrum or other instrument (requires THRU be enabled)">
           <Switch checked={chaseEnabled} label="MIDI Chase" onChange={setChaseEnabled} />
         </Tooltipped>
       </div>

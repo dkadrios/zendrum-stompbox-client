@@ -61,12 +61,12 @@ const processMidiMessage = (store, { data }) => {
         break
 
       case SYSEX_MSG_RECEIVE_ALL:
-        trims = packet.filter((item, idx) => idx < 127)
+        trims = packet.filter((item, idx) => idx < 128)
         dispatch(receivedVelocityTrims(trims, 1))
         break
 
       case SYSEX_MSG_RECEIVED_SECOND_BANK:
-        trims = packet.filter((item, idx) => idx < 127)
+        trims = packet.filter((item, idx) => idx < 128)
         dispatch(receivedVelocityTrims(trims, 2))
         break
 

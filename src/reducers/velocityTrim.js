@@ -11,13 +11,23 @@ import {
   LOAD_MAPPING,
   CHANGE_CHASE_ENABLED,
   NOTE_PLAYED,
+  RECEIVED_VERSION,
 } from '../action-creators/actions'
+
+const receivedVersion = (state, { anvil }) => ({
+  ...state,
+  hasSoundBankSupport: anvil >= 30,
+})
 
 const receivedAllTrims = (state, { incomingTrims, bank }) => {
   const newState = { ...state }
 
   if (bank === 1) {
-    newState.data = state.data.map((item, idx) => ({ ...item, trim: incomingTrims[idx] }))
+    newState.data = state.data.map((item, idx) => ({
+      ...item,
+      // Older units have trims stored with an offset of 1
+      trim: incomingTrims[idx + (state.hasSoundBankSupport ? 1 : 0)],
+    }))
   } else {
     console.log('Bank 2 not supported yet.') // eslint-disable-line
   }
@@ -93,6 +103,7 @@ const handlers = {
   [CHANGE_CHASE_ENABLED]: changeChaseEnabled,
   [LOAD_MAPPING]: loadMapping,
   [NOTE_PLAYED]: notePlayed,
+  [RECEIVED_VERSION]: receivedVersion,
 }
 
 const defaultState = {
@@ -105,6 +116,7 @@ const defaultState = {
   data: initialTrims(),
   bank: 1,
   chaseEnabled: getSetting('chaseEnabled', true),
+  hasSoundBankSupport: false,
 }
 
 export const trimShape = PropTypes.shape({
@@ -124,6 +136,7 @@ export const velocityTrimShape = PropTypes.shape({
   data: PropTypes.arrayOf(trimShape).isRequired,
   bank: PropTypes.number.isRequired,
   chaseEnabled: PropTypes.bool.isRequired,
+  hasSoundBankSupport: PropTypes.bool.isRequired,
 })
 
 export default createReducer(defaultState, handlers)

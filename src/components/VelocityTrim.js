@@ -53,7 +53,7 @@ const VelocityTrim = (props) => {
     >
       <div
         className={styles.header}
-        onMouseUp={() => playNote(note, trim, bank)}
+        onMouseUp={() => playNote(note, Math.round(127 * (trim / 100)), bank)}
         role="button"
         tabIndex={note}
       >
