@@ -38,12 +38,7 @@ export const askForVersion = (dispatch, serialNumber) => {
   dispatch(transmitAction(
     //
     SYSEX_MSG_GET_VERSION,
-
-    // Zero pad serial number char array to match maximum size (14 chars)
-    [
-      ...Array.from(serialNumber, char => char.charCodeAt(0)),
-      ...Array(14 - serialNumber.length).fill(0),
-    ],
+    Array.from(serialNumber, char => char.charCodeAt(0)),
   ))
 }
 

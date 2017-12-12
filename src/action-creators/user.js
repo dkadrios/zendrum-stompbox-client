@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { submit } from 'redux-form'
-import { PRODUCT_INSTANCE } from '../endpoints'
+import { PRODUCT_INSTANCE, PRODUCT_REGISTRATION } from '../endpoints'
 import {
   SHOW_REGISTRATION_DLG,
   HIDE_REGISTRATION_DLG,
@@ -44,7 +44,7 @@ export const submitRegistration = form => (dispatch) => {
   const { serialNumber, firstName, lastName, email } = form
   const registration = { firstName, lastName, email }
 
-  fetch(`${PRODUCT_INSTANCE}/${serialNumber}`, {
+  fetch(`${PRODUCT_REGISTRATION}/${serialNumber}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(registration),
