@@ -44,7 +44,7 @@ const VelocityTrim = (props) => {
   const { item, bank, selected, playNote, selectTrim, userChangedTrimEnd } = props
   const { note, trim, group, name } = item
   return (
-    <li
+    <section
       tabIndex={note}
       onKeyDown={e => handleKeyDown(e, item, bank, userChangedTrimEnd)}
       onMouseUp={() => (selected ? null : selectTrim(note))}
@@ -65,7 +65,7 @@ const VelocityTrim = (props) => {
         {name}
       </div>
       <VelocityTrimControls {...props} />
-    </li>
+    </section>
   )
 }
 

@@ -67,7 +67,7 @@
       outline: none;
     }
 
-    li {
+    section {
       border: 1px inset $color-subappbar-background;
       width: 175px;
       height: 100px;
@@ -146,7 +146,7 @@
       }
     }
 
-    li.selected {
+    section.selected {
       @include outerGlow($color-focus, 3px);
     }
   }

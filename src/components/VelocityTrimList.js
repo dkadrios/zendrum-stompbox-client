@@ -1,36 +1,52 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import VelocityTrim from './VelocityTrim'
 import styles from '../styles/velocityTrim'
 import { trimShape } from '../reducers/velocityTrim'
 
-const VelocityTrimList = (props) => {
-  const { items, velocityTrim } = props
-  const { listView, selectedNoteNum, bank } = velocityTrim
+class VelocityTrimList extends Component {
+  static propTypes = {
+    items: PropTypes.arrayOf(trimShape).isRequired,
+    velocityTrim: PropTypes.shape({
+      listView: PropTypes.string.isRequired,
+      selectedNoteNum: PropTypes.number.isRequired,
+    }).isRequired,
+  }
 
-  return (
-    <div className={styles.list}>
-      <ul className={styles[`${listView}View`]}>
-        {items.map(item => (
-          <VelocityTrim
-            key={item.note}
-            item={item}
-            bank={bank}
-            selected={item.note === selectedNoteNum}
-            {...props}
-          />
-        ))}
-      </ul>
-    </div>
-  )
-}
+  componentDidUpdate() {
+    if (this.trimItem) {
+      this.trimItem.scrollIntoView({ block: 'nearest', behavior: 'auto', inline: 'center' })
+    }
+  }
 
-VelocityTrimList.propTypes = {
-  items: PropTypes.arrayOf(trimShape).isRequired,
-  velocityTrim: PropTypes.shape({
-    listView: PropTypes.string.isRequired,
-    selectedNoteNum: PropTypes.number.isRequired,
-  }).isRequired,
+  render() {
+    const { items, velocityTrim } = this.props
+    const { listView, selectedNoteNum, bank } = velocityTrim
+
+    return (
+      <div className={styles.list}>
+        <ul className={styles[`${listView}View`]}>
+          {items.map(item => (
+            <li
+              key={item.note}
+              ref={(trimItem) => {
+                if (!Number.isNaN(selectedNoteNum) && selectedNoteNum === item.note) {
+                  this.trimItem = trimItem
+                }
+              }}
+            >
+              <VelocityTrim
+                item={item}
+                bank={bank}
+                selected={item.note === selectedNoteNum}
+                {...this.props}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
 }
 
 export default VelocityTrimList
