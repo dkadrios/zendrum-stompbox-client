@@ -25,6 +25,7 @@ import {
   SYSEX_MSG_SET_CHANNEL_B,
   SYSEX_MSG_SET_VELOCITY_VARIANCE,
   SYSEX_MSG_SET_ROUND_ROBIN,
+  SYSEX_MSG_SET_VOLUME_CURVE,
 } from './sysex'
 
 const transmitAction = (command, data = []) =>
@@ -99,3 +100,6 @@ export const setVelocityVariance = (dispatch, velocityVariance) =>
 
 export const setRoundRobinEnabled = (dispatch, roundRobinEnabled) =>
   dispatch(transmitAction(SYSEX_MSG_SET_ROUND_ROBIN, [roundRobinEnabled]))
+
+export const setVolumeCurve = (dispatch, volumeCurve) =>
+  dispatch(transmitAction(SYSEX_MSG_SET_VOLUME_CURVE, [volumeCurve]))

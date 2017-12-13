@@ -15,6 +15,7 @@ import {
   SET_CHANNEL_B,
   SET_VELOCITY_VARIANCE,
   SET_ROUND_ROBIN_ENABLED,
+  SET_VOLUME_CURVE,
 } from '../action-creators/actions'
 import {
   SYSEX_MSG_SET_MUTE_ENABLED,
@@ -36,6 +37,7 @@ import {
   setChannelB,
   setVelocityVariance,
   setRoundRobinEnabled,
+  setVolumeCurve,
 } from '../midi/sysexOutput'
 
 export default store => next => (action) => {
@@ -106,6 +108,9 @@ export default store => next => (action) => {
       break
     case SET_ROUND_ROBIN_ENABLED:
       setRoundRobinEnabled(store.dispatch, act.roundRobinEnabled)
+      break
+    case SET_VOLUME_CURVE:
+      setVolumeCurve(store.dispatch, act.volumeCurve)
       break
 
     default:

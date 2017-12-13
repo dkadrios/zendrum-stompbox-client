@@ -11,6 +11,7 @@ import {
   SET_CHANNEL_B,
   SET_VELOCITY_VARIANCE,
   SET_ROUND_ROBIN_ENABLED,
+  SET_VOLUME_CURVE,
 } from './actions'
 
 export const setMuteEnabled = muteEnabledAtStart => ({
@@ -54,12 +55,14 @@ export const receivedMidiSettings = ([
   channelB,
   velocityVariance,
   roundRobinEnabled,
+  volumeCurve,
 ]) => ({
   type: RECEIVED_MIDI_SETTINGS,
   channelA,
   channelB,
   velocityVariance,
   roundRobinEnabled: roundRobinEnabled === 1,
+  volumeCurve,
 })
 
 export const changeChannelA = channelA => ({
@@ -80,4 +83,9 @@ export const changeVelocityVariance = velocityVariance => ({
 export const changeRoundRobinEnabled = roundRobinEnabled => ({
   type: SET_ROUND_ROBIN_ENABLED,
   roundRobinEnabled,
+})
+
+export const changeVolumeCurve = volumeCurve => ({
+  type: SET_VOLUME_CURVE,
+  volumeCurve,
 })

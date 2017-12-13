@@ -17,6 +17,7 @@ import {
   SET_VELOCITY_VARIANCE,
   SET_ROUND_ROBIN_ENABLED,
   RECEIVED_VERSION,
+  SET_VOLUME_CURVE,
 } from '../action-creators/actions'
 
 const receivedVersion = (state, { anvil }) => ({
@@ -63,13 +64,14 @@ const changeTabIndex = (state, { primaryNavTabIdx }) => ({
 
 const receivedMidiSettings = (
   state,
-  { channelA, channelB, velocityVariance, roundRobinEnabled },
+  { channelA, channelB, velocityVariance, roundRobinEnabled, volumeCurve },
 ) => ({
   ...state,
   channelA,
   channelB,
   velocityVariance,
   roundRobinEnabled,
+  volumeCurve,
 })
 
 const changeChannelA = (state, { channelA }) => ({
@@ -92,6 +94,11 @@ const changeRoundRobinEnabled = (state, { roundRobinEnabled }) => ({
   roundRobinEnabled,
 })
 
+const changeVolumeCurve = (state, { volumeCurve }) => ({
+  ...state,
+  volumeCurve,
+})
+
 const handlers = {
   [RECEIVED_VERSION]: receivedVersion,
   [RECEIVED_MUTE_ENABLED]: receivedMuteEnabled,
@@ -112,6 +119,7 @@ const handlers = {
   [SET_CHANNEL_B]: changeChannelB,
   [SET_VELOCITY_VARIANCE]: changeVelocityVariance,
   [SET_ROUND_ROBIN_ENABLED]: changeRoundRobinEnabled,
+  [SET_VOLUME_CURVE]: changeVolumeCurve,
 }
 
 const defaultState = {
@@ -125,6 +133,7 @@ const defaultState = {
   channelB: 11,
   velocityVariance: 0,
   roundRobinEnabled: false,
+  volumeCurve: 0,
   hasSoundBankSupport: false,
 }
 
@@ -139,6 +148,7 @@ export const settingsShape = {
   channelB: PropTypes.number,
   velocityVariance: PropTypes.number,
   roundRobinEnabled: PropTypes.bool,
+  volumeCurve: PropTypes.number,
   hasSoundBankSupport: PropTypes.bool,
 }
 

@@ -25,5 +25,6 @@ export const SYSEX_MSG_SET_CHANNEL_A = 0x15
 export const SYSEX_MSG_SET_CHANNEL_B = 0x16
 export const SYSEX_MSG_SET_VELOCITY_VARIANCE = 0x17
 export const SYSEX_MSG_SET_ROUND_ROBIN = 0x18
+export const SYSEX_MSG_SET_VOLUME_CURVE = 0x19
 
 export const SYSEX_MSG_FACTORY_RESET = 0x7e
