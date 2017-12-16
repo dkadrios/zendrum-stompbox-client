@@ -5,12 +5,12 @@ import { bindActionCreators } from 'redux'
 import DebounceInput from 'react-debounce-input'
 import Dropdown from 'react-toolbox/lib/dropdown'
 import Switch from 'react-toolbox/lib/switch'
-import availableGroups from '../mappings/'
-import Btn from '../components/HOC/ToolbarButton'
-import Tooltipped from '../components/HOC/Tooltipped'
-import * as filterActions from '../action-creators/velocityTrimListFilter'
-import { velocityTrimShape } from '../reducers/velocityTrim'
-import styles from '../styles/velocityTrimListFilter'
+import availableGroups from '../../mappings/'
+import Btn from '../../components/HOC/ToolbarButton'
+import Tooltipped from '../../components/HOC/Tooltipped'
+import * as filterActions from '../../action-creators/velocityTrimListFilter'
+import { velocityTrimShape } from '../../reducers/velocityTrim'
+import styles from '../../styles/velocityTrimListFilter'
 
 const VelocityTrimListFilter = (props) => {
   const { velocityTrim, searchTrims, changeGroup, changeListView, setChaseEnabled } = props

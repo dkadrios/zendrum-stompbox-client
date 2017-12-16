@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Autocomplete from 'react-toolbox/lib/autocomplete'
-import styles from '../styles/muteGroups'
-import { mappingShape } from '../reducers/mapping'
+import styles from '../../styles/muteGroups'
+import { mappingShape } from '../../reducers/mapping'
 
 class MuteItemNew extends Component {
   constructor(props) {

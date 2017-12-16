@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from '../styles/velocityTrim'
+import styles from '../../styles/velocityTrim'
 
 const VelocityTrimTips = ({ active }) => (
   <div className={styles.tips}>

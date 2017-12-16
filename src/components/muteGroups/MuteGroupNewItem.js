@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MuteItemNew from './MuteItemNew'
-import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../midi/'
-import { mappingShape } from '../reducers/mapping'
-import { muteGroupShape } from '../reducers/muteGroups'
+import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../../midi/'
+import { mappingShape } from '../../reducers/mapping'
+import { muteGroupShape } from '../../reducers/muteGroups'
 
 const MuteGroupNewItem = (props) => {
   const { muter, group, ordinal, addMuteItem, mapping } = props

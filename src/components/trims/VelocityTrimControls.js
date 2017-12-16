@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Knob from '../components/thirdParty/Knob'
-import styles from '../styles/velocityTrim'
-import { trimShape } from '../reducers/velocityTrim'
+import Knob from '../../components/thirdParty/Knob'
+import styles from '../../styles/velocityTrim'
+import { trimShape } from '../../reducers/velocityTrim'
 
 const wheelColor = value => (value > 65 ? '#11ff00' : value > 30 ? 'orange' : 'yellow')
 

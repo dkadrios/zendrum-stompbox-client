@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import VelocityTrim from './VelocityTrim'
-import styles from '../styles/velocityTrim'
-import { trimShape } from '../reducers/velocityTrim'
+import styles from '../../styles/velocityTrim'
+import { trimShape } from '../../reducers/velocityTrim'
 
 class VelocityTrimList extends Component {
   static propTypes = {

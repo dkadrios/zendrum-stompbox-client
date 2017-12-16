@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { AppBar } from 'react-toolbox'
 import MuteItem from './MuteItem'
 import MuteGroupNewItem from './MuteGroupNewItem'
-import { mappingShape } from '../reducers/mapping'
-import { muteGroupShape } from '../reducers/muteGroups'
-import styles from '../styles/muteGroups'
-import SubAppBarTheme from '../styles/react-toolbox-theme/SubAppBar'
+import { mappingShape } from '../../reducers/mapping'
+import { muteGroupShape } from '../../reducers/muteGroups'
+import styles from '../../styles/muteGroups'
+import SubAppBarTheme from '../../styles/react-toolbox-theme/SubAppBar'
 
 const MuteGroup = (props) => {
   const { group, ordinal, deleteMuteItem, deleteMuteGroup, mapping } = props
