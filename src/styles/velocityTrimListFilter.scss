@@ -42,7 +42,8 @@ $input-height: 30px;
   }
 
   .buttonGroup {
-    flex-wrap: nowrap;
+    display: flex;
+    flex-flow: row nowrap;
     min-width: 90px;
     max-width: 120px;
   }

@@ -19,7 +19,7 @@ import {
 
 import { receivedVelocityTrims, notePlayed } from '../action-creators/velocityTrim'
 import { receivedVersion } from '../action-creators/version'
-import { receivedMuteGroups, receivedPolyLocks } from '../action-creators/muteGroups'
+import { receivedMuteGroups } from '../action-creators/muteGroups'
 import {
   receivedMuteEnabled,
   receivedThruEnabled,
@@ -30,6 +30,7 @@ import {
 import { loadMapping } from '../action-creators/mapping'
 
 import { askForFullData } from './sysexOutput'
+import { receivedPolyLocks } from '../action-creators/polyLocks'
 
 const processMidiMessage = (store, { data }) => {
   const { getState, dispatch } = store

@@ -1,16 +1,46 @@
 import React from 'react'
-import AppBar from 'react-toolbox/lib/app_bar'
-import Navigation from 'react-toolbox/lib/navigation'
+import PropTypes from 'prop-types'
+import { withStyles } from 'material-ui/styles'
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
+import SvgIcon from 'material-ui/SvgIcon'
+import Typography from 'material-ui/Typography'
 import UserInfo from './UserInfo'
-import appTheme from '../styles/react-toolbox-theme/AppBar'
 import ZendrumLogo from '../images/ZendrumLogo.svg.js'
 
-const TopBar = () => (
-  <AppBar title="STOMPBLOCK" leftIcon={<ZendrumLogo />} theme={appTheme}>
-    <Navigation type="horizontal">
-      <UserInfo />
-    </Navigation>
+const styles = {
+  title: {
+    flex: 1,
+    fontFamily: 'Armalite-Rifle',
+    fontSize: '42px',
+    fontWeight: 'normal',
+    marginLeft: '4px',
+  },
+  icon: {
+    width: 45,
+    height: 45,
+  },
+  toolbar: {
+    paddingLeft: '8px',
+  },
+}
+
+const TopBar = ({ classes }) => (
+  <AppBar position="static">
+    <Toolbar className={classes.toolbar}>
+      <SvgIcon className={classes.icon}>
+        <ZendrumLogo />
+      </SvgIcon>
+      <Typography type="title" color="inherit" className={classes.title}>
+        STOMPBLOCK
+      </Typography>
+      <div>
+        <UserInfo />
+      </div>
+    </Toolbar>
   </AppBar>
 )
 
-export default TopBar
+TopBar.propTypes = { classes: PropTypes.object.isRequired }
+
+export default withStyles(styles)(TopBar)

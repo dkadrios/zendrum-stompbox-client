@@ -3,29 +3,42 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Field, reduxForm } from 'redux-form'
+import { withStyles } from 'material-ui/styles'
 import FormInput from './FormInput'
 import * as userActions from '../action-creators/user'
-import styles from '../styles/registration'
 import { fieldRequired, fieldMaxLength64, fieldEmail } from '../utils'
 
-const UserRegistrationForm = ({ error, handleSubmit }) => (
-  <form onSubmit={handleSubmit}>
-    <div className={styles.nameFields}>
-      <Field
-        name="firstName"
-        type="text"
-        component={FormInput}
-        label="First Name"
-        validate={[fieldRequired, fieldMaxLength64]}
-      />
-      <Field
-        name="lastName"
-        type="text"
-        component={FormInput}
-        label="Last Name"
-        validate={[fieldRequired, fieldMaxLength64]}
-      />
-    </div>
+const styles = {
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    border: '2px solid #999',
+    borderRadius: 5,
+    backgroundColor: '#eee',
+    maxWidth: 480,
+    margin: '15px 0 40px',
+    paddingBottom: 20,
+  },
+}
+
+const UserRegistrationForm = ({ error, handleSubmit, classes }) => (
+  <form onSubmit={handleSubmit} className={classes.container}>
+    <Field
+      name="firstName"
+      type="text"
+      component={FormInput}
+      label="First Name"
+      validate={[fieldRequired, fieldMaxLength64]}
+    />
+
+    <Field
+      name="lastName"
+      type="text"
+      component={FormInput}
+      label="Last Name"
+      validate={[fieldRequired, fieldMaxLength64]}
+    />
+
     <Field
       name="email"
       type="email"
@@ -40,6 +53,7 @@ const UserRegistrationForm = ({ error, handleSubmit }) => (
 UserRegistrationForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.string,
+  classes: PropTypes.object.isRequired,
 }
 UserRegistrationForm.defaultProps = { error: '' }
 
@@ -54,5 +68,5 @@ const formOptions = {
 
 /* eslint-disable */
 export default connect(mapStateToProps, mapDispatchToProps)(
-  reduxForm(formOptions)(UserRegistrationForm),
+  reduxForm(formOptions)(withStyles(styles)(UserRegistrationForm)),
 )

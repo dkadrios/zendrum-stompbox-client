@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Button } from 'react-toolbox/lib/button'
+import Button from 'material-ui/Button'
+import Add from 'material-ui-icons/Add'
 import styles from '../../styles/muteGroups'
 import MuteGroup from '../muteGroups/MuteGroup'
 import { MAX_MUTE_GROUPS } from '../../midi/'
@@ -34,7 +35,10 @@ const MuteGroups = (props) => {
             />
           </div>
         ))}
-        <Button icon="add" label="Create New Group" raised primary onClick={addMuteGroup} />
+        <Button raised dense color="accent" onClick={addMuteGroup}>
+          <Add />
+          Create New Group
+        </Button>
         <small>
           Using {MAX_MUTE_GROUPS - data.length} of {MAX_MUTE_GROUPS}
           &nbsp;available groups

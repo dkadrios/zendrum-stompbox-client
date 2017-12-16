@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Autocomplete from 'react-toolbox/lib/autocomplete'
+import NotePicker from '../pickers/NotePicker'
 import styles from '../../styles/muteGroups'
 import { mappingShape } from '../../reducers/mapping'
 
@@ -13,20 +13,15 @@ class MuteItemNew extends Component {
   handleAdd = (value) => {
     const { addMuteItem, groupIdx, muter } = this.props
     const index = this.source.indexOf(value)
-    addMuteItem(groupIdx, muter, index + 1)
+    if (index > -1 && index < 128) {
+      addMuteItem(groupIdx, muter, index + 1)
+    }
   }
 
   render() {
     return (
       <div className={styles.newItemContainer}>
-        <Autocomplete
-          selectedPosition="none"
-          label="Add note # or instrument name"
-          multiple={false}
-          source={this.source}
-          onChange={value => this.handleAdd(value)}
-          suggestionMatch="anywhere"
-        />
+        <NotePicker mapping={this.props.mapping} onChange={this.handleAdd} />
       </div>
     )
   }

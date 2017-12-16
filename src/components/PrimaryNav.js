@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
-import { Tab, Tabs } from 'react-toolbox'
+import Tabs, { Tab } from 'material-ui/Tabs'
 import * as settingsActions from '../action-creators/settings'
 import VelocityTrimListView from './views/VelocityTrimListView'
 import Settings from './views/Settings'
@@ -20,20 +20,16 @@ const PrimaryNav = ({
 
     <section>
       <MidiActivity />
-      <Tabs index={primaryNavTabIdx} onChange={changePrimaryNavTab}>
-        <Tab label="Trims">
-          <VelocityTrimListView />
-        </Tab>
-        <Tab label="Mute Groups">
-          <MuteGroups />
-        </Tab>
-        <Tab label="Polyphony" hidden={!hasSoundBankSupport}>
-          <PolyLocks />
-        </Tab>
-        <Tab label="Settings">
-          <Settings />
-        </Tab>
+      <Tabs value={primaryNavTabIdx} onChange={(e, value) => changePrimaryNavTab(value)}>
+        <Tab label="Trims" />
+        <Tab label="Mute Groups" />
+        <Tab label="Polyphony" hidden={!hasSoundBankSupport} />
+        <Tab label="Settings" />
       </Tabs>
+      {primaryNavTabIdx === 0 && <VelocityTrimListView />}
+      {primaryNavTabIdx === 1 && <MuteGroups />}
+      {primaryNavTabIdx === 2 && <PolyLocks />}
+      {primaryNavTabIdx === 3 && <Settings />}
     </section>
   </div>
 )

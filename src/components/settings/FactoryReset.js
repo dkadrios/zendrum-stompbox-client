@@ -1,55 +1,59 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'react-toolbox/lib/button'
-import Dialog from 'react-toolbox/lib/dialog'
-import FontIcon from 'react-toolbox/lib/font_icon'
-import ProgressBar from 'react-toolbox/lib/progress_bar'
-import buttonTheme from '../../styles/react-toolbox-theme/WarningButton.scss'
-import styles from '../../styles/settings'
+import Button from 'material-ui/Button'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from 'material-ui/Dialog'
+import Slide from 'material-ui/transitions/Slide'
+import { LinearProgress } from 'material-ui/Progress'
+import Warning from 'material-ui-icons/Warning'
 import { settingsShape } from '../../reducers/settings'
+
+const Transition = props => <Slide direction="up" {...props} />
 
 const FactoryReset = (props) => {
   const { settings, confirmFactoryReset, performFactoryReset } = props
   const { showResetDialog, resetInProcess } = settings
 
-  const actions = [
-    { label: 'Cancel', onClick: () => confirmFactoryReset(false) },
-    { label: 'Perform Reset', onClick: performFactoryReset },
-  ]
-
   return (
     <div>
-      <Button
-        theme={buttonTheme}
-        icon="warning"
-        label="Perform Factory Reset"
-        raised
-        primary
-        onMouseUp={() => confirmFactoryReset(true)}
-      />
+      <Button raised color="primary" onMouseUp={() => confirmFactoryReset(true)}>
+        <Warning /> Perform Factory Reset
+      </Button>
 
       <Dialog
-        actions={actions}
-        active={showResetDialog}
-        onEscKeyDown={() => confirmFactoryReset(false)}
-        onOverlayClick={() => confirmFactoryReset(false)}
-        title="Confirm Factory Reset"
-        className={styles.resetDialog}
+        open={showResetDialog}
+        transition={Transition}
+        onRequestClose={() => confirmFactoryReset(false)}
       >
-        <div className={styles.warningHeader}>
-          <FontIcon>warning</FontIcon>
-          <p>Sure to perform reset?</p>
-        </div>
-        <p>This will return all settings and trim values to their factory defaults.</p>
+        <DialogTitle>Confirm Factory Reset</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <b>Sure to perform reset?</b>
+            <br />
+            <br />
+            This will return all settings and trim values to their factory defaults.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => confirmFactoryReset(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={performFactoryReset} color="primary" autoFocus>
+            Perform Reset
+          </Button>
+        </DialogActions>
       </Dialog>
 
-      <Dialog
-        active={resetInProcess}
-        title="Factory Reset In Progress"
-        className={styles.resetDialog}
-      >
-        <p>Please wait...</p>
-        <ProgressBar mode="indeterminate" />
+      <Dialog open={resetInProcess} transition={Transition}>
+        <DialogTitle>Factory Reset In Progress</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Please wait...</DialogContentText>
+          <LinearProgress />
+        </DialogContent>
       </Dialog>
     </div>
   )

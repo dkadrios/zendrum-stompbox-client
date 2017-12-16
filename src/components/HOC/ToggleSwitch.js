@@ -1,9 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Switch from 'react-toolbox/lib/switch'
+import Switch from 'material-ui/Switch'
+import { FormControlLabel, FormGroup } from 'material-ui/Form'
 
 const ToggleSwitch = ({ checked, feature, handler }) => (
-  <Switch checked={checked} label={`Enable ${feature}`} onChange={value => handler(value)} />
+  <FormGroup>
+    <FormControlLabel
+      control={<Switch checked={checked} onChange={(event, value) => handler(value)} />}
+      label={`Enable ${feature}`}
+    />
+  </FormGroup>
 )
 
 ToggleSwitch.propTypes = {

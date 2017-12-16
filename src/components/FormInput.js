@@ -1,10 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Input from 'react-toolbox/lib/input'
+import TextField from 'material-ui/TextField'
+import { withStyles } from 'material-ui/styles'
+
+const styles = theme => ({
+  textField: {
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+})
 
 const FormInput = (props) => {
-  const { input, label, type, meta: { touched, error, warning } } = props
-  return <Input {...input} type={type} label={label} error={touched ? error || warning : null} />
+  const { input, label, type, meta: { touched, error, warning }, classes } = props
+  const errored = touched && (error || warning)
+
+  return (
+    <TextField
+      {...input}
+      type={type}
+      label={label}
+      error={!!errored}
+      className={classes.textField}
+      helperText={touched ? error || warning : null}
+    />
+  )
 }
 FormInput.propTypes = {
   input: PropTypes.object.isRequired, // eslint-disable-line
@@ -15,6 +35,7 @@ FormInput.propTypes = {
     error: PropTypes.error,
     warning: PropTypes.string,
   }).isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
-export default FormInput
+export default withStyles(styles)(FormInput)

@@ -1,21 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import omit from 'lodash/omit'
-import RTTooltip from 'react-toolbox/lib/tooltip'
+import Tooltip from 'material-ui/Tooltip'
 
-function Div(props) {
-  const rest = omit(props, ['theme', 'tooltip', 'tooltipDelay', 'tooltipHideOnClick'])
-  return <div {...rest} />
+const MuiTooltip = (props) => {
+  const rest = omit(props, ['title', 'tooltip', 'tooltipDelay'])
+  return (
+    <Tooltip title={props.tooltip}>
+      <div {...rest} />
+    </Tooltip>
+  )
+}
+MuiTooltip.propTypes = {
+  tooltip: PropTypes.string.isRequired,
 }
 
-const Tooltip = RTTooltip(Div)
-
 const Tooltipped = (props) => {
-  const { tooltip, tooltipDelay, theme } = props
+  const { tooltip } = props
   return tooltip ? ( //
-    <Tooltip tooltipDelay={tooltipDelay} theme={theme} {...props} />
+    <MuiTooltip title={tooltip} {...props} />
   ) : (
-    <Div {...props} />
+    <div {...props} />
   )
 }
 Tooltipped.propTypes = {

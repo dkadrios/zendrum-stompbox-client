@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import DebounceInput from 'react-debounce-input'
-import Dropdown from 'react-toolbox/lib/dropdown'
-import Switch from 'react-toolbox/lib/switch'
+import Select from 'material-ui/Select'
+import Switch from 'material-ui/Switch'
+import { MenuItem } from 'material-ui/Menu'
+import { FormControlLabel, FormGroup } from 'material-ui/Form'
 import availableGroups from '../../mappings/'
 import Btn from '../../components/HOC/ToolbarButton'
 import Tooltipped from '../../components/HOC/Tooltipped'
@@ -26,13 +28,13 @@ const VelocityTrimListFilter = (props) => {
         onChange={e => searchTrims(e.target.value)}
       />
 
-      <Dropdown
-        className={styles.groups}
-        auto
-        onChange={value => changeGroup(value)}
-        source={availableGroups}
-        value={group}
-      />
+      <Select onChange={({ target }) => changeGroup(target.value)} value={group}>
+        {availableGroups.map(({ value, label }) => (
+          <MenuItem key={value} value={value}>
+            {label}
+          </MenuItem>
+        ))}
+      </Select>
 
       <div className={styles.buttonGroup}>
         <Btn
@@ -57,7 +59,17 @@ const VelocityTrimListFilter = (props) => {
 
       <div className={styles.midiChase}>
         <Tooltipped tooltip="Highlight any notes played on Zendrum or other instrument (requires THRU be enabled)">
-          <Switch checked={chaseEnabled} label="MIDI Chase" onChange={setChaseEnabled} />
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={chaseEnabled}
+                  onChange={(event, checked) => setChaseEnabled(checked)}
+                />
+              }
+              label="MIDI Chase"
+            />
+          </FormGroup>
         </Tooltipped>
       </div>
     </div>

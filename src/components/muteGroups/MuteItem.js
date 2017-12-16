@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Avatar from 'react-toolbox/lib/avatar'
-import Chip from 'react-toolbox/lib/chip'
+import Avatar from 'material-ui/Avatar'
+import Chip from 'material-ui/Chip'
+import SvgIcon from 'material-ui/SvgIcon'
 import Instrument from '../../images/Instrument'
-import * as styles from '../../styles/muteGroups.scss'
 import { mappingShape } from '../../reducers/mapping'
 
 const MuteItem = (props) => {
@@ -11,10 +11,15 @@ const MuteItem = (props) => {
   const { name, group } = mapping.find(item => item.note === note)
 
   return (
-    <Chip deletable onDeleteClick={() => deleteMuteItem(groupIdx, muter, itemIdx)}>
-      <Avatar icon={Instrument(group)} className={styles.instrument} />
-      <strong>#{note}</strong> <span>{name}</span>
-    </Chip>
+    <Chip
+      onRequestDelete={() => deleteMuteItem(groupIdx, muter, itemIdx)}
+      label={`#${note} ${name}`}
+      avatar={
+        <Avatar>
+          <SvgIcon>{Instrument(group)}</SvgIcon>
+        </Avatar>
+      }
+    />
   )
 }
 

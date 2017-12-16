@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
+import Select from 'material-ui/Select'
+import { MenuItem } from 'material-ui/Menu'
 import inlineStyle from '../../styles/channelPicker.js'
 import { channelPicker, swatch } from '../../styles/channelPicker'
 import { arraySequence } from '../../utils'
@@ -34,7 +34,7 @@ const ChannelPicker = (props) => {
     value,
     ...inlineStyle,
   }
-  return <SelectField {...dropdownProps}>{source}</SelectField>
+  return <Select {...dropdownProps}>{source}</Select>
 }
 
 ChannelPicker.propTypes = {
