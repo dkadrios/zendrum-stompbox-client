@@ -7,10 +7,14 @@ import * as settingsActions from '../action-creators/settings'
 import VelocityTrimListView from './views/VelocityTrimListView'
 import Settings from './views/Settings'
 import MuteGroups from './views/MuteGroups'
+import PolyLocks from './views/PolyLocks'
 import MidiActivity from './MidiActivity'
 import TopBar from '../components/TopBar'
 
-const PrimaryNav = ({ settings: { primaryNavTabIdx }, changePrimaryNavTab }) => (
+const PrimaryNav = ({
+  settings: { primaryNavTabIdx, hasSoundBankSupport },
+  changePrimaryNavTab,
+}) => (
   <div>
     <TopBar />
 
@@ -22,6 +26,9 @@ const PrimaryNav = ({ settings: { primaryNavTabIdx }, changePrimaryNavTab }) => 
         </Tab>
         <Tab label="Mute Groups">
           <MuteGroups />
+        </Tab>
+        <Tab label="Polyphony" hidden={!hasSoundBankSupport}>
+          <PolyLocks />
         </Tab>
         <Tab label="Settings">
           <Settings />

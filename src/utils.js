@@ -14,6 +14,12 @@ export function createReducer(initialState, handlers) {
 export const arraySequence = numberOfElements =>
   Array(...{ length: numberOfElements }).map(Function.call, Number)
 
+// Breaks an array up into chunks of a given size (e.g. converts to 2 dimensions)
+export const partitionArray = (array, size) =>
+  array //
+    .map((item, idx) => (idx % size === 0 ? array.slice(idx, idx + size) : null))
+    .filter(e => e)
+
 /* ------------------------ redux-form Validators --------------------------- */
 
 export const fieldRequired = value => (value ? undefined : 'Required')

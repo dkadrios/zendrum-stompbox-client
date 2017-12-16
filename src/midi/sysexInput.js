@@ -14,11 +14,12 @@ import {
   SYSEX_MSG_RECEIVED_SECOND_BANK,
   SYSEX_MSG_RECEIVED_MUTE_GROUPS,
   SYSEX_MSG_RECEIVED_MIDI_SETTINGS,
+  SYSEX_MSG_RECEIVED_POLYLOCKS,
 } from './sysex'
 
 import { receivedVelocityTrims, notePlayed } from '../action-creators/velocityTrim'
 import { receivedVersion } from '../action-creators/version'
-import { receivedMuteGroups } from '../action-creators/muteGroups'
+import { receivedMuteGroups, receivedPolyLocks } from '../action-creators/muteGroups'
 import {
   receivedMuteEnabled,
   receivedThruEnabled,
@@ -88,6 +89,10 @@ const processMidiMessage = (store, { data }) => {
 
       case SYSEX_MSG_RECEIVED_MIDI_SETTINGS:
         dispatch(receivedMidiSettings(packet))
+        break
+
+      case SYSEX_MSG_RECEIVED_POLYLOCKS:
+        dispatch(receivedPolyLocks(packet))
         break
 
       default:

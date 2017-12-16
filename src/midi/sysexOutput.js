@@ -26,6 +26,9 @@ import {
   SYSEX_MSG_SET_VELOCITY_VARIANCE,
   SYSEX_MSG_SET_ROUND_ROBIN,
   SYSEX_MSG_SET_VOLUME_CURVE,
+  SYSEX_MSG_RECEIVED_POLYLOCKS,
+  SYSEX_MSG_DELETE_POLYLOCK,
+  SYSEX_MSG_ADD_POLYLOCK,
 } from './sysex'
 
 const transmitAction = (command, data = []) =>
@@ -50,6 +53,7 @@ export const askForFullData = (dispatch) => {
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_THRU_ENABLED))
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED))
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_MUTE_GROUPS))
+  dispatch(transmitAction(SYSEX_MSG_RECEIVED_POLYLOCKS))
   dispatch(transmitAction(SYSEX_MSG_GET_MIDI_SETTINGS))
   /* istanbul ignore next */
   if (!__TEST__) {
@@ -103,3 +107,9 @@ export const setRoundRobinEnabled = (dispatch, roundRobinEnabled) =>
 
 export const setVolumeCurve = (dispatch, volumeCurve) =>
   dispatch(transmitAction(SYSEX_MSG_SET_VOLUME_CURVE, [volumeCurve]))
+
+export const deletePolyLock = (dispatch, lockIdx) =>
+  dispatch(transmitAction(SYSEX_MSG_DELETE_POLYLOCK, [lockIdx]))
+
+export const addPolyLock = (dispatch, channel, pitch) =>
+  dispatch(transmitAction(SYSEX_MSG_ADD_POLYLOCK, [channel, pitch]))

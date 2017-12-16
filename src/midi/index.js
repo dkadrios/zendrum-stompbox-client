@@ -18,6 +18,7 @@ export const STATUS_NOTE_OFF = 8 // 1000
 export const MAX_MUTEABLES_PER_GROUP = 6
 export const MAX_MUTERS_PER_GROUP = 4
 export const MAX_MUTE_GROUPS = 4
+export const MAX_POLYLOCKS = 16
 
 export const watchForDeviceChange = (store) => {
   deviceStore(store)

@@ -27,7 +27,7 @@ const togglePopover = popoverVisible => state => ({
 
 const checkedRegistration = (state, { productInstance: { registrations } }) => {
   let newState = { ...state, checkedRegistration: true }
-  const A = registrations.filter(entry => entry.active)
+  const A = (registrations || []).filter(entry => entry.active)
 
   newState.registered = A.length === 1
 

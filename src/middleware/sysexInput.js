@@ -11,7 +11,7 @@ let waitForVersionTimer
 
 export default store => next => (action) => {
   const flickerTimeout = 200
-  const assumeNotRespondingTimeout = 4000
+  const assumeNotRespondingTimeout = 5000
 
   switch (action.type) {
     case RECEIVE_MIDI_MESSAGE:
