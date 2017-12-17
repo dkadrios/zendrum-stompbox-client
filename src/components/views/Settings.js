@@ -15,24 +15,22 @@ import * as stompblockActions from '../../action-creators/stompblock'
 import { settingsShape } from '../../reducers/settings'
 import { mappingsShape } from '../../reducers/mapping'
 
-const zDepth = 2
-
 const Settings = (props) => {
   const { settings: { hasSoundBankSupport } } = props
   return (
     <div className={styles.settingsCont}>
       <div className={styles.settings}>
-        <Paper zDepth={zDepth} style={paperStyle}>
+        <Paper style={paperStyle}>
           <MappingSelector {...props} />
         </Paper>
 
         {hasSoundBankSupport && (
-          <Paper zDepth={zDepth} style={paperStyle}>
+          <Paper style={paperStyle}>
             <MidiSettings {...props} />
           </Paper>
         )}
 
-        <Paper zDepth={zDepth} style={paperStyle}>
+        <Paper style={paperStyle}>
           <Preferences {...props} />
         </Paper>
 

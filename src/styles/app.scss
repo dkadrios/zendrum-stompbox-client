@@ -1,5 +1,5 @@
 @import 'variables';
-@import "fonts";
+@import 'fonts';
 
 :global {
   body {
@@ -16,7 +16,7 @@
     cursor: default;
 
     a {
-      color: $color-text-dark;
+      //color: $color-text-dark;
       text-decoration: none;
     }
   }

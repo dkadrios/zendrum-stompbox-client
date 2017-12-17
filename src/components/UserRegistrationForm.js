@@ -12,9 +12,9 @@ const styles = {
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    border: '2px solid #999',
+    border: '2px groove #ccc',
     borderRadius: 5,
-    backgroundColor: '#eee',
+    backgroundColor: '#f3f3f3',
     maxWidth: 480,
     margin: '15px 0 40px',
     paddingBottom: 20,

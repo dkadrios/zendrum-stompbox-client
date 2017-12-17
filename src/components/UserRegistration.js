@@ -15,8 +15,16 @@ import GravatarIcon from '../images/Gravatar.svg'
 
 const styles = {
   icon: {
-    width: 45,
-    height: 45,
+    width: 36,
+    height: 36,
+    marginRight: 7,
+  },
+  link: {
+    color: 'black',
+  },
+  gravatarNotice: {
+    display: 'flex',
+    maxWidth: 330,
   },
 }
 
@@ -29,7 +37,13 @@ const GravatarLink = ({ content }) => (
 )
 GravatarLink.propTypes = { content: PropTypes.node.isRequired }
 
-const UserRegistration = ({ active, hideDialog, submitRegistrationForm, serialNumber }) => (
+const UserRegistration = ({
+  active,
+  hideDialog,
+  submitRegistrationForm,
+  serialNumber,
+  classes,
+}) => (
   <Dialog open={active} transition={Transition} onRequestClose={hideDialog}>
     <DialogTitle>STOMPBLOCK Registration</DialogTitle>
     <DialogContent>
@@ -40,24 +54,23 @@ const UserRegistration = ({ active, hideDialog, submitRegistrationForm, serialNu
 
       <UserRegistrationForm />
 
-      <div className={styles.gravatarNotice}>
-        <DialogContentText>
-          <GravatarLink
-            content={
-              <SvgIcon className={styles.icon}>
-                <GravatarIcon />
-              </SvgIcon>
-            }
-          />
-          <GravatarLink content="We use Gravatar for displaying profile images, based on your email address" />
-        </DialogContentText>
+      <div className={classes.gravatarNotice}>
+        <GravatarLink
+          content={
+            <SvgIcon className={classes.icon}>
+              <GravatarIcon />
+            </SvgIcon>
+          }
+        />
+        <GravatarLink
+          className={classes.link}
+          content="We use Gravatar for displaying profile images, based on your email address"
+        />
       </div>
     </DialogContent>
     <DialogActions>
-      <Button onClick={hideDialog} color="primary">
-        Cancel
-      </Button>
-      <Button onClick={submitRegistrationForm} color="primary" autoFocus>
+      <Button onClick={hideDialog}>Cancel</Button>
+      <Button raised onClick={submitRegistrationForm} color="accent" autoFocus>
         Register
       </Button>
     </DialogActions>
@@ -69,6 +82,7 @@ UserRegistration.propTypes = {
   hideDialog: PropTypes.func.isRequired,
   submitRegistrationForm: PropTypes.func.isRequired,
   serialNumber: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
 export default withStyles(styles)(UserRegistration)

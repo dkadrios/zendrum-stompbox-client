@@ -46,6 +46,7 @@ $input-height: 30px;
     flex-flow: row nowrap;
     min-width: 90px;
     max-width: 120px;
+    margin-left: 15px;
   }
 
   .selected {
@@ -54,6 +55,8 @@ $input-height: 30px;
 
   .midiChase {
     padding-left: 20px;
-    margin-top: 14px;
+    label span {
+      color: white !important;
+    }
   }
 }

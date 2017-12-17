@@ -25,21 +25,22 @@ const UserInfo = ({ user, showDialog, hideDialog, hidePopover, submitRegistratio
   } = user
 
   return (
-    <div className={styles.userInfo} onClick={showDialog} role="button" tabIndex="0">
+    <div className={styles.userInfo}>
       <Visible isVisible={checkedRegistration}>
         <div className={styles.layout}>
-          <section>
+          <section onClick={showDialog} role="button" tabIndex="0">
             <div>{registered && 'Registered to:'}</div>
             <span className={styles.name}>{`${firstName} ${lastName}`}</span>
           </section>
           <Popover
             isOpen={popoverVisible}
+            onClick={showDialog}
             place="below"
             body={<UserInfoPopover showDialog={showDialog} />}
             className={popoverStyle.Popover}
             onOuterAction={hidePopover}
           >
-            <Avatar>
+            <Avatar onClick={showDialog}>
               <Gravatar email={email} default="mm" rating="x" />
             </Avatar>
           </Popover>

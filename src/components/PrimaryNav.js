@@ -20,7 +20,11 @@ const PrimaryNav = ({
 
     <section>
       <MidiActivity />
-      <Tabs value={primaryNavTabIdx} onChange={(e, value) => changePrimaryNavTab(value)}>
+      <Tabs
+        indicatorColor="primary"
+        value={primaryNavTabIdx}
+        onChange={(e, value) => changePrimaryNavTab(value)}
+      >
         <Tab label="Trims" />
         <Tab label="Mute Groups" />
         <Tab label="Polyphony" hidden={!hasSoundBankSupport} />

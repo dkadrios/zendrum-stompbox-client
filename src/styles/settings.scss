@@ -2,7 +2,7 @@
 @import 'mixins';
 @import '_dialogs';
 
-$settings-height: $height-footer + $height-header + $height-tabs + 20;
+$settings-height: $height-footer + $height-header + $height-tabs + 100;
 
 .settingsCont {
   display: flex;

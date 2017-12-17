@@ -1,38 +1,5 @@
 @import 'variables';
 
-.registrationDialog {
-  max-width: 500px;
-
-  form {
-    margin: 20px 0 30px;
-    border: 2px groove lighten($color-text-mid, 50);
-    border-radius: 5px;
-    padding: 15px;
-    background-color: $color-background-light;
-  }
-
-  .nameFields {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-  }
-
-  .gravatarNotice {
-    display: flex;
-    max-width: 330px;
-
-    svg {
-      width: 36px;
-      height: 36px;
-      margin-right: 7px;
-    }
-
-    a {
-      color: $color-background;
-    }
-  }
-}
-
 .userInfo {
   cursor: pointer;
   outline: none;
@@ -45,6 +12,7 @@
       flex-flow: column nowrap;
       align-self: center;
       color: $color-text-dimmer;
+      outline: none;
       div {
         font-size: 13px;
         text-decoration: underline;

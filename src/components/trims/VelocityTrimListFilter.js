@@ -6,7 +6,7 @@ import DebounceInput from 'react-debounce-input'
 import Select from 'material-ui/Select'
 import Switch from 'material-ui/Switch'
 import { MenuItem } from 'material-ui/Menu'
-import { FormControlLabel, FormGroup } from 'material-ui/Form'
+import { FormControlLabel, FormControl } from 'material-ui/Form'
 import availableGroups from '../../mappings/'
 import Btn from '../../components/HOC/ToolbarButton'
 import Tooltipped from '../../components/HOC/Tooltipped'
@@ -59,7 +59,7 @@ const VelocityTrimListFilter = (props) => {
 
       <div className={styles.midiChase}>
         <Tooltipped tooltip="Highlight any notes played on Zendrum or other instrument (requires THRU be enabled)">
-          <FormGroup>
+          <FormControl>
             <FormControlLabel
               control={
                 <Switch
@@ -69,7 +69,7 @@ const VelocityTrimListFilter = (props) => {
               }
               label="MIDI Chase"
             />
-          </FormGroup>
+          </FormControl>
         </Tooltipped>
       </div>
     </div>
@@ -87,4 +87,5 @@ VelocityTrimListFilter.propTypes = {
 const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })
 const mapDispatchToProps = dispatch => bindActionCreators(filterActions, dispatch)
 
+// eslint-disable-next-line
 export default connect(mapStateToProps, mapDispatchToProps)(VelocityTrimListFilter)
