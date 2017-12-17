@@ -21,7 +21,11 @@ class MuteItemNew extends Component {
   render() {
     return (
       <div className={styles.newItemContainer}>
-        <NotePicker mapping={this.props.mapping} onChange={this.handleAdd} />
+        <NotePicker
+          mapping={this.props.mapping}
+          onChange={this.handleAdd}
+          disabled={this.props.disabled}
+        />
       </div>
     )
   }
@@ -32,6 +36,7 @@ MuteItemNew.propTypes = {
   groupIdx: PropTypes.number.isRequired,
   muter: PropTypes.bool.isRequired,
   mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  disabled: PropTypes.bool.isRequired,
 }
 
 export default MuteItemNew

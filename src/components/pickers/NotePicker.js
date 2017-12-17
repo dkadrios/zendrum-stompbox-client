@@ -12,17 +12,19 @@ import { withStyles } from 'material-ui/styles'
 import { mappingShape } from '../../reducers/mapping'
 
 function renderInput(inputProps) {
-  const { classes, autoFocus, value, ref, ...other } = inputProps
+  const { classes, disabled, autoFocus, value, ref, ...other } = inputProps
 
   return (
     <TextField
       autoFocus={autoFocus}
       className={classes.textField}
+      disabled={disabled}
       value={value}
       inputRef={ref}
+      helperTextClassName={classes.whiteLabel}
       InputProps={{
         classes: {
-          input: classes.input,
+          input: classes.whiteLabel,
         },
         ...other,
       }}
@@ -88,6 +90,9 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 3,
     left: 0,
     right: 0,
+    zIndex: 5,
+    maxHeight: 200,
+    overflowY: 'scroll',
   },
   suggestion: {
     display: 'block',
@@ -99,6 +104,10 @@ const styles = theme => ({
   },
   textField: {
     width: '100%',
+    color: 'white,',
+  },
+  whiteLabel: {
+    color: 'white',
   },
 })
 
@@ -131,8 +140,15 @@ class IntegrationAutosuggest extends React.Component {
     })
   }
 
+  handleSuggestionSelected = (event, { suggestion }) => {
+    this.props.onChange(suggestion)
+    this.setState({
+      value: '',
+    })
+  }
+
   render() {
-    const { classes, onChange } = this.props
+    const { classes, disabled } = this.props
 
     return (
       <Autosuggest
@@ -146,7 +162,7 @@ class IntegrationAutosuggest extends React.Component {
         suggestions={this.state.suggestions}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-        onSuggestionSelected={(event, { suggestion }) => onChange(suggestion)}
+        onSuggestionSelected={this.handleSuggestionSelected}
         renderSuggestionsContainer={renderSuggestionsContainer}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
@@ -156,6 +172,7 @@ class IntegrationAutosuggest extends React.Component {
           placeholder: 'Add note # or instrument name',
           value: this.state.value,
           onChange: this.handleChange,
+          disabled,
         }}
       />
     )
@@ -166,6 +183,11 @@ IntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
   mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
   onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+}
+
+IntegrationAutosuggest.defaultProps = {
+  disabled: false,
 }
 
 export default withStyles(styles)(IntegrationAutosuggest)

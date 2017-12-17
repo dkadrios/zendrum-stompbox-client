@@ -9,14 +9,21 @@ const MuteGroupNewItem = (props) => {
   const { muter, group, ordinal, addMuteItem, mapping } = props
   const { muteables, muters } = group
 
+  const max = () => (muter ? MAX_MUTERS_PER_GROUP : MAX_MUTEABLES_PER_GROUP)
+  const avail = () =>
+    muter ? MAX_MUTERS_PER_GROUP - muters.length : MAX_MUTEABLES_PER_GROUP - muteables.length
+
   return (
     <div>
-      <MuteItemNew mapping={mapping} groupIdx={ordinal} muter={muter} addMuteItem={addMuteItem} />
+      <MuteItemNew
+        mapping={mapping}
+        groupIdx={ordinal}
+        muter={muter}
+        addMuteItem={addMuteItem}
+        disabled={avail() < 1}
+      />
       <small>
-        {muter ? MAX_MUTERS_PER_GROUP : MAX_MUTEABLES_PER_GROUP} MAX ({muter
-          ? MAX_MUTERS_PER_GROUP - muters.length
-          : MAX_MUTEABLES_PER_GROUP - muteables.length}{' '}
-        available)
+        {max()} MAX ({avail()} available)
       </small>
     </div>
   )
