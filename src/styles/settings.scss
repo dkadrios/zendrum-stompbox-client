@@ -1,6 +1,5 @@
 @import 'variables';
 @import 'mixins';
-@import '_dialogs';
 
 $settings-height: $height-footer + $height-header + $height-tabs + 100;
 
@@ -46,12 +45,4 @@ $settings-height: $height-footer + $height-header + $height-tabs + 100;
   width: 300px;
   margin-top: 30px;
   margin-bottom: 80px;
-}
-
-.warningHeader {
-  @extend .warningHeader;
-}
-
-.resetDialog {
-  @extend .baseDialog;
 }
