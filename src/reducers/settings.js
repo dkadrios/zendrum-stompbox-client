@@ -18,6 +18,8 @@ import {
   SET_ROUND_ROBIN_ENABLED,
   RECEIVED_VERSION,
   SET_VOLUME_CURVE,
+  SET_POLYLOCKS_ENABLED,
+  RECEIVED_POLYLOCKS_ENABLED,
 } from '../action-creators/actions'
 
 const receivedVersion = (state, { anvil }) => ({
@@ -38,6 +40,11 @@ const receivedThruEnabled = (state, { thruEnabledAtStart }) => ({
 const receivedMuteGroupsEnabled = (state, { muteGroupsEnabled }) => ({
   ...state,
   muteGroupsEnabled,
+})
+
+const receivedPolyLocksEnabled = (state, { polyLocksEnabled }) => ({
+  ...state,
+  polyLocksEnabled,
 })
 
 const confirmFactoryReset = (state, { showResetDialog }) => ({
@@ -104,9 +111,12 @@ const handlers = {
   [RECEIVED_MUTE_ENABLED]: receivedMuteEnabled,
   [RECEIVED_THRU_ENABLED]: receivedThruEnabled,
   [RECEIVED_MUTE_GROUPS_ENABLED]: receivedMuteGroupsEnabled,
+  [RECEIVED_POLYLOCKS_ENABLED]: receivedPolyLocksEnabled,
   [SET_MUTE_ENABLED]: receivedMuteEnabled,
   [SET_THRU_ENABLED]: receivedThruEnabled,
   [SET_MUTE_GROUPS_ENABLED]: receivedMuteGroupsEnabled,
+  [RECEIVED_POLYLOCKS_ENABLED]: receivedPolyLocksEnabled,
+  [SET_POLYLOCKS_ENABLED]: receivedPolyLocksEnabled,
   [CONFIRM_FACTORY_RESET]: confirmFactoryReset,
   [FACTORY_RESET]: resetBeingPerformed,
   /* Instead of catching 'FACTORY_RESET', watch for the actual result
@@ -127,6 +137,7 @@ const defaultState = {
   muteEnabledAtStart: false,
   thruEnabledAtStart: true,
   muteGroupsEnabled: true,
+  polyLocksEnabled: false,
   showResetDialog: false,
   resetInProcess: false,
   channelA: 10,
@@ -142,6 +153,7 @@ export const settingsShape = {
   muteEnabledAtStart: PropTypes.bool,
   thruEnabledAtStart: PropTypes.bool,
   muteGroupsEnabled: PropTypes.bool,
+  polyLocksEnabled: PropTypes.bool,
   showResetDialog: PropTypes.bool,
   resetInProcess: PropTypes.bool,
   channelA: PropTypes.number,

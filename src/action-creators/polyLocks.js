@@ -5,10 +5,9 @@ export const receivedPolyLocks = locks => ({
   locks,
 })
 
-export const deletePolyLock = (bank, pitch) => ({
+export const deletePolyLock = idx => ({
   type: DELETE_POLYLOCK,
-  bank,
-  pitch,
+  idx,
 })
 
 export const addPolyLock = (bank, pitch) => ({

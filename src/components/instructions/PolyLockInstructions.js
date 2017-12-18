@@ -1,10 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
-
 import React from 'react'
+import PropTypes from 'prop-types'
+import omit from 'lodash/omit'
+import { withStyles } from 'material-ui/styles'
 import Instructions from './Instructions'
 
-const header =
-  'Here you can define which notes if any should not be recycled by the polyphonic engine...'
+const styles = {
+  cont: {
+    width: 630,
+    maxWidth: 630,
+  },
+}
+
+const header = 'Here you can define which notes if any should not be recycled by the engine.'
 const body = () => (
   <div>
     <p>Your STOMPBLOCK has a maximum polyphony of 14 voices.</p>
@@ -19,9 +27,23 @@ const body = () => (
       drops during the time these samples are playing. Good candidates for this feature are crash
       cymbals and open hi-hats.
     </p>
+    <p>
+      You should avoid using this feature for time keeping instruments or any instrument that is
+      used frequently.
+    </p>
   </div>
 )
 
-const PolyLockInstructions = () => <Instructions header={header} body={body()} />
+const PolyLockInstructions = props => (
+  <div className={props.classes.cont}>
+    <Instructions header={header} body={body()} {...omit(props, ['classes'])} />
+  </div>
+)
 
-export default PolyLockInstructions
+PolyLockInstructions.propTypes = {
+  classes: PropTypes.object.isRequired,
+  enabled: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+}
+
+export default withStyles(styles)(PolyLockInstructions)

@@ -6,27 +6,34 @@ import Button from 'material-ui/Button'
 import Add from 'material-ui-icons/Add'
 import styles from '../../styles/muteGroups'
 import MuteGroup from '../muteGroups/MuteGroup'
+import MuteGroupInstructions from '../instructions/MuteGroupInstructions'
 import { MAX_MUTE_GROUPS } from '../../midi/'
 import * as muteGroupActions from '../../action-creators/muteGroups'
+import * as settingsActions from '../../action-creators/settings'
 import { muteGroupsShape } from '../../reducers/muteGroups'
+import { settingsShape } from '../../reducers/settings'
 
 const MuteGroups = (props) => {
   const {
     muteGroups: { data, hasSoundBankSupport },
     mapping: { entries },
+    settings: { muteGroupsEnabled },
     deleteMuteItem,
     addMuteItem,
     deleteMuteGroup,
     addMuteGroup,
     changeBank,
+    setMuteGroupsEnabled,
   } = props
 
   return (
     <div className={styles.muteGroupsContainer}>
       <div className={styles.muteGroups}>
+        <MuteGroupInstructions enabled={muteGroupsEnabled} onChange={setMuteGroupsEnabled} />
         {data.map((group, idx) => (
           <div key={idx}>
             <MuteGroup
+              disabled={!muteGroupsEnabled}
               mapping={entries}
               group={group}
               ordinal={idx}
@@ -38,7 +45,7 @@ const MuteGroups = (props) => {
             />
           </div>
         ))}
-        <Button raised dense color="accent" onClick={addMuteGroup}>
+        <Button raised dense color="accent" onClick={addMuteGroup} disabled={!muteGroupsEnabled}>
           <Add />
           Create New Group
         </Button>
@@ -54,14 +61,17 @@ const MuteGroups = (props) => {
 MuteGroups.propTypes = {
   muteGroups: PropTypes.shape(muteGroupsShape).isRequired,
   mapping: PropTypes.shape({ entries: PropTypes.array.isRequired }).isRequired,
+  settings: PropTypes.shape(settingsShape).isRequired,
   deleteMuteItem: PropTypes.func.isRequired,
   addMuteItem: PropTypes.func.isRequired,
   deleteMuteGroup: PropTypes.func.isRequired,
   addMuteGroup: PropTypes.func.isRequired,
   changeBank: PropTypes.func.isRequired,
+  setMuteGroupsEnabled: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ muteGroups, mapping }) => ({ muteGroups, mapping })
-const mapDispatchToProps = dispatch => bindActionCreators(muteGroupActions, dispatch)
+const mapStateToProps = ({ muteGroups, mapping, settings }) => ({ muteGroups, mapping, settings })
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...muteGroupActions, ...settingsActions }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(MuteGroups)

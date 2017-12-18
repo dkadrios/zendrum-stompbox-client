@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import NotePicker from '../pickers/NotePicker'
-import styles from '../../styles/muteGroups'
+import styles from '../../styles/polyLocks'
 import { mappingShape } from '../../reducers/mapping'
 
 const PolyLockNewItem = ({ bank, mapping, disabled, addPolyLock }) => (

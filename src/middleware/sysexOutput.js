@@ -3,6 +3,7 @@ import {
   SET_MUTE_ENABLED,
   SET_THRU_ENABLED,
   SET_MUTE_GROUPS_ENABLED,
+  SET_POLYLOCKS_ENABLED,
   PLAY_NOTE,
   FACTORY_RESET,
   RELOAD_SYSEX,
@@ -16,11 +17,14 @@ import {
   SET_VELOCITY_VARIANCE,
   SET_ROUND_ROBIN_ENABLED,
   SET_VOLUME_CURVE,
+  ADD_POLYLOCK,
+  DELETE_POLYLOCK,
 } from '../action-creators/actions'
 import {
   SYSEX_MSG_SET_MUTE_ENABLED,
   SYSEX_MSG_SET_THRU_ENABLED,
   SYSEX_MSG_SET_MUTE_GROUPS_ENABLED,
+  SYSEX_MSG_SET_POLYLOCKS_ENABLED,
 } from '../midi/sysex'
 import {
   askForVersion,
@@ -38,6 +42,8 @@ import {
   setVelocityVariance,
   setRoundRobinEnabled,
   setVolumeCurve,
+  deletePolyLock,
+  addPolyLock,
 } from '../midi/sysexOutput'
 
 export default store => next => (action) => {
@@ -63,6 +69,10 @@ export default store => next => (action) => {
 
     case SET_MUTE_GROUPS_ENABLED:
       setBooleanValue(store.dispatch, SYSEX_MSG_SET_MUTE_GROUPS_ENABLED, act.muteGroupsEnabled)
+      break
+
+    case SET_POLYLOCKS_ENABLED:
+      setBooleanValue(store.dispatch, SYSEX_MSG_SET_POLYLOCKS_ENABLED, act.polyLocksEnabled)
       break
 
     case PLAY_NOTE:
@@ -111,6 +121,14 @@ export default store => next => (action) => {
       break
     case SET_VOLUME_CURVE:
       setVolumeCurve(store.dispatch, act.volumeCurve)
+      break
+
+    case ADD_POLYLOCK:
+      addPolyLock(store.dispatch, act.bank, act.pitch)
+      break
+
+    case DELETE_POLYLOCK:
+      deletePolyLock(store.dispatch, act.idx)
       break
 
     default:

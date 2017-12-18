@@ -17,7 +17,7 @@ const ToolbarButton = ({ icon, view, selected, onClick }) => (
 
 ToolbarButton.propTypes = {
   icon: PropTypes.string.isRequired,
-  view: PropTypes.oneOf(['list', 'narrow', 'medium', 'wide']).isRequired,
+  view: PropTypes.oneOf(['list', 'medium', 'wide']).isRequired,
   selected: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 }

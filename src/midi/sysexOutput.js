@@ -11,6 +11,7 @@ import {
   SYSEX_MSG_RECEIVED_MUTE_ENABLED,
   SYSEX_MSG_RECEIVED_THRU_ENABLED,
   SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED,
+  SYSEX_MSG_RECEIVED_POLYLOCKS_ENABLED,
   SYSEX_MSG_RECEIVED_MUTE_GROUPS,
   SYSEX_MSG_GET_ALL,
   SYSEX_MSG_PLAY_NOTE,
@@ -53,6 +54,7 @@ export const askForFullData = (dispatch) => {
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_THRU_ENABLED))
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED))
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_MUTE_GROUPS))
+  dispatch(transmitAction(SYSEX_MSG_RECEIVED_POLYLOCKS_ENABLED))
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_POLYLOCKS))
   dispatch(transmitAction(SYSEX_MSG_GET_MIDI_SETTINGS))
   /* istanbul ignore next */

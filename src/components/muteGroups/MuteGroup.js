@@ -36,6 +36,7 @@ const MuteGroup = (props) => {
     mapping,
     hasSoundBankSupport,
     classes,
+    disabled,
   } = props
   const { muteables, muters, bank } = group
 
@@ -49,6 +50,7 @@ const MuteGroup = (props) => {
         itemIdx={idx}
         muter={muter}
         deleteMuteItem={deleteMuteItem}
+        disabled={disabled}
       />
     ))
 
@@ -61,11 +63,21 @@ const MuteGroup = (props) => {
           </Typography>
           <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
             <div className={classes.bank}>
-              <BankPicker value={bank} onChange={val => changeBank(ordinal, val)} />
+              <BankPicker
+                disabled={disabled}
+                value={bank}
+                onChange={val => changeBank(ordinal, val)}
+              />
             </div>
           </Visible>
           <Tooltip title="Delete group" placement="bottom">
-            <Button fab mini aria-label="delete" onClick={() => deleteMuteGroup(ordinal)}>
+            <Button
+              disabled={disabled}
+              fab
+              mini
+              aria-label="delete"
+              onClick={() => deleteMuteGroup(ordinal)}
+            >
               <DeleteIcon />
             </Button>
           </Tooltip>
@@ -76,14 +88,12 @@ const MuteGroup = (props) => {
             <h1>These notes are muted&hellip;</h1>
             <div className={styles.list}>{List(muteables, false)}</div>
           </section>
-
           <section>
             <h1>&hellip;whenever these notes are played</h1>
             <div className={styles.list}>{List(muters, true)}</div>
           </section>
-
-          <MuteGroupNewItem {...props} muter={false} />
-          <MuteGroupNewItem {...props} muter />
+          <MuteGroupNewItem {...props} disabled={disabled} muter={false} />
+          <MuteGroupNewItem {...props} disabled={disabled} muter />
         </div>
       </Paper>
     </div>
@@ -100,6 +110,7 @@ MuteGroup.propTypes = {
   mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
   hasSoundBankSupport: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
 }
 
 export default withStyles(muiStyles)(MuteGroup)

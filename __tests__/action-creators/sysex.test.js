@@ -322,6 +322,7 @@ describe('sysex actions', () => {
         ...muteGroups,
         data: [
           {
+            bank: 0,
             muteables: [25],
             muters: [26],
           },

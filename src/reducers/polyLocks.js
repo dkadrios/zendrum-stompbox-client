@@ -13,9 +13,10 @@ const receivedPolyLocks = (state, { locks }) => {
 
   return {
     ...state,
-    data: data.map(([bank, pitch]) => ({
+    data: data.map(([bank, pitch], idx) => ({
       bank,
       pitch,
+      idx,
     })),
   }
 }
@@ -27,12 +28,14 @@ const receivedVersion = (state, { anvil }) => ({
 
 const addItem = (state, { bank, pitch }) => ({
   ...state,
-  data: [...state.data, { bank, pitch }],
+  data: [...state.data, { bank, pitch }].map((item, idx) => ({ ...item, idx })),
 })
 
 const removeItem = (state, { bank, pitch }) => ({
   ...state,
-  data: state.data.filter(item => !(item.bank === bank && item.pitch === pitch)),
+  data: state.data
+    .filter(item => !(item.bank === bank && item.pitch === pitch))
+    .map((item, idx) => ({ ...item, idx })),
 })
 
 const handlers = {
@@ -48,6 +51,7 @@ const defaultState = {
 }
 
 export const polyLockShape = {
+  idx: PropTypes.number,
   bank: PropTypes.number,
   pitch: PropTypes.number,
 }

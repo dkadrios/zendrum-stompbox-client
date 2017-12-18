@@ -12,6 +12,8 @@ import {
   SET_VELOCITY_VARIANCE,
   SET_ROUND_ROBIN_ENABLED,
   SET_VOLUME_CURVE,
+  RECEIVED_POLYLOCKS_ENABLED,
+  SET_POLYLOCKS_ENABLED,
 } from './actions'
 
 export const setMuteEnabled = muteEnabledAtStart => ({
@@ -29,6 +31,11 @@ export const setMuteGroupsEnabled = muteGroupsEnabled => ({
   muteGroupsEnabled,
 })
 
+export const setPolyLocksEnabled = polyLocksEnabled => ({
+  type: SET_POLYLOCKS_ENABLED,
+  polyLocksEnabled,
+})
+
 export const receivedMuteEnabled = muteEnabledAtStart => ({
   type: RECEIVED_MUTE_ENABLED,
   muteEnabledAtStart,
@@ -42,6 +49,11 @@ export const receivedThruEnabled = thruEnabledAtStart => ({
 export const receivedMuteGroupsEnabled = muteGroupsEnabled => ({
   type: RECEIVED_MUTE_GROUPS_ENABLED,
   muteGroupsEnabled,
+})
+
+export const receivedPolyLocksEnabled = polyLocksEnabled => ({
+  type: RECEIVED_POLYLOCKS_ENABLED,
+  polyLocksEnabled,
 })
 
 export const changePrimaryNavTab = primaryNavTabIdx => ({

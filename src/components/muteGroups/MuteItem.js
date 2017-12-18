@@ -18,12 +18,12 @@ const styles = {
 }
 
 const MuteItem = (props) => {
-  const { note, deleteMuteItem, groupIdx, itemIdx, muter, mapping, classes } = props
+  const { note, deleteMuteItem, groupIdx, itemIdx, muter, mapping, classes, disabled } = props
   const { name, group } = mapping.find(item => item.note === note)
 
   return (
     <Chip
-      onRequestDelete={() => deleteMuteItem(groupIdx, muter, itemIdx)}
+      onRequestDelete={disabled ? null : () => deleteMuteItem(groupIdx, muter, itemIdx)}
       label={`#${note} ${name}`}
       className={classes.chip}
       classes={{ label: classes.label }}
@@ -44,6 +44,7 @@ MuteItem.propTypes = {
   muter: PropTypes.bool.isRequired,
   mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
   classes: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
 }
 
 export default withStyles(styles)(MuteItem)

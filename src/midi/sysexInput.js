@@ -10,6 +10,7 @@ import {
   SYSEX_MSG_RECEIVED_MUTE_ENABLED,
   SYSEX_MSG_RECEIVED_THRU_ENABLED,
   SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED,
+  SYSEX_MSG_RECEIVED_POLYLOCKS_ENABLED,
   SYSEX_MSG_RECEIVE_ALL,
   SYSEX_MSG_RECEIVED_SECOND_BANK,
   SYSEX_MSG_RECEIVED_MUTE_GROUPS,
@@ -25,6 +26,7 @@ import {
   receivedThruEnabled,
   receivedMuteGroupsEnabled,
   receivedMidiSettings,
+  receivedPolyLocksEnabled,
 } from '../action-creators/settings'
 
 import { loadMapping } from '../action-creators/mapping'
@@ -82,6 +84,10 @@ const processMidiMessage = (store, { data }) => {
 
       case SYSEX_MSG_RECEIVED_MUTE_GROUPS_ENABLED:
         dispatch(receivedMuteGroupsEnabled(!!packet[0]))
+        break
+
+      case SYSEX_MSG_RECEIVED_POLYLOCKS_ENABLED:
+        dispatch(receivedPolyLocksEnabled(!!packet[0]))
         break
 
       case SYSEX_MSG_RECEIVED_MUTE_GROUPS:

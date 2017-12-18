@@ -15,7 +15,7 @@ const styles = theme => ({
   },
 })
 
-const BankPicker = ({ value, onChange, classes }) => (
+const BankPicker = ({ value, onChange, classes, disabled }) => (
   <div>
     <FormControl component="fieldset" required className={classes.formControl}>
       <RadioGroup
@@ -25,8 +25,8 @@ const BankPicker = ({ value, onChange, classes }) => (
         value={String(value)}
         onChange={(event, val) => onChange(Number(val))}
       >
-        <FormControlLabel value="0" control={<Radio />} label="Bank A" />
-        <FormControlLabel value="1" control={<Radio />} label="Bank B" />
+        <FormControlLabel value="0" control={<Radio disabled={disabled} />} label="Bank A" />
+        <FormControlLabel value="1" control={<Radio disabled={disabled} />} label="Bank B" />
       </RadioGroup>
     </FormControl>
   </div>
@@ -36,6 +36,7 @@ BankPicker.propTypes = {
   value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
 }
 
 export default withStyles(styles)(BankPicker)

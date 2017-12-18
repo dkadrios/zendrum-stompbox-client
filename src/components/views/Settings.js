@@ -24,15 +24,15 @@ const Settings = (props) => {
           <MappingSelector {...props} />
         </Paper>
 
+        <Paper style={paperStyle}>
+          <Preferences {...props} />
+        </Paper>
+
         {hasSoundBankSupport && (
           <Paper style={paperStyle}>
             <MidiSettings {...props} />
           </Paper>
         )}
-
-        <Paper style={paperStyle}>
-          <Preferences {...props} />
-        </Paper>
 
         <FactoryReset {...props} />
       </div>
@@ -45,7 +45,6 @@ Settings.propTypes = {
   mapping: PropTypes.shape(mappingsShape).isRequired,
   setMuteEnabled: PropTypes.func.isRequired,
   setThruEnabled: PropTypes.func.isRequired,
-  setMuteGroupsEnabled: PropTypes.func.isRequired,
   confirmFactoryReset: PropTypes.func.isRequired,
   performFactoryReset: PropTypes.func.isRequired,
   selectMapping: PropTypes.func.isRequired,

@@ -44,12 +44,6 @@ const VelocityTrimListFilter = (props) => {
           onClick={() => changeListView('list')}
         />
         <Btn
-          icon="view_stream"
-          view="narrow"
-          selected={listView === 'narrow'}
-          onClick={() => changeListView('narrow')}
-        />
-        <Btn
           icon="view_module"
           view="medium"
           selected={listView === 'medium'}

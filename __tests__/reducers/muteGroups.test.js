@@ -17,6 +17,7 @@ describe('muteGroups reducer', () => {
       ...initialState,
       data: [
         {
+          bank: 0,
           muteables: [25, 26],
           muters: [35, 36],
         },

@@ -51,7 +51,6 @@
     @include scroll-shadow-indicator;
   }
 
-  ul.narrowView,
   ul.mediumView,
   ul.wideView {
     width: 100%;
@@ -154,9 +153,6 @@
     }
   }
 
-  ul.narrowView {
-    width: 375px;
-  }
   ul.mediumView {
     width: 700px;
   }

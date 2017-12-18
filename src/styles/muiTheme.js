@@ -22,6 +22,10 @@ export default createMuiTheme({
         border: 0,
         color: 'white',
       },
+      disabled: {
+        background: 'linear-gradient(180deg, #aaa 30%, #aaa 90%)',
+        color: '#555',
+      },
     },
     MuiExpansionPanel: {
       root: {

@@ -6,7 +6,7 @@ import { mappingShape } from '../../reducers/mapping'
 import { muteGroupShape } from '../../reducers/muteGroups'
 
 const MuteGroupNewItem = (props) => {
-  const { muter, group, ordinal, addMuteItem, mapping } = props
+  const { muter, group, ordinal, addMuteItem, mapping, disabled } = props
   const { muteables, muters } = group
 
   const max = () => (muter ? MAX_MUTERS_PER_GROUP : MAX_MUTEABLES_PER_GROUP)
@@ -20,7 +20,7 @@ const MuteGroupNewItem = (props) => {
         groupIdx={ordinal}
         muter={muter}
         addMuteItem={addMuteItem}
-        disabled={avail() < 1}
+        disabled={disabled || avail() < 1}
       />
       <small>
         {max()} MAX ({avail()} available)
@@ -35,6 +35,7 @@ MuteGroupNewItem.propTypes = {
   ordinal: PropTypes.number.isRequired,
   addMuteItem: PropTypes.func.isRequired,
   mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  disabled: PropTypes.bool.isRequired,
 }
 
 export default MuteGroupNewItem

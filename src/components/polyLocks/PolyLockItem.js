@@ -18,12 +18,12 @@ const styles = {
 }
 
 const PolyLockItem = (props) => {
-  const { pitch, deletePolyLock, bank, mapping, classes } = props
+  const { pitch, deletePolyLock, idx, mapping, classes, disabled } = props
   const { name, group } = mapping.find(item => item.note === pitch)
 
   return (
     <Chip
-      onRequestDelete={() => deletePolyLock(bank, pitch)}
+      onRequestDelete={disabled ? null : () => deletePolyLock(idx)}
       label={`#${pitch} ${name}`}
       className={classes.chip}
       classes={{ label: classes.label }}
@@ -37,11 +37,12 @@ const PolyLockItem = (props) => {
 }
 
 PolyLockItem.propTypes = {
-  bank: PropTypes.number.isRequired,
+  idx: PropTypes.number.isRequired,
   pitch: PropTypes.number.isRequired,
   deletePolyLock: PropTypes.func.isRequired,
   mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
   classes: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
 }
 
 export default withStyles(styles)(PolyLockItem)

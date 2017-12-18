@@ -1,0 +1,26 @@
+.polyLocksCont {
+  max-width: 630px;
+  padding: 10px 15px;
+
+  section {
+    display: flex;
+
+    .bank {
+      width: 50%;
+      min-width: 312px;
+
+      section {
+        display: flex;
+        flex-flow: column nowrap;
+        padding-top: 10px;
+        padding-left: 15px;
+      }
+
+      .newItemContainer {
+        height: 45px;
+        margin-top: 8px;
+        padding: 0 20px;
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@
     text-align: center;
     position: relative;
     cursor: pointer;
-    margin-right: 40px;
+    margin-right: 20px;
 
     min-width: 110px;
     max-width: 110px;
@@ -26,14 +26,16 @@
     svg:first-of-type {
       position: relative;
       left: 3px;
+      max-width: 60px;
+      max-height: 80px;
     }
 
     svg:nth-of-type(2) {
-      max-width: 60px;
-      max-height: 80px;
+      max-width: 35px;
+      max-height: 40px;
       position: absolute;
-      left: 33px;
-      top: 25px;
+      left: 43px;
+      top: 15px;
     }
   }
 
