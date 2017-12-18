@@ -23,6 +23,21 @@ export default createMuiTheme({
         color: 'white',
       },
     },
+    MuiExpansionPanel: {
+      root: {
+        backgroundColor: '#444',
+        color: 'white',
+        marginTop: 4,
+      },
+      expanded: {
+        marginTop: '4px !important',
+      },
+    },
+    MuiExpansionPanelSummary: {
+      expandIcon: {
+        color: 'white',
+      },
+    },
     MuiFormControlLabel: {
       label: {
         color: 'white',

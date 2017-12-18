@@ -22,11 +22,11 @@ const BankPicker = ({ value, onChange, classes }) => (
         aria-label="bank"
         name="bank"
         className={classes.group}
-        value={value}
+        value={String(value)}
         onChange={(event, val) => onChange(Number(val))}
       >
-        <FormControlLabel value={0} control={<Radio />} label="Bank A" />
-        <FormControlLabel value={1} control={<Radio />} label="Bank B" />
+        <FormControlLabel value="0" control={<Radio />} label="Bank A" />
+        <FormControlLabel value="1" control={<Radio />} label="Bank B" />
       </RadioGroup>
     </FormControl>
   </div>

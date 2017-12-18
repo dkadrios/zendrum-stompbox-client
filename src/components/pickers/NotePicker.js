@@ -141,7 +141,7 @@ class IntegrationAutosuggest extends React.Component {
   }
 
   handleSuggestionSelected = (event, { suggestion }) => {
-    this.props.onChange(suggestion)
+    this.props.onChange(this.source.indexOf(suggestion) + 1)
     this.setState({
       value: '',
     })

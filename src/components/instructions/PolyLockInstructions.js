@@ -22,7 +22,6 @@ const body = () => (
   </div>
 )
 
-const PolyLockInstructions = () => <div />
-// <Instructions header={header} body={body()} />
+const PolyLockInstructions = () => <Instructions header={header} body={body()} />
 
 export default PolyLockInstructions

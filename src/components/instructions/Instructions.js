@@ -8,7 +8,7 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore'
 
 const Instructions = ({ header, body }) => (
   <ExpansionPanel>
-    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>{header}</ExpansionPanelSummary>
+    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>{header} [MORE]</ExpansionPanelSummary>
     <ExpansionPanelDetails>{body}</ExpansionPanelDetails>
   </ExpansionPanel>
 )

@@ -5,13 +5,14 @@ export const receivedPolyLocks = locks => ({
   locks,
 })
 
-export const deletePolyLock = lockIdx => ({
+export const deletePolyLock = (bank, pitch) => ({
   type: DELETE_POLYLOCK,
-  lockIdx,
+  bank,
+  pitch,
 })
 
-export const addPolyLock = (channel, pitch) => ({
+export const addPolyLock = (bank, pitch) => ({
   type: ADD_POLYLOCK,
-  channel,
+  bank,
   pitch,
 })
