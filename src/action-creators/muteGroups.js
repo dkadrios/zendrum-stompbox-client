@@ -4,6 +4,7 @@ import {
   ADD_MUTE_GROUP,
   DELETE_MUTE_ITEM,
   ADD_MUTE_ITEM,
+  SET_MUTE_GROUP_BANK,
 } from './actions'
 
 export const receivedMuteGroups = groups => ({
@@ -32,4 +33,10 @@ export const addMuteItem = (groupIdx, muter, noteNum) => ({
   groupIdx,
   muter,
   noteNum,
+})
+
+export const changeBank = (groupIdx, bank) => ({
+  type: SET_MUTE_GROUP_BANK,
+  groupIdx,
+  bank,
 })

@@ -1,49 +1,88 @@
 /* eslint-disable no-plusplus */
 import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
-import { RECEIVED_MUTE_GROUPS } from '../action-creators/actions'
+import {
+  RECEIVED_MUTE_GROUPS,
+  RECEIVED_VERSION,
+  SET_MUTE_GROUP_BANK,
+} from '../action-creators/actions'
 
-const receivedMuteGroups = (state, { groups }) => {
-  // TODO - surely there is more functional way to disassemble the data stream
-  const byteArr = [...groups]
-  const data = []
-  let byteIdx = 1
+const receivedMuteGroups = (state, { groups: packet }) => {
+  const [numGroups, ...raw] = packet
+  const groups = []
 
-  for (let groupIdx = 0; groupIdx < byteArr[0]; groupIdx++) {
-    data[groupIdx] = {
-      muteables: byteArr.slice(byteIdx + 2, byteIdx + 2 + byteArr[byteIdx]),
-      muters: byteArr.slice(
-        byteIdx + 2 + byteArr[byteIdx],
-        byteIdx + 2 + byteArr[byteIdx] + byteArr[byteIdx + 1],
-      ),
+  let byteIdx = 0
+  let bank
+  let numMuteables
+  let numMuters
+  let muteables
+  let muters
+
+  for (let groupIdx = 0; groupIdx < numGroups; groupIdx++) {
+    if (state.hasSoundBankSupport) {
+      bank = raw[byteIdx++]
+    } else {
+      bank = 0
     }
-    byteIdx += 2 + byteArr[byteIdx] + byteArr[byteIdx + 1]
+    numMuteables = raw[byteIdx++]
+    numMuters = raw[byteIdx++]
+
+    muteables = raw.slice(byteIdx, byteIdx + numMuteables)
+    byteIdx += numMuteables
+
+    muters = raw.slice(byteIdx, byteIdx + numMuters)
+    byteIdx += numMuters
+
+    groups[groupIdx] = {
+      bank,
+      muteables,
+      muters,
+    }
   }
 
   return {
     ...state,
-    data: data.map(group => ({
+    data: groups.map(group => ({
+      bank: group.bank,
       muteables: [...group.muteables],
       muters: [...group.muters],
     })),
   }
 }
 
+const receivedVersion = (state, { anvil }) => ({
+  ...state,
+  hasSoundBankSupport: anvil >= 30,
+})
+
+const setBank = (state, { groupIdx, bank }) => ({
+  ...state,
+  data: state.data.map((
+    group,
+    idx, //
+  ) => ({ ...group, bank: idx === groupIdx ? bank : group.bank })),
+})
+
 const handlers = {
   [RECEIVED_MUTE_GROUPS]: receivedMuteGroups,
+  [RECEIVED_VERSION]: receivedVersion,
+  [SET_MUTE_GROUP_BANK]: setBank,
 }
 
 const defaultState = {
   data: [],
+  hasSoundBankSupport: false,
 }
 
 export const muteGroupShape = {
+  bank: PropTypes.number,
   muteables: PropTypes.arrayOf(PropTypes.number),
   muters: PropTypes.arrayOf(PropTypes.number),
 }
 
 export const muteGroupsShape = {
   data: PropTypes.arrayOf(PropTypes.shape(muteGroupShape)),
+  hasSoundBankSupport: PropTypes.bool,
 }
 
 export default createReducer(defaultState, handlers)

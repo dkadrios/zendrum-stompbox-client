@@ -12,12 +12,13 @@ import { muteGroupsShape } from '../../reducers/muteGroups'
 
 const MuteGroups = (props) => {
   const {
-    muteGroups: { data },
+    muteGroups: { data, hasSoundBankSupport },
     mapping: { entries },
     deleteMuteItem,
     addMuteItem,
     deleteMuteGroup,
     addMuteGroup,
+    changeBank,
   } = props
 
   return (
@@ -32,6 +33,8 @@ const MuteGroups = (props) => {
               deleteMuteItem={deleteMuteItem}
               addMuteItem={addMuteItem}
               deleteMuteGroup={deleteMuteGroup}
+              changeBank={changeBank}
+              hasSoundBankSupport={hasSoundBankSupport}
             />
           </div>
         ))}
@@ -55,6 +58,7 @@ MuteGroups.propTypes = {
   addMuteItem: PropTypes.func.isRequired,
   deleteMuteGroup: PropTypes.func.isRequired,
   addMuteGroup: PropTypes.func.isRequired,
+  changeBank: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ muteGroups, mapping }) => ({ muteGroups, mapping })

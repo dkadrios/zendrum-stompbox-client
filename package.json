@@ -7,7 +7,8 @@
     "clean": "rimraf dist",
     "build:webpack": "NODE_ENV=production webpack -p --config webpack.prod.config.babel.js",
     "build": "npm run clean && npm run build:webpack",
-    "start": "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
+    "start":
+      "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
     "lint": "eslint 'src/**' '__tests__/**' '*.js'",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
@@ -26,11 +27,10 @@
     "globals": {
       "__DEV__": true,
       "__TEST__": true,
-      "__API__": "http://localhost:3002"
+      "__API__": "http://localhost:3002",
+      "__BANK_FEATURE__": false
     },
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ]
+    "setupFiles": ["jest-localstorage-mock"]
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",

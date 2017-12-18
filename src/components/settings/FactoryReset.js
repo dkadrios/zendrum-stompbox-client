@@ -21,7 +21,8 @@ const FactoryReset = (props) => {
   return (
     <div>
       <Button raised color="primary" onMouseUp={() => confirmFactoryReset(true)}>
-        <Warning /> Perform Factory Reset
+        <Warning />
+        <span style={{ paddingLeft: 7 }}>Perform Factory Reset</span>
       </Button>
 
       <Dialog

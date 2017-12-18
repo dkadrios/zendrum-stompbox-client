@@ -77,6 +77,7 @@ export default {
       __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
       __TEST__: JSON.stringify(JSON.parse(process.env.BUILD_TEST || 'false')),
       __API__: "'http://localhost:3002'",
+      __BANK_FEATURE__: true,
     }),
   ],
   resolve: {

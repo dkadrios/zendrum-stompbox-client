@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-rangeslider'
+import Visible from 'react-visible'
 import ChannelPicker from '../pickers/ChannelPicker'
 import ToggleSwitch from '../HOC/ToggleSwitch'
 import Tooltipped from '../HOC/Tooltipped'
@@ -29,33 +30,44 @@ const volumeLabels = {
 }
 
 const MidiSettings = ({
-  settings: { channelA, /* channelB, */ velocityVariance, roundRobinEnabled, volumeCurve },
+  settings: {
+    channelA,
+    channelB,
+    velocityVariance,
+    roundRobinEnabled,
+    volumeCurve,
+    hasSoundBankSupport,
+  },
   changeChannelA,
-  /* changeChannelB, */
+  changeChannelB,
   changeVelocityVariance,
   changeRoundRobinEnabled,
   changeVolumeCurve,
 }) => (
   <div className={styles.midiCont}>
     <h2>MIDI</h2>
+
     <section>
-      {/*
-      NOTE: Enable this block and remove the control beneath it *WHEN* we've
-      officially rolled out the multi-bank feature.  For now just give the
-      appearance that there is just one bank.
-      <article>
-        <summary>Bank A</summary>
-        <ChannelPicker channel={channelA} onChange={changeChannelA} />
-      </article>
-      <article>
-        <summary>Bank B</summary>
-        <ChannelPicker channel={channelB} onChange={changeChannelB} />
-      </article>
-      */}
-      <article>
-        <summary>Channel</summary>
-        <ChannelPicker channel={channelA} onChange={changeChannelA} />
-      </article>
+      <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+        <div className={styles.bank}>
+          <article>
+            <summary>Bank A</summary>
+            <ChannelPicker channel={channelA} onChange={changeChannelA} />
+          </article>
+          <article>
+            <summary>Bank B</summary>
+            <ChannelPicker channel={channelB} onChange={changeChannelB} />
+          </article>
+        </div>
+      </Visible>
+
+      <Visible isVisible={!hasSoundBankSupport || !__BANK_FEATURE__}>
+        <article>
+          <summary>Channel</summary>
+          <ChannelPicker channel={channelA} onChange={changeChannelA} />
+        </article>
+      </Visible>
+
       <div className={styles.sliderCont}>
         <Tooltipped tooltip="Controls how steeply volume drops off at lower velocities">
           <p>Volume Curve</p>
@@ -100,7 +112,7 @@ const MidiSettings = ({
 MidiSettings.propTypes = {
   settings: PropTypes.shape(settingsShape).isRequired,
   changeChannelA: PropTypes.func.isRequired,
-  /* changeChannelB: PropTypes.func.isRequired, */
+  changeChannelB: PropTypes.func.isRequired,
   changeVelocityVariance: PropTypes.func.isRequired,
   changeRoundRobinEnabled: PropTypes.func.isRequired,
   changeVolumeCurve: PropTypes.func.isRequired,

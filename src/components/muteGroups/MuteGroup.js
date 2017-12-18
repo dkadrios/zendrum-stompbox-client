@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
+import Visible from 'react-visible'
 import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
 import Toolbar from 'material-ui/Toolbar'
@@ -8,6 +9,7 @@ import Tooltip from 'material-ui/Tooltip'
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
 import DeleteIcon from 'material-ui-icons/Delete'
+import BankPicker from '../pickers/BankPicker'
 import MuteItem from './MuteItem'
 import MuteGroupNewItem from './MuteGroupNewItem'
 import { mappingShape } from '../../reducers/mapping'
@@ -19,11 +21,23 @@ const muiStyles = {
   title: {
     flex: 1,
   },
+  bank: {
+    paddingRight: 70,
+  },
 }
 
 const MuteGroup = (props) => {
-  const { group, ordinal, deleteMuteItem, deleteMuteGroup, mapping, classes } = props
-  const { muteables, muters } = group
+  const {
+    group,
+    ordinal,
+    deleteMuteItem,
+    deleteMuteGroup,
+    changeBank,
+    mapping,
+    hasSoundBankSupport,
+    classes,
+  } = props
+  const { muteables, muters, bank } = group
 
   const List = (list, muter) =>
     list.map((note, idx) => (
@@ -43,8 +57,13 @@ const MuteGroup = (props) => {
       <Paper style={paperStyle}>
         <Toolbar>
           <Typography color="inherit" type="title" className={classes.title}>
-            Group #{ordinal + 1}
+            Mute Group
           </Typography>
+          <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+            <div className={classes.bank}>
+              <BankPicker value={bank} onChange={val => changeBank(ordinal, val)} />
+            </div>
+          </Visible>
           <Tooltip title="Delete group" placement="bottom">
             <Button fab mini aria-label="delete" onClick={() => deleteMuteGroup(ordinal)}>
               <DeleteIcon />
@@ -77,7 +96,9 @@ MuteGroup.propTypes = {
   addMuteItem: PropTypes.func.isRequired,
   deleteMuteItem: PropTypes.func.isRequired,
   deleteMuteGroup: PropTypes.func.isRequired,
+  changeBank: PropTypes.func.isRequired,
   mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  hasSoundBankSupport: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
 }
 

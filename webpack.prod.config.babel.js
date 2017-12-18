@@ -79,6 +79,7 @@ export default {
       __DEV__: false,
       __TEST__: false,
       __API__: "'https://nebiru.com:3002'",
+      __BANK_FEATURE__: false,
     }),
     new ExtractTextPlugin('[name].[hash].styles.css'),
     function () {
