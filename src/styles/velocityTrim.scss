@@ -163,4 +163,84 @@
   ul.wideView {
     width: 100%;
   }
+
+  ul.listView {
+    *:focus {
+      outline: none;
+    }
+
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0;
+    margin-top: 0;
+
+    section {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      max-width: 570px;
+      padding-left: 4px;
+
+      .header {
+        color: $color-appbar-text;
+        border: 1px outset $color-subappbar-background;
+        background-color: #444;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1px 5px 0 8px;
+        border-radius: 5px;
+        width: 150px;
+        cursor: pointer;
+
+        div:first-child {
+          font-size: 24px;
+        }
+
+        div:nth-child(2) {
+          font-size: 90%;
+          flex-grow: 0;
+          color: $color-text-mid;
+          text-shadow: 0px 1px 1px $color-background;
+        }
+        svg {
+          fill: $color-appbar-text;
+          width: 20px;
+          height: 20px;
+          flex-grow: 0;
+          margin: 2px 0 0 5px;
+        }
+      }
+
+      .noteName {
+        width: 200px;
+        padding-left: 12px;
+      }
+
+      .trimContainer {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        width: 180px;
+        justify-content: space-between;
+        font-size: 18px;
+
+        .buttons {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          button {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    section.selected {
+      @include outerGlow($color-focus, 3px);
+      border-radius: 10px;
+    }
+  }
 }
