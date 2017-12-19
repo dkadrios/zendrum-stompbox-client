@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Tabs, { Tab } from 'material-ui/Tabs'
 import * as settingsActions from '../action-creators/settings'
@@ -27,7 +27,7 @@ const PrimaryNav = ({
       >
         <Tab label="Trims" />
         <Tab label="Mute Groups" />
-        <Tab label="Polyphony" hidden={!hasSoundBankSupport} />
+        <Tab label="Polyphony" style={{ display: hasSoundBankSupport ? 'inline-flex' : 'none' }} />
         <Tab label="Settings" />
       </Tabs>
       {primaryNavTabIdx === 0 && <VelocityTrimListView />}

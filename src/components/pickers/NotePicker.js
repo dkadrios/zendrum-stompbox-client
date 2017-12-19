@@ -167,7 +167,7 @@ class IntegrationAutosuggest extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={{
-          autoFocus: true,
+          autoFocus: false,
           classes,
           placeholder: 'Add note # or instrument name',
           value: this.state.value,

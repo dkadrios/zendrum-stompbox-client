@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@import 'variables';
+@import 'mixins';
 
 $led-size: 11px;
 $red-base: #f00;
@@ -8,7 +8,7 @@ $yellow-base: #ff0;
 .midiActivity {
   display: flex;
   flex-flow: row nowrap;
-  margin: 10px 8px;
+  margin: 10px 30px 10px 18px;
   padding: 4px 0 4px 10px;
   align-items: center;
   justify-content: flex-end;
@@ -18,7 +18,7 @@ $yellow-base: #ff0;
   color: $color-text-dark;
   text-transform: uppercase;
 
-  border: 2px $color-subappbar-background inset;
+  border: 1px $color-subappbar-background inset;
   border-radius: 6px;
 
   .ledRed {
