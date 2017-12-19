@@ -14,11 +14,7 @@ const varianceLabels = {
   1: '1',
   2: '2',
   3: '3',
-  4: '4',
-  5: '5',
-  6: '6',
-  7: '7',
-  8: 'MAX',
+  4: 'MAX',
 }
 const volumeLabels = {
   1: 'Cliff',
@@ -90,7 +86,7 @@ const MidiSettings = ({
             step={1}
             value={velocityVariance}
             min={0}
-            max={8}
+            max={4}
             labels={varianceLabels}
             onChange={changeVelocityVariance}
           />

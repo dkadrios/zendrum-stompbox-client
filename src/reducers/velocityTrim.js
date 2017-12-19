@@ -22,14 +22,14 @@ const receivedVersion = (state, { anvil }) => ({
 const receivedAllTrims = (state, { incomingTrims, bank }) => {
   const newState = { ...state }
 
-  if (bank === 1) {
+  if (bank === 0) {
     newState.data = state.data.map((item, idx) => ({
       ...item,
       // Older units have trims stored with an offset of 1
       trim: incomingTrims[idx + (state.hasSoundBankSupport ? 1 : 0)],
     }))
-  } else {
-    console.log('Bank 2 not supported yet.') // eslint-disable-line
+  } else if (__DEV__) {
+      console.log('Bank B not supported yet.') // eslint-disable-line
   }
 
   return newState

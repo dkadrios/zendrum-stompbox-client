@@ -258,7 +258,7 @@ describe('sysex actions', () => {
   describe('receivedVelocityTrims', () => {
     beforeAll(() => {
       store = storeFactory({ velocityTrim }, false, true)
-      store.dispatch(receivedVelocityTrims([31, 32], 1))
+      store.dispatch(receivedVelocityTrims([31, 32], 0))
     })
 
     it('should succeed', () => {

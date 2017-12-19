@@ -69,7 +69,7 @@ export const setBooleanValue = (dispatch, command, value) =>
 export const playNote = (dispatch, bank, noteNum, velocity) =>
   dispatch(transmitAction(
     SYSEX_MSG_PLAY_NOTE,
-    bank //
+    bank > -1 //
       ? [noteNum, velocity, bank]
       : [noteNum, velocity],
   ))
@@ -90,7 +90,7 @@ export const addMuteItem = (dispatch, groupIdx, muter, noteNum) =>
 export const changeTrim = (dispatch, bank, noteNum, value) =>
   dispatch(transmitAction(
     SYSEX_MSG_SET_ITEM,
-    bank //
+    bank > -1 //
       ? [noteNum, value, bank]
       : [noteNum, value],
   ))

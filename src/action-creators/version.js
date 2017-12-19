@@ -2,7 +2,7 @@ import shortid from 'shortid'
 import { checkRegistration } from './user'
 import { GET_SYSEX_VERSION, RECEIVED_VERSION } from './actions'
 
-const generateSerial = () => (__DEV__ || __TEST__ ? 'DARIN_TEST' : shortid.generate())
+const generateSerial = () => (__DEV__ || __TEST__ ? 'DARIN__25' : shortid.generate())
 
 export const checkVersion = () => ({
   type: GET_SYSEX_VERSION,
