@@ -16,6 +16,7 @@ import {
   SYSEX_MSG_RECEIVED_MUTE_GROUPS,
   SYSEX_MSG_RECEIVED_MIDI_SETTINGS,
   SYSEX_MSG_RECEIVED_POLYLOCKS,
+  SYSEX_MSG_STATE_CHANGED,
 } from './sysex'
 
 import { receivedVelocityTrims, notePlayed } from '../action-creators/velocityTrim'
@@ -33,6 +34,7 @@ import { loadMapping } from '../action-creators/mapping'
 
 import { askForFullData } from './sysexOutput'
 import { receivedPolyLocks } from '../action-creators/polyLocks'
+import { receivedInternalState } from '../action-creators/stompblock'
 
 const processMidiMessage = (store, { data }) => {
   const { getState, dispatch } = store
@@ -100,6 +102,10 @@ const processMidiMessage = (store, { data }) => {
 
       case SYSEX_MSG_RECEIVED_POLYLOCKS:
         dispatch(receivedPolyLocks(packet))
+        break
+
+      case SYSEX_MSG_STATE_CHANGED:
+        dispatch(receivedInternalState(packet))
         break
 
       default:

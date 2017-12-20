@@ -29,7 +29,7 @@ const receivedAllTrims = (state, { incomingTrims, bank }) => {
       trim: incomingTrims[idx + (state.hasSoundBankSupport ? 1 : 0)],
     }))
   } else if (__DEV__) {
-      console.log('Bank B not supported yet.') // eslint-disable-line
+    console.log('Bank B not supported yet.') // eslint-disable-line
   }
 
   return newState
@@ -121,7 +121,7 @@ const defaultState = {
   listView: getInitialListView(),
   selectedNoteNum: NaN,
   data: initialTrims(),
-  bank: 1,
+  bank: 0,
   chaseEnabled: getSetting('chaseEnabled', true),
   hasSoundBankSupport: false,
 }

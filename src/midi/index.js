@@ -1,4 +1,4 @@
-import { setListeningDevices } from 'redux-midi'
+import { setListeningDevices } from 'redux-midi-fork'
 import {
   searchedForStompblock,
   stompblockFound,
@@ -19,6 +19,9 @@ export const MAX_MUTEABLES_PER_GROUP = 6
 export const MAX_MUTERS_PER_GROUP = 4
 export const MAX_MUTE_GROUPS = 4
 export const MAX_POLYLOCKS = 16
+
+export const MODE_EDIT = 1
+export const MODE_FACTORY_RESET = 2
 
 export const watchForDeviceChange = (store) => {
   deviceStore(store)

@@ -7,8 +7,7 @@
     "clean": "rimraf dist",
     "build:webpack": "NODE_ENV=production webpack -p --config webpack.prod.config.babel.js",
     "build": "npm run clean && npm run build:webpack",
-    "start":
-      "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
+    "start": "open http://localhost:8080/ && webpack-dev-server --config webpack.dev.config.babel.js",
     "lint": "eslint 'src/**' '__tests__/**' '*.js'",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
@@ -30,7 +29,9 @@
       "__API__": "http://localhost:3002",
       "__BANK_FEATURE__": false
     },
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
@@ -104,7 +105,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.1.1",
     "redux-logger": "^3.0.6",
-    "redux-midi": "^2.0.2",
+    "redux-midi-fork": "^2.0.3",
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8"
   },

@@ -4,7 +4,7 @@
   cursor: pointer;
   outline: none;
   .layout {
-    display: flex;
+    display: none;
     flex-flow: row nowrap;
 
     section {
@@ -21,6 +21,12 @@
         padding: 0 10px 0 0;
         font-size: 15px;
       }
+    }
+  }
+
+  @media screen and (min-width: 525px) {
+    .layout {
+      display: flex;
     }
   }
 }

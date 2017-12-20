@@ -8,6 +8,7 @@ import {
   FACTORY_RESET,
   RELOAD_SYSEX,
   NOT_RESPONDING,
+  RECEIVED_INTERNAL_STATE,
 } from './actions'
 
 export const searchedForStompblock = () => ({
@@ -44,3 +45,8 @@ export const confirmFactoryReset = showResetDialog => ({
 export const performFactoryReset = () => ({ type: FACTORY_RESET })
 
 export const reloadSysEx = () => ({ type: RELOAD_SYSEX })
+
+export const receivedInternalState = packet => ({
+  type: RECEIVED_INTERNAL_STATE,
+  packet,
+})

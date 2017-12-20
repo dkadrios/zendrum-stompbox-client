@@ -27,6 +27,12 @@ export default createMuiTheme({
         color: '#555',
       },
     },
+    MuiDialogContent: {
+      root: {
+        color: 'rgba(0, 0, 0, 0.54)',
+        fontSize: '1rem',
+      },
+    },
     MuiExpansionPanel: {
       root: {
         backgroundColor: '#444',

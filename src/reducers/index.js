@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { reducer as midi } from 'redux-midi'
+import { reducer as midi } from 'redux-midi-fork'
 import { reducer as form } from 'redux-form'
 import mapping from './mapping'
 import muteGroups from './muteGroups'

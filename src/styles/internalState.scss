@@ -3,23 +3,34 @@
 
 $led-size: 11px;
 $red-base: #f00;
+$green-base: #00ff00;
 $yellow-base: #ff0;
 
-.midiActivity {
+.internalState {
   display: none;
   flex-flow: row nowrap;
-  margin: 10px 30px 10px 18px;
-  padding: 4px 0 4px 10px;
+  margin: 10px 120px 10px 18px;
+  padding: 4px 0;
   align-items: center;
   justify-content: flex-end;
   position: absolute;
   right: 0;
 
   color: $color-text-dark;
-  text-transform: uppercase;
 
   border: 1px $color-subappbar-background inset;
   border-radius: 6px;
+
+  section {
+    margin-left: 10px;
+  }
+
+  .leds {
+    display: flex;
+    border-left: 1px solid $color-subappbar-background;
+    margin-left: 8px;
+    padding-left: 4px;
+  }
 
   .ledRed {
     @include led($led-size, $red-base);
@@ -35,19 +46,31 @@ $yellow-base: #ff0;
 
   .ledYellow {
     @include led($led-size, $yellow-base);
-    border-radius: 0 50% 50% 0;
-    margin: 0 12px 0 0;
+    margin: 0;
+    border-radius: 0;
   }
 
   .ledYellowBlink {
     @include led-on($led-size, $yellow-base);
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .ledGreen {
+    @include led($led-size, $green-base);
+    border-radius: 0 50% 50% 0;
+    margin: 0 12px 0 0;
+  }
+
+  .ledGreenBlink {
+    @include led-on($led-size, $green-base);
     border-radius: 0 50% 50% 0;
     margin: 0 12px 0 0;
   }
 }
 
-@media screen and (min-width: 525px) {
-  .midiActivity {
+@media screen and (min-width: 700px) {
+  .internalState {
     display: flex;
   }
 }

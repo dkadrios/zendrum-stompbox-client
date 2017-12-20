@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
-import setup from 'redux-midi'
+import setup from 'redux-midi-fork'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 import sysexInputMiddleware from './middleware/sysexInput'

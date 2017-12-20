@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-import { sendMidiMessage } from 'redux-midi'
+import { sendMidiMessage } from 'redux-midi-fork'
 import now from 'performance-now'
 import { stompblockOutputId } from './devices'
 import { STOMPBLOCK_DEVICE_ID, CURRENT_CLIENT_VERSION } from './'
@@ -30,6 +30,7 @@ import {
   SYSEX_MSG_RECEIVED_POLYLOCKS,
   SYSEX_MSG_DELETE_POLYLOCK,
   SYSEX_MSG_ADD_POLYLOCK,
+  SYSEX_MSG_GET_STATE,
 } from './sysex'
 
 const transmitAction = (command, data = []) =>
@@ -57,6 +58,7 @@ export const askForFullData = (dispatch) => {
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_POLYLOCKS_ENABLED))
   dispatch(transmitAction(SYSEX_MSG_RECEIVED_POLYLOCKS))
   dispatch(transmitAction(SYSEX_MSG_GET_MIDI_SETTINGS))
+  dispatch(transmitAction(SYSEX_MSG_GET_STATE))
   /* istanbul ignore next */
   if (!__TEST__) {
     reloadSysEx(dispatch)

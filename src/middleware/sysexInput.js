@@ -1,4 +1,4 @@
-import { RECEIVE_MIDI_MESSAGE, SEND_MIDI_MESSAGE } from 'redux-midi'
+import { RECEIVE_MIDI_MESSAGE, SEND_MIDI_MESSAGE } from 'redux-midi-fork'
 import { STOMPBLOCK_FOUND, RECEIVED_VERSION } from '../action-creators/actions'
 import { midiInActivityChanged, midiOutActivityChanged } from '../action-creators/stompblock'
 import { checkVersion } from '../action-creators/version'
@@ -10,7 +10,7 @@ let midiOutTimer
 let waitForVersionTimer
 
 export default store => next => (action) => {
-  const flickerTimeout = 200
+  const flickerTimeout = 150
   const assumeNotRespondingTimeout = 5000
 
   switch (action.type) {

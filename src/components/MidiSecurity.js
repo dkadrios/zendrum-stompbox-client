@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Dialog, { DialogContent, DialogContentText, DialogTitle } from 'material-ui/Dialog'
 import Slide from 'material-ui/transitions/Slide'
+import { stompblockShape } from '../reducers/stompblock'
 
 const Transition = props => <Slide direction="up" {...props} />
 
@@ -45,7 +46,7 @@ class MidiSecurity extends Component {
 }
 
 MidiSecurity.propTypes = {
-  stompblock: PropTypes.shape({ accessGranted: PropTypes.bool }).isRequired,
+  stompblock: PropTypes.shape(stompblockShape).isRequired,
 }
 
 const mapStateToProps = ({ stompblock }) => ({ stompblock })

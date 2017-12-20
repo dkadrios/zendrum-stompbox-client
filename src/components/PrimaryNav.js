@@ -9,6 +9,9 @@ import Settings from './views/Settings'
 import MuteGroups from './views/MuteGroups'
 import PolyLocks from './views/PolyLocks'
 import MidiActivity from './MidiActivity'
+import InternalState from './InternalState'
+import InResetMode from './InResetMode'
+import InEditMode from './InEditMode'
 import TopBar from '../components/TopBar'
 
 const PrimaryNav = ({
@@ -19,6 +22,7 @@ const PrimaryNav = ({
     <TopBar />
 
     <section>
+      {hasSoundBankSupport && <InternalState />}
       <MidiActivity />
       <Tabs
         indicatorColor="primary"
@@ -34,6 +38,8 @@ const PrimaryNav = ({
       {primaryNavTabIdx === 1 && <MuteGroups />}
       {primaryNavTabIdx === 2 && <PolyLocks />}
       {primaryNavTabIdx === 3 && <Settings />}
+      <InResetMode />
+      <InEditMode />
     </section>
   </div>
 )

@@ -66,7 +66,7 @@ const MidiSettings = ({
 
       <div className={styles.sliderCont}>
         <Tooltipped tooltip="Controls how steeply volume drops off at lower velocities">
-          <p>Volume Curve</p>
+          <p>Volume Curve (default is flat)</p>
           <Slider
             className={rangeSlider}
             step={1}
@@ -80,7 +80,7 @@ const MidiSettings = ({
       </div>
       <div className={styles.sliderCont}>
         <Tooltipped tooltip="Introduces an amount of randomness into your velocity performance">
-          <p>Velocity variance</p>
+          <p>Velocity variance (off by default)</p>
           <Slider
             className={rangeSlider}
             step={1}
