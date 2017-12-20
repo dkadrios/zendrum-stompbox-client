@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze'
-import { RECEIVE_DEVICE_LIST } from 'redux-midi'
+import { RECEIVE_DEVICE_LIST } from 'redux-midi-fork'
 import stompblock from '../../src/reducers/stompblock'
 import {
   SEARCHED_FOR_STOMPBLOCK,
