@@ -16,7 +16,7 @@ import { mappingsShape } from '../../reducers/mapping'
 
 const MuteGroups = (props) => {
   const {
-    muteGroups: { data, hasSoundBankSupport },
+    muteGroups: { data, hasVersionThreeFirmware, hasSoundBankSupport },
     mapping,
     settings: { muteGroupsEnabled },
     deleteMuteItem,
@@ -42,6 +42,7 @@ const MuteGroups = (props) => {
               addMuteItem={addMuteItem}
               deleteMuteGroup={deleteMuteGroup}
               changeBank={changeBank}
+              hasVersionThreeFirmware={hasVersionThreeFirmware}
               hasSoundBankSupport={hasSoundBankSupport}
             />
           </div>

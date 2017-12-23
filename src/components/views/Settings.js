@@ -16,7 +16,7 @@ import { settingsShape } from '../../reducers/settings'
 import { mappingsShape } from '../../reducers/mapping'
 
 const Settings = (props) => {
-  const { settings: { hasSoundBankSupport } } = props
+  const { settings: { hasVersionThreeFirmware } } = props
   return (
     <div className={styles.settingsCont}>
       <div className={styles.settings}>
@@ -28,7 +28,7 @@ const Settings = (props) => {
           <Preferences {...props} />
         </Paper>
 
-        {hasSoundBankSupport && (
+        {hasVersionThreeFirmware && (
           <Paper style={paperStyle}>
             <MidiSettings {...props} />
           </Paper>

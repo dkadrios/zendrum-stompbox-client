@@ -51,7 +51,7 @@ export default store => next => (action) => {
   const result = next(action)
 
   // For legacy units, blank out bank if not available
-  const act = store.getState().settings.hasSoundBankSupport
+  const act = store.getState().settings.hasVersionThreeFirmware
     ? { ...action }
     : { ...action, bank: -1 }
 

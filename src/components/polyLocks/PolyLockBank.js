@@ -35,7 +35,7 @@ const PolyLockBank = (props) => {
 
   return (
     <div className={styles.bank}>
-      <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+      <Visible isVisible={hasSoundBankSupport}>
         <Toolbar>
           <Typography color="inherit" type="title" className={classes.title}>
             Bank {String.fromCharCode(65 + bank)}

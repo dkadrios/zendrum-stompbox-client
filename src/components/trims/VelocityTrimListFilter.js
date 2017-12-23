@@ -29,7 +29,7 @@ const VelocityTrimListFilter = (props) => {
 
   return (
     <div className={styles.filters}>
-      <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+      <Visible isVisible={hasSoundBankSupport}>
         <div className={styles.bankSelect}>
           <BankButton selectedBank={bank} bank={0} onClick={selectBank} />
           <BankButton selectedBank={bank} bank={1} onClick={selectBank} />

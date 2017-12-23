@@ -15,14 +15,14 @@ import InEditMode from './InEditMode'
 import TopBar from '../components/TopBar'
 
 const PrimaryNav = ({
-  settings: { primaryNavTabIdx, hasSoundBankSupport },
+  settings: { primaryNavTabIdx, hasVersionThreeFirmware },
   changePrimaryNavTab,
 }) => (
   <div>
     <TopBar />
 
     <section>
-      {hasSoundBankSupport && <InternalState />}
+      {hasVersionThreeFirmware && <InternalState />}
       <MidiActivity />
       <Tabs
         indicatorColor="primary"
@@ -31,7 +31,10 @@ const PrimaryNav = ({
       >
         <Tab label="Trims" />
         <Tab label="Mute Groups" />
-        <Tab label="Polyphony" style={{ display: hasSoundBankSupport ? 'inline-flex' : 'none' }} />
+        <Tab
+          label="Polyphony"
+          style={{ display: hasVersionThreeFirmware ? 'inline-flex' : 'none' }}
+        />
         <Tab label="Settings" />
       </Tabs>
       {primaryNavTabIdx === 0 && <VelocityTrimListView />}

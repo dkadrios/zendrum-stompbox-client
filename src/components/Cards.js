@@ -15,7 +15,7 @@ const Cards = ({
   const { name: selected } = banks[bank]
   return (
     <div className={mappingCont}>
-      <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+      <Visible isVisible={hasSoundBankSupport}>
         <h1>Bank {String.fromCharCode(65 + bank)}</h1>
       </Visible>
       {available.map(({ name, label }, idx) => (

@@ -21,9 +21,10 @@ const receivedPolyLocks = (state, { locks }) => {
   }
 }
 
-const receivedVersion = (state, { anvil }) => ({
+const receivedVersion = (state, { anvil, serialNumber }) => ({
   ...state,
-  hasSoundBankSupport: anvil >= 30,
+  hasVersionThreeFirmware: anvil >= 30,
+  hasSoundBankSupport: __TEST__ || __BETA_TESTERS__.indexOf(serialNumber) > -1,
 })
 
 const addItem = (state, { bank, pitch }) => ({
@@ -47,6 +48,7 @@ const handlers = {
 
 const defaultState = {
   data: [],
+  hasVersionThreeFirmware: false,
   hasSoundBankSupport: false,
 }
 
@@ -58,6 +60,7 @@ export const polyLockShape = {
 
 export const polyLocksShape = {
   data: PropTypes.arrayOf(PropTypes.shape(polyLockShape)),
+  hasVersionThreeFirmware: PropTypes.bool,
   hasSoundBankSupport: PropTypes.bool,
 }
 

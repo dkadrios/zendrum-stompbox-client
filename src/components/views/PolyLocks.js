@@ -39,7 +39,7 @@ const PolyLocks = (props) => {
             addPolyLock={addPolyLock}
             hasSoundBankSupport={hasSoundBankSupport}
           />
-          <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+          <Visible isVisible={hasSoundBankSupport}>
             <PolyLockBank
               polyLocks={data}
               mapping={mapping}

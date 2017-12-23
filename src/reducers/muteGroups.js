@@ -19,7 +19,7 @@ const receivedMuteGroups = (state, { groups: packet }) => {
   let muters
 
   for (let groupIdx = 0; groupIdx < numGroups; groupIdx++) {
-    if (state.hasSoundBankSupport) {
+    if (state.hasVersionThreeFirmware) {
       bank = raw[byteIdx++]
     } else {
       bank = 0
@@ -50,9 +50,10 @@ const receivedMuteGroups = (state, { groups: packet }) => {
   }
 }
 
-const receivedVersion = (state, { anvil }) => ({
+const receivedVersion = (state, { anvil, serialNumber }) => ({
   ...state,
-  hasSoundBankSupport: anvil >= 30,
+  hasVersionThreeFirmware: anvil >= 30,
+  hasSoundBankSupport: __TEST__ || __BETA_TESTERS__.indexOf(serialNumber) > -1,
 })
 
 const setBank = (state, { groupIdx, bank }) => ({
@@ -71,6 +72,7 @@ const handlers = {
 
 const defaultState = {
   data: [],
+  hasVersionThreeFirmware: false,
   hasSoundBankSupport: false,
 }
 
@@ -82,6 +84,7 @@ export const muteGroupShape = {
 
 export const muteGroupsShape = {
   data: PropTypes.arrayOf(PropTypes.shape(muteGroupShape)),
+  hasVersionThreeFirmware: PropTypes.bool,
   hasSoundBankSupport: PropTypes.bool,
 }
 

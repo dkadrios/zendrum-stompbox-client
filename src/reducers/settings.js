@@ -22,9 +22,10 @@ import {
   RECEIVED_POLYLOCKS_ENABLED,
 } from '../action-creators/actions'
 
-const receivedVersion = (state, { anvil }) => ({
+const receivedVersion = (state, { anvil, serialNumber }) => ({
   ...state,
-  hasSoundBankSupport: anvil >= 30,
+  hasVersionThreeFirmware: anvil >= 30,
+  hasSoundBankSupport: __TEST__ || __BETA_TESTERS__.indexOf(serialNumber) > -1,
 })
 
 const receivedMuteEnabled = (state, { muteEnabledAtStart }) => ({
@@ -145,6 +146,7 @@ const defaultState = {
   velocityVariance: 0,
   roundRobinEnabled: false,
   volumeCurve: 0,
+  hasVersionThreeFirmware: false,
   hasSoundBankSupport: false,
 }
 
@@ -161,6 +163,7 @@ export const settingsShape = {
   velocityVariance: PropTypes.number,
   roundRobinEnabled: PropTypes.bool,
   volumeCurve: PropTypes.number,
+  hasVersionThreeFirmware: PropTypes.bool,
   hasSoundBankSupport: PropTypes.bool,
 }
 

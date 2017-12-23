@@ -62,7 +62,7 @@ const MuteGroup = (props) => {
           <Typography color="inherit" type="title" className={classes.title}>
             Mute Group
           </Typography>
-          <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+          <Visible isVisible={hasSoundBankSupport}>
             <div className={classes.bank}>
               <BankPicker
                 disabled={disabled}

@@ -11,7 +11,7 @@
     "__DEV__": true,
     "__TEST__": true,
     "__API__": true,
-    "__BANK_FEATURE__": true
+    "__BETA_TESTERS__": true
   },
   "settings": {
     "import/resolver": {

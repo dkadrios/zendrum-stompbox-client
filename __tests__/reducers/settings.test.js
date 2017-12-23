@@ -22,6 +22,8 @@ describe('settings reducer', () => {
     muteGroupsEnabled: true,
     showResetDialog: false,
     resetInProcess: false,
+    hasVersionThreeFirmware: false,
+    hasSoundBankSupport: false,
   }
   deepFreeze(initialState)
 
@@ -138,7 +140,7 @@ describe('settings reducer', () => {
     })
   })
 
-  it('hasSoundBankSupport success', () => {
+  it('hasVersionThreeFirmware success', () => {
     const action = {
       type: RECEIVED_VERSION,
       checked: true,
@@ -146,12 +148,14 @@ describe('settings reducer', () => {
     }
     expect(settings(initialState, action)).toEqual({
       ...initialState,
+      hasVersionThreeFirmware: true,
       hasSoundBankSupport: true,
     })
 
     expect(settings(initialState, { ...action, anvil: 25 })).toEqual({
       ...initialState,
-      hasSoundBankSupport: false,
+      hasVersionThreeFirmware: false,
+      hasSoundBankSupport: true,
     })
   })
 })

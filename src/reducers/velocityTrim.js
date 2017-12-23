@@ -15,9 +15,10 @@ import {
   SELECT_BANK,
 } from '../action-creators/actions'
 
-const receivedVersion = (state, { anvil }) => ({
+const receivedVersion = (state, { anvil, serialNumber }) => ({
   ...state,
-  hasSoundBankSupport: anvil >= 30,
+  hasVersionThreeFirmware: anvil >= 30,
+  hasSoundBankSupport: __TEST__ || __BETA_TESTERS__.indexOf(serialNumber) > -1,
 })
 
 const receivedAllTrims = (state, { incomingTrims, bank }) => ({
@@ -27,7 +28,7 @@ const receivedAllTrims = (state, { incomingTrims, bank }) => ({
     [bank]: state.banks[bank].map((item, idx) => ({
       ...item,
       // Older units have trims stored with an offset of 1
-      trim: incomingTrims[idx + (state.hasSoundBankSupport ? 1 : 0)],
+      trim: incomingTrims[idx + (state.hasVersionThreeFirmware ? 1 : 0)],
     })),
   },
 })
@@ -138,6 +139,7 @@ const defaultState = {
   },
   bank: getSetting('lastUsedBank', 0),
   chaseEnabled: getSetting('chaseEnabled', true),
+  hasVersionThreeFirmware: false,
   hasSoundBankSupport: false,
 }
 
@@ -163,7 +165,8 @@ export const velocityTrimShape = PropTypes.shape({
   banks: PropTypes.shape(banksShape).isRequired,
   bank: PropTypes.number.isRequired,
   chaseEnabled: PropTypes.bool.isRequired,
-  hasSoundBankSupport: PropTypes.bool.isRequired,
+  hasVersionThreeFirmware: PropTypes.bool.isRequired,
+  hasSoundBankSupport: PropTypes.bool,
 })
 
 export default createReducer(defaultState, handlers)

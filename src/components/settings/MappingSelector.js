@@ -18,7 +18,7 @@ const MappingSelector = (props) => {
         </p>
         <div>
           <Cards bank={0} {...props} />
-          <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+          <Visible isVisible={hasSoundBankSupport}>
             <Cards bank={1} {...props} />
           </Visible>
         </div>

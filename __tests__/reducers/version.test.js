@@ -13,7 +13,7 @@ describe('version reducer', () => {
     checking: false,
     client: CURRENT_CLIENT_VERSION,
     anvil: NaN,
-    hasSoundBankSupport: true,
+    hasVersionThreeFirmware: true,
   }
   deepFreeze(initialState)
 

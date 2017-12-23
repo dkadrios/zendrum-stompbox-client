@@ -44,7 +44,7 @@ const MidiSettings = ({
     <h2>MIDI</h2>
 
     <section>
-      <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+      <Visible isVisible={hasSoundBankSupport}>
         <div className={styles.bank}>
           <article>
             <summary>Bank A</summary>
@@ -57,7 +57,7 @@ const MidiSettings = ({
         </div>
       </Visible>
 
-      <Visible isVisible={!hasSoundBankSupport || !__BANK_FEATURE__}>
+      <Visible isVisible={!hasSoundBankSupport}>
         <article>
           <summary>Channel</summary>
           <ChannelPicker channel={channelA} onChange={changeChannelA} />
