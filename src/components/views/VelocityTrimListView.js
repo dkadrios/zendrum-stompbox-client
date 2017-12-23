@@ -11,11 +11,11 @@ import { velocityTrimShape } from '../../reducers/velocityTrim'
 
 const VelocityTrimListView = (props) => {
   const { velocityTrim } = props
-  const { data, search, group, selectedNoteNum } = velocityTrim
+  const { banks, bank, search, group, selectedNoteNum } = velocityTrim
 
   const searchRE = RegExp(search, 'i')
 
-  const filteredTrims = data.filter(item =>
+  const filteredTrims = banks[bank].filter(item =>
     (group === 'all' || group === item.group) &&
       (searchRE.test(item.name) || searchRE.test(String(item.note))))
 

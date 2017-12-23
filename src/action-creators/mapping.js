@@ -2,9 +2,9 @@ import stompblockMapping from '../mappings/stompblock'
 import enrich1Mapping from '../mappings/emrichNumber1'
 import { LOAD_MAPPING } from './actions'
 
-export const loadMapping = () => {
+export const loadMapping = (bank) => {
   /* istanbul ignore next */
-  const name = localStorage.getItem('mapping') || 'stompblock'
+  const name = localStorage.getItem(`mapping${bank}`) || 'stompblock'
   let entries
 
   switch (name) {
@@ -23,10 +23,11 @@ export const loadMapping = () => {
     type: LOAD_MAPPING,
     name,
     entries,
+    bank,
   }
 }
 
-export const selectMapping = name => (dispatch) => {
-  localStorage.setItem('mapping', name)
-  dispatch(loadMapping())
+export const selectMapping = (name, bank) => (dispatch) => {
+  localStorage.setItem(`mapping${bank}`, name)
+  dispatch(loadMapping(bank))
 }

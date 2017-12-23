@@ -63,7 +63,8 @@ const processMidiMessage = (store, { data }) => {
         ))
 
         askForFullData(dispatch)
-        dispatch(loadMapping())
+        dispatch(loadMapping(0))
+        dispatch(loadMapping(1))
         break
 
       case SYSEX_MSG_RECEIVE_ALL:

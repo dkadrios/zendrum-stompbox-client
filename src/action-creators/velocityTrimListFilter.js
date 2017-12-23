@@ -4,6 +4,7 @@ import {
   CHANGE_GROUP,
   CHANGE_LIST_VIEW,
   CHANGE_CHASE_ENABLED,
+  SELECT_BANK,
 } from './actions'
 
 export const searchTrims = (search) => {
@@ -40,5 +41,13 @@ export const setChaseEnabled = (chaseEnabled) => {
   return {
     type: CHANGE_CHASE_ENABLED,
     chaseEnabled,
+  }
+}
+
+export const selectBank = (bank) => {
+  localStorage.setItem('lastUsedBank', bank)
+  return {
+    type: SELECT_BANK,
+    bank,
   }
 }

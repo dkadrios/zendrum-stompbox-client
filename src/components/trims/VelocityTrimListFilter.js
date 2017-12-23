@@ -5,36 +5,36 @@ import { bindActionCreators } from 'redux'
 import DebounceInput from 'react-debounce-input'
 import Select from 'material-ui/Select'
 import Switch from 'material-ui/Switch'
+import Visible from 'react-visible'
 import { MenuItem } from 'material-ui/Menu'
 import { FormControlLabel, FormControl } from 'material-ui/Form'
 import availableGroups from '../../mappings/'
 import Btn from '../../components/HOC/ToolbarButton'
 import Tooltipped from '../../components/HOC/Tooltipped'
+import BankButton from '../../components/BankButton'
 import * as filterActions from '../../action-creators/velocityTrimListFilter'
 import { velocityTrimShape } from '../../reducers/velocityTrim'
 import styles from '../../styles/velocityTrimListFilter'
 
 const VelocityTrimListFilter = (props) => {
-  const { velocityTrim, searchTrims, changeGroup, changeListView, setChaseEnabled } = props
-  const { search, group, listView, chaseEnabled } = velocityTrim
+  const {
+    velocityTrim,
+    searchTrims,
+    changeGroup,
+    changeListView,
+    setChaseEnabled,
+    selectBank,
+  } = props
+  const { search, group, listView, chaseEnabled, bank, hasSoundBankSupport } = velocityTrim
 
   return (
     <div className={styles.filters}>
-      <DebounceInput
-        type="search"
-        value={search}
-        placeholder="Filter by name or #"
-        debounceTimeout={200}
-        onChange={e => searchTrims(e.target.value)}
-      />
-
-      <Select onChange={({ target }) => changeGroup(target.value)} value={group}>
-        {availableGroups.map(({ value, label }) => (
-          <MenuItem key={value} value={value}>
-            {label}
-          </MenuItem>
-        ))}
-      </Select>
+      <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
+        <div className={styles.bankSelect}>
+          <BankButton selectedBank={bank} bank={0} onClick={selectBank} />
+          <BankButton selectedBank={bank} bank={1} onClick={selectBank} />
+        </div>
+      </Visible>
 
       <div className={styles.buttonGroup}>
         <Btn
@@ -56,6 +56,22 @@ const VelocityTrimListFilter = (props) => {
           onClick={() => changeListView('wide')}
         />
       </div>
+
+      <Select onChange={({ target }) => changeGroup(target.value)} value={group}>
+        {availableGroups.map(({ value, label }) => (
+          <MenuItem key={value} value={value}>
+            {label}
+          </MenuItem>
+        ))}
+      </Select>
+
+      <DebounceInput
+        type="search"
+        value={search}
+        placeholder="Filter by name or #"
+        debounceTimeout={200}
+        onChange={e => searchTrims(e.target.value)}
+      />
 
       <div className={styles.midiChase}>
         <Tooltipped tooltip="Highlight any notes played on Zendrum or other instrument (requires THRU be enabled)">
@@ -82,6 +98,7 @@ VelocityTrimListFilter.propTypes = {
   changeGroup: PropTypes.func.isRequired,
   changeListView: PropTypes.func.isRequired,
   setChaseEnabled: PropTypes.func.isRequired,
+  selectBank: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })

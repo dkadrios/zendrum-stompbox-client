@@ -12,7 +12,7 @@ import DeleteIcon from 'material-ui-icons/Delete'
 import BankPicker from '../pickers/BankPicker'
 import MuteItem from './MuteItem'
 import MuteGroupNewItem from './MuteGroupNewItem'
-import { mappingShape } from '../../reducers/mapping'
+import { mappingsShape } from '../../reducers/mapping'
 import { muteGroupShape } from '../../reducers/muteGroups'
 import styles from '../../styles/muteGroups'
 import paperStyle from '../../styles/paper'
@@ -46,6 +46,7 @@ const MuteGroup = (props) => {
         key={idx}
         note={note}
         mapping={mapping}
+        bank={bank}
         groupIdx={ordinal}
         itemIdx={idx}
         muter={muter}
@@ -92,8 +93,8 @@ const MuteGroup = (props) => {
             <h1>&hellip;whenever these notes are played</h1>
             <div className={styles.list}>{List(muters, true)}</div>
           </section>
-          <MuteGroupNewItem {...props} disabled={disabled} muter={false} />
-          <MuteGroupNewItem {...props} disabled={disabled} muter />
+          <MuteGroupNewItem bank={bank} {...props} disabled={disabled} muter={false} />
+          <MuteGroupNewItem bank={bank} {...props} disabled={disabled} muter />
         </div>
       </Paper>
     </div>
@@ -107,7 +108,7 @@ MuteGroup.propTypes = {
   deleteMuteItem: PropTypes.func.isRequired,
   deleteMuteGroup: PropTypes.func.isRequired,
   changeBank: PropTypes.func.isRequired,
-  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  mapping: PropTypes.shape(mappingsShape).isRequired,
   hasSoundBankSupport: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
   disabled: PropTypes.bool.isRequired,

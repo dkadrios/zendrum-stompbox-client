@@ -5,7 +5,7 @@ import Avatar from 'material-ui/Avatar'
 import Chip from 'material-ui/Chip'
 import SvgIcon from 'material-ui/SvgIcon'
 import Instrument from '../../images/Instrument'
-import { mappingShape } from '../../reducers/mapping'
+import { mappingsShape } from '../../reducers/mapping'
 
 const styles = {
   chip: {
@@ -18,8 +18,9 @@ const styles = {
 }
 
 const PolyLockItem = (props) => {
-  const { pitch, deletePolyLock, idx, mapping, classes, disabled } = props
-  const { name, group } = mapping.find(item => item.note === pitch)
+  const { pitch, deletePolyLock, idx, mapping, classes, disabled, bank } = props
+  const { entries } = mapping.banks[bank]
+  const { name, group } = entries.find(item => item.note === pitch)
 
   return (
     <Chip
@@ -40,9 +41,10 @@ PolyLockItem.propTypes = {
   idx: PropTypes.number.isRequired,
   pitch: PropTypes.number.isRequired,
   deletePolyLock: PropTypes.func.isRequired,
-  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  mapping: PropTypes.shape(mappingsShape).isRequired,
   classes: PropTypes.object.isRequired,
   disabled: PropTypes.bool.isRequired,
+  bank: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles)(PolyLockItem)

@@ -12,6 +12,7 @@ import {
   CHANGE_CHASE_ENABLED,
   NOTE_PLAYED,
   RECEIVED_VERSION,
+  SELECT_BANK,
 } from '../action-creators/actions'
 
 const receivedVersion = (state, { anvil }) => ({
@@ -19,29 +20,28 @@ const receivedVersion = (state, { anvil }) => ({
   hasSoundBankSupport: anvil >= 30,
 })
 
-const receivedAllTrims = (state, { incomingTrims, bank }) => {
-  const newState = { ...state }
-
-  if (bank === 0) {
-    newState.data = state.data.map((item, idx) => ({
+const receivedAllTrims = (state, { incomingTrims, bank }) => ({
+  ...state,
+  banks: {
+    ...state.banks,
+    [bank]: state.banks[bank].map((item, idx) => ({
       ...item,
       // Older units have trims stored with an offset of 1
       trim: incomingTrims[idx + (state.hasSoundBankSupport ? 1 : 0)],
-    }))
-  } else if (__DEV__) {
-    console.log('Bank B not supported yet.') // eslint-disable-line
-  }
-
-  return newState
-}
+    })),
+  },
+})
 
 // TODO: integrate bank
-const userChangedTrim = (state, { noteNum, value /* , bank */ }) => ({
+const userChangedTrim = (state, { noteNum, value, bank }) => ({
   ...state,
-  data: state.data.map((
-    item,
-    idx, //-
-  ) => (idx === noteNum - 1 ? { ...item, trim: value } : { ...item })),
+  banks: {
+    ...state.banks,
+    [bank]: state.banks[bank].map((
+      item,
+      idx, //
+    ) => (idx === noteNum - 1 ? { ...item, trim: value } : { ...item })),
+  },
 })
 
 const searchTrims = (state, { search }) => ({
@@ -64,9 +64,15 @@ const changeListView = (state, { listView }) => ({
   listView,
 })
 
-const loadMapping = (state, { entries }) => ({
+const loadMapping = (state, { entries, bank = 0 }) => ({
   ...state,
-  data: state.data.map((item, idx) => ({ ...item, ...entries[idx] })),
+  banks: {
+    ...state.banks,
+    [bank]: state.banks[bank].map((
+      item,
+      idx, //
+    ) => ({ ...item, ...entries[idx] })),
+  },
 })
 
 const changeChaseEnabled = (state, { chaseEnabled }) => ({
@@ -81,6 +87,11 @@ const notePlayed = (
   state.chaseEnabled && bank === state.bank
     ? selectTrim(state, { selectedNoteNum: noteNum })
     : { ...state }
+
+const bankChanged = (state, { bank }) => ({
+  ...state,
+  bank,
+})
 
 const initialTrims = () =>
   Array(126)
@@ -104,6 +115,7 @@ const handlers = {
   [LOAD_MAPPING]: loadMapping,
   [NOTE_PLAYED]: notePlayed,
   [RECEIVED_VERSION]: receivedVersion,
+  [SELECT_BANK]: bankChanged,
 }
 
 /* We used to have a 'narrow' option.  Default to 'wide' if this
@@ -120,8 +132,11 @@ const defaultState = {
   group: getSetting('group', 'all'),
   listView: getInitialListView(),
   selectedNoteNum: NaN,
-  data: initialTrims(),
-  bank: 0,
+  banks: {
+    0: initialTrims(),
+    1: initialTrims(),
+  },
+  bank: getSetting('lastUsedBank', 0),
   chaseEnabled: getSetting('chaseEnabled', true),
   hasSoundBankSupport: false,
 }
@@ -133,6 +148,11 @@ export const trimShape = PropTypes.shape({
   trim: PropTypes.number.isRequired,
 })
 
+const banksShape = {
+  0: PropTypes.arrayOf(trimShape).isRequired,
+  1: PropTypes.arrayOf(trimShape).isRequired,
+}
+
 export const velocityTrimShape = PropTypes.shape({
   sortBy: PropTypes.oneOf(['idx']).isRequired, // might expand on this later
   showNames: PropTypes.bool.isRequired,
@@ -140,7 +160,7 @@ export const velocityTrimShape = PropTypes.shape({
   group: PropTypes.string.isRequired, // PropTypes.oneOf([]),
   listView: PropTypes.oneOf(['list', 'medium', 'wide']).isRequired,
   selectedNoteNum: PropTypes.number,
-  data: PropTypes.arrayOf(trimShape).isRequired,
+  banks: PropTypes.shape(banksShape).isRequired,
   bank: PropTypes.number.isRequired,
   chaseEnabled: PropTypes.bool.isRequired,
   hasSoundBankSupport: PropTypes.bool.isRequired,

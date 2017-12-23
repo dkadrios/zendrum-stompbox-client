@@ -76,10 +76,10 @@ export default {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
-      __DEV__: false,
-      __TEST__: false,
+      __DEV__: JSON.stringify(false),
+      __TEST__: JSON.stringify(false),
       __API__: "'https://nebiru.com:3002'",
-      __BANK_FEATURE__: false,
+      __BANK_FEATURE__: JSON.stringify(false),
     }),
     new ExtractTextPlugin('[name].[hash].styles.css'),
     function () {

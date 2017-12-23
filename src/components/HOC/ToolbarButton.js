@@ -8,7 +8,7 @@ const capitalize = s => s[0].toUpperCase() + s.slice(1)
 const ToolbarButton = ({ icon, view, selected, onClick }) => (
   <ToolTipButton
     icon={icon}
-    color={selected ? 'primary' : 'contrast'}
+    selected={selected}
     tooltip={`${capitalize(view)} view`}
     className={selected ? styles.selected : ''}
     onClick={onClick}

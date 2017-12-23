@@ -21,7 +21,11 @@ describe('velocityTrim reducer', () => {
     group: 'all',
     listView: 'medium',
     selectedNoteNum: 42,
-    data: stompblock,
+    bank: 0,
+    banks: {
+      0: stompblock,
+      1: stompblock,
+    },
   }
   deepFreeze(initialState)
 
@@ -29,8 +33,9 @@ describe('velocityTrim reducer', () => {
     let action = {
       type: RECEIVED_ALL_TRIMS,
       incomingTrims: [],
+      bank: 0,
     }
-    expect(velocityTrim(initialState, action).data).toContainEqual({
+    expect(velocityTrim(initialState, action).banks[0]).toContainEqual({
       group: 'Percussion',
       name: 'Tumba Thump',
       note: 1,
@@ -44,7 +49,7 @@ describe('velocityTrim reducer', () => {
       incomingTrims: [0, 77],
       bank: 0,
     }
-    expect(velocityTrim(initialState, action).data).toContainEqual({
+    expect(velocityTrim(initialState, action).banks[0]).toContainEqual({
       group: 'Percussion',
       name: 'Tumba Open',
       note: 2,
@@ -59,7 +64,7 @@ describe('velocityTrim reducer', () => {
       value: 66,
       bank: 0,
     }
-    expect(velocityTrim(initialState, action).data).toContainEqual({
+    expect(velocityTrim(initialState, action).banks[0]).toContainEqual({
       group: 'Percussion',
       name: 'Tumba Thump',
       note: 1,
@@ -74,7 +79,7 @@ describe('velocityTrim reducer', () => {
       value: 66,
       bank: 0,
     }
-    expect(velocityTrim(initialState, action).data).toContainEqual({
+    expect(velocityTrim(initialState, action).banks[0]).toContainEqual({
       group: 'Percussion',
       name: 'Tumba Thump',
       note: 1,
@@ -129,14 +134,16 @@ describe('velocityTrim reducer', () => {
   it('loadMapping success', () => {
     const initializedState = {
       ...initialState,
-      data: [
-        {
-          note: 72,
-          name: '---',
-          group: 'Loading...',
-          trim: 0,
-        },
-      ],
+      banks: {
+        0: [
+          {
+            note: 72,
+            name: '---',
+            group: 'Loading...',
+            trim: 0,
+          },
+        ],
+      },
     }
 
     const action = {
@@ -152,14 +159,16 @@ describe('velocityTrim reducer', () => {
     }
     expect(velocityTrim(initializedState, action)).toEqual({
       ...initializedState,
-      data: [
-        {
-          note: 72,
-          name: 'Rock Tom 3',
-          group: 'Toms',
-          trim: 92,
-        },
-      ],
+      banks: {
+        0: [
+          {
+            note: 72,
+            name: 'Rock Tom 3',
+            group: 'Toms',
+            trim: 92,
+          },
+        ],
+      },
     })
   })
 })

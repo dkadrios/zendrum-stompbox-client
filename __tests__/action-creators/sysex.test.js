@@ -58,7 +58,8 @@ describe('sysex actions', () => {
     search: '',
     group: 'all',
     listView: 'medium',
-    data: [{ note: 1, trim: 127 }, { note: 2, trim: 127 }],
+    bank: 0,
+    banks: { 0: [{ note: 1, trim: 127 }, { note: 2, trim: 127 }], 1: [] },
   }
 
   const muteGroups = {
@@ -217,13 +218,13 @@ describe('sysex actions', () => {
   describe('userChangedTrim', () => {
     beforeAll(() => {
       store = storeFactory({ velocityTrim }, false, true)
-      store.dispatch(userChangedTrim(1, 5))
+      store.dispatch(userChangedTrim(1, 5, 0))
     })
 
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
-        data: [{ note: 1, trim: 5 }, { note: 2, trim: 127 }],
+        banks: { 0: [{ note: 1, trim: 5 }, { note: 2, trim: 127 }], 1: [] },
       })
     })
   })
@@ -231,13 +232,13 @@ describe('sysex actions', () => {
   describe('userChangedTrimEnd', () => {
     beforeAll(() => {
       store = storeFactory({ velocityTrim }, false, true)
-      store.dispatch(userChangedTrimEnd(2, 15))
+      store.dispatch(userChangedTrimEnd(2, 15, 0))
     })
 
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
-        data: [{ note: 1, trim: 127 }, { note: 2, trim: 15 }],
+        banks: { 0: [{ note: 1, trim: 127 }, { note: 2, trim: 15 }], 1: [] },
       })
     })
   })
@@ -264,7 +265,7 @@ describe('sysex actions', () => {
     it('should succeed', () => {
       expect(store.getState().velocityTrim).toEqual({
         ...velocityTrim,
-        data: [{ note: 1, trim: 31 }, { note: 2, trim: 32 }],
+        banks: { 0: [{ note: 1, trim: 31 }, { note: 2, trim: 32 }], 1: [] },
       })
     })
   })

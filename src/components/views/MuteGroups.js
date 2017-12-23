@@ -12,11 +12,12 @@ import * as muteGroupActions from '../../action-creators/muteGroups'
 import * as settingsActions from '../../action-creators/settings'
 import { muteGroupsShape } from '../../reducers/muteGroups'
 import { settingsShape } from '../../reducers/settings'
+import { mappingsShape } from '../../reducers/mapping'
 
 const MuteGroups = (props) => {
   const {
     muteGroups: { data, hasSoundBankSupport },
-    mapping: { entries },
+    mapping,
     settings: { muteGroupsEnabled },
     deleteMuteItem,
     addMuteItem,
@@ -34,7 +35,7 @@ const MuteGroups = (props) => {
           <div key={idx}>
             <MuteGroup
               disabled={!muteGroupsEnabled}
-              mapping={entries}
+              mapping={mapping}
               group={group}
               ordinal={idx}
               deleteMuteItem={deleteMuteItem}
@@ -60,7 +61,7 @@ const MuteGroups = (props) => {
 
 MuteGroups.propTypes = {
   muteGroups: PropTypes.shape(muteGroupsShape).isRequired,
-  mapping: PropTypes.shape({ entries: PropTypes.array.isRequired }).isRequired,
+  mapping: PropTypes.shape(mappingsShape).isRequired,
   settings: PropTypes.shape(settingsShape).isRequired,
   deleteMuteItem: PropTypes.func.isRequired,
   addMuteItem: PropTypes.func.isRequired,

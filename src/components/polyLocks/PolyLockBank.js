@@ -7,7 +7,7 @@ import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import PolyLockNewItem from './PolyLockNewItem'
 import PolyLockItem from './PolyLockItem'
-import { mappingShape } from '../../reducers/mapping'
+import { mappingsShape } from '../../reducers/mapping'
 import { polyLockShape } from '../../reducers/polyLocks'
 import styles from '../../styles/polyLocks'
 import { MAX_POLYLOCKS } from '../../midi/index'
@@ -52,6 +52,7 @@ const PolyLockBank = (props) => {
               idx={idx}
               pitch={pitch}
               mapping={mapping}
+              bank={bank}
               deletePolyLock={deletePolyLock}
               disabled={disabled}
             />
@@ -73,7 +74,7 @@ PolyLockBank.propTypes = {
   bank: PropTypes.number.isRequired,
   addPolyLock: PropTypes.func.isRequired,
   deletePolyLock: PropTypes.func.isRequired,
-  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  mapping: PropTypes.shape(mappingsShape).isRequired,
   classes: PropTypes.object.isRequired,
   hasSoundBankSupport: PropTypes.bool.isRequired,
   disabled: PropTypes.bool.isRequired,

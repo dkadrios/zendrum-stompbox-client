@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MuteItemNew from './MuteItemNew'
 import { MAX_MUTEABLES_PER_GROUP, MAX_MUTERS_PER_GROUP } from '../../midi/'
-import { mappingShape } from '../../reducers/mapping'
+import { mappingsShape } from '../../reducers/mapping'
 import { muteGroupShape } from '../../reducers/muteGroups'
 
 const MuteGroupNewItem = (props) => {
-  const { muter, group, ordinal, addMuteItem, mapping, disabled } = props
+  const { muter, group, ordinal, addMuteItem, mapping, disabled, bank } = props
   const { muteables, muters } = group
 
   const max = () => (muter ? MAX_MUTERS_PER_GROUP : MAX_MUTEABLES_PER_GROUP)
@@ -17,6 +17,7 @@ const MuteGroupNewItem = (props) => {
     <div>
       <MuteItemNew
         mapping={mapping}
+        bank={bank}
         groupIdx={ordinal}
         muter={muter}
         addMuteItem={addMuteItem}
@@ -30,11 +31,12 @@ const MuteGroupNewItem = (props) => {
 }
 
 MuteGroupNewItem.propTypes = {
+  bank: PropTypes.number.isRequired,
   muter: PropTypes.bool.isRequired,
   group: PropTypes.shape(muteGroupShape).isRequired,
   ordinal: PropTypes.number.isRequired,
   addMuteItem: PropTypes.func.isRequired,
-  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  mapping: PropTypes.shape(mappingsShape).isRequired,
   disabled: PropTypes.bool.isRequired,
 }
 

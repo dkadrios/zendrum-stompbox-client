@@ -36,10 +36,14 @@ export const fieldEmail = value =>
 export const getSetting = (key, defaultValue) => {
   const value = localStorage.getItem(key)
   if (value !== null) {
-    if (typeof defaultValue === 'boolean') {
-      return value === 'true'
+    switch (typeof defaultValue) {
+      case 'boolean':
+        return value === 'true'
+      case 'number':
+        return parseInt(value, 10)
+      default:
+        return value
     }
-    return value
   }
   return defaultValue
 }

@@ -9,7 +9,7 @@ import TextField from 'material-ui/TextField'
 import Paper from 'material-ui/Paper'
 import { MenuItem } from 'material-ui/Menu'
 import { withStyles } from 'material-ui/styles'
-import { mappingShape } from '../../reducers/mapping'
+import { mappingsShape } from '../../reducers/mapping'
 
 function renderInput(inputProps) {
   const { classes, disabled, autoFocus, value, ref, ...other } = inputProps
@@ -114,7 +114,8 @@ const styles = theme => ({
 class IntegrationAutosuggest extends React.Component {
   constructor(props) {
     super(props)
-    this.source = props.mapping.map(item => `#${item.note} - ${item.name}`)
+    const { entries } = props.mapping.banks[props.bank]
+    this.source = entries.map(item => `#${item.note} - ${item.name}`)
   }
 
   state = {
@@ -181,7 +182,8 @@ class IntegrationAutosuggest extends React.Component {
 
 IntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
-  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  bank: PropTypes.number.isRequired,
+  mapping: PropTypes.shape(mappingsShape).isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
 }

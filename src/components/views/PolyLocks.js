@@ -13,11 +13,12 @@ import * as polyLockActions from '../../action-creators/polyLocks'
 import * as settingsActions from '../../action-creators/settings'
 import { polyLocksShape } from '../../reducers/polyLocks'
 import { settingsShape } from '../../reducers/settings'
+import { mappingsShape } from '../../reducers/mapping'
 
 const PolyLocks = (props) => {
   const {
     polyLocks: { data, hasSoundBankSupport },
-    mapping: { entries },
+    mapping,
     settings: { polyLocksEnabled },
     deletePolyLock,
     addPolyLock,
@@ -31,7 +32,7 @@ const PolyLocks = (props) => {
         <section>
           <PolyLockBank
             polyLocks={data}
-            mapping={entries}
+            mapping={mapping}
             bank={0}
             disabled={!polyLocksEnabled}
             deletePolyLock={deletePolyLock}
@@ -41,7 +42,7 @@ const PolyLocks = (props) => {
           <Visible isVisible={hasSoundBankSupport && __BANK_FEATURE__}>
             <PolyLockBank
               polyLocks={data}
-              mapping={entries}
+              mapping={mapping}
               bank={1}
               disabled={!polyLocksEnabled}
               deletePolyLock={deletePolyLock}
@@ -62,7 +63,7 @@ const PolyLocks = (props) => {
 
 PolyLocks.propTypes = {
   polyLocks: PropTypes.shape(polyLocksShape).isRequired,
-  mapping: PropTypes.shape({ entries: PropTypes.array.isRequired }).isRequired,
+  mapping: PropTypes.shape(mappingsShape).isRequired,
   settings: PropTypes.shape(settingsShape).isRequired,
   addPolyLock: PropTypes.func.isRequired,
   deletePolyLock: PropTypes.func.isRequired,

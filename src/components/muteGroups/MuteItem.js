@@ -5,7 +5,7 @@ import Avatar from 'material-ui/Avatar'
 import Chip from 'material-ui/Chip'
 import SvgIcon from 'material-ui/SvgIcon'
 import Instrument from '../../images/Instrument'
-import { mappingShape } from '../../reducers/mapping'
+import { mappingsShape } from '../../reducers/mapping'
 
 const styles = {
   chip: {
@@ -18,8 +18,20 @@ const styles = {
 }
 
 const MuteItem = (props) => {
-  const { note, deleteMuteItem, groupIdx, itemIdx, muter, mapping, classes, disabled } = props
-  const { name, group } = mapping.find(item => item.note === note)
+  const {
+    note,
+    deleteMuteItem,
+    groupIdx,
+    itemIdx,
+    muter,
+    mapping: { banks },
+    bank,
+    classes,
+    disabled,
+  } = props
+
+  const { entries } = banks[bank] || []
+  const { name, group } = entries.find(item => item.note === note) || {}
 
   return (
     <Chip
@@ -42,7 +54,8 @@ MuteItem.propTypes = {
   groupIdx: PropTypes.number.isRequired,
   itemIdx: PropTypes.number.isRequired,
   muter: PropTypes.bool.isRequired,
-  mapping: PropTypes.arrayOf(PropTypes.shape(mappingShape)).isRequired,
+  mapping: PropTypes.shape(mappingsShape).isRequired,
+  bank: PropTypes.number.isRequired,
   classes: PropTypes.object.isRequired,
   disabled: PropTypes.bool.isRequired,
 }
