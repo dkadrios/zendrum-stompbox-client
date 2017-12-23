@@ -8,7 +8,7 @@ import { deviceStore, devicesChanged, stompblockAttached, stompblockInputId } fr
 
 export const STOMPBLOCK_DEVICE_ID = 0x6b
 
-export const CURRENT_CLIENT_VERSION = 42
+export const CURRENT_CLIENT_VERSION = 43
 
 export const MASK_CHANNEL = 15 // 00001111
 export const MASK_STATUS = 112 // 01110000
