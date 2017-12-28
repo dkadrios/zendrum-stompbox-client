@@ -47,7 +47,7 @@ const MuteGroups = (props) => {
             />
           </div>
         ))}
-        <Button raised dense color="accent" onClick={addMuteGroup} disabled={!muteGroupsEnabled}>
+        <Button raised dense color="primary" onClick={addMuteGroup} disabled={!muteGroupsEnabled}>
           <Add />
           Create New Group
         </Button>

@@ -35,7 +35,7 @@ const MuteItem = (props) => {
 
   return (
     <Chip
-      onRequestDelete={disabled ? null : () => deleteMuteItem(groupIdx, muter, itemIdx)}
+      onDelete={disabled ? null : () => deleteMuteItem(groupIdx, muter, itemIdx)}
       label={`#${note} ${name}`}
       className={classes.chip}
       classes={{ label: classes.label }}

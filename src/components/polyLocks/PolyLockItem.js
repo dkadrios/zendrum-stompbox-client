@@ -24,7 +24,7 @@ const PolyLockItem = (props) => {
 
   return (
     <Chip
-      onRequestDelete={disabled ? null : () => deletePolyLock(idx)}
+      onDelete={disabled ? null : () => deletePolyLock(idx)}
       label={`#${pitch} ${name}`}
       className={classes.chip}
       classes={{ label: classes.label }}

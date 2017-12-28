@@ -28,7 +28,7 @@ const FactoryReset = (props) => {
       <Dialog
         open={showResetDialog}
         transition={Transition}
-        onRequestClose={() => confirmFactoryReset(false)}
+        onClose={() => confirmFactoryReset(false)}
       >
         <DialogTitle>Confirm Factory Reset</DialogTitle>
         <DialogContent>
@@ -43,7 +43,7 @@ const FactoryReset = (props) => {
           <Button onClick={() => confirmFactoryReset(false)} color="primary">
             Cancel
           </Button>
-          <Button onClick={performFactoryReset} color="primary" autoFocus>
+          <Button onClick={performFactoryReset} raised color="primary" autoFocus>
             Perform Reset
           </Button>
         </DialogActions>

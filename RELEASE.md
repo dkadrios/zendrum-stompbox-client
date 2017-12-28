@@ -2,6 +2,7 @@
 
 | Date       | Version | Notes                                                                                                                                                          |
 | ---------- | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2017-12-27 |   4.5   | Updating packages -- there were some breaking changes in the material-ui beta that was causing a problem in production                                         |
 | 2017-12-27 |   4.4   | Changes to mute group bank were not being applied to hardware                                                                                                  |
 | 2017-12-22 |   4.3   | Rolling out bank feature to BETA testers                                                                                                                       |
 | 2017-12-19 |   4.2   | Upgraded core MIDI library. Displaying STOMPBLOCK's internal state                                                                                             |

@@ -44,7 +44,7 @@ const UserRegistration = ({
   serialNumber,
   classes,
 }) => (
-  <Dialog open={active} transition={Transition} onRequestClose={hideDialog}>
+  <Dialog open={active} transition={Transition} onClose={hideDialog}>
     <DialogTitle>STOMPBLOCK Registration</DialogTitle>
     <DialogContent>
       <DialogContentText>
@@ -70,7 +70,7 @@ const UserRegistration = ({
     </DialogContent>
     <DialogActions>
       <Button onClick={hideDialog}>Cancel</Button>
-      <Button raised onClick={submitRegistrationForm} color="accent" autoFocus>
+      <Button raised onClick={submitRegistrationForm} color="primary" autoFocus>
         Register
       </Button>
     </DialogActions>
