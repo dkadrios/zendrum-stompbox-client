@@ -133,7 +133,7 @@ const handlers = {
 }
 
 const defaultState = {
-  primaryNavTabIdx: 2,
+  primaryNavTabIdx: 0,
   muteEnabledAtStart: false,
   thruEnabledAtStart: true,
   muteGroupsEnabled: true,
