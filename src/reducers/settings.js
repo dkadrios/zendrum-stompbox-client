@@ -116,7 +116,6 @@ const handlers = {
   [SET_MUTE_ENABLED]: receivedMuteEnabled,
   [SET_THRU_ENABLED]: receivedThruEnabled,
   [SET_MUTE_GROUPS_ENABLED]: receivedMuteGroupsEnabled,
-  [RECEIVED_POLYLOCKS_ENABLED]: receivedPolyLocksEnabled,
   [SET_POLYLOCKS_ENABLED]: receivedPolyLocksEnabled,
   [CONFIRM_FACTORY_RESET]: confirmFactoryReset,
   [FACTORY_RESET]: resetBeingPerformed,
@@ -134,7 +133,7 @@ const handlers = {
 }
 
 const defaultState = {
-  primaryNavTabIdx: 0,
+  primaryNavTabIdx: 2,
   muteEnabledAtStart: false,
   thruEnabledAtStart: true,
   muteGroupsEnabled: true,

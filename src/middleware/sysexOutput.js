@@ -19,6 +19,7 @@ import {
   SET_VOLUME_CURVE,
   ADD_POLYLOCK,
   DELETE_POLYLOCK,
+  SET_MUTE_GROUP_BANK,
 } from '../action-creators/actions'
 import {
   SYSEX_MSG_SET_MUTE_ENABLED,
@@ -44,6 +45,7 @@ import {
   setVolumeCurve,
   deletePolyLock,
   addPolyLock,
+  setMuteGroupBank,
 } from '../midi/sysexOutput'
 
 export default store => next => (action) => {
@@ -103,6 +105,10 @@ export default store => next => (action) => {
 
     case ADD_MUTE_ITEM:
       addMuteItem(store.dispatch, act.groupIdx, act.muter, act.noteNum)
+      break
+
+    case SET_MUTE_GROUP_BANK:
+      setMuteGroupBank(store.dispatch, act.groupIdx, act.bank)
       break
 
     case USER_CHANGED_TRIM_END:

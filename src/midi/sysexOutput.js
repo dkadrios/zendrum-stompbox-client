@@ -31,6 +31,7 @@ import {
   SYSEX_MSG_DELETE_POLYLOCK,
   SYSEX_MSG_ADD_POLYLOCK,
   SYSEX_MSG_GET_STATE,
+  SYSEX_MSG_SET_MUTE_GROUP_BANK,
 } from './sysex'
 
 const transmitAction = (command, data = []) =>
@@ -88,6 +89,9 @@ export const deleteMuteItem = (dispatch, groupIdx, muter, itemIdx) =>
 
 export const addMuteItem = (dispatch, groupIdx, muter, noteNum) =>
   dispatch(transmitAction(SYSEX_MSG_ADD_MUTE_ITEM, [groupIdx, Number(muter), noteNum]))
+
+export const setMuteGroupBank = (dispatch, groupIdx, bank) =>
+  dispatch(transmitAction(SYSEX_MSG_SET_MUTE_GROUP_BANK, [groupIdx, bank]))
 
 export const changeTrim = (dispatch, bank, noteNum, value) =>
   dispatch(transmitAction(

@@ -2,8 +2,9 @@
 
 | Date       | Version | Notes                                                                                                                                                          |
 | ---------- | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2017-12-27 |   4.4   | Changes to mute group bank were not being applied to hardware                                                                                                  |
 | 2017-12-22 |   4.3   | Rolling out bank feature to BETA testers                                                                                                                       |
-| 2017-12-19 |   4.2   | Upgraded core MIDI library. Displaying STOMPBLOCK's internal state.                                                                                            |
+| 2017-12-19 |   4.2   | Upgraded core MIDI library. Displaying STOMPBLOCK's internal state                                                                                             |
 | 2017-12-18 |   4.1   | Major overhaul and feature dump in preparation for the rollout of our version 3.0 firmware                                                                     |
 | 2017-12-08 |   3.4   | Group filter still had the old map values<br>Legacy units cannot accept the extra bank byte                                                                    |
 | 2017-12-08 |   3.3   | Start recording firmware version in preparation of the 3.x rollout                                                                                             |
