@@ -80,7 +80,14 @@ export default store => next => (action) => {
       break
 
     case PLAY_NOTE:
-      playNote(store.dispatch, act.bank, act.noteNum, act.velocity)
+      /*
+        NOTE!!  There is a error in the firmware for this command.
+        There, it assumes bank #1 is 'A', instead of #0.
+        We're inverting the banks here to compensate.
+        If we ever fix this in the firmware, we'll need to change this
+        behavior based on version number.
+      */
+      playNote(store.dispatch, 1 - act.bank, act.noteNum, act.velocity)
       break
 
     case FACTORY_RESET:
