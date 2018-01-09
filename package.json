@@ -1,6 +1,6 @@
 {
   "name": "zendrum-stompblock-client",
-  "version": "4.7",
+  "version": "4.7.0",
   "description": "Web client for Zendrum STOMPBLOCK",
   "license": "MIT",
   "scripts": {

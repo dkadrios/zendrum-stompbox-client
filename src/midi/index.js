@@ -9,7 +9,14 @@ import { version } from '../../package.json'
 
 export const STOMPBLOCK_DEVICE_ID = 0x6b
 
-export const CURRENT_CLIENT_VERSION = version * 10
+// Takes a version string in the form "4.7.0" and reduces it to 47 (format the hardware uses)
+export const CURRENT_CLIENT_VERSION = version
+  .split('.')
+  .map(s => parseInt(s, 10))
+  .slice(0, 2)
+  .reverse()
+  .map((v, i) => v * 10 ** i) // eslint-disable-line
+  .reduce((acc, v) => acc + v, 0)
 
 export const MASK_CHANNEL = 15 // 00001111
 export const MASK_STATUS = 112 // 01110000
