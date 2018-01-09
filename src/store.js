@@ -7,7 +7,11 @@ import sysexInputMiddleware from './middleware/sysexInput'
 import sysexOutputMiddleware from './middleware/sysexOutput'
 import { watchForDeviceChange } from './midi/'
 
-const logger = createLogger()
+const logger = createLogger({
+  collapsed: true,
+  diff: true,
+})
+
 let middlewares = [thunk]
 
 export default function storeFactory(initialState = {}, debug = __DEV__, test = __TEST__) {

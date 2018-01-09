@@ -5,10 +5,11 @@ import {
   stompblockMissing,
 } from '../action-creators/stompblock'
 import { deviceStore, devicesChanged, stompblockAttached, stompblockInputId } from './devices'
+import { version } from '../../package.json'
 
 export const STOMPBLOCK_DEVICE_ID = 0x6b
 
-export const CURRENT_CLIENT_VERSION = 46
+export const CURRENT_CLIENT_VERSION = version * 10
 
 export const MASK_CHANNEL = 15 // 00001111
 export const MASK_STATUS = 112 // 01110000

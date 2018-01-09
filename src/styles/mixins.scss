@@ -57,12 +57,13 @@
   width: $led-size;
   height: $led-size;
   border-radius: 50%;
-  background-color: $color;
+  background-color: darken($color, 20);
   box-shadow: $shadow 0 -1px 7px 1px, inset darken($color, 80) 0 -1px 9px;
 }
 
 @mixin led-on($led-size, $color, $shadow: rgba(0, 0, 0, 0.2)) {
   @include led($led-size, $color, $shadow);
+  background-color: $color;
   box-shadow: $shadow 0 -1px 7px 1px, $color 0 2px 12px; // adds glow
 }
 

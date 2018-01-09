@@ -2,6 +2,7 @@
 
 | Date       | Version | Notes                                                                                                                                                          |
 | ---------- | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2018-01-09 |   4.7   | MIDI Chase was utilizing old bank indexes. Making LEDs darker when off so they stand out better when on                                                        |
 | 2017-12-29 |   4.6   | Clicking the note title would play the sample from the opposite bank                                                                                           |
 | 2017-12-27 |   4.5   | Updating packages -- there were some breaking changes in the material-ui beta that was causing a problem in production                                         |
 | 2017-12-27 |   4.4   | Changes to mute group bank were not being applied to hardware                                                                                                  |

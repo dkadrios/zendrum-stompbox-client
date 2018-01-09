@@ -21,31 +21,16 @@ describe('Store Factory', () => {
       })
     })
 
-    it('starts a console group', () => expect(console.groupCollapsed.mock.calls.length).toBe(0))
+    it('starts a console group', () => expect(console.groupCollapsed.mock.calls.length).toBe(2))
 
     it('logs state before action and state after', () => {
       const rows = console.log.mock.calls.map(args => args[0])
-      expect(rows.length).toBe(4)
-      expect(rows[0]).toContain(RECEIVED_VERSION)
+      expect(rows.length).toBe(10)
+      expect(rows[0]).toContain('%c prev state')
 
-      expect(rows.slice(1, 4)).toEqual(['%c prev state', '%c action    ', '%c next state'])
+      expect(rows.slice(1, 4)).toEqual(['%c action    ', '%c next state', '%c CHANGED:'])
     })
 
-    it('ends the console group', () => expect(console.groupEnd.mock.calls.length).toBe(1))
+    it('ends the console group', () => expect(console.groupEnd.mock.calls.length).toBe(2))
   })
-
-  /* describe('alternate code paths', () => {
-    let store;
-
-    beforeEach(() => {
-      store = storeFactory();
-      store.dispatch({
-        type: RECEIVED_VERSION,
-      });
-    });
-
-    it('ends the console group', () =>
-      expect(console.groupEnd.mock.calls.length).toBe(3),
-    );
-  }); */
 })

@@ -117,7 +117,7 @@ const processMidiMessage = (store, { data }) => {
     const channel = (kind & MASK_CHANNEL) + 1
     const { settings: { channelA, channelB } } = getState()
     if (status === STATUS_NOTE_OFF && (channel === channelA || channel === channelB)) {
-      dispatch(notePlayed(data[1], channel === channelA ? 1 : 2))
+      dispatch(notePlayed(data[1], channel === channelA ? 0 : 1))
     }
   }
 }
