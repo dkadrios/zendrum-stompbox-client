@@ -12,7 +12,7 @@ const active = () => {
     case 12:
       return true
     case 1:
-      return date <= 14
+      return date <= 4
     default:
       return false
   }
