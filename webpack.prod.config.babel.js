@@ -79,7 +79,7 @@ export default {
       __DEV__: JSON.stringify(false),
       __TEST__: JSON.stringify(false),
       __API__: "'https://nebiru.com:3002'",
-      __BETA_TESTERS__: JSON.stringify(['HJDWpTFfM', 'S1sWNadzM']),
+      __BETA_TESTERS__: JSON.stringify(['HJDWpTFfM', 'S1sWNadzM', 'Bkp7HyqqZW']),
     }),
     new ExtractTextPlugin('[name].[hash].styles.css'),
     function () {
