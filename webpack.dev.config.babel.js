@@ -77,7 +77,7 @@ export default {
       __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
       __TEST__: JSON.stringify(JSON.parse(process.env.BUILD_TEST || 'false')),
       __API__: JSON.stringify('http://localhost:3002'),
-      __BETA_TESTERS__: JSON.stringify(['HJDWpTFfM', 'S1sWNadzM', 'Bkp7HyqqZW']),
+      __BETA_TESTERS__: JSON.stringify(['ByU2inRSz', 'S1sWNadzM', 'Bkp7HyqqZW']),
     }),
   ],
   resolve: {
