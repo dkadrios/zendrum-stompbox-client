@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import omit from 'lodash/omit'
 import { withStyles } from 'material-ui/styles'
 import IconButton from 'material-ui/IconButton'
+import Icon from 'material-ui/Icon'
 import Tooltip from 'material-ui/Tooltip'
 
 const buttonBase = {
@@ -16,7 +17,7 @@ const styles = theme => ({
   button: {
     ...buttonBase,
     color: theme.palette.action.active,
-    backgroundColor: theme.palette.background.contentFrame,
+    backgroundColor: theme.palette.common.white,
   },
   selectedButton: {
     ...buttonBase,
@@ -33,7 +34,7 @@ const ToolTipButton = (props) => {
         {...omit(props, ['classes', 'tooltip', 'icon'])}
         className={selected ? classes.selectedButton : classes.button}
       >
-        {icon}
+        <Icon>{icon}</Icon>
       </IconButton>
     </Tooltip>
   )

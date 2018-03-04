@@ -1,6 +1,28 @@
 import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
-import { LOAD_MAPPING } from '../action-creators/actions'
+import { LOAD_MAPPING, IMPORT_MAPPING } from '../action-creators/actions'
+import { loadMappings, assertMappingsInStorage } from '../action-creators/mapping'
+
+const availableMappings = () => {
+  assertMappingsInStorage()
+
+  const keys = Object.keys(loadMappings())
+
+  return keys.map((name) => {
+    let label
+    switch (name) {
+      case 'stompblock':
+        label = 'STOMPBLOCK'
+        break
+      case 'emrichNumber1':
+        label = 'John Emrich - Articulations #1'
+        break
+      default:
+        label = name
+    }
+    return { name, label }
+  })
+}
 
 const loadMapping = (state, { name, entries, bank }) => ({
   ...state,
@@ -13,8 +35,14 @@ const loadMapping = (state, { name, entries, bank }) => ({
   },
 })
 
+const importMapping = (state, { name }) => ({
+  ...state,
+  available: [...state.available, { name, label: name }],
+})
+
 const handlers = {
   [LOAD_MAPPING]: loadMapping,
+  [IMPORT_MAPPING]: importMapping,
 }
 
 const defaultState = {
@@ -28,10 +56,7 @@ const defaultState = {
       entries: [],
     },
   },
-  available: [
-    { name: 'stompblock', label: 'STOMPBLOCK' },
-    { name: 'emrichNumber1', label: 'John Emrich - Articulations #1' },
-  ],
+  available: availableMappings(),
 }
 
 export const mappingShape = {

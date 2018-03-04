@@ -5,7 +5,7 @@ import zendrumRed from './zendrumRed'
 export default createMuiTheme({
   palette: {
     primary: zendrumRed,
-    accent: zendrumRed[400],
+    secondary: zendrumRed,
   },
 
   overrides: {
@@ -16,12 +16,6 @@ export default createMuiTheme({
     },
     MuiButton: {
       root: {},
-      raisedAccent: {
-        background: 'linear-gradient(180deg, #333 30%, #000 90%)',
-        borderRadius: 3,
-        border: 0,
-        color: 'white',
-      },
       disabled: {
         background: 'linear-gradient(180deg, #aaa 30%, #aaa 90%)',
         color: '#555',

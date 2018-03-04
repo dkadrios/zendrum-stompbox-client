@@ -20,7 +20,7 @@ const FactoryReset = (props) => {
 
   return (
     <div>
-      <Button raised color="primary" onMouseUp={() => confirmFactoryReset(true)}>
+      <Button variant="raised" color="primary" onMouseUp={() => confirmFactoryReset(true)}>
         <Warning />
         <span style={{ paddingLeft: 7 }}>Perform Factory Reset</span>
       </Button>
@@ -43,7 +43,7 @@ const FactoryReset = (props) => {
           <Button onClick={() => confirmFactoryReset(false)} color="primary">
             Cancel
           </Button>
-          <Button onClick={performFactoryReset} raised color="primary" autoFocus>
+          <Button onClick={performFactoryReset} variant="raised" color="primary" autoFocus>
             Perform Reset
           </Button>
         </DialogActions>

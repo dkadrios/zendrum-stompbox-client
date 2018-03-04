@@ -20,6 +20,8 @@ import {
   SET_VOLUME_CURVE,
   SET_POLYLOCKS_ENABLED,
   RECEIVED_POLYLOCKS_ENABLED,
+  REPORT_ERROR,
+  DISMISS_ERROR,
 } from '../action-creators/actions'
 
 const receivedVersion = (state, { anvil, serialNumber }) => ({
@@ -107,6 +109,17 @@ const changeVolumeCurve = (state, { volumeCurve }) => ({
   volumeCurve,
 })
 
+const errorReported = (state, { errorMessage }) => ({
+  ...state,
+  errorMessage,
+  errorVisible: true,
+})
+
+const dismissError = state => ({
+  ...state,
+  errorVisible: false,
+})
+
 const handlers = {
   [RECEIVED_VERSION]: receivedVersion,
   [RECEIVED_MUTE_ENABLED]: receivedMuteEnabled,
@@ -130,6 +143,8 @@ const handlers = {
   [SET_VELOCITY_VARIANCE]: changeVelocityVariance,
   [SET_ROUND_ROBIN_ENABLED]: changeRoundRobinEnabled,
   [SET_VOLUME_CURVE]: changeVolumeCurve,
+  [REPORT_ERROR]: errorReported,
+  [DISMISS_ERROR]: dismissError,
 }
 
 const defaultState = {
@@ -147,6 +162,8 @@ const defaultState = {
   volumeCurve: 0,
   hasVersionThreeFirmware: false,
   hasSoundBankSupport: false,
+  errorMessage: '',
+  errorVisible: false,
 }
 
 export const settingsShape = {
@@ -164,6 +181,8 @@ export const settingsShape = {
   volumeCurve: PropTypes.number,
   hasVersionThreeFirmware: PropTypes.bool,
   hasSoundBankSupport: PropTypes.bool,
+  errorMessage: PropTypes.string,
+  errorVisible: PropTypes.bool,
 }
 
 export default createReducer(defaultState, handlers)

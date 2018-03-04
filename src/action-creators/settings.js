@@ -14,6 +14,8 @@ import {
   SET_VOLUME_CURVE,
   RECEIVED_POLYLOCKS_ENABLED,
   SET_POLYLOCKS_ENABLED,
+  REPORT_ERROR,
+  DISMISS_ERROR,
 } from './actions'
 
 export const setMuteEnabled = muteEnabledAtStart => ({
@@ -100,4 +102,13 @@ export const changeRoundRobinEnabled = roundRobinEnabled => ({
 export const changeVolumeCurve = volumeCurve => ({
   type: SET_VOLUME_CURVE,
   volumeCurve,
+})
+
+export const reportError = errorMessage => ({
+  type: REPORT_ERROR,
+  errorMessage,
+})
+
+export const dismissError = () => ({
+  type: DISMISS_ERROR,
 })

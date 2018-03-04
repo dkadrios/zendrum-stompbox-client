@@ -74,7 +74,7 @@ const MuteGroup = (props) => {
           <Tooltip title="Delete group" placement="bottom">
             <Button
               disabled={disabled}
-              fab
+              variant="fab"
               mini
               aria-label="delete"
               onClick={() => deleteMuteGroup(ordinal)}

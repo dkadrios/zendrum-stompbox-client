@@ -70,7 +70,7 @@ const UserRegistration = ({
     </DialogContent>
     <DialogActions>
       <Button onClick={hideDialog}>Cancel</Button>
-      <Button raised onClick={submitRegistrationForm} color="primary" autoFocus>
+      <Button variant="raised" onClick={submitRegistrationForm} color="primary" autoFocus>
         Register
       </Button>
     </DialogActions>

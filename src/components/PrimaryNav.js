@@ -13,10 +13,12 @@ import InternalState from './InternalState'
 import InResetMode from './InResetMode'
 import InEditMode from './InEditMode'
 import TopBar from '../components/TopBar'
+import ErrorDialog from './ErrorDialog'
 
 const PrimaryNav = ({
-  settings: { primaryNavTabIdx, hasVersionThreeFirmware },
+  settings: { primaryNavTabIdx, hasVersionThreeFirmware, errorMessage, errorVisible },
   changePrimaryNavTab,
+  dismissError,
 }) => (
   <div>
     <TopBar />
@@ -43,6 +45,11 @@ const PrimaryNav = ({
       {primaryNavTabIdx === 3 && <Settings />}
       <InResetMode />
       <InEditMode />
+      <ErrorDialog
+        errorMessage={errorMessage}
+        errorVisible={errorVisible}
+        dismissError={dismissError}
+      />
     </section>
   </div>
 )
@@ -52,6 +59,7 @@ PrimaryNav.propTypes = {
     primaryNavTabIdx: PropTypes.number.isRequired,
   }).isRequired,
   changePrimaryNavTab: PropTypes.func.isRequired,
+  dismissError: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ settings }) => ({ settings })

@@ -27,9 +27,14 @@
       "__DEV__": true,
       "__TEST__": true,
       "__API__": "http://localhost:3002",
-      "__BETA_TESTERS__": ["HJDWpTFfM", "S1sWNadzM"]
+      "__BETA_TESTERS__": [
+        "HJDWpTFfM",
+        "S1sWNadzM"
+      ]
     },
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",
@@ -84,7 +89,7 @@
     "classnames": "^2.2.5",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5",
-    "material-ui": "^1.0.0-beta.25",
+    "material-ui": "^1.0.0-beta.35",
     "material-ui-icons": "^1.0.0-beta.35",
     "moment": "^2.21.0",
     "performance-now": "^2.1.0",
@@ -94,6 +99,7 @@
     "react-css-themr": "^2.1.2",
     "react-debounce-input": "^3.2.0",
     "react-dom": "^16.2.0",
+    "react-file-picker": "^0.0.5",
     "react-gravatar": "^2.6.3",
     "react-popover": "^0.5.4",
     "react-rangeslider": "^2.2.0",

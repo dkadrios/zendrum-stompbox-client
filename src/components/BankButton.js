@@ -4,8 +4,8 @@ import Button from 'material-ui/Button'
 
 const BankButton = ({ bank, selectedBank, onClick }) => (
   <Button
-    dense
-    raised
+    mini
+    variant="raised"
     color={bank === selectedBank ? 'primary' : 'default'}
     onClick={() => onClick(bank)}
   >
