@@ -1,6 +1,6 @@
 import stompblockMapping from '../mappings/stompblock'
 import enrich1Mapping from '../mappings/emrichNumber1'
-import { LOAD_MAPPING, IMPORT_MAPPING, DELETE_MAPPING } from './actions'
+import { LOAD_MAPPING, IMPORT_MAPPING, DELETE_MAPPING, REPORT_ERROR } from './actions'
 import mapper from '../mappings/mapper'
 
 export const loadMappings = () => JSON.parse(localStorage.getItem('mappings'))
@@ -60,7 +60,12 @@ export const selectMapping = (name, bank) => (dispatch) => {
 }
 
 export const importMapping = (name, contents) => (dispatch) => {
-  storeMapping(name, contents)
+  try {
+    storeMapping(name, contents)
+  } catch (E) {
+    dispatch({ type: REPORT_ERROR, errorMessage: 'Unable to import.  Not a valid map file.' })
+    return
+  }
 
   dispatch({ type: IMPORT_MAPPING, name })
 }

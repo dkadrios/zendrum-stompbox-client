@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Tooltip from 'material-ui/Tooltip'
 import IconButton from 'material-ui/IconButton'
-import DeleteIcon from 'material-ui-icons/Delete'
+import DeleteIcon from 'material-ui-icons/HighlightOff'
 import Button from 'material-ui/Button'
 import Dialog, {
   DialogActions,
@@ -44,16 +45,17 @@ class DeleteMappingButton extends Component {
     const { name } = this.props
     return (
       <div className={styles.removeIcon}>
-        <IconButton onClick={this.handleDeleteClicked}>
-          <DeleteIcon />
-        </IconButton>
+        <Tooltip title="Delete mapping...">
+          <IconButton onClick={this.handleDeleteClicked}>
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
 
         <Dialog open={dialogVisible} transition={Transition} onClose={this.handleCancel}>
           <DialogTitle>Confirm</DialogTitle>
           <DialogContent>
-            <DialogContentText
-              style={{ minWidth: 300 }}
-            >{`Sure to delete '${name}'?`}
+            <DialogContentText style={{ minWidth: 300 }}>
+              {`Sure to delete '${name}'?`}
             </DialogContentText>
           </DialogContent>
           <DialogActions>

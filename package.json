@@ -1,6 +1,6 @@
 {
   "name": "zendrum-stompblock-client",
-  "version": "4.7.0",
+  "version": "4.8.0",
   "description": "Web client for Zendrum STOMPBLOCK",
   "license": "MIT",
   "scripts": {
@@ -27,14 +27,9 @@
       "__DEV__": true,
       "__TEST__": true,
       "__API__": "http://localhost:3002",
-      "__BETA_TESTERS__": [
-        "HJDWpTFfM",
-        "S1sWNadzM"
-      ]
+      "__BETA_TESTERS__": ["HJDWpTFfM", "S1sWNadzM"]
     },
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ]
+    "setupFiles": ["jest-localstorage-mock"]
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",

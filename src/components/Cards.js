@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Visible from 'react-visible'
 import Button from 'material-ui/Button'
-import AddIcon from 'material-ui-icons/FolderOpen'
+import AddIcon from 'material-ui-icons/Add'
 import Tooltip from 'material-ui/Tooltip'
 import Mapping from './settings/Mapping'
 import FilePicker from './pickers/FilePicker'
@@ -61,7 +61,7 @@ const Cards = ({
             <Button
               variant="fab"
               aria-label="add"
-              style={{ position: 'relative', left: 20, top: 30 }}
+              style={{ position: 'relative', left: 20, top: 40, marginRight: 60 }}
             >
               <AddIcon />
             </Button>

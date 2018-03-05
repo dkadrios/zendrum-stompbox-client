@@ -43,7 +43,7 @@ const MuteGroup = (props) => {
   const List = (list, muter) =>
     list.map((note, idx) => (
       <MuteItem
-        key={idx}
+        key={`mute_${bank}_${note}`}
         note={note}
         mapping={mapping}
         bank={bank}
