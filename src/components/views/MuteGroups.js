@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import shortid from 'shortid'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Button from 'material-ui/Button'
@@ -32,7 +33,7 @@ const MuteGroups = (props) => {
       <div className={styles.muteGroups}>
         <MuteGroupInstructions enabled={muteGroupsEnabled} onChange={setMuteGroupsEnabled} />
         {data.map((group, idx) => (
-          <div key={idx}>
+          <div key={shortid.generate()}>
             <MuteGroup
               disabled={!muteGroupsEnabled}
               mapping={mapping}

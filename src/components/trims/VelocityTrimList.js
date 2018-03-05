@@ -27,9 +27,9 @@ class VelocityTrimList extends Component {
     return (
       <div className={styles.list}>
         <ul className={styles[`${listView}View`]}>
-          {items.map(item => (
+          {items.map((item, idx) => (
             <li
-              key={item.note}
+              key={`trim_list_${idx}`}
               ref={(trimItem) => {
                 if (!Number.isNaN(selectedNoteNum) && selectedNoteNum === item.note) {
                   this.trimItem = trimItem

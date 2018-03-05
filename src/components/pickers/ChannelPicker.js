@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import shortid from 'shortid'
 import { withStyles } from 'material-ui/styles'
 import Select from 'material-ui/Select'
 import { MenuItem } from 'material-ui/Menu'
@@ -30,7 +31,7 @@ const Items = classes =>
   arraySequence(16)
     .map(i => i + 1)
     .map(i => (
-      <MenuItem key={i} value={i} classes={classes}>
+      <MenuItem key={shortid.generate()} value={i} classes={classes}>
         {i}
       </MenuItem>
     ))

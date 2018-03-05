@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { createReducer } from '../utils'
-import { LOAD_MAPPING, IMPORT_MAPPING } from '../action-creators/actions'
+import { LOAD_MAPPING, IMPORT_MAPPING, DELETE_MAPPING } from '../action-creators/actions'
 import { loadMappings, assertMappingsInStorage } from '../action-creators/mapping'
 
 const availableMappings = () => {
@@ -40,9 +40,15 @@ const importMapping = (state, { name }) => ({
   available: [...state.available, { name, label: name }],
 })
 
+const deleteMapping = (state, { name }) => ({
+  ...state,
+  available: state.available.filter(item => item.name !== name),
+})
+
 const handlers = {
   [LOAD_MAPPING]: loadMapping,
   [IMPORT_MAPPING]: importMapping,
+  [DELETE_MAPPING]: deleteMapping,
 }
 
 const defaultState = {

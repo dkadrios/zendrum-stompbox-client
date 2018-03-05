@@ -2,6 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import shortid from 'shortid'
 import Autosuggest from 'react-autosuggest'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
@@ -39,13 +40,13 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   return (
     <MenuItem selected={isHighlighted} component="div">
       <div>
-        {parts.map((part, index) =>
+        {parts.map(part =>
             part.highlight ? (
-              <span key={String(index)} style={{ fontWeight: 300 }}>
+              <span key={shortid.generate()} style={{ fontWeight: 300 }}>
                 {part.text}
               </span>
             ) : (
-              <strong key={String(index)} style={{ fontWeight: 500 }}>
+              <strong key={shortid.generate()} style={{ fontWeight: 500 }}>
                 {part.text}
               </strong>
             ))}

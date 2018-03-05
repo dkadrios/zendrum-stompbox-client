@@ -1,6 +1,6 @@
 import stompblockMapping from '../mappings/stompblock'
 import enrich1Mapping from '../mappings/emrichNumber1'
-import { LOAD_MAPPING, IMPORT_MAPPING } from './actions'
+import { LOAD_MAPPING, IMPORT_MAPPING, DELETE_MAPPING } from './actions'
 import mapper from '../mappings/mapper'
 
 export const loadMappings = () => JSON.parse(localStorage.getItem('mappings'))
@@ -12,6 +12,12 @@ const storeMappings = (mappings) => {
 const storeMapping = (name, content) => {
   const mappings = loadMappings()
   mappings[name] = mapper(content)
+  storeMappings(mappings)
+}
+
+const removeMapping = (name) => {
+  const mappings = loadMappings()
+  delete mappings[name]
   storeMappings(mappings)
 }
 
@@ -57,4 +63,14 @@ export const importMapping = (name, contents) => (dispatch) => {
   storeMapping(name, contents)
 
   dispatch({ type: IMPORT_MAPPING, name })
+}
+
+export const deleteMapping = name => (dispatch) => {
+  removeMapping(name)
+
+  dispatch({ type: DELETE_MAPPING, name })
+
+  // Cause both banks to reload to reset default in case this mapping was selected
+  dispatch(loadMapping(0))
+  dispatch(loadMapping(1))
 }

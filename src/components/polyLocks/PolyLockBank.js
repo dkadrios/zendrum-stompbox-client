@@ -48,7 +48,7 @@ const PolyLockBank = (props) => {
           .filter(lock => lock.bank === bank)
           .map(({ pitch, idx }) => (
             <PolyLockItem
-              key={idx}
+              key={`lockItem_${bank}_${idx}`}
               idx={idx}
               pitch={pitch}
               mapping={mapping}

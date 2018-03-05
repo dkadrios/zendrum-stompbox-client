@@ -31,6 +31,7 @@ MappingSelector.propTypes = {
   settings: PropTypes.shape(settingsShape).isRequired,
   mapping: PropTypes.shape(mappingsShape).isRequired,
   selectMapping: PropTypes.func.isRequired,
+  deleteMapping: PropTypes.func.isRequired,
 }
 
 export default MappingSelector

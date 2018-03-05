@@ -8,6 +8,10 @@ import { stompblockShape } from '../reducers/stompblock'
 const Transition = props => <Slide direction="up" {...props} />
 
 class MidiSecurity extends Component {
+  static propTypes = {
+    stompblock: PropTypes.shape(stompblockShape).isRequired,
+  }
+
   constructor(props) {
     super(props)
     this.state = { active: false }
@@ -43,10 +47,6 @@ class MidiSecurity extends Component {
       </Dialog>
     )
   }
-}
-
-MidiSecurity.propTypes = {
-  stompblock: PropTypes.shape(stompblockShape).isRequired,
 }
 
 const mapStateToProps = ({ stompblock }) => ({ stompblock })

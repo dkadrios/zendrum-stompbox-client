@@ -93,4 +93,13 @@
       color: $color-text-dark;
     }
   }
+
+  .removeIcon {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    svg {
+      fill: white;
+    }
+  }
 }

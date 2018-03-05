@@ -17,6 +17,7 @@ const Cards = ({
   selectMapping,
   reportError,
   importMapping,
+  deleteMapping,
 }) => {
   const { name: selected } = banks[bank]
 
@@ -45,10 +46,12 @@ const Cards = ({
       <div className={mappingContScroller}>
         {available.map(({ name, label }, idx) => (
           <Mapping
-            key={idx}
+            key={`${bank}_${idx}`}
+            idx={idx}
             label={label}
             name={name}
             onChange={nm => selectMapping(nm, bank)}
+            deleteMapping={deleteMapping}
             selected={name === selected}
           />
         ))}
@@ -76,6 +79,7 @@ Cards.propTypes = {
   selectMapping: PropTypes.func.isRequired,
   reportError: PropTypes.func.isRequired,
   importMapping: PropTypes.func.isRequired,
+  deleteMapping: PropTypes.func.isRequired,
 }
 
 export default Cards

@@ -48,6 +48,7 @@ Settings.propTypes = {
   confirmFactoryReset: PropTypes.func.isRequired,
   performFactoryReset: PropTypes.func.isRequired,
   selectMapping: PropTypes.func.isRequired,
+  deleteMapping: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ settings, mapping }) => ({ settings, mapping })
