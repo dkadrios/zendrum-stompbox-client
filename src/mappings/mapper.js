@@ -2,7 +2,7 @@ import { arraySequence } from '../utils'
 
 export default (raw) => {
   const availableNotes = raw.map((item) => {
-    const props = /(\d+):([\w\s-]+)\|(.+)/.exec(item)
+    const props = /(\d+):([\w\s-]+)\|(.*)/.exec(item)
 
     return {
       note: parseInt(props[1], 10),
