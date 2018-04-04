@@ -13,9 +13,9 @@ const InResetMode = ({ stompblock: { mode } }) => (
     <DialogTitle>Unit Now In Factory Reset Mode</DialogTitle>
     <DialogContent>
       <DialogContentText>
-        Depress the MUTE button to abort.<br />
+        Depress the MUTE button to confirm reset.<br />
         <br />
-        Depress any other button to confirm reset.
+        Depress any other button to abort.
       </DialogContentText>
     </DialogContent>
   </Dialog>

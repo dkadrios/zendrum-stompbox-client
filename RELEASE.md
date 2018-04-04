@@ -2,7 +2,8 @@
 
 | Date       | Version | Notes                                                                                                                                                          |
 | ---------- | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2018-04-01 |  4.10   | Corrected issue when importing mappings with unnamed instruments                                                                                               |
+| 2018-04-04 |   5.1   | Corrected verbiage when in reset mode                                                                                                                          |
+| 2018-04-01 |   5.0   | Corrected issue when importing mappings with unnamed instruments                                                                                               |
 | 2018-03-14 |   4.9   | Added bank BETA tester                                                                                                                                         |
 | 2018-03-04 |   4.8   | Support for importing ZenEdit mappings<br>Fixing issue where note labels that contained symbols were being truncated                                           |
 | 2018-01-09 |   4.7   | MIDI Chase was utilizing old bank indexes. Making LEDs darker when off so they stand out better when on                                                        |
