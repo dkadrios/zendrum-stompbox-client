@@ -21,10 +21,10 @@ const receivedPolyLocks = (state, { locks }) => {
   }
 }
 
-const receivedVersion = (state, { anvil, serialNumber }) => ({
+const receivedVersion = (state, { anvil /* serialNumber */ }) => ({
   ...state,
   hasVersionThreeFirmware: anvil >= 30,
-  hasSoundBankSupport: __TEST__ || __BETA_TESTERS__.indexOf(serialNumber) > -1,
+  hasSoundBankSupport: anvil >= 30,
 })
 
 const addItem = (state, { bank, pitch }) => ({
