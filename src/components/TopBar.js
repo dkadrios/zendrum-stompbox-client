@@ -7,6 +7,7 @@ import SvgIcon from 'material-ui/SvgIcon'
 import Typography from 'material-ui/Typography'
 import UserInfo from './UserInfo'
 import ZendrumLogo from '../images/ZendrumLogo.svg.js'
+import AdImage from '../images/try-restomp.png'
 
 const styles = {
   title: {
@@ -34,6 +35,11 @@ const TopBar = ({ classes }) => (
       <Typography type="title" color="inherit" className={classes.title}>
         STOMPBLOCK
       </Typography>
+      <div style={{ marginRight: 60 }}>
+        <a target="_blank" rel="noopener noreferrer" href="https://zendrumstudio.com/restomp">
+          <img src={AdImage} alt="Try Restomp today!" width="260" height="44" />
+        </a>
+      </div>
       <div>
         <UserInfo />
       </div>

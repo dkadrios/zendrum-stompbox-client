@@ -27,6 +27,11 @@ export default {
         loader: 'file-loader?limit=8192',
       },
       {
+        test: /\.png$/,
+        exclude: /node_modules/,
+        loader: 'file-loader?limit=8192',
+      },
+      {
         test: /\.css$/,
         // Anything in third-party should not be hashed
         exclude: /third-party/,

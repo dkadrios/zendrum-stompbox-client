@@ -11,7 +11,7 @@ export default {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].bundle.js',
-    publicPath: '/',
+    // publicPath: '/',
   },
   module: {
     rules: [
@@ -23,6 +23,11 @@ export default {
       {
         test: /\.(svg)$/,
         loader: 'file-loader?limit=8192',
+      },
+      {
+        test: /\.png$/,
+        exclude: /node_modules/,
+        loader: 'file-loader?name=images/[name].[ext]&limit=8192',
       },
       {
         test: /(\.css|\.scss)$/,
