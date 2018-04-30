@@ -2,6 +2,8 @@
 
 | Date       | Version | Notes                                                                                                                                                          |
 | ---------- | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2018-04-29 |   5.3   | Chrome 66 chokes when timestamps are provided for MIDI Events<br>Reconciling the different group names used by ZenEdit and Restomp                             |
+| 2018-04-16 |   5.2   | Cross promoting Restomp                                                                                                                                        |
 | 2018-04-04 |   5.1   | Corrected verbiage when in reset mode                                                                                                                          |
 | 2018-04-01 |   5.0   | Corrected issue when importing mappings with unnamed instruments                                                                                               |
 | 2018-03-14 |   4.9   | Added bank BETA tester                                                                                                                                         |
