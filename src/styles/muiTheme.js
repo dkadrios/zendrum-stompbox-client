@@ -20,6 +20,10 @@ export default createMuiTheme({
         background: 'linear-gradient(180deg, #aaa 30%, #aaa 90%)',
         color: '#555',
       },
+      raisedSecondary: {
+        backgroundColor: '#666',
+        color: '#2f2f2f',
+      },
     },
     MuiDialogContent: {
       root: {

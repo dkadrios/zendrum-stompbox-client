@@ -22,7 +22,9 @@ function renderInput(inputProps) {
       disabled={disabled}
       value={value}
       inputRef={ref}
-      helperTextClassName={classes.whiteLabel}
+      FormHelperTextProps={{
+        classes: classes.whiteLabel,
+      }}
       InputProps={{
         classes: {
           input: classes.whiteLabel,

@@ -46,18 +46,17 @@ $input-height: 32px;
     flex-flow: row nowrap;
     margin-right: 20px;
     button {
-      margin: 0;
+      &:hover {
+        background-color: #ba0706;
+      }
+      margin: 0 1px 0 0;
       border-radius: 0;
     }
-    div:first-child {
-      button {
-        border-radius: 5px 0 0 5px;
-      }
+    button:first-child(1) {
+      border-radius: 5px 0 0 5px;
     }
-    div:last-child {
-      button {
-        border-radius: 0 5px 5px 0;
-      }
+    button:nth-child(3) {
+      border-radius: 0 5px 5px 0;
     }
   }
 
@@ -76,6 +75,7 @@ $input-height: 32px;
       padding: 0 !important;
       min-height: 30px;
       min-width: 60px;
+      margin: 0 1px 0 0;
     }
 
     button:first-child {

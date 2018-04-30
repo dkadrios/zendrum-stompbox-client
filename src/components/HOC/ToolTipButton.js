@@ -17,7 +17,7 @@ const styles = theme => ({
   button: {
     ...buttonBase,
     color: theme.palette.action.active,
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: '#666',
   },
   selectedButton: {
     ...buttonBase,

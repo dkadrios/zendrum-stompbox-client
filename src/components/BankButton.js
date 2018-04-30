@@ -6,7 +6,7 @@ const BankButton = ({ bank, selectedBank, onClick }) => (
   <Button
     mini
     variant="raised"
-    color={bank === selectedBank ? 'primary' : 'default'}
+    color={bank === selectedBank ? 'primary' : 'secondary'}
     onClick={() => onClick(bank)}
   >
     Bank {String.fromCharCode(65 + bank)}
