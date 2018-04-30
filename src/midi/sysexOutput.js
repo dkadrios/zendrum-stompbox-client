@@ -37,7 +37,7 @@ import {
 const transmitAction = (command, data = []) =>
   sendMidiMessage({
     data: [SYSEX_START, STOMPBLOCK_DEVICE_ID, CURRENT_CLIENT_VERSION, command, ...data, SYSEX_END],
-    timestamp: now(),
+    timestamp: 0, //performance.now(),
     device: stompblockOutputId(),
   })
 
