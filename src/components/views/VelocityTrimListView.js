@@ -21,10 +21,27 @@ const VelocityTrimListView = (props) => {
     '',
   )
 
+  /**
+   * ZenEdit and Restomp use different group names.
+   * Search by either when grouping.
+   */
+  const alternateGroupNames = {
+    Toms: 'Tom',
+    Snares: 'Snare',
+    Kicks: 'Kick',
+    Cymbals: 'Cymbal',
+    Hats: 'Hi-hat',
+    Rides: 'Ride',
+    Perc: 'Percussion',
+  }
+
   const searchRE = RegExp(search, 'i')
 
+  const groupMatch = item =>
+    group === 'all' || group === item.group || group === alternateGroupNames[item.group]
+
   const filteredTrims = banks[bank].filter(item =>
-    (group === 'all' || group === item.group) &&
+    groupMatch(item) && //
       (searchRE.test(item.name) || searchRE.test(String(item.note))))
 
   return (
