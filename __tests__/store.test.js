@@ -25,7 +25,7 @@ describe('Store Factory', () => {
 
     it('logs state before action and state after', () => {
       const rows = console.log.mock.calls.map(args => args[0])
-      expect(rows.length).toBe(10)
+      expect(rows.length).toBe(6)
       expect(rows[0]).toContain('%c prev state')
 
       expect(rows.slice(1, 4)).toEqual(['%c action    ', '%c next state', '%c CHANGED:'])

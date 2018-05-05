@@ -155,7 +155,7 @@ describe('settings reducer', () => {
     expect(settings(initialState, { ...action, anvil: 25 })).toEqual({
       ...initialState,
       hasVersionThreeFirmware: false,
-      hasSoundBankSupport: true,
+      hasSoundBankSupport: false,
     })
   })
 })

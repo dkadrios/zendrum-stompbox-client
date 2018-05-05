@@ -2,6 +2,7 @@
 
 | Date       | Version | Notes                                                                                                                                                          |
 | ---------- | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2018-05-04 |   5.4   | Warning user if the browser does not support Web MIDI                                                                                                          |
 | 2018-04-29 |   5.3   | Chrome 66 chokes when timestamps are provided for MIDI Events<br>Reconciling the different group names used by ZenEdit and Restomp                             |
 | 2018-04-16 |   5.2   | Cross promoting Restomp                                                                                                                                        |
 | 2018-04-04 |   5.1   | Corrected verbiage when in reset mode                                                                                                                          |

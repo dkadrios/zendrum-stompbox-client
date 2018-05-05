@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
 import { sendMidiMessage } from 'redux-midi-fork'
-import now from 'performance-now'
+// import now from 'performance-now'
 import { stompblockOutputId } from './devices'
 import { STOMPBLOCK_DEVICE_ID, CURRENT_CLIENT_VERSION } from './'
 
