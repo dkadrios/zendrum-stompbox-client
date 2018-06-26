@@ -11,6 +11,7 @@ const UnsupportedBrowser = () => (
         <a href="https://zendrumstudio.com/contact-us/">Contact Us</a>
       </header>
       <h1>Unsupported browser</h1>
+      {navigator.userAgent}
       <p>
         This application makes use of bleeding edge web technologies in order to communicate with
         your Stompblock over MIDI and USB.
