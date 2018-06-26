@@ -29,7 +29,9 @@
       "__API__": "http://localhost:3002",
       "__BETA_TESTERS__": []
     },
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",
@@ -82,6 +84,7 @@
     "autosuggest-highlight": "^3.1.1",
     "body-parser": "^1.18.2",
     "classnames": "^2.2.5",
+    "dkadrios-react-browser-detection": "^1.1.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5",
     "material-ui": "^1.0.0-beta.35",
@@ -91,7 +94,6 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.4",
-    "react-browser-detection": "^1.1.1",
     "react-css-themr": "^2.1.2",
     "react-debounce-input": "^3.2.0",
     "react-dom": "^16.2.0",
