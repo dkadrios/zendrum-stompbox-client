@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import DebounceInput from 'react-debounce-input'
 import Select from 'material-ui/Select'
 import Switch from 'material-ui/Switch'
-import Visible from 'react-visible'
 import { MenuItem } from 'material-ui/Menu'
 import { FormControlLabel, FormControl } from 'material-ui/Form'
 import availableGroups from '../../mappings/'
@@ -29,12 +28,12 @@ const VelocityTrimListFilter = (props) => {
 
   return (
     <div className={styles.filters}>
-      <Visible isVisible={hasSoundBankSupport}>
+      {hasSoundBankSupport && (
         <div className={styles.bankSelect}>
           <BankButton selectedBank={bank} bank={0} onClick={selectBank} />
           <BankButton selectedBank={bank} bank={1} onClick={selectBank} />
         </div>
-      </Visible>
+      )}
 
       <div className={styles.buttonGroup}>
         <Btn

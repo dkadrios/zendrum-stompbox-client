@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import Visible from 'react-visible'
 import Divider from 'material-ui/Divider'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
@@ -35,13 +34,13 @@ const PolyLockBank = (props) => {
 
   return (
     <div className={styles.bank}>
-      <Visible isVisible={hasSoundBankSupport}>
+      {hasSoundBankSupport && (
         <Toolbar>
           <Typography color="inherit" type="title" className={classes.title}>
             Bank {String.fromCharCode(65 + bank)}
           </Typography>
         </Toolbar>
-      </Visible>
+      )}
       <Divider />
       <section>
         {polyLocks

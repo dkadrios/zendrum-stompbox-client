@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Visible from 'react-visible'
 import Button from 'material-ui/Button'
 import AddIcon from 'material-ui-icons/Add'
 import Tooltip from 'material-ui/Tooltip'
@@ -40,9 +39,7 @@ const Cards = ({
 
   return (
     <div className={mappingCont}>
-      <Visible isVisible={hasSoundBankSupport}>
-        <h1>Bank {String.fromCharCode(65 + bank)}</h1>
-      </Visible>
+      {hasSoundBankSupport && <h1>Bank {String.fromCharCode(65 + bank)}</h1>}
       <div className={mappingContScroller}>
         {available.map(({ name, label }, idx) => (
           <Mapping

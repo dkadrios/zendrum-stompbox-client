@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Visible from 'react-visible'
 import { mappingSelector } from '../../styles/mapping'
 import { mappingsShape } from '../../reducers/mapping'
 import Cards from '../Cards'
@@ -18,9 +17,7 @@ const MappingSelector = (props) => {
         </p>
         <div>
           <Cards bank={0} {...props} />
-          <Visible isVisible={hasSoundBankSupport}>
-            <Cards bank={1} {...props} />
-          </Visible>
+          {hasSoundBankSupport && <Cards bank={1} {...props} />}
         </div>
       </section>
     </div>

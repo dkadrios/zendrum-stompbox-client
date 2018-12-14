@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-rangeslider'
-import Visible from 'react-visible'
 import ChannelPicker from '../pickers/ChannelPicker'
 import ToggleSwitch from '../HOC/ToggleSwitch'
 import Tooltipped from '../HOC/Tooltipped'
@@ -44,7 +43,7 @@ const MidiSettings = ({
     <h2>MIDI</h2>
 
     <section>
-      <Visible isVisible={hasSoundBankSupport}>
+      {hasSoundBankSupport ? (
         <div className={styles.bank}>
           <article>
             <summary>Bank A</summary>
@@ -55,14 +54,12 @@ const MidiSettings = ({
             <ChannelPicker channel={channelB} onChange={changeChannelB} />
           </article>
         </div>
-      </Visible>
-
-      <Visible isVisible={!hasSoundBankSupport}>
+      ) : (
         <article>
           <summary>Channel</summary>
           <ChannelPicker channel={channelA} onChange={changeChannelA} />
         </article>
-      </Visible>
+      )}
 
       <div className={styles.sliderCont}>
         <Tooltipped tooltip="Controls how steeply volume drops off at lower velocities">

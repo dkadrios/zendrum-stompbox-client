@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch'
 import { submit } from 'redux-form'
 import { PRODUCT_INSTANCE, PRODUCT_REGISTRATION } from '../endpoints'
 import {

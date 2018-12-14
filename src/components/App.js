@@ -1,6 +1,6 @@
 import React from 'react'
 import { MuiThemeProvider } from 'material-ui/styles'
-import BrowserDetection from 'dkadrios-react-browser-detection'
+import BrowserDetection from 'react-browser-detection'
 import MainInterface from './views/MainInterface'
 import UnsupportedBrowser from './views/UnsupportedBrowser'
 import Snow from './Snow'
@@ -12,6 +12,7 @@ const browserHandler = {
   'android-chrome': () => <MainInterface />,
   opera: () => <MainInterface />,
   default: () => <UnsupportedBrowser />,
+  android: () => <UnsupportedBrowser />,
 }
 
 const App = () => (

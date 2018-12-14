@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Visible from 'react-visible'
 import Paper from 'material-ui/Paper'
 import PolyLockInstructions from '../instructions/PolyLockInstructions'
 import PolyLockBank from '../polyLocks/PolyLockBank'
@@ -39,7 +38,7 @@ const PolyLocks = (props) => {
             addPolyLock={addPolyLock}
             hasSoundBankSupport={hasSoundBankSupport}
           />
-          <Visible isVisible={hasSoundBankSupport}>
+          {hasSoundBankSupport && (
             <PolyLockBank
               polyLocks={data}
               mapping={mapping}
@@ -49,7 +48,7 @@ const PolyLocks = (props) => {
               addPolyLock={addPolyLock}
               hasSoundBankSupport={hasSoundBankSupport}
             />
-          </Visible>
+          )}
         </section>
       </Paper>
 

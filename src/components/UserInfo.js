@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import Avatar from 'material-ui/Avatar'
 import Gravatar from 'react-gravatar'
 import Popover from 'react-popover'
-import Visible from 'react-visible'
 import UserRegistration from './UserRegistration'
 import UserInfoPopover from './UserInfoPopover'
 import styles from '../styles/registration'
@@ -26,7 +25,7 @@ const UserInfo = ({ user, showDialog, hideDialog, hidePopover, submitRegistratio
 
   return (
     <div className={styles.userInfo}>
-      <Visible isVisible={checkedRegistration}>
+      {checkedRegistration && (
         <div className={styles.layout}>
           <section onClick={showDialog} role="button" tabIndex="0">
             <div>{registered && 'Registered to:'}</div>
@@ -45,7 +44,7 @@ const UserInfo = ({ user, showDialog, hideDialog, hidePopover, submitRegistratio
             </Avatar>
           </Popover>
         </div>
-      </Visible>
+      )}
 
       <UserRegistration
         active={dialogVisible}

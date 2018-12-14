@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import Visible from 'react-visible'
 import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
 import Toolbar from 'material-ui/Toolbar'
@@ -62,7 +61,7 @@ const MuteGroup = (props) => {
           <Typography color="inherit" type="title" className={classes.title}>
             Mute Group
           </Typography>
-          <Visible isVisible={hasSoundBankSupport}>
+          {hasSoundBankSupport && (
             <div className={classes.bank}>
               <BankPicker
                 disabled={disabled}
@@ -70,7 +69,7 @@ const MuteGroup = (props) => {
                 onChange={val => changeBank(ordinal, val)}
               />
             </div>
-          </Visible>
+          )}
           <Tooltip title="Delete group" placement="bottom">
             <Button
               disabled={disabled}
