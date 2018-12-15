@@ -1,13 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
-import Paper from 'material-ui/Paper'
-import Divider from 'material-ui/Divider'
-import Toolbar from 'material-ui/Toolbar'
-import Tooltip from 'material-ui/Tooltip'
-import Typography from 'material-ui/Typography'
-import Button from 'material-ui/Button'
-import DeleteIcon from 'material-ui-icons/Delete'
+import { withStyles } from '@material-ui/core/styles'
+import { Button, Paper, Toolbar, Typography, Tooltip, Divider } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
 import BankPicker from '../pickers/BankPicker'
 import MuteItem from './MuteItem'
 import MuteGroupNewItem from './MuteGroupNewItem'
@@ -39,26 +34,29 @@ const MuteGroup = (props) => {
   } = props
   const { muteables, muters, bank } = group
 
-  const List = (list, muter) =>
-    list.map((note, idx) => (
-      <MuteItem
-        key={`mute_${bank}_${note}`}
-        note={note}
-        mapping={mapping}
-        bank={bank}
-        groupIdx={ordinal}
-        itemIdx={idx}
-        muter={muter}
-        deleteMuteItem={deleteMuteItem}
-        disabled={disabled}
-      />
-    ))
+  const List = (list, muter) => list.map((note, idx) => (
+    <MuteItem
+      key={`mute_${bank}_${note}`}
+      note={note}
+      mapping={mapping}
+      bank={bank}
+      groupIdx={ordinal}
+      itemIdx={idx}
+      muter={muter}
+      deleteMuteItem={deleteMuteItem}
+      disabled={disabled}
+    />
+  ))
 
   return (
     <div>
       <Paper style={paperStyle}>
         <Toolbar>
-          <Typography color="inherit" type="title" className={classes.title}>
+          <Typography
+            color="inherit"
+            type="title"
+            className={classes.title}
+          >
             Mute Group
           </Typography>
           {hasSoundBankSupport && (
@@ -70,7 +68,10 @@ const MuteGroup = (props) => {
               />
             </div>
           )}
-          <Tooltip title="Delete group" placement="bottom">
+          <Tooltip
+            title="Delete group"
+            placement="bottom"
+          >
             <Button
               disabled={disabled}
               variant="fab"
@@ -92,8 +93,18 @@ const MuteGroup = (props) => {
             <h1>&hellip;whenever these notes are played</h1>
             <div className={styles.list}>{List(muters, true)}</div>
           </section>
-          <MuteGroupNewItem bank={bank} {...props} disabled={disabled} muter={false} />
-          <MuteGroupNewItem bank={bank} {...props} disabled={disabled} muter />
+          <MuteGroupNewItem
+            bank={bank}
+            {...props}
+            disabled={disabled}
+            muter={false}
+          />
+          <MuteGroupNewItem
+            bank={bank}
+            {...props}
+            disabled={disabled}
+            muter
+          />
         </div>
       </Paper>
     </div>

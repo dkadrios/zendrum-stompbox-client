@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
-import AddIcon from 'material-ui-icons/Add'
-import Tooltip from 'material-ui/Tooltip'
+import { Button, Tooltip } from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
 import Mapping from './settings/Mapping'
 import FilePicker from './pickers/FilePicker'
 import { mappingCont, mappingContScroller } from '../styles/mapping'
@@ -53,7 +52,11 @@ const Cards = ({
           />
         ))}
 
-        <FilePicker extensions={['txt']} onChange={handleFileUploaded} reportError={reportError}>
+        <FilePicker
+          extensions={['txt']}
+          onChange={handleFileUploaded}
+          reportError={reportError}
+        >
           <Tooltip title="Import ZenEdit mapping...">
             <Button
               variant="fab"

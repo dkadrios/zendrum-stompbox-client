@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import omit from 'lodash/omit'
-import { withStyles } from 'material-ui/styles'
-import IconButton from 'material-ui/IconButton'
-import Icon from 'material-ui/Icon'
-import Tooltip from 'material-ui/Tooltip'
+import { withStyles, IconButton, Icon, Tooltip } from '@material-ui/core'
 
 const buttonBase = {
   borderRadius: '2px',

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">*/
+
+@font-face {
+  font-family: 'Armalite-Rifle';
+  src: url('https://zendrumstudio.com/includes/fonts/ArmaliteRifle.woff')
+      format('woff'),
+    /* Modern Browsers */
+      url('https://zendrumstudio.com/includes/fonts/ArmaliteRifle.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('https://zendrumstudio.com/includes/fonts/ArmaliteRifle.svg')
+      format('svg'); /* Legacy iOS */
+}

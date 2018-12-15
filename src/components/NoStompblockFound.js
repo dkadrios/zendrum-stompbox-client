@@ -1,18 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Dialog, { DialogContent, DialogContentText, DialogTitle } from 'material-ui/Dialog'
-import Slide from 'material-ui/transitions/Slide'
+import { Dialog, DialogContent, DialogContentText, DialogTitle, Slide } from '@material-ui/core'
 import { stompblockShape } from '../reducers/stompblock'
 
-const Transition = props => <Slide direction="up" {...props} />
+const Transition = props => (
+  <Slide
+    direction="up"
+    {...props}
+  />
+)
 
 const NoStompblockFound = ({ stompblock: { searchedForStompblock, found } }) => (
-  <Dialog open={searchedForStompblock && !found} transition={Transition}>
+  <Dialog
+    open={searchedForStompblock && !found}
+    transition={Transition}
+  >
     <DialogTitle>STOMPBLOCK Not Found</DialogTitle>
     <DialogContent>
       <DialogContentText>
-        Sorry, I cannot not find an available STOMPBLOCK attached to your device<br />
+        Sorry, I cannot not find an available STOMPBLOCK attached to your device
+        <br />
         <br />
         <b>Troubleshooting</b>
       </DialogContentText>

@@ -1,18 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import styles from '../styles/midiActivity'
+import { Typography, Grid } from '@material-ui/core'
 import { stompblockShape } from '../reducers/stompblock'
 
 const MidiActivity = ({ stompblock }) => {
   const { midiInActivity, midiOutActivity } = stompblock
 
   return (
-    <div className={styles.midiActivity}>
-      <div>Midi</div>
-      <div className={midiInActivity ? styles.ledRedBlink : styles.ledRed} />
-      <div className={midiOutActivity ? styles.ledYellowBlink : styles.ledYellow} />
-    </div>
+    <Grid container>
+      <Typography>Midi</Typography>
+      {/* <div className={midiInActivity ? styles.ledRedBlink : styles.ledRed} />
+      <div className={midiOutActivity ? styles.ledYellowBlink : styles.ledYellow} /> */}
+      <Typography>TODO</Typography>
+    </Grid>
   )
 }
 

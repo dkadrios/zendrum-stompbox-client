@@ -6,10 +6,7 @@ import shortid from 'shortid'
 import Autosuggest from 'react-autosuggest'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
-import TextField from 'material-ui/TextField'
-import Paper from 'material-ui/Paper'
-import { MenuItem } from 'material-ui/Menu'
-import { withStyles } from 'material-ui/styles'
+import { TextField, Paper, MenuItem, withStyles } from '@material-ui/core'
 import { mappingsShape } from '../../reducers/mapping'
 
 function renderInput(inputProps) {
@@ -40,18 +37,26 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   const parts = parse(suggestion, matches)
 
   return (
-    <MenuItem selected={isHighlighted} component="div">
+    <MenuItem
+      selected={isHighlighted}
+      component="div"
+    >
       <div>
-        {parts.map(part =>
-            part.highlight ? (
-              <span key={shortid.generate()} style={{ fontWeight: 300 }}>
-                {part.text}
-              </span>
-            ) : (
-              <strong key={shortid.generate()} style={{ fontWeight: 500 }}>
-                {part.text}
-              </strong>
-            ))}
+        {parts.map(part => part.highlight ? (
+          <span
+            key={shortid.generate()}
+            style={{ fontWeight: 300 }}
+          >
+            {part.text}
+          </span>
+        ) : (
+          <strong
+            key={shortid.generate()}
+            style={{ fontWeight: 500 }}
+          >
+            {part.text}
+          </strong>
+        ))}
       </div>
     </MenuItem>
   )
@@ -61,7 +66,10 @@ function renderSuggestionsContainer(options) {
   const { containerProps, children } = options
 
   return (
-    <Paper {...containerProps} square>
+    <Paper
+      {...containerProps}
+      square
+    >
       {children}
     </Paper>
   )
@@ -76,9 +84,7 @@ function getSuggestions(source, value) {
   const inputValue = value.trim().toLowerCase()
   const inputLength = inputValue.length
 
-  return inputLength === 0
-    ? []
-    : source.filter(suggestion => suggestion.toLowerCase().includes(inputValue))
+  return inputLength === 0 ? [] : source.filter(suggestion => suggestion.toLowerCase().includes(inputValue))
 }
 
 const styles = theme => ({

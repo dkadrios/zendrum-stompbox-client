@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import omit from 'lodash/omit'
 import VelocityTrim from './VelocityTrim'
-import styles from '../../styles/velocityTrim'
 import { trimShape } from '../../reducers/velocityTrim'
 
 class VelocityTrimList extends Component {
@@ -25,8 +24,9 @@ class VelocityTrimList extends Component {
     const { listView, selectedNoteNum, bank } = velocityTrim
 
     return (
-      <div className={styles.list}>
-        <ul className={styles[`${listView}View`]}>
+      <>
+        <ul>
+          {/*  className={styles[`${listView}View`]} */}
           {items.map((item, idx) => (
             <li
               key={`trim_list_${idx}`}
@@ -46,7 +46,7 @@ class VelocityTrimList extends Component {
             </li>
           ))}
         </ul>
-      </div>
+      </>
     )
   }
 }

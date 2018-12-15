@@ -6,13 +6,13 @@ import PrimaryNav from '../PrimaryNav'
 import InfoPanel from '../InfoPanel'
 
 const MainInterface = () => (
-  <div>
+  <>
     <PrimaryNav />
     <MidiSecurity />
     <NotResponding />
     <NoStompblockFound />
     <InfoPanel />
-  </div>
+  </>
 )
 
 export default MainInterface

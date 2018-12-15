@@ -1,42 +1,53 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb"],
+  "extends": ["airbnb", "plugin:import/errors", "plugin:import/warnings"],
   "env": {
+    "es6": true,
     "browser": true,
     "node": true,
     "jest": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
   },
   "plugins": ["jest"],
   "globals": {
     "__DEV__": true,
     "__TEST__": true,
-    "__API__": true,
-    "__BETA_TESTERS__": true
+    "createElement": true,
+    "shallowDiveExpect": true,
+    "shallow": true,
+    "mount": true,
+    "shallowExpect": true,
+    "React": true,
+    "wrapRouter": true,
+    "wrapRouterStore": true,
+    "wrapStore": true
   },
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "webpack.dev.config.babel.js"
+        "config": "webpack.config.dev.js"
       }
     }
   },
   "rules": {
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ],
-    "react/no-array-index-key": [0],
-    "react/forbid-prop-types": [0],
-    "import/extensions": [0],
-    "semi": [2, "never"],
-    "no-nested-ternary": [0],
-    "no-confusing-arrow": [0],
-    "import/no-duplicates": [0],
-    "jsx-a11y/href-no-hash": [0],
-    "jsx-a11y/click-events-have-key-events": [0],
     "function-paren-newline": ["error", "multiline"],
+    "import/extensions": [0],
+    "import/no-duplicates": [2],
+    "import/no-named-as-default": [0],
+    "jsx-a11y/click-events-have-key-events": [0],
+    "max-len": [
+      "error",
+      { "code": 120, "ignoreStrings": true, "ignoreTemplateLiterals": true }
+    ],
+    "no-await-in-loop": [0],
+    "no-confusing-arrow": [0],
+    "no-nested-ternary": [0],
+    "no-useless-concat": [2],
     "object-curly-newline": [
       "error",
       {
@@ -47,6 +58,13 @@
           "multiline": true
         }
       }
-    ]
+    ],
+    "prefer-template": 2,
+    "react/forbid-prop-types": [0],
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "react/jsx-max-props-per-line": [1, { "maximum": 1, "when": "always" }],
+    "react/jsx-one-expression-per-line": [0],
+    "react/no-array-index-key": [0],
+    "semi": [2, "never"]
   }
 }

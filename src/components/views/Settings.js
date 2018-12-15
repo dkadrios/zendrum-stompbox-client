@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Paper from 'material-ui/Paper'
+import { Paper } from '@material-ui/core'
 import MappingSelector from '../settings/MappingSelector'
 import Preferences from '../settings/Preferences'
 import FactoryReset from '../settings/FactoryReset'
@@ -52,7 +52,9 @@ Settings.propTypes = {
 }
 
 const mapStateToProps = ({ settings, mapping }) => ({ settings, mapping })
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...settingActions, ...mappingActions, ...stompblockActions }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...settingActions, ...mappingActions, ...stompblockActions }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Settings)

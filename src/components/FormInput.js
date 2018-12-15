@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import TextField from 'material-ui/TextField'
-import { withStyles } from 'material-ui/styles'
+import { TextField, withStyles } from '@material-ui/core'
 
 const styles = theme => ({
   textField: {
@@ -12,7 +11,13 @@ const styles = theme => ({
 })
 
 const FormInput = (props) => {
-  const { input, label, type, meta: { touched, error, warning }, classes } = props
+  const {
+    input,
+    label,
+    type,
+    meta: { touched, error, warning },
+    classes,
+  } = props
   const errored = touched && (error || warning)
 
   return (

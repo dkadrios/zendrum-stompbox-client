@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
-import Radio, { RadioGroup } from 'material-ui/Radio'
-import { FormControl, FormControlLabel } from 'material-ui/Form'
+import { withStyles, Radio, RadioGroup, FormControl, FormControlLabel } from '@material-ui/core'
 
 const styles = theme => ({
   formControl: {
@@ -17,7 +15,11 @@ const styles = theme => ({
 
 const BankPicker = ({ value, onChange, classes, disabled }) => (
   <div>
-    <FormControl component="fieldset" required className={classes.formControl}>
+    <FormControl
+      component="fieldset"
+      required
+      className={classes.formControl}
+    >
       <RadioGroup
         aria-label="bank"
         name="bank"
@@ -25,8 +27,16 @@ const BankPicker = ({ value, onChange, classes, disabled }) => (
         value={String(value)}
         onChange={(event, val) => onChange(Number(val))}
       >
-        <FormControlLabel value="0" control={<Radio disabled={disabled} />} label="Bank A" />
-        <FormControlLabel value="1" control={<Radio disabled={disabled} />} label="Bank B" />
+        <FormControlLabel
+          value="0"
+          control={<Radio disabled={disabled} />}
+          label="Bank A"
+        />
+        <FormControlLabel
+          value="1"
+          control={<Radio disabled={disabled} />}
+          label="Bank B"
+        />
       </RadioGroup>
     </FormControl>
   </div>

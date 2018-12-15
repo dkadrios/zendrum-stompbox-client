@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import styles from '../styles/internalState'
+import { Grid, Typography } from '@material-ui/core'
 import { stompblockShape } from '../reducers/stompblock'
 
 const percent = value => (value === 1 ? 0 : value === 127 ? 100 : Math.round(value / 1.27))
@@ -12,20 +12,28 @@ const InternalState = ({ stompblock }) => {
   const { volumeSetting, velocitySetting, muteState, demoState, thruState } = stompblock
 
   return (
-    <div className={styles.internalState}>
-      <section>
-        Vol <strong>{formatPercent(volumeSetting)}</strong>
-      </section>
-      <section>
-        Sen <strong>{formatPercent(velocitySetting)}</strong>
-      </section>
+    <Grid
+      container
+      spacing={8}
+    >
+      <Grid item>
+        <Typography>
+          Vol <strong>{formatPercent(volumeSetting)}</strong>
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Typography>
+          Sen <strong>{formatPercent(velocitySetting)}</strong>
+        </Typography>
+      </Grid>
 
-      <div className={styles.leds}>
-        <div className={muteState ? styles.ledRedBlink : styles.ledRed} />
+      <Grid item>
+        {/* <div className={muteState ? styles.ledRedBlink : styles.ledRed} />
         <div className={demoState ? styles.ledYellowBlink : styles.ledYellow} />
-        <div className={thruState ? styles.ledGreenBlink : styles.ledGreen} />
-      </div>
-    </div>
+        <div className={thruState ? styles.ledGreenBlink : styles.ledGreen} /> */}
+        <Typography>TODO</Typography>
+      </Grid>
+    </Grid>
   )
 }
 

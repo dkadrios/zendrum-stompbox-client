@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import omit from 'lodash/omit'
-import { withStyles } from 'material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import Instructions from './Instructions'
 
 const styles = {
@@ -16,23 +16,24 @@ const header = 'Here you can define voices that should be silenced when others a
 const body = () => (
   <div>
     <p>
-      Your STOMPBLOCK can contain up to 4 different 'mute groups'. These are collections of voices
-      that should be muted whenever certain other voices are played.
+      Your STOMPBLOCK can contain up to 4 different 'mute groups'. These are collections of voices that should be muted
+      whenever certain other voices are played.
     </p>
     <p>
-      The factory default groups are set up to handle your hi-hats. They ensure that any ringing
-      hats are muted when you play a closed note or the pedal 'chick'.
+      The factory default groups are set up to handle your hi-hats. They ensure that any ringing hats are muted when you
+      play a closed note or the pedal 'chick'.
     </p>
-    <p>
-      You are free to modify these settings or to create your own groupings to mute other
-      instruments.
-    </p>
+    <p>You are free to modify these settings or to create your own groupings to mute other instruments.</p>
   </div>
 )
 
 const MuteGroupInstructions = props => (
   <div className={props.classes.cont}>
-    <Instructions header={header} body={body()} {...omit(props, ['classes'])} />
+    <Instructions
+      header={header}
+      body={body()}
+      {...omit(props, ['classes'])}
+    />
   </div>
 )
 

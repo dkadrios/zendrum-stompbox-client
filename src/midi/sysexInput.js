@@ -1,8 +1,6 @@
 /* eslint-disable no-bitwise */
 
-import { STOMPBLOCK_DEVICE_ID } from './'
-
-import { MASK_STATUS, MASK_CHANNEL, STATUS_NOTE_OFF } from './'
+import { STOMPBLOCK_DEVICE_ID, MASK_STATUS, MASK_CHANNEL, STATUS_NOTE_OFF } from '.'
 
 import {
   SYSEX_START,
@@ -38,10 +36,7 @@ import { receivedInternalState } from '../action-creators/stompblock'
 
 const processMidiMessage = (store, { data }) => {
   const { getState, dispatch } = store
-  const [kind: SysexBarrier, deviceId: number, , command: SysexMessage, ...packet] = data.slice(
-    0,
-    data.length - 1,
-  )
+  const [kind, deviceId, , command, ...packet] = data.slice(0, data.length - 1)
 
   // One of our packets?
   if (kind === SYSEX_START && deviceId === STOMPBLOCK_DEVICE_ID) {

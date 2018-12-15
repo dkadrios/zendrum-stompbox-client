@@ -1,11 +1,12 @@
 import React from 'react'
-import { MuiThemeProvider } from 'material-ui/styles'
+import { MuiThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import BrowserDetection from 'react-browser-detection'
 import MainInterface from './views/MainInterface'
 import UnsupportedBrowser from './views/UnsupportedBrowser'
 import Snow from './Snow'
-import styles from '../styles/app'
 import muiTheme from '../styles/muiTheme'
+import '../styles/fonts.css'
 
 const browserHandler = {
   chrome: () => <MainInterface />,
@@ -17,10 +18,9 @@ const browserHandler = {
 
 const App = () => (
   <MuiThemeProvider theme={muiTheme}>
-    <div className={styles.app}>
-      {!__DEV__ && <Snow />}
-      <BrowserDetection>{browserHandler}</BrowserDetection>
-    </div>
+    <CssBaseline />
+    {!__DEV__ && <Snow />}
+    <BrowserDetection>{browserHandler}</BrowserDetection>
   </MuiThemeProvider>
 )
 

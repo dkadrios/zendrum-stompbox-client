@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
-import Divider from 'material-ui/Divider'
-import Toolbar from 'material-ui/Toolbar'
-import Typography from 'material-ui/Typography'
+import { withStyles, Divider, Toolbar, Typography } from '@material-ui/core'
 import PolyLockNewItem from './PolyLockNewItem'
 import PolyLockItem from './PolyLockItem'
 import { mappingsShape } from '../../reducers/mapping'
@@ -21,22 +18,17 @@ const muiStyles = {
 }
 
 const PolyLockBank = (props) => {
-  const {
-    polyLocks,
-    bank,
-    addPolyLock,
-    deletePolyLock,
-    mapping,
-    classes,
-    hasSoundBankSupport,
-    disabled,
-  } = props
+  const { polyLocks, bank, addPolyLock, deletePolyLock, mapping, classes, hasSoundBankSupport, disabled } = props
 
   return (
     <div className={styles.bank}>
       {hasSoundBankSupport && (
         <Toolbar>
-          <Typography color="inherit" type="title" className={classes.title}>
+          <Typography
+            color="inherit"
+            type="title"
+            className={classes.title}
+          >
             Bank {String.fromCharCode(65 + bank)}
           </Typography>
         </Toolbar>

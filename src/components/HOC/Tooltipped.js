@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import omit from 'lodash/omit'
-import Tooltip from 'material-ui/Tooltip'
+import { Tooltip } from '@material-ui/core'
 
 const MuiTooltip = (props) => {
   const rest = omit(props, ['title', 'tooltip', 'tooltipDelay'])
@@ -18,7 +18,10 @@ MuiTooltip.propTypes = {
 const Tooltipped = (props) => {
   const { tooltip } = props
   return tooltip ? ( //
-    <MuiTooltip title={tooltip} {...props} />
+    <MuiTooltip
+      title={tooltip}
+      {...props}
+    />
   ) : (
     <div {...props} />
   )

@@ -1,18 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
-import Dialog, {
+import {
+  Button,
+  Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog'
-import Slide from 'material-ui/transitions/Slide'
-import { LinearProgress } from 'material-ui/Progress'
-import Warning from 'material-ui-icons/Warning'
+  Slide,
+  LinearProgress,
+} from '@material-ui/core'
+import Warning from '@material-ui/icons/Warning'
 import { settingsShape } from '../../reducers/settings'
 
-const Transition = props => <Slide direction="up" {...props} />
+const Transition = props => (
+  <Slide
+    direction="up"
+    {...props}
+  />
+)
 
 const FactoryReset = (props) => {
   const { settings, confirmFactoryReset, performFactoryReset } = props
@@ -20,7 +26,11 @@ const FactoryReset = (props) => {
 
   return (
     <div>
-      <Button variant="raised" color="primary" onMouseUp={() => confirmFactoryReset(true)}>
+      <Button
+        variant="contained"
+        color="primary"
+        onMouseUp={() => confirmFactoryReset(true)}
+      >
         <Warning />
         <span style={{ paddingLeft: 7 }}>Perform Factory Reset</span>
       </Button>
@@ -40,16 +50,27 @@ const FactoryReset = (props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => confirmFactoryReset(false)} color="primary">
+          <Button
+            onClick={() => confirmFactoryReset(false)}
+            color="primary"
+          >
             Cancel
           </Button>
-          <Button onClick={performFactoryReset} variant="raised" color="primary" autoFocus>
+          <Button
+            onClick={performFactoryReset}
+            variant="contained"
+            color="primary"
+            autoFocus
+          >
             Perform Reset
           </Button>
         </DialogActions>
       </Dialog>
 
-      <Dialog open={resetInProcess} transition={Transition}>
+      <Dialog
+        open={resetInProcess}
+        transition={Transition}
+      >
         <DialogTitle>Factory Reset In Progress</DialogTitle>
         <DialogContent>
           <DialogContentText>Please wait...</DialogContentText>

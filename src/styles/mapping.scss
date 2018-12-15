@@ -1,116 +1,119 @@
 @import 'variables';
 @import 'mixins';
 
-.mappingSelector {
-  .mappingCont {
-    & > div {
-      max-width: 35px;
-    }
-    max-height: 170px;
-    display: flex;
-    flex-direction: row;
-    margin-right: 30px;
-    margin-bottom: 15px;
-    background-color: $color-background;
-    border-radius: 2px;
-    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+:local {
+  .mappingSelector {
+    .mappingCont {
+      & > div {
+        max-width: 35px;
+      }
+      max-height: 170px;
+      display: flex;
+      flex-direction: row;
+      margin-right: 30px;
+      margin-bottom: 15px;
+      background-color: $color-background;
+      border-radius: 2px;
+      box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+        0px 3px 1px -2px rgba(0, 0, 0, 0.12);
 
-    h1 {
-      text-transform: uppercase;
-      font-size: 21px;
-      @include rotate(90deg);
-      margin: 45px 0 0;
-      white-space: nowrap;
-    }
-  }
-
-  .mappingContScroller {
-    display: flex;
-    flex-flow: row nowrap;
-    min-width: 520px;
-    max-width: 520px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 10px;
-
-    &::-webkit-scrollbar {
-      height: 7px;
-      border-radius: 4px;
+      h1 {
+        text-transform: uppercase;
+        font-size: 21px;
+        @include rotate(90deg);
+        margin: 45px 0 0;
+        white-space: nowrap;
+      }
     }
 
-    &::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      margin: 1px;
-      height: 7px;
-    }
-  }
+    .mappingContScroller {
+      display: flex;
+      flex-flow: row nowrap;
+      min-width: 520px;
+      max-width: 520px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-left: 10px;
 
-  .mapping {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    text-align: center;
-    position: relative;
-    cursor: pointer;
-    margin-right: 20px;
-    padding: 10px 4px 6px;
-    min-width: 100px;
-    max-width: 100px;
-    border: 2px solid transparent;
-    border-radius: 5px;
+      &::-webkit-scrollbar {
+        height: 7px;
+        border-radius: 4px;
+      }
 
-    p {
-      color: $color-text-dimmer;
-      margin: 0;
-      overflow: hidden;
+      &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        margin: 1px;
+        height: 7px;
+      }
     }
 
-    svg:first-of-type {
+    .mapping {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      text-align: center;
       position: relative;
-      left: 3px;
-      max-width: 60px;
-      max-height: 80px;
-    }
+      cursor: pointer;
+      margin-right: 20px;
+      padding: 10px 4px 6px;
+      min-width: 100px;
+      max-width: 100px;
+      border: 2px solid transparent;
+      border-radius: 5px;
 
-    svg:nth-of-type(2) {
-      max-width: 35px;
-      max-height: 40px;
-      position: absolute;
-      left: 43px;
-      top: 25px;
-    }
+      p {
+        color: $color-text-dimmer;
+        margin: 0;
+        overflow: hidden;
+      }
 
-    &:hover {
-      background-color: lighten($color-background, 5);
-    }
-  }
+      svg:first-of-type {
+        position: relative;
+        left: 3px;
+        max-width: 60px;
+        max-height: 80px;
+      }
 
-  .selected {
-    border: 2px solid $color-highlight;
-    background-color: lighten($color-background, 5);
-    p {
-      font-weight: bold;
-      color: $color-text-dark;
-    }
-  }
+      svg:nth-of-type(2) {
+        max-width: 35px;
+        max-height: 40px;
+        position: absolute;
+        left: 43px;
+        top: 25px;
+      }
 
-  .removeIcon {
-    position: absolute;
-    right: 2px;
-    top: -1px;
-    button {
-      width: 24px;
-      height: 24px;
-    }
-    svg {
-      fill: white;
-      width: 20px;
-      height: 20px;
       &:hover {
-        fill: $color-highlight;
+        background-color: lighten($color-background, 5);
+      }
+    }
+
+    .selected {
+      border: 2px solid $color-highlight;
+      background-color: lighten($color-background, 5);
+      p {
+        font-weight: bold;
+        color: $color-text-dark;
+      }
+    }
+
+    .removeIcon {
+      position: absolute;
+      right: 2px;
+      top: -1px;
+      button {
+        width: 24px;
+        height: 24px;
+      }
+      svg {
+        fill: white;
+        width: 20px;
+        height: 20px;
+        &:hover {
+          fill: $color-highlight;
+        }
       }
     }
   }

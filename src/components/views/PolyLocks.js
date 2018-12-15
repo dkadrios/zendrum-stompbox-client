@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Paper from 'material-ui/Paper'
+import { Paper } from '@material-ui/core'
 import PolyLockInstructions from '../instructions/PolyLockInstructions'
 import PolyLockBank from '../polyLocks/PolyLockBank'
 import styles from '../../styles/polyLocks'
 import paperStyle from '../../styles/paper'
-import { MAX_POLYLOCKS } from '../../midi/'
+import { MAX_POLYLOCKS } from '../../midi'
 import * as polyLockActions from '../../action-creators/polyLocks'
 import * as settingsActions from '../../action-creators/settings'
 import { polyLocksShape } from '../../reducers/polyLocks'
@@ -26,7 +26,10 @@ const PolyLocks = (props) => {
 
   return (
     <div className={styles.polyLocksCont}>
-      <PolyLockInstructions enabled={polyLocksEnabled} onChange={setPolyLocksEnabled} />
+      <PolyLockInstructions
+        enabled={polyLocksEnabled}
+        onChange={setPolyLocksEnabled}
+      />
       <Paper style={paperStyle}>
         <section>
           <PolyLockBank
@@ -70,7 +73,9 @@ PolyLocks.propTypes = {
 }
 
 const mapStateToProps = ({ polyLocks, mapping, settings }) => ({ polyLocks, mapping, settings })
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...polyLockActions, ...settingsActions }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...polyLockActions, ...settingsActions }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(PolyLocks)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PolyLocks)

@@ -1,48 +1,42 @@
-@import 'variables';
-@import 'fonts';
+//@import 'variables';
+// @import 'fonts';
+//@import 'typography';
 
-:global {
-  body {
-    margin: 0;
-    padding: 0;
-    background: $color-background;
-    color: $color-text-dark;
-    overflow: hidden;
-    height: 100%;
-    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    cursor: default;
+// :global {
+//   body {
+//     margin: 0;
+//     padding: 0;
+//     background: $color-background;
+//     color: $color-text-dark;
+//     overflow: hidden;
+//     height: 100%;
+//     cursor: default;
+//   }
 
-    a {
-      //color: $color-text-dark;
-      text-decoration: none;
-    }
-  }
+//   ::-webkit-scrollbar {
+//     width: 14px;
+//     background: $color-background-light;
+//     border-radius: 8px;
+//   }
 
-  ::-webkit-scrollbar {
-    width: 14px;
-    background: $color-background-light;
-    border-radius: 8px;
-  }
+//   // ::-webkit-scrollbar-track {
+//   // }
 
-  ::-webkit-scrollbar-track {
-  }
+//   ::-webkit-scrollbar-thumb {
+//     background: $color-text-mid;
+//     border-radius: 8px;
+//     margin: 1px;
+//     width: 14px;
+//   }
+// }
 
-  ::-webkit-scrollbar-thumb {
-    background: $color-text-mid;
-    border-radius: 8px;
-    margin: 1px;
-    width: 14px;
-  }
-}
+// :local {
+//   main {
+//     height: 100%;
+//   }
 
-main {
-  height: 100%;
-}
-
-.app {
-  height: 100%;
-  width: 100%;
-}
+//   .app {
+//     height: 100%;
+//     width: 100%;
+//   }
+// }

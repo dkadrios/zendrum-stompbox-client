@@ -1,9 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withStyles, Typography } from '@material-ui/core'
 import VelocityTrimControls from './VelocityTrimControls'
 import Instrument from '../../images/Instrument'
-import styles from '../../styles/velocityTrim'
 import { trimShape } from '../../reducers/velocityTrim'
+
+const styles = theme => console.log(theme) || {
+  noteName: {
+    padding: theme.spacing.unit / 2,
+    width: '100%',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  header: {
+    border: `1px outset ${theme.palette.grey[700]}`,
+    backgroundColor: theme.palette.background.paper,
+    display: 'flex',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '1px 5px 0 8px',
+    borderRadius: 5,
+    cursor: 'pointer',
+
+    '& div:nth-child(2)': {
+      fontSize: '90%',
+      flexGrow: 0,
+      color: theme.palette.text.secondary,
+      textShadow: `0px 1px 1px ${theme.palette.background.default}`,
+    },
+    '& svg': {
+      fill: theme.palette.text.primary,
+      width: 20,
+      height: 20,
+      flexGrow: 0,
+      margin: '2px 0 0 5px',
+    },
+  },
+}
 
 const handleKeyDown = (event, item, bank, userChangedTrimEnd) => {
   let delta = 0
@@ -41,27 +76,30 @@ const handleKeyDown = (event, item, bank, userChangedTrimEnd) => {
 }
 
 const VelocityTrim = (props) => {
-  const { item, bank, selected, playNote, selectTrim, userChangedTrimEnd } = props
+  const { item, bank, selected, playNote, selectTrim, userChangedTrimEnd, classes } = props
   const { note, trim, group, name } = item
   return (
     <section
       tabIndex={note}
       onKeyDown={e => handleKeyDown(e, item, bank, userChangedTrimEnd)}
       onMouseUp={() => (selected ? null : selectTrim(note))}
-      className={selected ? styles.selected : ''}
+      className={selected ? classes.selected : ''}
       role="presentation"
     >
       <div
-        className={styles.header}
+        className={classes.header}
         onMouseUp={() => playNote(note, Math.round(127 * (trim / 100)), bank)}
         role="button"
         tabIndex={note}
       >
-        <div>{note}</div>
-        <div>{group}</div>
+        <Typography variant="h5">{note}</Typography>
+        <Typography>{group}</Typography>
         <div>{Instrument(group)}</div>
       </div>
-      <div className={styles.noteName} title={name}>
+      <div
+        className={classes.noteName}
+        title={name}
+      >
         {name}
       </div>
       <VelocityTrimControls {...props} />
@@ -76,6 +114,7 @@ VelocityTrim.propTypes = {
   selectTrim: PropTypes.func.isRequired,
   userChangedTrimEnd: PropTypes.func.isRequired,
   bank: PropTypes.number.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
-export default VelocityTrim
+export default withStyles(styles)(VelocityTrim)
