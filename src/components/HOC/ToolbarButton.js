@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ToolTipButton from '../HOC/ToolTipButton'
-import styles from '../../styles/velocityTrimListFilter'
 
 const capitalize = s => s[0].toUpperCase() + s.slice(1)
 
 const ToolbarButton = ({ icon, view, selected, onClick }) => (
   <ToolTipButton
     icon={icon}
-    selected={selected}
+    variant="contained"
+    mini
     tooltip={`${capitalize(view)} view`}
-    className={selected ? styles.selected : ''}
+    color={selected ? 'primary' : 'secondary'}
     onClick={onClick}
   />
 )

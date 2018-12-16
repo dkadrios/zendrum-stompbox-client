@@ -7,18 +7,28 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  withStyles,
 } from '@material-ui/core'
 import Warning from '@material-ui/icons/Warning'
 import Dialog from '../Dialog'
 import { settingsShape } from '../../reducers/settings'
 
+const styles = {
+  button: {
+    backgroundColor: '#f6a02c',
+    '&:hover': {
+      backgroundColor: '#fed54a',
+    },
+  },
+}
+
 const FactoryReset = (props) => {
-  const { settings, confirmFactoryReset, performFactoryReset } = props
+  const { settings, confirmFactoryReset, performFactoryReset, classes } = props
   const { showResetDialog, resetInProcess } = settings
 
   return (
     <div>
-      <Button variant="contained" color="primary" onMouseUp={() => confirmFactoryReset(true)}>
+      <Button variant="contained" className={classes.button} onMouseUp={() => confirmFactoryReset(true)}>
         <Warning />
         <span style={{ paddingLeft: 7 }}>Perform Factory Reset</span>
       </Button>
@@ -58,6 +68,7 @@ FactoryReset.propTypes = {
   settings: PropTypes.shape(settingsShape).isRequired,
   confirmFactoryReset: PropTypes.func.isRequired,
   performFactoryReset: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
-export default FactoryReset
+export default withStyles(styles)(FactoryReset)
