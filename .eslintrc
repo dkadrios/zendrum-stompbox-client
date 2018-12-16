@@ -21,22 +21,22 @@
     }
   },
   "rules": {
-    "react/jsx-filename-extension": [
-      1,
+    "function-paren-newline": ["error", "multiline"],
+    "import/extensions": [0],
+    "import/no-duplicates": [0],
+    "jsx-a11y/click-events-have-key-events": [0],
+    "jsx-a11y/href-no-hash": [0],
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": [0],
+    "max-len": [
+      "error",
       {
-        "extensions": [".js", ".jsx"]
+        "code": 120,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
       }
     ],
-    "react/no-array-index-key": [0],
-    "react/forbid-prop-types": [0],
-    "import/extensions": [0],
-    "semi": [2, "never"],
-    "no-nested-ternary": [0],
     "no-confusing-arrow": [0],
-    "import/no-duplicates": [0],
-    "jsx-a11y/href-no-hash": [0],
-    "jsx-a11y/click-events-have-key-events": [0],
-    "function-paren-newline": ["error", "multiline"],
+    "no-nested-ternary": [0],
     "object-curly-newline": [
       "error",
       {
@@ -47,6 +47,15 @@
           "multiline": true
         }
       }
-    ]
+    ],
+    "react/forbid-prop-types": [0],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/no-array-index-key": [0],
+    "semi": [2, "never"]
   }
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import omit from 'lodash/omit'
 import VelocityTrim from './VelocityTrim'
 import styles from '../../styles/velocityTrim'
 import { trimShape } from '../../reducers/velocityTrim'
@@ -21,7 +20,7 @@ class VelocityTrimList extends Component {
   }
 
   render() {
-    const { items, velocityTrim } = this.props
+    const { items, velocityTrim, ...rest } = this.props
     const { listView, selectedNoteNum, bank } = velocityTrim
 
     return (
@@ -41,7 +40,7 @@ class VelocityTrimList extends Component {
                 bank={bank}
                 listView={listView}
                 selected={item.note === selectedNoteNum}
-                {...omit(this.props, ['velocityTrim'])}
+                {...rest}
               />
             </li>
           ))}

@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Tooltip from 'material-ui/Tooltip'
-import IconButton from 'material-ui/IconButton'
-import DeleteIcon from 'material-ui-icons/HighlightOff'
-import Button from 'material-ui/Button'
-import Dialog, {
+import {
+  Button,
+  Tooltip,
+  IconButton,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog'
-import Slide from 'material-ui/transitions/Slide'
+} from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/HighlightOff'
 import styles from '../../styles/mapping'
-
-const Transition = props => <Slide direction="up" {...props} />
+import Dialog from '../Dialog'
 
 class DeleteMappingButton extends Component {
   static propTypes = {
@@ -51,16 +49,22 @@ class DeleteMappingButton extends Component {
           </IconButton>
         </Tooltip>
 
-        <Dialog open={dialogVisible} transition={Transition} onClose={this.handleCancel}>
+        <Dialog
+          open={dialogVisible}
+          onClose={this.handleCancel}
+        >
           <DialogTitle>Confirm</DialogTitle>
           <DialogContent>
-            <DialogContentText style={{ minWidth: 300 }}>
-              {`Sure to delete '${name}'?`}
-            </DialogContentText>
+            <DialogContentText style={{ minWidth: 300 }}>{`Sure to delete '${name}'?`}</DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleOk}>Ok</Button>
-            <Button onClick={this.handleCancel} variant="raised" color="primary" autoFocus>
+            <Button
+              onClick={this.handleCancel}
+              variant="contained"
+              color="primary"
+              autoFocus
+            >
               Cancel
             </Button>
           </DialogActions>

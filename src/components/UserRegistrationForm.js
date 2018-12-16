@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Field, reduxForm } from 'redux-form'
-import { withStyles } from 'material-ui/styles'
+import { withStyles } from '@material-ui/core'
 import FormInput from './FormInput'
 import * as userActions from '../action-creators/user'
 import { fieldRequired, fieldMaxLength64, fieldEmail } from '../utils'
@@ -22,7 +22,10 @@ const styles = {
 }
 
 const UserRegistrationForm = ({ error, handleSubmit, classes }) => (
-  <form onSubmit={handleSubmit} className={classes.container}>
+  <form
+    onSubmit={handleSubmit}
+    className={classes.container}
+  >
     <Field
       name="firstName"
       type="text"
@@ -67,6 +70,7 @@ const formOptions = {
 }
 
 /* eslint-disable */
-export default connect(mapStateToProps, mapDispatchToProps)(
-  reduxForm(formOptions)(withStyles(styles)(UserRegistrationForm)),
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(reduxForm(formOptions)(withStyles(styles)(UserRegistrationForm)))

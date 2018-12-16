@@ -3,35 +3,33 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import DebounceInput from 'react-debounce-input'
-import Select from 'material-ui/Select'
-import Switch from 'material-ui/Switch'
-import { MenuItem } from 'material-ui/Menu'
-import { FormControlLabel, FormControl } from 'material-ui/Form'
-import availableGroups from '../../mappings/'
-import Btn from '../../components/HOC/ToolbarButton'
-import Tooltipped from '../../components/HOC/Tooltipped'
-import BankButton from '../../components/BankButton'
+import { Select, Switch, MenuItem, FormControlLabel, FormControl } from '@material-ui/core'
+import availableGroups from '../../mappings'
+import Btn from '../HOC/ToolbarButton'
+import Tooltipped from '../HOC/Tooltipped'
+import BankButton from '../BankButton'
 import * as filterActions from '../../action-creators/velocityTrimListFilter'
 import { velocityTrimShape } from '../../reducers/velocityTrim'
 import styles from '../../styles/velocityTrimListFilter'
 
 const VelocityTrimListFilter = (props) => {
-  const {
-    velocityTrim,
-    searchTrims,
-    changeGroup,
-    changeListView,
-    setChaseEnabled,
-    selectBank,
-  } = props
+  const { velocityTrim, searchTrims, changeGroup, changeListView, setChaseEnabled, selectBank } = props
   const { search, group, listView, chaseEnabled, bank, hasSoundBankSupport } = velocityTrim
 
   return (
     <div className={styles.filters}>
       {hasSoundBankSupport && (
         <div className={styles.bankSelect}>
-          <BankButton selectedBank={bank} bank={0} onClick={selectBank} />
-          <BankButton selectedBank={bank} bank={1} onClick={selectBank} />
+          <BankButton
+            selectedBank={bank}
+            bank={0}
+            onClick={selectBank}
+          />
+          <BankButton
+            selectedBank={bank}
+            bank={1}
+            onClick={selectBank}
+          />
         </div>
       )}
 
@@ -56,9 +54,15 @@ const VelocityTrimListFilter = (props) => {
         />
       </div>
 
-      <Select onChange={({ target }) => changeGroup(target.value)} value={group}>
+      <Select
+        onChange={({ target }) => changeGroup(target.value)}
+        value={group}
+      >
         {availableGroups.map(({ value, label }) => (
-          <MenuItem key={value} value={value}>
+          <MenuItem
+            key={value}
+            value={value}
+          >
             {label}
           </MenuItem>
         ))}
@@ -76,12 +80,12 @@ const VelocityTrimListFilter = (props) => {
         <Tooltipped tooltip="Highlight any notes played on Zendrum or other instrument (requires THRU be enabled)">
           <FormControl>
             <FormControlLabel
-              control={
+              control={(
                 <Switch
                   checked={chaseEnabled}
                   onChange={(event, checked) => setChaseEnabled(checked)}
                 />
-              }
+)}
               label="MIDI Chase"
             />
           </FormControl>
@@ -104,4 +108,7 @@ const mapStateToProps = ({ velocityTrim }) => ({ velocityTrim })
 const mapDispatchToProps = dispatch => bindActionCreators(filterActions, dispatch)
 
 // eslint-disable-next-line
-export default connect(mapStateToProps, mapDispatchToProps)(VelocityTrimListFilter)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(VelocityTrimListFilter)

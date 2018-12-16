@@ -1,39 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import omit from 'lodash/omit'
-import { withStyles } from 'material-ui/styles'
-import IconButton from 'material-ui/IconButton'
-import Icon from 'material-ui/Icon'
-import Tooltip from 'material-ui/Tooltip'
-
-const buttonBase = {
-  borderRadius: '2px',
-  width: '32px',
-  height: '32px',
-  marginLeft: '4px',
-}
+import classNames from 'classnames'
+import { withStyles, IconButton, Icon, Tooltip } from '@material-ui/core'
 
 const styles = theme => ({
   button: {
-    ...buttonBase,
+    borderRadius: '2px',
+    width: '32px',
+    height: '32px',
+    marginLeft: '4px',
     color: theme.palette.action.active,
     backgroundColor: '#666',
+    padding: 0,
   },
   selectedButton: {
-    ...buttonBase,
     color: theme.palette.common.white,
     backgroundColor: theme.palette.primary[500],
   },
 })
 
 const ToolTipButton = (props) => {
-  const { classes, tooltip, icon, selected } = props
+  const { classes, tooltip, icon, selected, ...rest } = props
+  const className = classNames({
+    [classes.button]: true,
+    [classes.selectedButton]: selected,
+  })
   return (
     <Tooltip title={tooltip}>
-      <IconButton
-        {...omit(props, ['classes', 'tooltip', 'icon'])}
-        className={selected ? classes.selectedButton : classes.button}
-      >
+      <IconButton {...rest} className={className}>
         <Icon>{icon}</Icon>
       </IconButton>
     </Tooltip>

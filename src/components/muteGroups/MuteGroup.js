@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
-import Paper from 'material-ui/Paper'
-import Divider from 'material-ui/Divider'
-import Toolbar from 'material-ui/Toolbar'
-import Tooltip from 'material-ui/Tooltip'
-import Typography from 'material-ui/Typography'
-import Button from 'material-ui/Button'
-import DeleteIcon from 'material-ui-icons/Delete'
+import { withStyles, Paper, Divider, Toolbar, Tooltip, Typography, Fab } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
 import BankPicker from '../pickers/BankPicker'
 import MuteItem from './MuteItem'
 import MuteGroupNewItem from './MuteGroupNewItem'
@@ -63,23 +57,13 @@ const MuteGroup = (props) => {
           </Typography>
           {hasSoundBankSupport && (
             <div className={classes.bank}>
-              <BankPicker
-                disabled={disabled}
-                value={bank}
-                onChange={val => changeBank(ordinal, val)}
-              />
+              <BankPicker disabled={disabled} value={bank} onChange={val => changeBank(ordinal, val)} />
             </div>
           )}
           <Tooltip title="Delete group" placement="bottom">
-            <Button
-              disabled={disabled}
-              variant="fab"
-              mini
-              aria-label="delete"
-              onClick={() => deleteMuteGroup(ordinal)}
-            >
+            <Fab disabled={disabled} size="small" aria-label="delete" onClick={() => deleteMuteGroup(ordinal)}>
               <DeleteIcon />
-            </Button>
+            </Fab>
           </Tooltip>
         </Toolbar>
         <Divider />

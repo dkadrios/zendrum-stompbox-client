@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
+import { Button } from '@material-ui/core'
 
 const BankButton = ({ bank, selectedBank, onClick }) => (
   <Button
     mini
-    variant="raised"
+    variant="contained"
     color={bank === selectedBank ? 'primary' : 'secondary'}
     onClick={() => onClick(bank)}
   >

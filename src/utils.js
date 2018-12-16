@@ -2,7 +2,7 @@
 
 export function createReducer(initialState, handlers) {
   return function reducer(state = initialState, action) {
-    return Object.prototype.hasOwnProperty.call(handlers, action.type)
+    return Object.prototype.hasOwnProperty.call(handlers, action.type) //
       ? handlers[action.type](state, action)
       : state
   }
@@ -10,9 +10,7 @@ export function createReducer(initialState, handlers) {
 
 /* ---------------------------- Arrays -------------------------------------- */
 
-// this just creates and fills a zero-indexed array array; 0, 1, 2, 3, etc
-export const arraySequence = numberOfElements =>
-  Array(...{ length: numberOfElements }).map(Function.call, Number)
+export const arraySequence = numberOfElements => Array.from(Array(numberOfElements).keys())
 
 // Breaks an array up into chunks of a given size (e.g. converts to 2 dimensions)
 export const partitionArray = (array, size) =>

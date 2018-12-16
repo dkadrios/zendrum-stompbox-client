@@ -1,4 +1,4 @@
-import { createMuiTheme } from 'material-ui/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
 // import grey from 'material-ui/colors/grey'
 import zendrumRed from './zendrumRed'
 
@@ -6,6 +6,10 @@ export default createMuiTheme({
   palette: {
     primary: zendrumRed,
     secondary: zendrumRed,
+  },
+
+  typography: {
+    useNextVariants: true,
   },
 
   overrides: {
@@ -66,7 +70,7 @@ export default createMuiTheme({
       },
     },
     MuiTooltip: {
-      tooltipBottom: {
+      tooltip: {
         fontSize: 14,
       },
     },

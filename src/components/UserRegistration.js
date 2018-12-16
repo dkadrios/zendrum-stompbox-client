@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
-import { withStyles } from 'material-ui/styles'
-import Dialog, {
+import {
+  withStyles,
+  Button,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog'
-import Slide from 'material-ui/transitions/Slide'
-import SvgIcon from 'material-ui/SvgIcon'
+  SvgIcon,
+} from '@material-ui/core'
 import UserRegistrationForm from './UserRegistrationForm'
 import GravatarIcon from '../images/Gravatar.svg'
+import Dialog from './Dialog'
 
 const styles = {
   icon: {
@@ -28,27 +28,27 @@ const styles = {
   },
 }
 
-const Transition = props => <Slide direction="up" {...props} />
-
 const GravatarLink = ({ content }) => (
-  <a href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer">
+  <a
+    href="https://en.gravatar.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     {content}
   </a>
 )
 GravatarLink.propTypes = { content: PropTypes.node.isRequired }
 
-const UserRegistration = ({
-  active,
-  hideDialog,
-  submitRegistrationForm,
-  serialNumber,
-  classes,
-}) => (
-  <Dialog open={active} transition={Transition} onClose={hideDialog}>
+const UserRegistration = ({ active, hideDialog, submitRegistrationForm, serialNumber, classes }) => (
+  <Dialog
+    open={active}
+    onClose={hideDialog}
+  >
     <DialogTitle>STOMPBLOCK Registration</DialogTitle>
     <DialogContent>
       <DialogContentText>
-        Register yourself as the owner of this STOMPBLOCK<br />
+        Register yourself as the owner of this STOMPBLOCK
+        <br />
         Serial number:<strong> {serialNumber}</strong>
       </DialogContentText>
 
@@ -56,11 +56,11 @@ const UserRegistration = ({
 
       <div className={classes.gravatarNotice}>
         <GravatarLink
-          content={
+          content={(
             <SvgIcon className={classes.icon}>
               <GravatarIcon />
             </SvgIcon>
-          }
+)}
         />
         <GravatarLink
           className={classes.link}
@@ -70,7 +70,12 @@ const UserRegistration = ({
     </DialogContent>
     <DialogActions>
       <Button onClick={hideDialog}>Cancel</Button>
-      <Button variant="raised" onClick={submitRegistrationForm} color="primary" autoFocus>
+      <Button
+        variant="contained"
+        onClick={submitRegistrationForm}
+        color="primary"
+        autoFocus
+      >
         Register
       </Button>
     </DialogActions>
