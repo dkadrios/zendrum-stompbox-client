@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Switch from 'material-ui/Switch'
-import { FormControlLabel, FormGroup } from 'material-ui/Form'
+import { Switch, FormControlLabel, FormGroup } from '@material-ui/core'
 
 const ToggleSwitch = ({ checked, feature, handler }) => (
   <FormGroup>
     <FormControlLabel
-      control={<Switch checked={checked} onChange={(event, value) => handler(value)} />}
+      control={(
+        <Switch
+          checked={checked}
+          onChange={(event, value) => handler(value)}
+        />
+)}
       label={`Enable ${feature}`}
     />
   </FormGroup>

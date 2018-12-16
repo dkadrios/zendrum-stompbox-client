@@ -14,10 +14,10 @@ const InternalState = ({ stompblock }) => {
   return (
     <div className={styles.internalState}>
       <section>
-        Vol <strong>{formatPercent(volumeSetting)}</strong>
+        Vol <strong>{formatPercent(volumeSetting)}%</strong>
       </section>
       <section>
-        Sen <strong>{formatPercent(velocitySetting)}</strong>
+        Sens <strong>{formatPercent(velocitySetting)}%</strong>
       </section>
 
       <div className={styles.leds}>

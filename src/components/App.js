@@ -1,6 +1,7 @@
 import React from 'react'
-import { MuiThemeProvider } from 'material-ui/styles'
+import { MuiThemeProvider } from '@material-ui/core/styles'
 import BrowserDetection from 'react-browser-detection'
+import { Titled } from 'react-titled'
 import MainInterface from './views/MainInterface'
 import UnsupportedBrowser from './views/UnsupportedBrowser'
 import Snow from './Snow'
@@ -17,6 +18,7 @@ const browserHandler = {
 
 const App = () => (
   <MuiThemeProvider theme={muiTheme}>
+    <Titled title={() => 'Zendrum Stompblock Client Interface'} />
     <div className={styles.app}>
       {!__DEV__ && <Snow />}
       <BrowserDetection>{browserHandler}</BrowserDetection>

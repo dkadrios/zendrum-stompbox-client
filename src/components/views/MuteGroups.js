@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import shortid from 'shortid'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Button from 'material-ui/Button'
-import Add from 'material-ui-icons/Add'
+import { Button } from '@material-ui/core'
+import Add from '@material-ui/icons/Add'
 import styles from '../../styles/muteGroups'
 import MuteGroup from '../muteGroups/MuteGroup'
 import MuteGroupInstructions from '../instructions/MuteGroupInstructions'
-import { MAX_MUTE_GROUPS } from '../../midi/'
+import { MAX_MUTE_GROUPS } from '../../midi'
 import * as muteGroupActions from '../../action-creators/muteGroups'
 import * as settingsActions from '../../action-creators/settings'
 import { muteGroupsShape } from '../../reducers/muteGroups'
@@ -49,7 +49,7 @@ const MuteGroups = (props) => {
           </div>
         ))}
         <Button
-          variant="raised"
+          variant="contained"
           color="primary"
           onClick={addMuteGroup}
           disabled={!muteGroupsEnabled}
@@ -80,6 +80,16 @@ MuteGroups.propTypes = {
 
 const mapStateToProps = ({ muteGroups, mapping, settings }) => ({ muteGroups, mapping, settings })
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...muteGroupActions, ...settingsActions }, dispatch)
+  bindActionCreators(
+    {
+      //
+      ...muteGroupActions,
+      ...settingsActions,
+    },
+    dispatch,
+  )
 
-export default connect(mapStateToProps, mapDispatchToProps)(MuteGroups)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MuteGroups)

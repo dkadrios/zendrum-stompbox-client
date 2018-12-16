@@ -72,10 +72,7 @@ const changeTabIndex = (state, { primaryNavTabIdx }) => ({
   primaryNavTabIdx,
 })
 
-const receivedMidiSettings = (
-  state,
-  { channelA, channelB, velocityVariance, roundRobinEnabled, volumeCurve },
-) => ({
+const receivedMidiSettings = (state, { channelA, channelB, velocityVariance, roundRobinEnabled, volumeCurve }) => ({
   ...state,
   channelA,
   channelB,
@@ -148,7 +145,7 @@ const handlers = {
 }
 
 const defaultState = {
-  primaryNavTabIdx: 0,
+  primaryNavTabIdx: 3,
   muteEnabledAtStart: false,
   thruEnabledAtStart: true,
   muteGroupsEnabled: true,

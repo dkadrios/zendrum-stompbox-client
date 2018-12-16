@@ -1,11 +1,23 @@
-import { createMuiTheme } from 'material-ui/styles'
-// import grey from 'material-ui/colors/grey'
-import zendrumRed from './zendrumRed'
+import { createMuiTheme } from '@material-ui/core/styles'
 
 export default createMuiTheme({
   palette: {
-    primary: zendrumRed,
-    secondary: zendrumRed,
+    primary: {
+      light: '#ad5555',
+      main: '#ad0000',
+      dark: '#ad5555',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#5a5a5a',
+      dark: '#784141',
+      contrastText: '#fff',
+    },
+  },
+
+  typography: {
+    useNextVariants: true,
   },
 
   overrides: {
@@ -19,10 +31,6 @@ export default createMuiTheme({
       disabled: {
         background: 'linear-gradient(180deg, #aaa 30%, #aaa 90%)',
         color: '#555',
-      },
-      raisedSecondary: {
-        backgroundColor: '#666',
-        color: '#2f2f2f',
       },
     },
     MuiDialogContent: {
@@ -66,7 +74,7 @@ export default createMuiTheme({
       },
     },
     MuiTooltip: {
-      tooltipBottom: {
+      tooltip: {
         fontSize: 14,
       },
     },

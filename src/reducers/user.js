@@ -10,6 +10,11 @@ import {
   HIDE_REGISTRATION_NAG,
 } from '../action-creators/actions'
 
+const RESTOMP_PRODUCT_ID = 8
+const RESTOMP_AFFILIATE_PRODUCT_ID = 10
+
+const restompProductIds = [RESTOMP_PRODUCT_ID, RESTOMP_AFFILIATE_PRODUCT_ID]
+
 const receivedVersion = (state, { serialNumber }) => ({
   ...state,
   serialNumber,
@@ -25,7 +30,10 @@ const togglePopover = popoverVisible => state => ({
   popoverVisible,
 })
 
-const checkedRegistration = (state, { productInstance: { registrations } }) => {
+const restompIsPresent = ancillaryProducts =>
+  (ancillaryProducts || []).filter(({ PRODUCT_ID }) => restompProductIds.includes(PRODUCT_ID)).length > 0
+
+const checkedRegistration = (state, { productInstance: { registrations, ancillaryProducts } }) => {
   let newState = { ...state, checkedRegistration: true }
   const A = (registrations || []).filter(entry => entry.active)
 
@@ -33,7 +41,7 @@ const checkedRegistration = (state, { productInstance: { registrations } }) => {
 
   if (newState.registered) {
     const { firstName, lastName, email } = A[0]
-    newState = { ...newState, firstName, lastName, email }
+    newState = { ...newState, firstName, lastName, email, ownsRestomp: restompIsPresent(ancillaryProducts) }
     return togglePopover(false)(newState)
   }
   return togglePopover(true)(newState)
@@ -58,6 +66,7 @@ const defaultState = {
   registered: false,
   dialogVisible: false,
   popoverVisible: false,
+  ownsRestomp: false,
 }
 
 export const userShape = {
@@ -69,6 +78,7 @@ export const userShape = {
   registered: PropTypes.bool,
   dialogVisible: PropTypes.bool,
   popoverVisible: PropTypes.bool,
+  ownsRestomp: PropTypes.bool,
 }
 
 export default createReducer(defaultState, handlers)

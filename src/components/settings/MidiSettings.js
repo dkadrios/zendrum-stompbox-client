@@ -25,14 +25,7 @@ const volumeLabels = {
 }
 
 const MidiSettings = ({
-  settings: {
-    channelA,
-    channelB,
-    velocityVariance,
-    roundRobinEnabled,
-    volumeCurve,
-    hasSoundBankSupport,
-  },
+  settings: { channelA, channelB, velocityVariance, roundRobinEnabled, volumeCurve, hasSoundBankSupport },
   changeChannelA,
   changeChannelB,
   changeVelocityVariance,
@@ -63,7 +56,7 @@ const MidiSettings = ({
 
       <div className={styles.sliderCont}>
         <Tooltipped tooltip="Controls how steeply volume drops off at lower velocities">
-          <p>Volume Curve (default is flat)</p>
+          <p>Volume Curve (default is Flat)</p>
           <Slider
             className={rangeSlider}
             step={1}
@@ -77,7 +70,7 @@ const MidiSettings = ({
       </div>
       <div className={styles.sliderCont}>
         <Tooltipped tooltip="Introduces an amount of randomness into your velocity performance">
-          <p>Velocity variance (off by default)</p>
+          <p>Velocity variance (default is OFF)</p>
           <Slider
             className={rangeSlider}
             step={1}
@@ -91,11 +84,7 @@ const MidiSettings = ({
       </div>
       <div>
         <Tooltipped tooltip="Cycles through adjacent sample layers to introduce variation">
-          <ToggleSwitch
-            checked={roundRobinEnabled}
-            feature="anti-machine gunning"
-            handler={changeRoundRobinEnabled}
-          />
+          <ToggleSwitch checked={roundRobinEnabled} feature="anti-machine gunning" handler={changeRoundRobinEnabled} />
         </Tooltipped>
       </div>
     </section>

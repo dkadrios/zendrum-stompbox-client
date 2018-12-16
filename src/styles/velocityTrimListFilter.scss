@@ -41,48 +41,26 @@ $input-height: 32px;
     }
   }
 
-  .buttonGroup {
-    display: flex;
-    flex-flow: row nowrap;
-    margin-right: 20px;
-    button {
-      &:hover {
-        background-color: #ba0706;
-      }
-      margin: 0 1px 0 0;
-      border-radius: 0;
-    }
-    button:first-child(1) {
-      border-radius: 5px 0 0 5px;
-    }
-    button:nth-child(3) {
-      border-radius: 0 5px 5px 0;
-    }
-  }
-
-  .selected {
-    border-width: 0;
-  }
-
   .midiChase {
     padding-left: 20px;
   }
 
-  .bankSelect {
+  .buttonGroup {
     margin-right: 20px;
 
     button {
-      padding: 0 !important;
+      padding: 0 8px !important;
       min-height: 30px;
-      min-width: 60px;
+      min-width: 35px;
       margin: 0 1px 0 0;
+      border-radius: 0;
     }
 
     button:first-child {
       border-radius: 5px 0 0 5px;
     }
 
-    button:nth-child(2) {
+    button:last-child {
       border-radius: 0 5px 5px 0;
     }
   }

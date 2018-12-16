@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
-import Avatar from 'material-ui/Avatar'
-import Chip from 'material-ui/Chip'
-import SvgIcon from 'material-ui/SvgIcon'
+import { withStyles, Avatar, Chip, SvgIcon } from '@material-ui/core'
 import Instrument from '../../images/Instrument'
 import { mappingsShape } from '../../reducers/mapping'
 
@@ -28,11 +25,11 @@ const PolyLockItem = (props) => {
       label={`#${pitch} ${name}`}
       className={classes.chip}
       classes={{ label: classes.label }}
-      avatar={
+      avatar={(
         <Avatar>
           <SvgIcon color="action">{Instrument(group)}</SvgIcon>
         </Avatar>
-      }
+)}
     />
   )
 }

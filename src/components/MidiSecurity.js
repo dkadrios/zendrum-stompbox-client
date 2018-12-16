@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Dialog, { DialogContent, DialogContentText, DialogTitle } from 'material-ui/Dialog'
-import Slide from 'material-ui/transitions/Slide'
+import { DialogContent, DialogContentText, DialogTitle } from '@material-ui/core'
 import { stompblockShape } from '../reducers/stompblock'
-
-const Transition = props => <Slide direction="up" {...props} />
+import Dialog from './Dialog'
 
 class MidiSecurity extends Component {
   static propTypes = {
@@ -28,21 +26,19 @@ class MidiSecurity extends Component {
     const { stompblock } = this.props
 
     return (
-      <Dialog open={this.state.active && !stompblock.accessGranted} transition={Transition}>
+      <Dialog open={this.state.active && !stompblock.accessGranted}>
         <DialogTitle>Your Permission Is Required</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            This application requires special permissions before it can use SysEx and connect to
-            your Zendrum STOMPBLOCK.
+            This application requires special permissions before it can use SysEx and connect to your Zendrum
+            STOMPBLOCK.
           </DialogContentText>
 
           <DialogContentText>
             <br />
           </DialogContentText>
 
-          <DialogContentText>
-            Please select &apos;Allow&apos; when prompted by your browser.
-          </DialogContentText>
+          <DialogContentText>Please select &apos;Allow&apos; when prompted by your browser.</DialogContentText>
         </DialogContent>
       </Dialog>
     )

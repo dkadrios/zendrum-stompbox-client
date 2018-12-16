@@ -1,35 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
-import Dialog, {
-  DialogActions,
+import {
+  Button,
+  LinearProgress,
+  DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog'
-import Slide from 'material-ui/transitions/Slide'
-import { LinearProgress } from 'material-ui/Progress'
-import Warning from 'material-ui-icons/Warning'
+  DialogActions,
+  withStyles,
+} from '@material-ui/core'
+import Warning from '@material-ui/icons/Warning'
+import Dialog from '../Dialog'
 import { settingsShape } from '../../reducers/settings'
 
-const Transition = props => <Slide direction="up" {...props} />
+const styles = {
+  button: {
+    backgroundColor: '#f6a02c',
+    '&:hover': {
+      backgroundColor: '#fed54a',
+    },
+  },
+}
 
 const FactoryReset = (props) => {
-  const { settings, confirmFactoryReset, performFactoryReset } = props
+  const { settings, confirmFactoryReset, performFactoryReset, classes } = props
   const { showResetDialog, resetInProcess } = settings
 
   return (
     <div>
-      <Button variant="raised" color="primary" onMouseUp={() => confirmFactoryReset(true)}>
+      <Button variant="contained" className={classes.button} onMouseUp={() => confirmFactoryReset(true)}>
         <Warning />
         <span style={{ paddingLeft: 7 }}>Perform Factory Reset</span>
       </Button>
 
-      <Dialog
-        open={showResetDialog}
-        transition={Transition}
-        onClose={() => confirmFactoryReset(false)}
-      >
+      <Dialog open={showResetDialog} onClose={() => confirmFactoryReset(false)}>
         <DialogTitle>Confirm Factory Reset</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -43,13 +47,13 @@ const FactoryReset = (props) => {
           <Button onClick={() => confirmFactoryReset(false)} color="primary">
             Cancel
           </Button>
-          <Button onClick={performFactoryReset} variant="raised" color="primary" autoFocus>
+          <Button onClick={performFactoryReset} variant="contained" color="primary" autoFocus>
             Perform Reset
           </Button>
         </DialogActions>
       </Dialog>
 
-      <Dialog open={resetInProcess} transition={Transition}>
+      <Dialog open={resetInProcess}>
         <DialogTitle>Factory Reset In Progress</DialogTitle>
         <DialogContent>
           <DialogContentText>Please wait...</DialogContentText>
@@ -64,6 +68,7 @@ FactoryReset.propTypes = {
   settings: PropTypes.shape(settingsShape).isRequired,
   confirmFactoryReset: PropTypes.func.isRequired,
   performFactoryReset: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
-export default FactoryReset
+export default withStyles(styles)(FactoryReset)

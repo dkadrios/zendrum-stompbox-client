@@ -25,7 +25,7 @@
     ); /* IE6-9 */
 }
 
-@mixin animation ($name, $duration: 300ms, $delay: 0, $ease: ease) {
+@mixin animation($name, $duration: 300ms, $delay: 0, $ease: ease) {
   -moz-animation: $name, $duration, $delay, $ease;
   -ms-animation: $name, $duration, $delay, $ease;
   -webkit-animation: $name, $duration, $delay, $ease;
@@ -64,7 +64,7 @@
 @mixin led-on($led-size, $color, $shadow: rgba(0, 0, 0, 0.2)) {
   @include led($led-size, $color, $shadow);
   background-color: $color;
-  box-shadow: $shadow 0 -1px 7px 1px, $color 0 2px 12px; // adds glow
+  box-shadow: $shadow 0 -1px 7px 1px, $color 0 2px 12px; /* adds glow */
 }
 
 @mixin scroll-shadow-indicator() {

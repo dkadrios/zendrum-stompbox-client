@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import shortid from 'shortid'
-import { withStyles } from 'material-ui/styles'
-import Select from 'material-ui/Select'
-import { MenuItem } from 'material-ui/Menu'
+import { withStyles, Select, MenuItem } from '@material-ui/core'
 import { arraySequence } from '../../utils'
 
 const styles = {
@@ -27,14 +25,17 @@ const styles = {
   },
 }
 
-const Items = classes =>
-  arraySequence(16)
-    .map(i => i + 1)
-    .map(i => (
-      <MenuItem key={shortid.generate()} value={i} classes={classes}>
-        {i}
-      </MenuItem>
-    ))
+const Items = classes => arraySequence(16)
+  .map(i => i + 1)
+  .map(i => (
+    <MenuItem
+      key={shortid.generate()}
+      value={i}
+      classes={classes}
+    >
+      {i}
+    </MenuItem>
+  ))
 
 const ChannelPicker = ({ channel: value, onChange, classes }) => {
   const menuProps = {

@@ -1,15 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
-import ExpansionPanel, {
+import {
+  withStyles,
+  ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
-} from 'material-ui/ExpansionPanel'
-import Switch from 'material-ui/Switch'
-import Toolbar from 'material-ui/Toolbar'
-import Tooltip from 'material-ui/Tooltip'
-import Typography from 'material-ui/Typography'
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore'
+  Switch,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from '@material-ui/core'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const muiStyles = {
   summary: {
@@ -31,7 +32,10 @@ const Instructions = ({ header, body, classes, enabled, onChange }) => (
       expandIcon={<ExpandMoreIcon />}
     >
       <Toolbar>
-        <Typography color="inherit" className={classes.title}>
+        <Typography
+          color="inherit"
+          className={classes.title}
+        >
           {header} [Click for MORE]
         </Typography>
         <Tooltip title={enabled ? 'Disable' : 'Enable'}>

@@ -1,13 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import SvgIcon from 'material-ui/SvgIcon'
-import Typography from 'material-ui/Typography'
+import { withStyles, AppBar, Toolbar, SvgIcon, Typography } from '@material-ui/core'
 import UserInfo from './UserInfo'
 import ZendrumLogo from '../images/ZendrumLogo.svg.js'
-import AdImage from '../images/try-restomp.png'
+import RestompAd from './RestompAd'
 
 const styles = {
   title: {
@@ -35,11 +31,7 @@ const TopBar = ({ classes }) => (
       <Typography type="title" color="inherit" className={classes.title}>
         STOMPBLOCK
       </Typography>
-      <div style={{ marginRight: 60 }}>
-        <a target="_blank" rel="noopener noreferrer" href="https://zendrumstudio.com/restomp">
-          <img src={AdImage} alt="Try Restomp today!" width="260" height="44" />
-        </a>
-      </div>
+      <RestompAd />
       <div>
         <UserInfo />
       </div>

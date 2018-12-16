@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Tabs, { Tab } from 'material-ui/Tabs'
+import { Tabs, Tab } from '@material-ui/core'
 import * as settingsActions from '../action-creators/settings'
 import VelocityTrimListView from './views/VelocityTrimListView'
 import Settings from './views/Settings'
@@ -12,7 +12,7 @@ import MidiActivity from './MidiActivity'
 import InternalState from './InternalState'
 import InResetMode from './InResetMode'
 import InEditMode from './InEditMode'
-import TopBar from '../components/TopBar'
+import TopBar from './TopBar'
 import ErrorDialog from './ErrorDialog'
 
 const PrimaryNav = ({
@@ -65,4 +65,7 @@ PrimaryNav.propTypes = {
 const mapStateToProps = ({ settings }) => ({ settings })
 const mapDispatchToProps = dispatch => bindActionCreators(settingsActions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNav)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PrimaryNav)
