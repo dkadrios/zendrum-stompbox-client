@@ -40,17 +40,26 @@ const MidiSettings = ({
         <div className={styles.bank}>
           <article>
             <summary>Bank A</summary>
-            <ChannelPicker channel={channelA} onChange={changeChannelA} />
+            <ChannelPicker
+              channel={channelA}
+              onChange={changeChannelA}
+            />
           </article>
           <article>
             <summary>Bank B</summary>
-            <ChannelPicker channel={channelB} onChange={changeChannelB} />
+            <ChannelPicker
+              channel={channelB}
+              onChange={changeChannelB}
+            />
           </article>
         </div>
       ) : (
         <article>
           <summary>Channel</summary>
-          <ChannelPicker channel={channelA} onChange={changeChannelA} />
+          <ChannelPicker
+            channel={channelA}
+            onChange={changeChannelA}
+          />
         </article>
       )}
 
@@ -84,7 +93,11 @@ const MidiSettings = ({
       </div>
       <div>
         <Tooltipped tooltip="Cycles through adjacent sample layers to introduce variation">
-          <ToggleSwitch checked={roundRobinEnabled} feature="anti-machine gunning" handler={changeRoundRobinEnabled} />
+          <ToggleSwitch
+            checked={roundRobinEnabled}
+            feature="anti-machine gunning"
+            handler={changeRoundRobinEnabled}
+          />
         </Tooltipped>
       </div>
     </section>

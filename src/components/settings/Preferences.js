@@ -3,16 +3,20 @@ import PropTypes from 'prop-types'
 import TS from '../HOC/ToggleSwitch'
 import { settingsShape } from '../../reducers/settings'
 
-const Preferences = ({
-  setMuteEnabled,
-  setThruEnabled,
-  settings: { muteEnabledAtStart, thruEnabledAtStart },
-}) => (
+const Preferences = ({ setMuteEnabled, setThruEnabled, settings: { muteEnabledAtStart, thruEnabledAtStart } }) => (
   <div>
     <h2>Startup Preferences</h2>
     <section>
-      <TS checked={muteEnabledAtStart} feature="MUTE when turned on" handler={setMuteEnabled} />
-      <TS checked={thruEnabledAtStart} feature="THRU when turned on" handler={setThruEnabled} />
+      <TS
+        checked={muteEnabledAtStart}
+        feature="MUTE when turned on"
+        handler={setMuteEnabled}
+      />
+      <TS
+        checked={thruEnabledAtStart}
+        feature="THRU when turned on"
+        handler={setThruEnabled}
+      />
     </section>
   </div>
 )

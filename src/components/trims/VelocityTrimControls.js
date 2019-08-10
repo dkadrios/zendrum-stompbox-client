@@ -29,18 +29,14 @@ const VelocityTrimControls = ({ item, bank, userChangedTrim, userChangedTrimEnd,
     </div>
     <div>{item.trim}</div>
     <div className={styles.buttons}>
-      <button
-        type="button"
-        onClick={() => userChangedTrimEnd(item.note, 100, bank)}
-      >
-        MAX
-      </button>
-      <button
-        type="button"
-        onClick={() => userChangedTrimEnd(item.note, 0, bank)}
-      >
-        MUTE
-      </button>
+      <dd>
+        <button onClick={() => userChangedTrimEnd(item.note, item.trim + 1, bank)}>+</button>
+        <button onClick={() => userChangedTrimEnd(item.note, item.trim - 1, bank)}>-</button>
+      </dd>
+      <div>
+        <button onClick={() => userChangedTrimEnd(item.note, 100, bank)}>MAX</button>
+        <button onClick={() => userChangedTrimEnd(item.note, 0, bank)}>MUTE</button>
+      </div>
     </div>
   </div>
 )

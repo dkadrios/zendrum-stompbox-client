@@ -95,7 +95,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 1px 5px 0 8px;
-        border-radius: 5px;
+        border-radius: 5px 5px 1px 1px;
         cursor: pointer;
 
         div:first-child {
@@ -149,10 +149,27 @@
 
         .buttons {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          align-items: center;
+          position: relative;
+          top: -10px;
+
+          dd,
+          div {
+            display: flex;
+            flex-direction: column;
+          }
+
+          dd {
+            margin: 5px 5px 0;
+          }
 
           button {
             cursor: pointer;
+            background-color: white;
+            border: 1px solid transparent !important;
+            border-radius: 5px !important;
+            margin: 2px;
           }
         }
       }
@@ -229,7 +246,7 @@
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        width: 180px;
+        width: 300px;
         justify-content: space-between;
         font-size: 18px;
 
@@ -237,11 +254,18 @@
           display: flex;
           flex-flow: row nowrap;
           align-items: center;
+          dd {
+            margin: 0 10px 0;
+            button {
+              width: 24px;
+            }
+          }
           button {
             background-color: white;
-            border-style: 1px solid transparent !important;
-            border-radius: 5 !important;
+            border: 1px solid transparent !important;
+            border-radius: 5px !important;
             margin-right: 5px;
+            cursor: pointer;
           }
         }
       }

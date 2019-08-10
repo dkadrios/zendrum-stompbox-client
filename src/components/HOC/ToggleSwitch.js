@@ -5,12 +5,11 @@ import { Switch, FormControlLabel, FormGroup } from '@material-ui/core'
 const ToggleSwitch = ({ checked, feature, handler }) => (
   <FormGroup>
     <FormControlLabel
-      control={(
-        <Switch
-          checked={checked}
-          onChange={(event, value) => handler(value)}
-        />
-)}
+      control={<Switch
+        color="primary"
+        checked={checked}
+        onChange={(event, value) => handler(value)}
+      />}
       label={`Enable ${feature}`}
     />
   </FormGroup>

@@ -21,6 +21,12 @@
     }
   }
 
+  button:hover:active {
+    background: $color-text-dimmer !important;
+    border: 1px solid transparent !important;
+    border-radius: 5px !important;
+  }
+
   ::-webkit-scrollbar {
     width: 14px;
     background: $color-background-light;

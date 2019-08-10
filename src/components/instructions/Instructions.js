@@ -36,10 +36,11 @@ const Instructions = ({ header, body, classes, enabled, onChange }) => (
           color="inherit"
           className={classes.title}
         >
-          {header} [Click for MORE]
+          {header}&nbsp;&nbsp;&nbsp;[Click for MORE INFO]
         </Typography>
         <Tooltip title={enabled ? 'Disable' : 'Enable'}>
           <Switch
+            color="primary"
             checked={enabled}
             onClick={event => event.stopPropagation()}
             onChange={(event, value) => onChange(value)}

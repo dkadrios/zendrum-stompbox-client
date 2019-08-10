@@ -31,7 +31,10 @@ const MuteGroups = (props) => {
   return (
     <div className={styles.muteGroupsContainer}>
       <div className={styles.muteGroups}>
-        <MuteGroupInstructions enabled={muteGroupsEnabled} onChange={setMuteGroupsEnabled} />
+        <MuteGroupInstructions
+          enabled={muteGroupsEnabled}
+          onChange={setMuteGroupsEnabled}
+        />
         {data.map((group, idx) => (
           <div key={shortid.generate()}>
             <MuteGroup
@@ -52,13 +55,13 @@ const MuteGroups = (props) => {
           variant="contained"
           color="primary"
           onClick={addMuteGroup}
-          disabled={!muteGroupsEnabled}
+          disabled={!muteGroupsEnabled || data.length === MAX_MUTE_GROUPS}
         >
           <Add />
           Create New Group
         </Button>
         <small>
-          Using {MAX_MUTE_GROUPS - data.length} of {MAX_MUTE_GROUPS}
+          Using {data.length} of {MAX_MUTE_GROUPS}
           &nbsp;available groups
         </small>
       </div>

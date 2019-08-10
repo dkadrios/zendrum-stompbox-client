@@ -20,7 +20,14 @@ const active = () => {
 
 const Snow = () => (
   <div>
-    {active() && <SnowStorm flakesMax={15} snowStick={false} followMouse={false} vMaxX={1} vMaxY={1} color="#ddd" />}
+    {active() && <SnowStorm
+      flakesMax={15}
+      snowStick={false}
+      followMouse={false}
+      vMaxX={1}
+      vMaxY={1}
+      color="#ddd"
+    />}
   </div>
 )
 

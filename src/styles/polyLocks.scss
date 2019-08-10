@@ -1,6 +1,17 @@
+@import 'variables';
+
 .polyLocksCont {
-  max-width: 630px;
-  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .polylocks {
+    padding: 10px 30px 30px 15px;
+    overflow: auto;
+    height: 100vh;
+    margin-bottom: $height-footer + $height-tips + $height-header + $height-tabs -
+      25;
+  }
 
   section {
     display: flex;

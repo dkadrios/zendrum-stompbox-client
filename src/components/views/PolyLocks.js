@@ -26,36 +26,41 @@ const PolyLocks = (props) => {
 
   return (
     <div className={styles.polyLocksCont}>
-      <PolyLockInstructions enabled={polyLocksEnabled} onChange={setPolyLocksEnabled} />
-      <Paper style={paperStyle}>
-        <section>
-          <PolyLockBank
-            polyLocks={data}
-            mapping={mapping}
-            bank={0}
-            disabled={!polyLocksEnabled}
-            deletePolyLock={deletePolyLock}
-            addPolyLock={addPolyLock}
-            hasSoundBankSupport={hasSoundBankSupport}
-          />
-          {hasSoundBankSupport && (
+      <div className={styles.polylocks}>
+        <PolyLockInstructions
+          enabled={polyLocksEnabled}
+          onChange={setPolyLocksEnabled}
+        />
+        <Paper style={paperStyle}>
+          <section>
             <PolyLockBank
               polyLocks={data}
               mapping={mapping}
-              bank={1}
+              bank={0}
               disabled={!polyLocksEnabled}
               deletePolyLock={deletePolyLock}
               addPolyLock={addPolyLock}
               hasSoundBankSupport={hasSoundBankSupport}
             />
-          )}
-        </section>
-      </Paper>
+            {hasSoundBankSupport && (
+              <PolyLockBank
+                polyLocks={data}
+                mapping={mapping}
+                bank={1}
+                disabled={!polyLocksEnabled}
+                deletePolyLock={deletePolyLock}
+                addPolyLock={addPolyLock}
+                hasSoundBankSupport={hasSoundBankSupport}
+              />
+            )}
+          </section>
+        </Paper>
 
-      <small>
-        Using {data.length} of {MAX_POLYLOCKS}
-        &nbsp;available locks
-      </small>
+        <small>
+          Using {data.length} of {MAX_POLYLOCKS}
+          &nbsp;available locks
+        </small>
+      </div>
     </div>
   )
 }

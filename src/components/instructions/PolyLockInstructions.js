@@ -11,7 +11,7 @@ const styles = {
   },
 }
 
-const header = 'Here you can define which notes if any should not be recycled by the engine.'
+const header = 'Here you can define which notes (if any) should not be recycled by the engine.'
 const body = () => (
   <div>
     <p>Your STOMPBLOCK has a maximum polyphony of 14 voices.</p>
@@ -31,7 +31,11 @@ const body = () => (
 
 const PolyLockInstructions = ({ classes, ...rest }) => (
   <div className={classes.cont}>
-    <Instructions header={header} body={body()} {...rest} />
+    <Instructions
+      header={header}
+      body={body()}
+      {...rest}
+    />
   </div>
 )
 
