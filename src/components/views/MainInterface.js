@@ -5,9 +5,9 @@ import MidiSecurity from '../MidiSecurity'
 import PrimaryNav from '../PrimaryNav'
 import InfoPanel from '../InfoPanel'
 
-const MainInterface = () => (
+const MainInterface = props => (
   <div>
-    <PrimaryNav />
+    <PrimaryNav {...props} />
     <MidiSecurity />
     <NotResponding />
     <NoStompblockFound />

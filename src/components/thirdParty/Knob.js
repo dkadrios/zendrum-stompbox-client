@@ -1,7 +1,9 @@
 /*
-* Forked from https://github.com/joshjg/react-canvas-knob
-* Original version began to experience problems with react-transform-hmr
-*/
+ * Forked from https://github.com/joshjg/react-canvas-knob
+ * Original version began to experience problems with react-transform-hmr
+ *
+ * Also added mobile support
+ */
 
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -37,6 +39,7 @@ class Knob extends React.Component {
     title: PropTypes.string,
     className: PropTypes.string,
     canvasClassName: PropTypes.string,
+    mobile: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -65,6 +68,7 @@ class Knob extends React.Component {
     disableMouseWheel: false,
     className: null,
     canvasClassName: null,
+    mobile: false,
   }
 
   constructor(props) {
@@ -72,16 +76,11 @@ class Knob extends React.Component {
     this.w = this.props.width || 200
     this.h = this.props.height || this.w
     this.cursorExt = this.props.cursor === true ? 0.3 : this.props.cursor / 100
-    this.angleArc = this.props.angleArc * Math.PI / 180
-    this.angleOffset = this.props.angleOffset * Math.PI / 180
+    this.angleArc = (this.props.angleArc * Math.PI) / 180
+    this.angleOffset = (this.props.angleOffset * Math.PI) / 180
     this.startAngle = 1.5 * Math.PI + this.angleOffset
     this.endAngle = 1.5 * Math.PI + this.angleOffset + this.angleArc
-    this.digits =
-      Math.max(
-        String(Math.abs(this.props.min)).length,
-        String(Math.abs(this.props.max)).length,
-        2,
-      ) + 2
+    this.digits = Math.max(String(Math.abs(this.props.min)).length, String(Math.abs(this.props.max)).length, 2) + 2
   }
 
   componentDidMount() {
@@ -112,9 +111,8 @@ class Knob extends React.Component {
     let startAngle
     let endAngle
     const angle = !this.props.log
-      ? (v - this.props.min) * this.angleArc / (this.props.max - this.props.min)
-      : Math.log(Math.pow(v / this.props.min, this.angleArc)) /
-        Math.log(this.props.max / this.props.min)
+      ? ((v - this.props.min) * this.angleArc) / (this.props.max - this.props.min)
+      : Math.log(Math.pow(v / this.props.min, this.angleArc)) / Math.log(this.props.max / this.props.min)
     if (!this.props.clockwise) {
       startAngle = this.endAngle + 0.00001
       endAngle = startAngle - angle - 0.00001
@@ -146,10 +144,7 @@ class Knob extends React.Component {
   coerceToStep = (v) => {
     let val = !this.props.log
       ? ~~((v < 0 ? -0.5 : 0.5) + v / this.props.step) * this.props.step
-      : Math.pow(
-        this.props.step,
-        ~~((Math.abs(v) < 1 ? -0.5 : 0.5) + Math.log(v) / Math.log(this.props.step)),
-      )
+      : Math.pow(this.props.step, ~~((Math.abs(v) < 1 ? -0.5 : 0.5) + Math.log(v) / Math.log(this.props.step)))
     val = Math.max(Math.min(val, this.props.max), this.props.min)
     if (isNaN(val)) {
       val = 0
@@ -157,10 +152,22 @@ class Knob extends React.Component {
     return Math.round(val * 1000) / 1000
   }
 
+  mobilePropFromEvent = e => name => (
+    e[name] || //
+      (e.changedTouches && e.changedTouches.length //
+        ? e.changedTouches[0][name]
+        : 0)
+  )
+
   eventToValue = (e) => {
+    const { mobile } = this.props
+    const mobileProp = this.mobilePropFromEvent(e)
     const bounds = this.canvasRef.getBoundingClientRect()
-    const x = e.clientX - bounds.left
-    const y = e.clientY - bounds.top
+    const clientX = mobile ? mobileProp('clientX') : e.clientX
+    const clientY = mobile ? mobileProp('clientY') : e.clientY
+
+    const x = clientX - bounds.left
+    const y = clientY - bounds.top
     let a = Math.atan2(x - this.w / 2, this.w / 2 - y) - this.angleOffset
     if (!this.props.clockwise) {
       a = this.angleArc - a - 2 * Math.PI
@@ -171,7 +178,7 @@ class Knob extends React.Component {
       a += Math.PI * 2
     }
     const val = !this.props.log
-      ? a * (this.props.max - this.props.min) / this.angleArc + this.props.min
+      ? (a * (this.props.max - this.props.min)) / this.angleArc + this.props.min
       : Math.pow(this.props.max / this.props.min, a / this.angleArc) * this.props.min
     return this.coerceToStep(val)
   }
@@ -224,8 +231,7 @@ class Knob extends React.Component {
   }
 
   handleTextInput = (e) => {
-    const val =
-      Math.max(Math.min(+e.target.value, this.props.max), this.props.min) || this.props.min
+    const val = Math.max(Math.min(+e.target.value, this.props.max), this.props.min) || this.props.min
     this.props.onChange(val)
   }
 
@@ -254,7 +260,7 @@ class Knob extends React.Component {
     position: 'absolute',
     verticalAlign: 'middle',
     marginTop: `${(this.w / 3) >> 0}px`,
-    marginLeft: `-${(this.w * 3 / 4 + 2) >> 0}px`,
+    marginLeft: `-${((this.w * 3) / 4 + 2) >> 0}px`,
     border: 0,
     background: 'none',
     font: `${this.props.fontWeight} ${(this.w / this.digits) >> 0}px ${this.props.font}`,

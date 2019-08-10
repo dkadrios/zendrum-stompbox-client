@@ -10,7 +10,7 @@ import muiTheme from '../styles/muiTheme'
 
 const browserHandler = {
   chrome: () => <MainInterface />,
-  'android-chrome': () => <MainInterface />,
+  'android-chrome': () => <MainInterface mobile />,
   opera: () => <MainInterface />,
   default: () => <UnsupportedBrowser />,
   android: () => <UnsupportedBrowser />,

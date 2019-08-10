@@ -16,10 +16,7 @@ const VelocityTrimListView = (props) => {
   const { banks, bank, search, group, selectedNoteNum } = velocityTrim
   const { banks: mappingBanks, available } = mapping
 
-  const mappingName = available.reduce(
-    (acc, { name, label }) => (name === mappingBanks[bank].name ? label : acc),
-    '',
-  )
+  const mappingName = available.reduce((acc, { name, label }) => (name === mappingBanks[bank].name ? label : acc), '')
 
   /**
    * ZenEdit and Restomp use different group names.
@@ -37,8 +34,7 @@ const VelocityTrimListView = (props) => {
 
   const searchRE = RegExp(search, 'i')
 
-  const groupMatch = item =>
-    group === 'all' || group === item.group || group === alternateGroupNames[item.group]
+  const groupMatch = item => group === 'all' || group === item.group || group === alternateGroupNames[item.group]
 
   const filteredTrims = banks[bank].filter(item =>
     groupMatch(item) && //
@@ -47,8 +43,14 @@ const VelocityTrimListView = (props) => {
   return (
     <div className={styles.listContainer}>
       <VelocityTrimListFilter />
-      <VelocityTrimTips active={!Number.isNaN(selectedNoteNum)} mappingName={mappingName} />
-      <VelocityTrimList items={filteredTrims} {...props} />
+      <VelocityTrimTips
+        active={!Number.isNaN(selectedNoteNum)}
+        mappingName={mappingName}
+      />
+      <VelocityTrimList
+        items={filteredTrims}
+        {...props}
+      />
     </div>
   )
 }
@@ -59,7 +61,9 @@ VelocityTrimListView.propTypes = {
 }
 
 const mapStateToProps = ({ velocityTrim, mapping }) => ({ velocityTrim, mapping })
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...trimActions, ...trimFilterActions }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...trimActions, ...trimFilterActions }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(VelocityTrimListView)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(VelocityTrimListView)

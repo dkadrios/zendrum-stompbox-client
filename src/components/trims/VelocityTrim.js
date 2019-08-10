@@ -43,6 +43,7 @@ const handleKeyDown = (event, item, bank, userChangedTrimEnd) => {
 const VelocityTrim = (props) => {
   const { item, bank, selected, playNote, selectTrim, userChangedTrimEnd } = props
   const { note, trim, group, name } = item
+
   return (
     <section
       tabIndex={note}
@@ -61,7 +62,10 @@ const VelocityTrim = (props) => {
         <div>{group}</div>
         <div>{Instrument(group)}</div>
       </div>
-      <div className={styles.noteName} title={name}>
+      <div
+        className={styles.noteName}
+        title={name}
+      >
         {name}
       </div>
       <VelocityTrimControls {...props} />

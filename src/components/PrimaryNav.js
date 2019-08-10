@@ -19,6 +19,7 @@ const PrimaryNav = ({
   settings: { primaryNavTabIdx, hasVersionThreeFirmware, errorMessage, errorVisible },
   changePrimaryNavTab,
   dismissError,
+  ...rest
 }) => (
   <div>
     <TopBar />
@@ -39,7 +40,7 @@ const PrimaryNav = ({
         />
         <Tab label="Settings" />
       </Tabs>
-      {primaryNavTabIdx === 0 && <VelocityTrimListView />}
+      {primaryNavTabIdx === 0 && <VelocityTrimListView {...rest} />}
       {primaryNavTabIdx === 1 && <MuteGroups />}
       {primaryNavTabIdx === 2 && <PolyLocks />}
       {primaryNavTabIdx === 3 && <Settings />}

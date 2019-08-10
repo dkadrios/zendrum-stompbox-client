@@ -2,6 +2,7 @@
 
 | Date       | Version | Notes                                                                                                                                                          |
 | ---------- | :-----: | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2019-08-09 |   5.6   | Touch events for knobs were setting trim values to zero                                                                                                        |
 | 2018-12-15 |   5.5   | Correcting issues that appeared in Chrome 71                                                                                                                   |
 | 2018-05-04 |   5.4   | Warning user if the browser does not support Web MIDI                                                                                                          |
 | 2018-04-29 |   5.3   | Chrome 66 chokes when timestamps are provided for MIDI Events<br>Reconciling the different group names used by ZenEdit and Restomp                             |

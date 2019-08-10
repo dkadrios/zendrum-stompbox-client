@@ -238,6 +238,9 @@
           flex-flow: row nowrap;
           align-items: center;
           button {
+            background-color: white;
+            border-style: 1px solid transparent !important;
+            border-radius: 5 !important;
             margin-right: 5px;
           }
         }
