@@ -28,7 +28,10 @@ const UnsupportedBrowser = () => (
         </section>
         <section>
           <a href="https://www.opera.com/download">
-            <OperaIcon width="50%" viewBox="10 10 100 100" />
+            <OperaIcon
+              width="50%"
+              viewBox="10 10 100 100"
+            />
           </a>
           <a href="https://www.opera.com/download">Opera</a>
           <aside>Version 33+</aside>

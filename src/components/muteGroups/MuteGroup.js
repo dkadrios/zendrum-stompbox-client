@@ -52,16 +52,32 @@ const MuteGroup = (props) => {
     <div>
       <Paper style={paperStyle}>
         <Toolbar>
-          <Typography color="inherit" type="title" className={classes.title}>
+          <Typography
+            color="inherit"
+            type="title"
+            className={classes.title}
+          >
             Mute Group
           </Typography>
           {hasSoundBankSupport && (
             <div className={classes.bank}>
-              <BankPicker disabled={disabled} value={bank} onChange={val => changeBank(ordinal, val)} />
+              <BankPicker
+                disabled={disabled}
+                value={bank}
+                onChange={val => changeBank(ordinal, val)}
+              />
             </div>
           )}
-          <Tooltip title="Delete group" placement="bottom">
-            <Fab disabled={disabled} size="small" aria-label="delete" onClick={() => deleteMuteGroup(ordinal)}>
+          <Tooltip
+            title="Delete group"
+            placement="bottom"
+          >
+            <Fab
+              disabled={disabled}
+              size="small"
+              aria-label="delete"
+              onClick={() => deleteMuteGroup(ordinal)}
+            >
               <DeleteIcon />
             </Fab>
           </Tooltip>
@@ -76,8 +92,18 @@ const MuteGroup = (props) => {
             <h1>&hellip;whenever these notes are played</h1>
             <div className={styles.list}>{List(muters, true)}</div>
           </section>
-          <MuteGroupNewItem bank={bank} {...props} disabled={disabled} muter={false} />
-          <MuteGroupNewItem bank={bank} {...props} disabled={disabled} muter />
+          <MuteGroupNewItem
+            bank={bank}
+            {...props}
+            disabled={disabled}
+            muter={false}
+          />
+          <MuteGroupNewItem
+            bank={bank}
+            {...props}
+            disabled={disabled}
+            muter
+          />
         </div>
       </Paper>
     </div>

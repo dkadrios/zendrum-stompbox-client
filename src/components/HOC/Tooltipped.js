@@ -17,7 +17,10 @@ MuiTooltip.propTypes = {
 const Tooltipped = (props) => {
   const { tooltip } = props
   return tooltip ? ( //
-    <MuiTooltip title={tooltip} {...props} />
+    <MuiTooltip
+      title={tooltip}
+      {...props}
+    />
   ) : (
     <div {...props} />
   )

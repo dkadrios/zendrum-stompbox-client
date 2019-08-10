@@ -28,7 +28,11 @@ const body = () => (
 
 const MuteGroupInstructions = ({ classes, ...rest }) => (
   <div className={classes.cont}>
-    <Instructions header={header} body={body()} {...rest} />
+    <Instructions
+      header={header}
+      body={body()}
+      {...rest}
+    />
   </div>
 )
 

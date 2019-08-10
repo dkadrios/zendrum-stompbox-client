@@ -28,7 +28,11 @@ const TopBar = ({ classes }) => (
       <SvgIcon className={classes.icon}>
         <ZendrumLogo />
       </SvgIcon>
-      <Typography type="title" color="inherit" className={classes.title}>
+      <Typography
+        type="title"
+        color="inherit"
+        className={classes.title}
+      >
         STOMPBLOCK
       </Typography>
       <RestompAd />

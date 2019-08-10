@@ -7,7 +7,11 @@ const FilePicker = (props) => {
 
   return (
     <div>
-      <ReactFilePicker extensions={extensions} onChange={onChange} onError={reportError}>
+      <ReactFilePicker
+        extensions={extensions}
+        onChange={onChange}
+        onError={reportError}
+      >
         {children}
       </ReactFilePicker>
     </div>

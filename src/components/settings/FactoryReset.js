@@ -28,12 +28,19 @@ const FactoryReset = (props) => {
 
   return (
     <div>
-      <Button variant="contained" className={classes.button} onMouseUp={() => confirmFactoryReset(true)}>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onMouseUp={() => confirmFactoryReset(true)}
+      >
         <Warning />
         <span style={{ paddingLeft: 7 }}>Perform Factory Reset</span>
       </Button>
 
-      <Dialog open={showResetDialog} onClose={() => confirmFactoryReset(false)}>
+      <Dialog
+        open={showResetDialog}
+        onClose={() => confirmFactoryReset(false)}
+      >
         <DialogTitle>Confirm Factory Reset</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -44,10 +51,18 @@ const FactoryReset = (props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => confirmFactoryReset(false)} color="primary">
+          <Button
+            onClick={() => confirmFactoryReset(false)}
+            color="primary"
+          >
             Cancel
           </Button>
-          <Button onClick={performFactoryReset} variant="contained" color="primary" autoFocus>
+          <Button
+            onClick={performFactoryReset}
+            variant="contained"
+            color="primary"
+            autoFocus
+          >
             Perform Reset
           </Button>
         </DialogActions>

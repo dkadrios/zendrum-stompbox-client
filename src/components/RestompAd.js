@@ -9,8 +9,17 @@ const RestompAd = ({ user }) => {
 
   return !checkedRegistration || ownsRestomp ? null : (
     <div style={{ marginRight: 60 }}>
-      <a target="_blank" rel="noopener noreferrer" href="https://zendrumstudio.com/restomp">
-        <img src={AdImage} alt="Try Restomp today!" width="260" height="44" />
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://zendrumstudio.com/restomp"
+      >
+        <img
+          src={AdImage}
+          alt="Try Restomp today!"
+          width="260"
+          height="44"
+        />
       </a>
     </div>
   )

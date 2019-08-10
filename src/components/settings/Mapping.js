@@ -16,11 +16,17 @@ const Mapping = (props) => {
 
   return (
     <div className={mappingClass}>
-      <div onClick={() => onChange(name)} role="presentation">
+      <div
+        onClick={() => onChange(name)}
+        role="presentation"
+      >
         <MicroSD />
         {Sticker(name)}
         <p>{label}</p>
-        {idx > 1 && <DeleteMappingButton deleteMapping={deleteMapping} name={name} />}
+        {idx > 1 && <DeleteMappingButton
+          deleteMapping={deleteMapping}
+          name={name}
+        />}
       </div>
     </div>
   )

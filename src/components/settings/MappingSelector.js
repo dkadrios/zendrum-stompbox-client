@@ -16,8 +16,14 @@ const MappingSelector = (props) => {
           displayed.
         </p>
         <div>
-          <Cards bank={0} {...props} />
-          {hasSoundBankSupport && <Cards bank={1} {...props} />}
+          <Cards
+            bank={0}
+            {...props}
+          />
+          {hasSoundBankSupport && <Cards
+            bank={1}
+            {...props}
+          />}
         </div>
       </section>
     </div>

@@ -52,9 +52,16 @@ const Cards = ({
           />
         ))}
 
-        <FilePicker extensions={['txt']} onChange={handleFileUploaded} reportError={reportError}>
+        <FilePicker
+          extensions={['txt']}
+          onChange={handleFileUploaded}
+          reportError={reportError}
+        >
           <Tooltip title="Import ZenEdit mapping...">
-            <Fab aria-label="add" style={{ position: 'relative', left: 20, top: 40, marginRight: 60 }}>
+            <Fab
+              aria-label="add"
+              style={{ position: 'relative', left: 20, top: 40, marginRight: 60 }}
+            >
               <AddIcon />
             </Fab>
           </Tooltip>
